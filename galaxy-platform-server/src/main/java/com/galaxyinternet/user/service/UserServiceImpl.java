@@ -28,4 +28,11 @@ public class UserServiceImpl extends BaseServiceImpl<User>implements UserService
 		user.setOriginPassword(oriPwd);
 		return super.insert(user);
 	}
+
+	@Override
+	public int resetPwd(User user) {
+		
+		user.setPassword(user.getOriginPassword());
+		return super.updateById(user);
+	}
 }

@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.galaxyinternet.bo.UserBo;
 import com.galaxyinternet.common.controller.BaseControllerImpl;
+import com.galaxyinternet.framework.core.model.Page;
 import com.galaxyinternet.framework.core.model.ResponseData;
+import com.galaxyinternet.framework.core.model.Result;
+import com.galaxyinternet.framework.core.model.Result.Status;
 import com.galaxyinternet.framework.core.service.BaseService;
 import com.galaxyinternet.model.user.User;
 import com.galaxyinternet.service.UserService;
@@ -42,9 +45,23 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		user.setRealName("keifer");
 		//userRepository.add(user);
 		cache.set(user.getMobile(), 100, user);
-		
 		System.out.println(cache.get(user.getMobile()));
-		
 		return responseBody;
 	}
+	
+	/**
+	 * 重置密码
+	 * @param user
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/resetPwd", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseData<User> resetPwd(User user) {
+		userService.resetPwd(user);
+		ResponseData<User> responseBody = new ResponseData<User>();
+		responseBody.setResult(new Result(Status.OK, user));
+		return responseBody;
+	}
+
+	
 }

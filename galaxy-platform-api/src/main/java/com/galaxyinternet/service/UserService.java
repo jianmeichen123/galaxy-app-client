@@ -14,5 +14,12 @@ public interface UserService extends BaseService<User> {
 	 * @return
 	 */
 	Long insertUser(User user);
+	
+	/**
+	 * 重置密码
+	 * @param user
+	 * @return
+	 */
+	int resetPwd(User user);
 }
 
