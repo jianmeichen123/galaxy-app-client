@@ -10,7 +10,10 @@
 		 <result column="telephone" property="telephone"  />
 		 <result column="status" property="status"  />
 		 <result column="type" property="type"  />
+		 <id column="department_id" property="departmentId" />
+		 
 		 <result column="department_name" property="departmentName"  />
+		 <result column="role_id" property="roleId"  />
 		 <result column="role" property="role"  />
 		 <result column="password" property="password"  />
 		 <result column="origin_password" property="originPassword"  />
@@ -33,7 +36,9 @@
         	telephone,
         	status,
         	type,
+        	department_id,
         	department_name,
+        	role_id,
         	role,
         	password,
         	origin_password,
@@ -52,7 +57,12 @@
 				<if test="realName != null"> and real_name like CONCAT("%",#{realName},"%")</if>
 				<if test="email != null"> and email =#{email}</if>
 				<if test="mobile != null"> and mobile like CONCAT("%",#{mobile},"%")</if>
+				
+				<if test="departmentId != null"> and department_id =#{departmentId}</if>
 				<if test="departmentName != null"> and department_name like CONCAT("%",#{departmentName},"%")</if>
+				<if test="roleId != null"> and role_id =#{roleId}</if>
+				<if test="role != null"> and role =#{role}</if>
+				
 				<if test="status != null"> and status =#{status}</if>
 				<if test="telephone != null"> and telephone =#{telephone}</if>
 				<if test="createdTime != null"> and created_time =#{createdTime}</if>
@@ -101,7 +111,9 @@
         	  telephone,
         	  status,
         	  type,
+        	  department_id,
         	  department_name,
+        	  role_id,
         	  role,
         	  password,
         	  origin_password,
@@ -120,7 +132,10 @@
         	   #{telephone},
         	   #{status},
         	   #{type},
+        	   #{departmentId},
         	   #{departmentName},
+        	   #{roleId},
+        	   #{role},
         	   #{password},
         	   #{originPassword},
         	   #{gender},
@@ -143,7 +158,10 @@
 			<if test="telephone != null">  telephone =#{telephone},</if>
 			<if test="status != null">  status =#{status},</if>
 			<if test="type != null">  type =#{type},</if>
+			<if test="departmentId != null">  department_id =#{departmentId},</if>
 			<if test="departmentName != null">  department_name =#{departmentName},</if>
+			<if test="roleId != null">  role_id =#{roleId},</if>
+			<if test="role != null">  role =#{role},</if>
 			<if test="password != null">  password =#{password},</if>
 			<if test="originPassword != null">  origin_password =#{originPassword},</if>
 			<if test="gender != null">  gender =#{gender},</if>
@@ -163,7 +181,10 @@
 				<if test="telephone != null"> and telephone =#{telephone}</if>
 				<if test="status != null"> and status =#{status}</if>
 				<if test="type != null"> and type =#{type}</if>
+				<if test="departmentId != null"> and department_id =#{departmentId}</if>
 				<if test="departmentName != null"> and department_name =#{departmentName}</if>
+				<if test="roleId != null"> and role_id =#{roleId}</if>
+				<if test="role != null"> and role =#{role}</if>
 				<if test="password != null"> and password =#{password}</if>
 				<if test="originPassword != null"> and origin_password =#{originPassword}</if>
 				<if test="gender != null"> and gender =#{gender}</if>
@@ -186,7 +207,10 @@
 			<if test="telephone != null">  telephone =#{telephone},</if>
 			<if test="status != null">  status =#{status},</if>
 			<if test="type != null">  type =#{type},</if>
+			<if test="departmentId != null">  department_id =#{departmentId},</if>
 			<if test="departmentName != null">  department_name =#{departmentName},</if>
+			<if test="roleId != null"> and role_id =#{roleId}</if>
+				<if test="role != null"> and role =#{role}</if>
 			<if test="password != null">  password =#{password},</if>
 			<if test="originPassword != null">  origin_password =#{originPassword},</if>
 			<if test="gender != null">  gender =#{gender},</if>
