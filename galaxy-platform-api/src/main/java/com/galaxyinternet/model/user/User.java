@@ -1,5 +1,7 @@
 package com.galaxyinternet.model.user;
 
+import java.util.Date;
+
 import com.galaxyinternet.framework.core.model.BaseEntity;
 
 public class User extends BaseEntity {
@@ -20,9 +22,12 @@ public class User extends BaseEntity {
 	private String password;// 密码
 	private String originPassword;// 初始密码
 	private Boolean gender;// 性别
-	private String birth;// 生日
+	private Date birth;// 生日
 	private String address;// 地址
 	private Boolean isAdmin;// 是否管理员
+	
+	private String salt;
+	private String originSalt;
 
 	public String getRealName() {
 		return realName;
@@ -128,11 +133,11 @@ public class User extends BaseEntity {
 		this.gender = gender;
 	}
 
-	public String getBirth() {
+	public Date getBirth() {
 		return birth;
 	}
 
-	public void setBirth(String birth) {
+	public void setBirth(Date birth) {
 		this.birth = birth;
 	}
 
