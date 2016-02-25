@@ -5,5 +5,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="UserPO" type="com.galaxyinternet.model.user.User" />
+		<typeAlias alias="Role" type="com.galaxyinternet.model.role.Role" />
+		<typeAlias alias="Department" type="com.galaxyinternet.model.department.Department" />
 	</typeAliases>
 </configuration>

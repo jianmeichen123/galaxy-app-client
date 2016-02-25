@@ -1,4 +1,4 @@
-package com.galaxyinternet.model.user;
+package com.galaxyinternet.model.department;
 
 import com.galaxyinternet.framework.core.model.BaseEntity;
 

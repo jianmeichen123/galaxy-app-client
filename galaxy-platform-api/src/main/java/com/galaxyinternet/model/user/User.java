@@ -26,8 +26,8 @@ public class User extends BaseEntity {
 	private String address;// 地址
 	private Boolean isAdmin;// 是否管理员
 	
-	private String salt;
-	private String originSalt;
+	/*private String salt;
+	private String originSalt;*/
 
 	public String getRealName() {
 		return realName;
