@@ -14,10 +14,11 @@ public class User extends BaseEntity {
 	private String telephone;// 座机
 	private String status;// 账户状态 正常 禁用
 	private String type;// 账户类型
-
+	private String employNo;//工号
 	private Long departmentId;// 部门Id
 	private Long roleId;// 角色Id
 	private String departmentName;// 部门名称
+	
 	private String role;// 角色
 	private String password;// 密码
 	private String originPassword;// 初始密码
@@ -163,6 +164,13 @@ public class User extends BaseEntity {
 
 	public void setRoleId(Long roleId) {
 		this.roleId = roleId;
+	}
+	public String getEmployNo() {
+		return employNo;
+	}
+
+	public void setEmployNo(String employNo) {
+		this.employNo = employNo;
 	}
 
 }

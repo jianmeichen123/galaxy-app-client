@@ -3,6 +3,7 @@
 <mapper namespace="com.galaxyinternet.model.user.User">
    	<resultMap id="BaseResultMap" type="UserPO">
 		 <id column="id" property="id" />
+		 <result column="employ_no" property="employNo"  />
 		 <result column="real_name" property="realName"  />
 		 <result column="nick_name" property="nickName" />
 		 <result column="email"  property="email" />
@@ -29,6 +30,7 @@
 	
 	<sql id="Base_Column_List">
         	id,
+        	employ_no,
         	real_name,
         	nick_name,
         	email,
@@ -54,6 +56,7 @@
 		<where>
 			<trim prefixOverrides="and">
 				<if test="id != null"> and id =#{id}</if>
+				<if test="employNo != null"> and employ_no =#{employNo}</if>
 				<if test="realName != null"> and real_name like CONCAT("%",#{realName},"%")</if>
 				<if test="email != null"> and email =#{email}</if>
 				<if test="mobile != null"> and mobile like CONCAT("%",#{mobile},"%")</if>
@@ -104,6 +107,7 @@
 	        insert into
 	        t_user (
         	  id,
+        	  employ_no,
         	  real_name,
            	  nick_name,
         	  email,
@@ -125,6 +129,7 @@
         	
 	        ) values (
         	   #{id},
+        	   #{employNo},
         	   #{realName},
         	   #{nickName},
         	   #{email},
@@ -151,6 +156,7 @@
 	<update id="updateByIdSelective" parameterType="UserPO">
 		update t_user
 		<set>
+		    <if test="employNo != null">  employ_no =#{employNo},</if>
 			<if test="realName != null">  real_name =#{realName},</if>
 			<if test="nickName != null">  nick_name =#{nickName},</if>
 			<if test="email != null">  email =#{email},</if>
@@ -174,6 +180,7 @@
 		<where>
 			<trim prefixOverrides="and">
 				<if test="id != null"> and id =#{id}</if>
+				<if test="employNo != null"> and employ_no =#{employNo}</if>
 				<if test="realName != null"> and real_name =#{realName}</if>
 				<if test="nickName != null"> and nick_name =#{nickName}</if>
 				<if test="email != null"> and email =#{email}</if>
@@ -200,6 +207,7 @@
 	<update id="updateById" parameterType="UserPO">
 		update t_user
 		<set>
+		    <if test="employNo != null"> and employ_no =#{employNo}</if>
 			<if test="realName != null">  real_name =#{realName},</if>
 			<if test="nickName != null">  nick_name =#{nickName},</if>
 			<if test="email != null">  email =#{email},</if>
