@@ -51,7 +51,7 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 		if(entity.getParentId() != null && entity.getParentId() != 0){
 			Dict dictParent = dictDao.selectById(entity.getParentId());
 			if(dictParent == null){
-				throwPlatformException(MessageStatus.SAME_DATA_EXISTS, "该父类不存在");
+				throwPlatformException(MessageStatus.DATA_NOT_EXISTS, "该父类不存在");
 			}
 		}
 		return super.insert(entity);
@@ -70,7 +70,7 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 	@Override
 	public int insertInBatch(BatchDictInsetParam batchDictInsetParam) {
 		if(batchDictInsetParam.getParentId() == null){
-			return 0;
+			throwPlatformException(MessageStatus.FIELD_NOT_ALLOWED_EMPTY, Dict.PARENT_ID);
 		}
 		List<String> names = null;
 		List<String> codes = null;
@@ -78,26 +78,26 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 		List<Dict> dicts = batchDictInsetParam.getDicts();
 		
 		if(dicts == null ||dicts.isEmpty()){
-			return 0;
+			throwPlatformException(MessageStatus.FIELD_NOT_ALLOWED_EMPTY, Dict.COMMENT);
 		}
 		names = new ArrayList<>();
 		codes = new ArrayList<>();
 		values = new ArrayList<>();
 		for (Dict dict : dicts) {
 			if(dict.getName()==null || names.contains(dict.getName())){
-				return 0;
+				throwPlatformException(MessageStatus.PARAME_SAME, Dict.NAME);
 			}else {
 				names.add(dict.getName());
 			}
 			
 			if(dict.getCode()==null ||codes.contains(dict.getCode())){
-				return 0;
+				throwPlatformException(MessageStatus.PARAME_SAME, Dict.CODE);
 			}else {
 				codes.add(dict.getCode());
 			}
 			
 			if(dict.getValue()==null ||values.contains(dict.getValue())){
-				return 0;
+				throwPlatformException(MessageStatus.PARAME_SAME, Dict.VALUE);
 			}else {
 				values.add(dict.getValue());
 			}
@@ -111,7 +111,7 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 			return 0;
 		}
 		batchDictInsetParam.setCreatedTime(System.currentTimeMillis());
-		return 0;
+		return dictDao.insertInBatch(batchDictInsetParam);
 	}
 
 
