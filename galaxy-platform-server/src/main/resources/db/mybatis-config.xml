@@ -5,7 +5,12 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="UserPO" type="com.galaxyinternet.model.user.User" />
+		<typeAlias alias="DictPO" type="com.galaxyinternet.model.dict.Dict" />
 		<typeAlias alias="Role" type="com.galaxyinternet.model.role.Role" />
 		<typeAlias alias="Department" type="com.galaxyinternet.model.department.Department" />
+		
+		<!--param  -->
+		<typeAlias alias="BatchDictInsetParam" type="com.galaxyinternet.model.dict.BatchDictInsetParam" />
+		
 	</typeAliases>
 </configuration>
