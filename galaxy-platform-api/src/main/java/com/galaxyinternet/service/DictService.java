@@ -27,7 +27,7 @@ public interface DictService extends BaseService<Dict> {
 	    * @return List<Dict>    数据字典list集合
 	    * @throws
 	 */
-	List<Dict> selectByParentId(Long parentId);
+	List<Dict> selectByParentCode(String parentCode);
 	
 	/**
 	 * 

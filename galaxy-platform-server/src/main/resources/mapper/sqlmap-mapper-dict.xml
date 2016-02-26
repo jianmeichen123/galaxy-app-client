@@ -9,7 +9,7 @@
 		 <result property="sort" 			column="dict_sort"  	jdbcType="TINYINT"   />
 		 
 		 <result property="isDelete" 		column="is_delete"  	jdbcType="TINYINT"  />
-		 <result property="parentId" 		column="parent_id"  	jdbcType="INTEGER" />
+		 <result property="parentCode" 		column="parent_code"  	jdbcType="VARCHAR" />
 		 <result property="createdTime" 	column="created_time" 	jdbcType="BIGINT"/>
 		 <result property="updatedTime" 	column="updated_time" 	jdbcType="BIGINT"/>
 		 
@@ -17,7 +17,7 @@
 	
 	<sql id="Base_Column_List">
         	id,name,dict_value,dict_code,dict_sort,
-        	is_delete,parent_id,created_time,updated_time
+        	is_delete,parent_code,created_time,updated_time
 	</sql>
 	
 	<!--新增  -->
@@ -26,10 +26,10 @@
 	        	INTO
 	       	 dict (
 		        name,dict_value,dict_code,dict_sort,
-	        	is_delete,parent_id,created_time,updated_time
+	        	is_delete,parent_code,created_time,updated_time
 	        ) VALUES (
 	        	#{name},#{value},#{code},#{sort},
-	        	0,#{parentId},#{createdTime},#{createdTime}
+	        	0,#{parentCode},#{createdTime},#{createdTime}
 	        )
     </insert>
     
@@ -40,11 +40,11 @@
 	        	INTO
 	       	 dict (
 		        name,dict_value,dict_code,dict_sort,is_delete,
-	        	parent_id,created_time,updated_time
+	        	parent_code,created_time,updated_time
 	        ) VALUES 
 			 <foreach collection="dicts" item="item" index="index" separator="," >  
 		        ( #{item.name},#{item.value},#{item.code},#{item.sort},0 ,
-	        	#{parentId},#{createdTime},#{createdTime})  
+	        	#{parentCode},#{createdTime},#{createdTime})  
 		    </foreach>  
     </insert>
     
@@ -60,28 +60,28 @@
 			is_delete = 0		
 	</select>
 
-	<!-- 根据parentID查询 根据排序字段正序排序 -->
-	<select id="selectByParentId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+	<!-- 根据parentCode查询 根据排序字段正序排序 -->
+	<select id="selectByParentCode" resultMap="BaseResultMap" parameterType="java.lang.Long">
 		SELECT
 			<include refid="Base_Column_List" />
 		FROM 
 			dict 
 		WHERE 
-			parent_id  = #{parentId}  
+			parent_code  = #{parentCode}  
 		AND
 			is_delete = 0	
 		ORDER BY  dict_sort ASC
 	</select>
 	
 	
-		<!-- 根据parentID查询总数-->
-	<select id="selectCountByParentId" resultType="int" parameterType="java.lang.Long">
+		<!-- 根据parentCode查询总数-->
+	<select id="selectCountByParentCode" resultType="int" parameterType="string">
 		SELECT
 			COUNT(id)
 		FROM 
 			dict 
 		WHERE 
-			parent_id  = #{parentId} 
+			parent_code  = #{parentCode} 
 		AND
 			is_delete = 0				 
 		ORDER BY  dict_sort ASC
@@ -93,7 +93,7 @@
 		UPDATE dict 
 			SET is_delete = 1
 		WHERE 
-			id = #{id} or parent_id = #{id}
+			id = #{id} or parent_code = #{id}
 	</update>
 	
 	<update id="deleteById" parameterType="java.lang.Long">
@@ -129,28 +129,28 @@
 	        </foreach>
 	</select> 
 
-	<!-- 查找相同parentId下name或value重复的 -->
+	<!-- 查找相同parentCode下name或value重复的 -->
 	<select id="selectCountSame" resultType="int" parameterType="DictPo">
 		SELECT
 			COUNT(id)
 		FROM 
 			dict
 		WHERE
-			parent_id = #{parentId}
+			parent_code = #{parentCode}
 		AND
 			is_delete = 0				
 		AND
 			(name = #{name} or dict_value = #{value})		
 	</select>
 	
-	<!-- 查找相同parentId下name或value重复的 -->
+	<!-- 查找相同parentCode下name或value重复的 -->
 	<select id="selectCountSameIn" resultType="int" parameterType="BatchDictInsetParam">
 		SELECT
 			COUNT(id)
 		FROM 
 			dict
 		WHERE
-			parent_id = #{parentId}
+			parent_code = #{parentCode}
 		AND
 			is_delete = 0				
 		AND
@@ -167,13 +167,13 @@
 	</select>
 	
 	<!--通过父id和名称查询  -->
-	<select id="selectByParentIdAndName" resultMap="BaseResultMap" parameterType="DictPo">
+	<select id="selectByParentCodeAndName" resultMap="BaseResultMap" parameterType="DictPo">
 		SELECT
 			<include refid="Base_Column_List" />
 		FROM 
 			dict
 		WHERE
-			parent_id = #{parentId}
+			parent_code = #{parentCode}
 		AND
 			is_delete = 0				
 		AND

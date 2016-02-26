@@ -26,22 +26,22 @@ public class DictDaoImpl extends BaseDaoImpl<Dict, Long>implements DictDao {
 	}
 
 	@Override
-	public Dict selectByParentIdAndName(Dict dict) {
+	public Dict selectByParentCodeAndName(Dict dict) {
 		Assert.notNull(dict);
 		try {
-			return sqlSessionTemplate.selectOne(getSqlName("selectByParentIdAndName"), dict);
+			return sqlSessionTemplate.selectOne(getSqlName("selectByParentCodeAndName"), dict);
 		} catch (Exception e) {
-			throw new DaoException(String.format("根据parentId和名称查询！语句：%s", getSqlName("selectByParentIdAndName")), e);
+			throw new DaoException(String.format("根据parentCode和名称查询！语句：%s", getSqlName("selectByParentCodeAndName")), e);
 		}
 	}
 
 	@Override
-	public List<Dict> selectByParentId(Long parentId) {
-		Assert.notNull(parentId);
+	public List<Dict> selectByParentCode(String parentCode) {
+		Assert.notNull(parentCode);
 		try {
-			return sqlSessionTemplate.selectList(getSqlName("selectByParentId"), parentId);
+			return sqlSessionTemplate.selectList(getSqlName("selectByParentCode"), parentCode);
 		} catch (Exception e) {
-			throw new DaoException(String.format("根据parentId和名称查询！语句：%s", getSqlName("selectByParentId")), e);
+			throw new DaoException(String.format("根据parentCode查询！语句：%s", getSqlName("selectByParentCode")), e);
 		}
 	}
 
@@ -87,10 +87,10 @@ public class DictDaoImpl extends BaseDaoImpl<Dict, Long>implements DictDao {
 	}
 
 	@Override
-	public int selectCountByParentId(Long parentId) {
-		Assert.notNull(parentId);
+	public int selectCountByParentCode(String parentCode) {
+		Assert.notNull(parentCode);
 		try {
-			return sqlSessionTemplate.selectOne(getSqlName("selectCountByParentId"), parentId);
+			return sqlSessionTemplate.selectOne(getSqlName("selectCountByParentCode"), parentCode);
 		} catch (Exception e) {
 			throw new DaoException(String.format("根据codes查询总数：%s", getSqlName("selectCountByParentId")), e);
 		}

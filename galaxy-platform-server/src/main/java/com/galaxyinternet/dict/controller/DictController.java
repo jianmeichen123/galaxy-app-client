@@ -168,11 +168,11 @@ public class DictController extends BaseControllerImpl<Dict, DictBo> {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/findByParentId/{parentId}", method = RequestMethod.GET)
-	public ResponseData<Dict> findByParentId(@PathVariable Long parentId) {
+	public ResponseData<Dict> findByParentId(@PathVariable String parentCode) {
 		ResponseData<Dict> responseBody = new ResponseData<Dict>();
 		Result result = new Result();
 		try {
-			List<Dict> dicts = dictService.selectByParentId(parentId);
+			List<Dict> dicts = dictService.selectByParentCode(parentCode);
 			Page<Dict> page = new Page<>(dicts, null, null);
 			responseBody.setPageList(page);
 			result.setStatus(Status.OK);

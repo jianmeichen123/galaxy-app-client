@@ -19,7 +19,10 @@ public class Dict extends BaseEntity{
 	public final static String CODE = "属性编码";
 	public final static String SORT = "属性排序值";
 	public final static String IS_DELETE = "是否删除";
-	public final static String PARENT_ID = "父id";
+	public final static String PARENT_CODE = "父code";
+	
+	public final static String CODE_PARENT = "XHHL";
+	
 	
 	private static final long serialVersionUID = -8582891750808839253L;
 	/**
@@ -40,7 +43,7 @@ public class Dict extends BaseEntity{
 	 */
 	private Integer isDelete;
 
-	private Long parentId;
+	private String parentCode;
 	
 	public String getName() {
 		return name;
@@ -82,12 +85,11 @@ public class Dict extends BaseEntity{
 		this.value = value;
 	}
 
-	public Long getParentId() {
-		return parentId;
+	public String getParentCode() {
+		return parentCode;
 	}
 
-	public void setParentId(Long parentId) {
-		this.parentId = parentId;
+	public void setParentCode(String parentCode) {
+		this.parentCode = parentCode;
 	}
-
 }

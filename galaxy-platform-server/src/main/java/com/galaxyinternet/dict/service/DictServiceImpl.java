@@ -30,7 +30,10 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 	
 	@Override
 	public int updateById(Dict entity) {
-		Dict dict = dictDao.selectByParentIdAndName(entity);
+		if(entity.getParentCode() == null){
+			entity.setParentCode(Dict.CODE_PARENT);
+		}
+		Dict dict = dictDao.selectByParentCodeAndName(entity);
 		if(dict != null){
 			throwPlatformException(MessageStatus.DATA_NOT_EXISTS, "该数据字典不存在");
 		}
@@ -44,17 +47,19 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 		if(dict != null){
 			throwPlatformException(MessageStatus.SAME_DATA_EXISTS, "该数据字典code已存在");
 		}
+		if(entity.getParentCode() != null){
+			Dict dictParent = dictDao.selectByCode(entity.getParentCode());
+			if(dictParent == null){
+				throwPlatformException(MessageStatus.DATA_NOT_EXISTS, "该父类不存在");
+			}
+		}else{
+			entity.setParentCode(Dict.CODE_PARENT);
+		}
 		int count  = dictDao.selectCountSame(entity);
 		if(count > 0){
 			throwPlatformException(MessageStatus.SAME_DATA_EXISTS, "该父类下存在相同数据");
 		}
-		if(entity.getParentId() != null && entity.getParentId() != 0){
-			Dict dictParent = dictDao.selectById(entity.getParentId());
-			if(dictParent == null){
-				throwPlatformException(MessageStatus.DATA_NOT_EXISTS, "该父类不存在");
-			}
-		}
-		return super.insert(entity);
+		return dictDao.insert(entity);
 		
 	}
 	
@@ -62,15 +67,15 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 	
 	
 	@Override
-	public List<Dict> selectByParentId(Long parentId) {
-		return dictDao.selectByParentId(parentId);
+	public List<Dict> selectByParentCode(String parentCode) {
+		return dictDao.selectByParentCode(parentCode);
 	}
 
 
 	@Override
 	public int insertInBatch(BatchDictInsetParam batchDictInsetParam) {
-		if(batchDictInsetParam.getParentId() == null){
-			throwPlatformException(MessageStatus.FIELD_NOT_ALLOWED_EMPTY, Dict.PARENT_ID);
+		if(batchDictInsetParam.getParentCode() == null){
+			batchDictInsetParam.setParentCode(Dict.CODE_PARENT);
 		}
 		List<String> names = null;
 		List<String> codes = null;
@@ -101,6 +106,10 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 			}else {
 				values.add(dict.getValue());
 			}
+		}
+		Dict dict = dictDao.selectByCode(batchDictInsetParam.getParentCode());
+		if(dict != null){
+			throwPlatformException(MessageStatus.DATA_NOT_EXISTS, "该数据字典的父code不存在");
 		}
 		int count = dictDao.selectCountInCodes(codes);
 		if(count > 0){
@@ -137,4 +146,6 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 		}
 		throw new PlatformException(status.getStatus(), message);
 	}
+
+
 }

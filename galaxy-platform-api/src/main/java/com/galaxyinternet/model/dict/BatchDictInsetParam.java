@@ -20,7 +20,7 @@ public class BatchDictInsetParam extends BaseEntity{
 
 	List<Dict> dicts;
 	
-	private Long parentId;
+	private String parentCode;
 
 	public List<Dict> getDicts() {
 		return dicts;
@@ -30,13 +30,14 @@ public class BatchDictInsetParam extends BaseEntity{
 		this.dicts = dicts;
 	}
 
-	public Long getParentId() {
-		return parentId;
+	public String getParentCode() {
+		return parentCode;
 	}
 
-	public void setParentId(Long parentId) {
-		this.parentId = parentId;
+	public void setParentCode(String parentCode) {
+		this.parentCode = parentCode;
 	}
+
 	
 	
 }

@@ -18,9 +18,9 @@ import com.galaxyinternet.model.dict.Dict;
 public interface DictDao extends BaseDao<Dict, Long>{
 
 	
-	int selectCountByParentId(Long parentId);
+	int selectCountByParentCode(String parentCode);
 	
-	List<Dict> selectByParentId(Long parentId);
+	List<Dict> selectByParentCode(String parentCode);
 	
 	Dict selectByCode(String code);
 	
@@ -30,7 +30,7 @@ public interface DictDao extends BaseDao<Dict, Long>{
 	
 	int selectCountSameIn(BatchDictInsetParam batchDictInsetParam);
 	
-	Dict selectByParentIdAndName(Dict dict);
+	Dict selectByParentCodeAndName(Dict dict);
 
 	int insertInBatch(BatchDictInsetParam batchDictInsetParam);
 
