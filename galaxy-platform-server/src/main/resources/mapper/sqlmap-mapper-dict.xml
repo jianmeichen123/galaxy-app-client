@@ -38,11 +38,14 @@
 	        INSERT 
 	        	INTO
 	       	 dict (
-		        name,dict_value,dict_code,dict_sort,
-	        	is_delete,parent_id,created_time,updated_time
+		        name,dict_value,dict_code,dict_sort,is_delete,
+	        	parent_id,created_time,updated_time
 	        ) VALUES (
-	        	#{name},#{value},#{code},#{sort},
-	        	0,#{parentId},#{createdTime},#{createdTime}
+	        <foreach collection="dict" index="item" item="item" open="(" separator="," close=")">
+	            #{item.name},#{item.value},#{item.code},#{item.sort},0 ,
+	        	#{parentId},#{createdTime},#{createdTime}
+	        </foreach>
+
 	        )
     </insert>
     
