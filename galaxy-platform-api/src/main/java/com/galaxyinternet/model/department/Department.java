@@ -15,6 +15,7 @@ public class Department extends BaseEntity {
     private String remark;
 
     private Long parentId;
+    private Integer type;
 
 	public String getName() {
 		return name;
@@ -38,6 +39,14 @@ public class Department extends BaseEntity {
 
 	public void setParentId(Long parentId) {
 		this.parentId = parentId;
+	}
+
+	public Integer getType() {
+		return type;
+	}
+
+	public void setType(Integer type) {
+		this.type = type;
 	}
     
     
