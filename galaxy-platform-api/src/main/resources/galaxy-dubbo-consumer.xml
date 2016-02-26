@@ -31,5 +31,7 @@
 	http://code.alibabatech.com/schema/dubbo
     http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
     
-	<dubbo:reference id="userService" interface="com.galaxyinternet.service.UserService"  version="1.0.0" />
+	 <dubbo:service interface="com.galaxyinternet.service.UserService" ref="com.galaxyinternet.service.UserService" version="1.0.0"/>
+    <dubbo:service interface="com.galaxyinternet.service.RoleService" ref="com.galaxyinternet.service.RoleService" version="1.0.0"/>
+    <dubbo:service interface="com.galaxyinternet.service.DepartmentService" ref="com.galaxyinternet.service.DepartmentService" version="1.0.0"/>
 </beans>
