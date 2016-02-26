@@ -61,7 +61,7 @@
 	</select>
 
 	<!-- 根据parentCode查询 根据排序字段正序排序 -->
-	<select id="selectByParentCode" resultMap="BaseResultMap" parameterType="java.lang.Long">
+	<select id="selectByParentCode" resultMap="BaseResultMap" parameterType="string">
 		SELECT
 			<include refid="Base_Column_List" />
 		FROM 
