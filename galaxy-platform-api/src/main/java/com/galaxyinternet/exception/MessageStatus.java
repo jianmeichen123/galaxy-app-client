@@ -19,7 +19,9 @@ public enum MessageStatus {
 	FIELD_LENGTH_MUST_LESS(10017, "%s必须小于%d"),
 	FIELD_LENGTH_MUST_MORE(10018, "%s必须大于%d"),
 	FIELD_LENGTH_MUST_BETWEEN(10019, "%s长度必须大于%d和小于%d"),
-	FILED_NOT_IN_ENUM_VALUES(10020, "不支持的%s"),;
+	FILED_NOT_IN_ENUM_VALUES(10020, "不支持的%s"),
+	PARAME_SAME(10021, "传入参数%s重复"),
+	;
 	
 	private int status;
 	private String message;
