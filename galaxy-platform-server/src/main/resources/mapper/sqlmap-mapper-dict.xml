@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.galaxyinternet.model.dict.Dict">
+   	<resultMap id="BaseResultMap" type="DictPO">
+		 <id 	 property="id" 				column="id" 			jdbcType="INTEGER"  />
+		 <result property="name" 			column="name" 			jdbcType="VARCHAR"/>
+		 <result property="value" 			column="dict_value" 	jdbcType="TINYINT"  />
+		 <result property="code" 			column="dict_code"  	jdbcType="VARCHAR"/>
+		 <result property="sort" 			column="dict_sort"  	jdbcType="TINYINT"   />
+		 
+		 <result property="isDelete" 		column="is_delete"  	jdbcType="TINYINT"  />
+		 <result property="parentId" 		column="parent_id"  	jdbcType="INTEGER" />
+		 <result property="createdTime" 	column="created_time" 	jdbcType="BIGINT"/>
+		 <result property="updatedTime" 	column="updated_time" 	jdbcType="BIGINT"/>
+		 
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+        	id,name,dict_value,dict_code,dict_sort,
+        	is_delete,parent_id,created_time,updated_time
+	</sql>
+	
+	<!--新增  -->
+	<insert id="insert" parameterType="DictPo" >
+	        INSERT 
+	        	INTO
+	       	 dict (
+		        name,dict_value,dict_code,dict_sort,
+	        	is_delete,parent_id,created_time,updated_time
+	        ) VALUES (
+	        	#{name},#{value},#{code},#{sort},
+	        	0,#{parentId},#{createdTime},#{createdTime}
+	        )
+    </insert>
+    
+    
+    <insert id="insertInBatch" parameterType="BatchDictInsetParam" >
+	        INSERT 
+	        	INTO
+	       	 dict (
+		        name,dict_value,dict_code,dict_sort,
+	        	is_delete,parent_id,created_time,updated_time
+	        ) VALUES (
+	        	#{name},#{value},#{code},#{sort},
+	        	0,#{parentId},#{createdTime},#{createdTime}
+	        )
+    </insert>
+    
+	<!-- 根据ID查询 -->
+	<select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM 
+			dict 
+		WHERE 
+			id = #{id}
+		and
+			is_delete = 0		
+	</select>
+
+	<!-- 根据parentID查询 根据排序字段正序排序 -->
+	<select id="selectByParentId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM 
+			dict 
+		WHERE 
+			parent_id  = #{parentId}  
+		AND
+			is_delete = 0	
+		ORDER BY  dict_sort ASC
+	</select>
+	
+	
+		<!-- 根据parentID查询总数-->
+	<select id="selectCountByParentId" resultType="int" parameterType="java.lang.Long">
+		SELECT
+			COUNT(id)
+		FROM 
+			dict 
+		WHERE 
+			parent_id  = #{parentId} 
+		AND
+			is_delete = 0				 
+		ORDER BY  dict_sort ASC
+	</select>
+	
+<!-- 
+    通过ID逻辑删除
+	<update id="batchDelteById" parameterType="java.lang.Long" >
+		UPDATE dict 
+			SET is_delete = 1
+		WHERE 
+			id = #{id} or parent_id = #{id}
+	</update>
+	
+	<update id="deleteById" parameterType="java.lang.Long">
+		UPDATE dict 
+			SET is_delete = 1
+		WHERE 
+			id = #{id} 
+	</update>
+	 -->
+	<!--根据code查询  -->
+	<select id="selectByCode" resultMap="BaseResultMap" parameterType="string">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM 
+			dict
+		WHERE
+			dict_code = #{code}
+		AND
+			is_delete = 0				
+	</select> 
+	 
+	 <select id="selectCountInCodes" resultType="int" parameterType="list">
+		SELECT
+			COUNT(id)
+		FROM 
+			dict
+		WHERE
+			is_delete = 0
+		AND						
+			dict_code IN
+			<foreach collection="list" index="item" item="item" open="(" separator="," close=")">
+	            #{item.code}
+	        </foreach>
+	</select> 
+
+	<!-- 查找相同parentId下name或value重复的 -->
+	<select id="selectCountSame" resultType="int" parameterType="DictPo">
+		SELECT
+			COUNT(id)
+		FROM 
+			dict
+		WHERE
+			parent_id = #{parentId}
+		AND
+			is_delete = 0				
+		AND
+			(name = #{name} or dict_value = #{value})		
+	</select>
+	
+	<!-- 查找相同parentId下name或value重复的 -->
+	<select id="selectCountSameIn" resultType="int" parameterType="BatchDictInsetParam">
+		SELECT
+			COUNT(id)
+		FROM 
+			dict
+		WHERE
+			parent_id = #{parentId}
+		AND
+			is_delete = 0				
+		AND
+			(name in
+				<foreach collection="dicts" index="item" item="item" open="(" separator="," close=")">
+		            #{item.name}
+		        </foreach>
+			or
+			dict_value in
+				<foreach collection="dicts" index="item" item="item" open="(" separator="," close=")">
+		            #{item.value}
+		        </foreach> 
+			)	
+	</select>
+	
+	<!--通过父id和名称查询  -->
+	<select id="selectByParentIdAndName" resultMap="BaseResultMap" parameterType="DictPo">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM 
+			dict
+		WHERE
+			parent_id = #{parentId}
+		AND
+			is_delete = 0				
+		AND
+			name = #{name} 		
+	</select>
+	
+     <!-- 通过ID更新 -->
+	<update id="updateById" parameterType="DictPO">
+		update dict
+		<set>
+			<if test="name != null and name !='' ">  name = #{name},</if>
+			<if test="sort != null ">  dict_sort = #{sort},</if>
+			updated_time = #{updatedTime} 
+		</set>
+		WHERE  id = #{id}
+				
+	</update>
+   
+</mapper>
