@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.galaxyinternet.bo.UserBo;
 import com.galaxyinternet.common.controller.BaseControllerImpl;
-import com.galaxyinternet.framework.core.model.Page;
 import com.galaxyinternet.framework.core.model.ResponseData;
 import com.galaxyinternet.framework.core.model.Result;
 import com.galaxyinternet.framework.core.model.Result.Status;
@@ -63,5 +62,4 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		return responseBody;
 	}
 
-	
 }

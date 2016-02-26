@@ -93,6 +93,7 @@ function getMethodReturnJsonValue() {
 			data : json,
 			async : false,
 			type : 'POST',
+		    contentType:"application/json; charset=UTF-8",
 			dataType : "text",
 			cache : false,
 			error:function(){     
