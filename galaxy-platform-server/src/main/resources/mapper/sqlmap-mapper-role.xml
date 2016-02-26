@@ -15,7 +15,7 @@
 	<sql id="Base_Column_List">
         	id,
         	name,
-        	roleCode,
+        	role_code,
         	description,
         	sort,
         	disabled,
@@ -28,7 +28,7 @@
 			<trim prefixOverrides="and">
 				<if test="id != null"> and id =#{id}</if>
 				<if test="name != null"> and name =#{name}</if>
-				<if test="roleCode != null"> and roleCode =#{roleCode}</if>
+				<if test="roleCode != null"> and role_code =#{roleCode}</if>
 				<if test="description != null"> and description =#{description}</if>
 				<if test="sort != null"> and sort =#{sort}</if>
 				<if test="disabled != null"> and disabled =#{disabled}</if>
@@ -71,7 +71,7 @@
 	        t_user (
         	id,
         	name,
-        	roleCode,
+        	role_code,
         	description,
         	sort,
         	disabled,
@@ -93,7 +93,7 @@
 		update t_user
 		<set>
 			<if test="name != null">  name =#{name},</if>
-			<if test="roleCode != null">  roleCode =#{roleCode},</if>
+			<if test="roleCode != null">  role_code =#{roleCode},</if>
 			<if test="description != null">  description =#{description},</if>
 			<if test="sort != null">  sort =#{sort},</if>
 			<if test="disabled != null">  disabled =#{disabled},</if>
@@ -104,7 +104,7 @@
 			<trim prefixOverrides="and">
 				<if test="id != null"> and id =#{id}</if>
 				<if test="name != null"> and name =#{name}</if>
-				<if test="roleCode != null"> and roleCode =#{roleCode}</if>
+				<if test="roleCode != null"> and role_code =#{roleCode}</if>
 				<if test="description != null"> and description =#{description}</if>
 				<if test="sort != null"> and sort =#{sort}</if>
 				<if test="disabled != null"> and disabled =#{disabled}</if>
@@ -118,7 +118,7 @@
 		update t_role
 		<set>
 			<if test="name != null">  name =#{name},</if>
-			<if test="roleCode != null">  roleCode =#{roleCode},</if>
+			<if test="roleCode != null">  role_code =#{roleCode},</if>
 			<if test="description != null">  description =#{description},</if>
 			<if test="sort != null">  sort =#{sort},</if>
 			<if test="disabled != null">  disabled =#{disabled},</if>
