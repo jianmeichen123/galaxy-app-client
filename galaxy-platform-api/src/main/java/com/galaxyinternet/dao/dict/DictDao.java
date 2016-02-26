@@ -30,7 +30,7 @@ public interface DictDao extends BaseDao<Dict, Long>{
 	
 	int selectCountSameIn(BatchDictInsetParam batchDictInsetParam);
 	
-	Dict selectByParentCodeAndName(Dict dict);
+	int selectCountByParentCodeAndName(Dict dict);
 
 	int insertInBatch(BatchDictInsetParam batchDictInsetParam);
 

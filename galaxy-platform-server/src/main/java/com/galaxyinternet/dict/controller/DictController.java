@@ -167,7 +167,7 @@ public class DictController extends BaseControllerImpl<Dict, DictBo> {
 	    * @throws
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/findByParentId/{parentId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/findByParentCode/{parentCode}", method = RequestMethod.GET)
 	public ResponseData<Dict> findByParentId(@PathVariable String parentCode) {
 		ResponseData<Dict> responseBody = new ResponseData<Dict>();
 		Result result = new Result();

@@ -33,9 +33,9 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 		if(entity.getParentCode() == null){
 			entity.setParentCode(Dict.CODE_PARENT);
 		}
-		Dict dict = dictDao.selectByParentCodeAndName(entity);
-		if(dict != null){
-			throwPlatformException(MessageStatus.DATA_NOT_EXISTS, "该数据字典不存在");
+		int count = dictDao.selectCountByParentCodeAndName(entity);
+		if(count >0 ){
+			throwPlatformException(MessageStatus.SAME_DATA_EXISTS, "该名称已存在");
 		}
 		entity.setUpdatedTime(System.currentTimeMillis());
 		return dictDao.updateById(entity);

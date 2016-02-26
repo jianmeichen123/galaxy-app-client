@@ -167,9 +167,9 @@
 	</select>
 	
 	<!--通过父id和名称查询  -->
-	<select id="selectByParentCodeAndName" resultMap="BaseResultMap" parameterType="DictPo">
+	<select id="selectCountByParentCodeAndName" resultType="int" parameterType="DictPo">
 		SELECT
-			<include refid="Base_Column_List" />
+			COUNT(id)
 		FROM 
 			dict
 		WHERE

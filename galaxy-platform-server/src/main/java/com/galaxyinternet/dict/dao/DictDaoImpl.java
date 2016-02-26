@@ -26,12 +26,12 @@ public class DictDaoImpl extends BaseDaoImpl<Dict, Long>implements DictDao {
 	}
 
 	@Override
-	public Dict selectByParentCodeAndName(Dict dict) {
+	public int selectCountByParentCodeAndName(Dict dict) {
 		Assert.notNull(dict);
 		try {
-			return sqlSessionTemplate.selectOne(getSqlName("selectByParentCodeAndName"), dict);
+			return sqlSessionTemplate.selectOne(getSqlName("selectCountByParentCodeAndName"), dict);
 		} catch (Exception e) {
-			throw new DaoException(String.format("根据parentCode和名称查询！语句：%s", getSqlName("selectByParentCodeAndName")), e);
+			throw new DaoException(String.format("根据parentCode和名称查询总数！语句：%s", getSqlName("selectCountByParentCodeAndName")), e);
 		}
 	}
 
