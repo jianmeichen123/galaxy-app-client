@@ -1,4 +1,4 @@
-package com.galaxyinternet.exception;
+package com.galaxyinternet.utils;
 
 public enum MessageStatus {
 	OK(10000, "成功"),
