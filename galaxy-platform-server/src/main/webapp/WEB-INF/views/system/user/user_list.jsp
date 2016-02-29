@@ -108,6 +108,7 @@
 								</tr>
 
 							</c:forEach>
+						</c:when>
 					</tbody>
 				</table>
 
