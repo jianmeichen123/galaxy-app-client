@@ -2,6 +2,7 @@ package com.galaxyinternet.user.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.galaxyinternet.bo.UserBo;
 import com.galaxyinternet.common.controller.BaseControllerImpl;
+import com.galaxyinternet.framework.core.constants.UserConstant;
 import com.galaxyinternet.framework.core.model.Page;
 import com.galaxyinternet.framework.core.model.PageRequest;
 import com.galaxyinternet.framework.core.model.ResponseData;
@@ -53,6 +55,21 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 				+ "</body>" + "</html>";// 邮件内容
 		String subject = "重置密码通知";// 邮件主题
 		SimpleMailSender.sendHtmlMail(toMail, subject, content);
+		ResponseData<User> responseBody = new ResponseData<User>();
+		responseBody.setResult(new Result(Status.OK, user));
+		return responseBody;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/disableUser", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseData<User> disableUser(@RequestBody User user) {
+		
+		if (StringUtils.equals(user.getStatus(), UserConstant.NORMAL)) {
+			user.setStatus(UserConstant.DISABLE);
+		} else {
+			user.setStatus(UserConstant.NORMAL);
+		}
+		userService.updateByIdSelective(user);
 		ResponseData<User> responseBody = new ResponseData<User>();
 		responseBody.setResult(new Result(Status.OK, user));
 		return responseBody;
