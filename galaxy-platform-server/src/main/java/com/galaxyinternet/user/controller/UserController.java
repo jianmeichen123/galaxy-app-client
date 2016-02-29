@@ -42,6 +42,15 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		return this.userService;
 	}
 
+	
+	/**
+	 * 默认页面
+	 */
+	@RequestMapping(method = RequestMethod.GET)
+	public String list() {
+		return "system/user/user_list";
+	}
+
 	/**
 	 * 重置密码 邮件通知
 	 * 
