@@ -2,7 +2,10 @@ package com.galaxyinternet.service;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.data.domain.Pageable;
+
 import com.galaxyinternet.framework.core.model.Header;
+import com.galaxyinternet.framework.core.model.Page;
 import com.galaxyinternet.framework.core.model.ResponseData;
 import com.galaxyinternet.framework.core.service.BaseService;
 import com.galaxyinternet.model.user.User;
@@ -45,4 +48,12 @@ public interface UserService extends BaseService<User> {
 	 * @return
 	 */
 	ResponseData<User> logout(Header header, HttpServletRequest request);
+	
+	/**
+	 * 分页查询用户
+	 * @param query
+	 * @param pageable
+	 * @return
+	 */
+	Page<User> queryUserList(User query, Pageable pageable);
 }

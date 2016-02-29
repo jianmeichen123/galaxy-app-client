@@ -1,5 +1,7 @@
 package com.galaxyinternet.user.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.galaxyinternet.bo.UserBo;
 import com.galaxyinternet.common.controller.BaseControllerImpl;
+import com.galaxyinternet.framework.core.model.Page;
+import com.galaxyinternet.framework.core.model.PageRequest;
 import com.galaxyinternet.framework.core.model.ResponseData;
 import com.galaxyinternet.framework.core.model.Result;
 import com.galaxyinternet.framework.core.model.Result.Status;
@@ -26,11 +30,6 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	final Logger logger = LoggerFactory.getLogger(UserController.class);
 	@Autowired
 	private UserService userService;
-	// @Autowired
-	// UserRepository userRepository;
-
-	@Autowired
-	com.galaxyinternet.framework.cache.Cache cache;
 
 	@Override
 	protected BaseService<User> getBaseService() {
@@ -45,7 +44,7 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/resetPwd", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseData<User> resetPwd(User user) {
+	public ResponseData<User> resetPwd(@RequestBody User user) {
 		userService.resetPwd(user);
 		String toMail = user.getEmail(); // "sue_vip@126.com"; 收件人邮件地址
 		String content = "<html>" + "<head></head>" + "<body>" + "<div align=center>"
@@ -58,5 +57,39 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		responseBody.setResult(new Result(Status.OK, user));
 		return responseBody;
 	}
-
+	
+	/**
+	 * 获取用户列表数据 重新组装关联数据
+	 * @param   
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/queryUserList", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseData<User> queryUserList(HttpServletRequest request,@RequestBody User query ,PageRequest pageable ) {
+		
+		ResponseData<User> responseBody = new ResponseData<User>();
+		
+		Object obj = request.getSession().getAttribute("sessionUser"); 
+		if(obj == null){
+			responseBody.setResult(new Result(Status.ERROR, "validate loging session failed"));
+			return responseBody;
+		}
+		
+		try {
+			
+			Page<User> page = userService.queryUserList(query, pageable);
+			responseBody.setPageList(page);
+			responseBody.setResult(new Result(Status.OK, ""));
+			return responseBody;
+			
+		} catch (Exception e) {
+			responseBody.setResult(new Result(Status.ERROR, "queryUserList faild"));
+			
+			if(logger.isErrorEnabled()){
+				logger.error("queryUserList ",e);
+			}
+		}
+		
+		return responseBody;
+	}
 }
