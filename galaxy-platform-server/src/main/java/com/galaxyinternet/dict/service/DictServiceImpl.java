@@ -50,6 +50,29 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 		return dictDao.updateById(entity);
 	}
 	
+	@Override
+	public int updateByCode(Dict entity) {
+		
+		//验证
+		ValidationUtil.isNull(Dict.COMMENT,entity);
+		ValidationUtil.isMoreThan(Dict.NAME, entity.getName(), 32);
+		ValidationUtil.isMoreThan(Dict.CODE, entity.getCode(), 32);
+		//
+		Dict dict = dictDao.selectByCode(entity.getCode());
+		if(dict == null){
+			throwPlatformException(MessageStatus.DATA_NOT_EXISTS, "该数据字典不存在");
+		}
+		entity.setId(dict.getId());
+		entity.setParentCode(entity.getParentCode());
+		
+		int count = dictDao.selectCountByParentCodeAndName(entity);
+		if(count >0 ){
+			throwPlatformException(MessageStatus.SAME_DATA_EXISTS, "该名称已存在");
+		}
+		entity.setUpdatedTime(System.currentTimeMillis());
+		return dictDao.updateById(entity);
+	}
+	
 	
 	private void validInsert(Dict dict){
 		//验证

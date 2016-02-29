@@ -110,8 +110,8 @@ public class DictController extends BaseControllerImpl<Dict, DictBo> {
 	    * @throws
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/update", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseData<Dict> update(@RequestBody Dict dict) {
+	@RequestMapping(value = "/updateById", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseData<Dict> updateById(@RequestBody Dict dict) {
 		ResponseData<Dict> responseBody = new ResponseData<Dict>();
 		Result result = new Result();
 		try {
@@ -127,6 +127,34 @@ public class DictController extends BaseControllerImpl<Dict, DictBo> {
 		return responseBody;
 	}
 	
+	
+	
+	/**
+	 * 
+	    * @Title: update
+	    * @Description: 更新数据字典
+	    * @param @param dict
+	    * @param @return    参数
+	    * @return ResponseData<Dict>    返回类型
+	    * @throws
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/update", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseData<Dict> updateByCode(@RequestBody Dict dict) {
+		ResponseData<Dict> responseBody = new ResponseData<Dict>();
+		Result result = new Result();
+		try {
+			dictService.updateByCode(dict);
+			result.setStatus(Status.OK);
+		} catch (PlatformException e){
+			result.addError(e.getMessage());
+		} catch (Exception e) {
+			result.addError("系统错误");
+			logger.error("更新错误",e);
+		}
+		responseBody.setResult(result);
+		return responseBody;
+	}
 	
 	/**
 	 * 

@@ -82,6 +82,8 @@ public interface DictService extends BaseService<Dict> {
 	    * @throws
 	 */
 	int changeDictShowOrder(Dict dict,int type);
+
+	int updateByCode(Dict entity);
 }
 
 
