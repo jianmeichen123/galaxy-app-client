@@ -103,15 +103,19 @@ function save(input){
 	var json = {};
 	var action = "insert";
 	json['name'] = input.val(); 
+	var url = '';
 	if(code == "undefined" || code == undefined){
 		//input.parent().parent().remove();
 		json['parentCode'] = parentCode; 
+		url = platformUrl.dictInsert;
+		action = "update" ;
 	}else{
 		json['code'] = td.attr("code");
-		action = "update";
+		url = platformUrl.dictUpdate;
+		action = "update" ;
 	}
 	$.ajax({
-		url : "galaxy/dict/"+action,
+		url : url,
 		data:JSON.stringify(json),
 		async : false,
 		type : 'POST',
@@ -142,7 +146,7 @@ function save(input){
 function getDictList(parentCode){
 	var dicts ;
 	$.ajax({
-		url : "galaxy/dict/findByParentCode/"+parentCode,
+		url : platformUrl.dictFindByParentCode+parentCode,
 		async : false,
 		type : 'POST',
 	    contentType:"application/json; charset=UTF-8",
