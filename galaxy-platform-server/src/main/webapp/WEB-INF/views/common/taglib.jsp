@@ -19,6 +19,6 @@
 
 <!-- 这里写js和css文件---------start -->
 <script src="<%=request.getContextPath() %>/js/jquery-1.7.2.min.js" type="text/javascript"></script>
-
+<script src="<%=request.getContextPath() %>/js/platformUrl.js" type="text/javascript"></script>
 <!-- end -->
 
