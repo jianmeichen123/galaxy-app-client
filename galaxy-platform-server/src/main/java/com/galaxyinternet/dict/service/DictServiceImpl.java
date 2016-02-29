@@ -7,15 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.galaxyinternet.dao.dict.DictDao;
-import com.galaxyinternet.exception.PlatformException;
 import com.galaxyinternet.framework.core.dao.BaseDao;
 import com.galaxyinternet.framework.core.service.impl.BaseServiceImpl;
 import com.galaxyinternet.model.dict.BatchDictInsetParam;
 import com.galaxyinternet.model.dict.Dict;
 import com.galaxyinternet.service.DictService;
 import com.galaxyinternet.utils.MessageStatus;
-import com.galaxyinternet.utils.ValidationUtil;
-
+import static com.galaxyinternet.utils.ValidationUtil.isNull;
+import static com.galaxyinternet.utils.ValidationUtil.isEmptyOrMoreThan;
+import static com.galaxyinternet.utils.ValidationUtil.throwPlatformException;
+import static com.galaxyinternet.utils.ValidationUtil.isMoreThan;
 
 @Service("com.galaxyinternet.service.DictService")
 public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService {
@@ -33,9 +34,9 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 	public int updateById(Dict entity) {
 		
 		//验证
-		ValidationUtil.isNull(Dict.COMMENT,entity);
-		ValidationUtil.isMoreThan(Dict.NAME, entity.getName(), 32);
-		ValidationUtil.isNull(Dict.ID,entity.getId());
+		isNull(Dict.COMMENT,entity);
+		isMoreThan(Dict.NAME, entity.getName(), 32);
+		isNull(Dict.ID,entity.getId());
 		//
 		Dict dict = dictDao.selectById(entity.getId());
 		if(dict == null){
@@ -54,9 +55,9 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 	public int updateByCode(Dict entity) {
 		
 		//验证
-		ValidationUtil.isNull(Dict.COMMENT,entity);
-		ValidationUtil.isMoreThan(Dict.NAME, entity.getName(), 32);
-		ValidationUtil.isMoreThan(Dict.CODE, entity.getCode(), 32);
+		isNull(Dict.COMMENT,entity);
+		isMoreThan(Dict.NAME, entity.getName(), 32);
+		isMoreThan(Dict.CODE, entity.getCode(), 32);
 		//
 		Dict dict = dictDao.selectByCode(entity.getCode());
 		if(dict == null){
@@ -76,8 +77,8 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 	
 	private void validInsert(Dict dict){
 		//验证
-		ValidationUtil.isNull(Dict.COMMENT,dict);
-		ValidationUtil.isEmptyOrMoreThan(Dict.NAME, dict.getName(), 32);
+		isNull(Dict.COMMENT,dict);
+		isEmptyOrMoreThan(Dict.NAME, dict.getName(), 32);
 		//
 
 	}
@@ -85,15 +86,15 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 	public Long insert(Dict entity) {
 		
 		validInsert(entity);
-		ValidationUtil.isNull(Dict.PARENT_CODE,entity.getParentCode());
+		isNull(Dict.PARENT_CODE,entity.getParentCode());
 		
 		Dict parentDict = dictDao.selectByCode(entity.getParentCode());
 		if( parentDict == null){
-			ValidationUtil.throwPlatformException(MessageStatus.DATA_NOT_EXISTS,"待添加的数据字典父类型不存在");
+			throwPlatformException(MessageStatus.DATA_NOT_EXISTS,"待添加的数据字典父类型不存在");
 		}
 		int count = dictDao.selectCountByParentCodeAndName(entity);
 		if(count > 0){
-			ValidationUtil.throwPlatformException(MessageStatus.SAME_DATA_EXISTS,"数据已存在");
+			throwPlatformException(MessageStatus.SAME_DATA_EXISTS,"数据已存在");
 		}
 		Integer max = dictDao.selectMaxValueByParentCode(entity.getParentCode());
 		if(max == null){
@@ -121,8 +122,8 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 	@Override
 	public int insertInBatch(BatchDictInsetParam batchDictInsetParam) {
 		
-		ValidationUtil.isNull(Dict.COMMENT,batchDictInsetParam);
-		ValidationUtil.isNull(Dict.PARENT_CODE,batchDictInsetParam.getParentCode());
+		isNull(Dict.COMMENT,batchDictInsetParam);
+		isNull(Dict.PARENT_CODE,batchDictInsetParam.getParentCode());
 		
 		List<String> names = null;
 		List<Dict> dicts = batchDictInsetParam.getDicts();
@@ -134,7 +135,7 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 		
 		Dict parentDict = dictDao.selectByCode(batchDictInsetParam.getParentCode());
 		if(parentDict == null){
-			ValidationUtil.throwPlatformException(MessageStatus.DATA_NOT_EXISTS,"待添加的数据字典父类型不存在");
+			throwPlatformException(MessageStatus.DATA_NOT_EXISTS,"待添加的数据字典父类型不存在");
 		}
 		
 		Integer max = dictDao.selectMaxValueByParentCode(batchDictInsetParam.getParentCode());
@@ -157,7 +158,7 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 		}
 		int count = dictDao.selectCountSameIn(batchDictInsetParam);
 		if(count > 0){
-			ValidationUtil.throwPlatformException(MessageStatus.SAME_DATA_EXISTS,"待添加数据已存在");
+			throwPlatformException(MessageStatus.SAME_DATA_EXISTS,"待添加数据已存在");
 		}
 		batchDictInsetParam.setCreatedTime(System.currentTimeMillis());
 		return dictDao.insertInBatch(batchDictInsetParam);
@@ -166,7 +167,7 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 
 	@Override
 	public Dict selectByCode(String code) {
-		ValidationUtil.isEmptyOrMoreThan(Dict.CODE, code, 32);
+		isEmptyOrMoreThan(Dict.CODE, code, 32);
 		return dictDao.selectByCode(code);
 	}
 
@@ -174,22 +175,12 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 	@Override
 	public int updateSort(Dict entity) {
 
-		ValidationUtil.isNull(Dict.COMMENT,entity);
-		ValidationUtil.isNull(Dict.ID,entity.getId());
+		isNull(Dict.COMMENT,entity);
+		isNull(Dict.ID,entity.getId());
 		
 		entity.setName(null);
 		entity.setUpdatedTime(System.currentTimeMillis());
 		return dictDao.updateById(entity);
-	}
-
-	public  void throwPlatformException(MessageStatus status ,Object...args ){
-		String message = null;
-		if(args.length == 0){
-			message = status.getMessage();
-		}else {
-			message = String.format(status.getMessage(), args);
-		}
-		throw new PlatformException(status.getStatus(), message);
 	}
 
 }
