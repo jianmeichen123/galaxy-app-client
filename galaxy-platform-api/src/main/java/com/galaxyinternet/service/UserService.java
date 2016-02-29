@@ -1,11 +1,13 @@
 package com.galaxyinternet.service;
 
+import com.galaxyinternet.framework.core.model.ResponseData;
 import com.galaxyinternet.framework.core.service.BaseService;
 import com.galaxyinternet.model.user.User;
 
 /**
  * @author keifer
  */
+
 public interface UserService extends BaseService<User> {
 	
 	/**
@@ -21,5 +23,13 @@ public interface UserService extends BaseService<User> {
 	 * @return
 	 */
 	int resetPwd(User user);
+	
+	 /** 用户登录
+	 * @author zcy
+	 * @param user 
+	 * @return
+	 */
+	ResponseData<User> login(User user);
+
 }
 

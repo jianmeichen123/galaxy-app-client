@@ -37,16 +37,14 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		return this.userService;
 	}
 	
+	/**
+	 * 用户登录
+	 * @author zcy
+	 */
 	@ResponseBody
-	@RequestMapping(value = "/login", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseData<User> login() {
-		ResponseData<User> responseBody = new ResponseData<User>();
-		User user = new User();
-		user.setMobile("15321650029");
-		user.setRealName("keifer");
-		//userRepository.add(user);
-		cache.set(user.getMobile(), 100, user);
-		System.out.println(cache.get(user.getMobile()));
+	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseData<User> login(User user) {
+		ResponseData<User> responseBody = userService.login(user);
 		return responseBody;
 	}
 	
