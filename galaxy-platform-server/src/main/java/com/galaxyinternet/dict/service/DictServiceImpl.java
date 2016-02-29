@@ -192,17 +192,4 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 		throw new PlatformException(status.getStatus(), message);
 	}
 
-	@Override
-	public int changeDictShowOrder(Dict dict, int type) {
-		
-		ValidationUtil.isNull(Dict.COMMENT,dict);
-		ValidationUtil.isNull(Dict.ID,dict.getId());
-		
-		Dict oldDict = dictDao.selectById(dict.getId());
-		if(oldDict == null){
-			ValidationUtil.throwPlatformException(MessageStatus.DATA_NOT_EXISTS,"该数据字典不存在");
-		}
-		return 0;
-	}
-
 }

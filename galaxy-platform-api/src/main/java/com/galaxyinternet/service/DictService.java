@@ -67,22 +67,17 @@ public interface DictService extends BaseService<Dict> {
 	 */
 	int updateSort(Dict entity);
 
+
 	
 	/**
 	 * 
-	 * 
-	    * @Title: changeDictShowOrder
-	    * @Description: 改变数据字典显示顺序
-	    * @param @param dict 
-	    * 0 向上
-	    * 1 向下
-	    * @param @param type
+	    * @Title: updateByCode
+	    * @Description: 根据code跟新数据字典
+	    * @param @param entity
 	    * @param @return    参数
 	    * @return int    返回类型
 	    * @throws
 	 */
-	int changeDictShowOrder(Dict dict,int type);
-
 	int updateByCode(Dict entity);
 }
 
