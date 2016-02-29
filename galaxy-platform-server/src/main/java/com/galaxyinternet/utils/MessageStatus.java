@@ -1,6 +1,6 @@
 package com.galaxyinternet.utils;
 
-public enum MessageStatus {
+public enum MessageStatus  {
 	OK(10000, "成功"),
 	SYS_ERROR(10001, "系统繁忙,请稍后重试"),
 	SAME_DATA_EXISTS(10002, "%s"),

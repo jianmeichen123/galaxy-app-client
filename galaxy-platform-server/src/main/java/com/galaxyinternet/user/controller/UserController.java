@@ -26,16 +26,29 @@ import com.galaxyinternet.framework.core.utils.mail.SimpleMailSender;
 import com.galaxyinternet.model.user.User;
 import com.galaxyinternet.service.UserService;
 
+/**
+ * 用户相关
+ * @author zhaoying
+ *
+ */
 @Controller
 @RequestMapping("/galaxy/user")
 public class UserController extends BaseControllerImpl<User, UserBo> {
 	final Logger logger = LoggerFactory.getLogger(UserController.class);
 	@Autowired
 	private UserService userService;
-
 	@Override
 	protected BaseService<User> getBaseService() {
 		return this.userService;
+	}
+
+	
+	/**
+	 * 默认页面
+	 */
+	@RequestMapping(method = RequestMethod.GET)
+	public String list() {
+		return "system/user/user_list";
 	}
 
 	/**

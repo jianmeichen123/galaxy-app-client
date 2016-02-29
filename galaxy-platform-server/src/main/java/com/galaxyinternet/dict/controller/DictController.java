@@ -42,6 +42,13 @@ public class DictController extends BaseControllerImpl<Dict, DictBo> {
 		return this.dictService;
 	}
 	
+	
+	@ResponseBody
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	public String index() {
+		return "system/dict/dict.jsp";
+	}
+	
 	/**
 	 * 
 	    * @Title: insert
