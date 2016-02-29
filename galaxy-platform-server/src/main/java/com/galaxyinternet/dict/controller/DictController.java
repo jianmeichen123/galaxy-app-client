@@ -110,7 +110,7 @@ public class DictController extends BaseControllerImpl<Dict, DictBo> {
 	/**
 	 * 
 	    * @Title: update
-	    * @Description: 更新数据字典
+	    * @Description: 根据id更新数据字典
 	    * @param @param dict
 	    * @param @return    参数
 	    * @return ResponseData<Dict>    返回类型
@@ -139,7 +139,7 @@ public class DictController extends BaseControllerImpl<Dict, DictBo> {
 	/**
 	 * 
 	    * @Title: update
-	    * @Description: 更新数据字典
+	    * @Description: 根据code更新数据字典
 	    * @param @param dict
 	    * @param @return    参数
 	    * @return ResponseData<Dict>    返回类型
@@ -194,8 +194,8 @@ public class DictController extends BaseControllerImpl<Dict, DictBo> {
 	
 	/**
 	 * 
-	    * @Title: findByParentId
-	    * @Description: 根据parentId查询数据字典
+	    * @Title: findByParentCode
+	    * @Description: 根据findByParentCode查询数据字典
 	    * @param @param parentId
 	    * @param @return    参数
 	    * @return ResponseData<Dict>    返回类型
