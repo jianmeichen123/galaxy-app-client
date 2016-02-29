@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.galaxyinternet.dao.user.UserDao;
 import com.galaxyinternet.framework.cache.Cache;
+import com.galaxyinternet.framework.core.constants.Constants;
 import com.galaxyinternet.framework.core.dao.BaseDao;
 import com.galaxyinternet.framework.core.model.Header;
 import com.galaxyinternet.framework.core.model.Page;
@@ -94,7 +95,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	public ResponseData<User> logout(Header header, HttpServletRequest request){
 		ResponseData<User> responsebody = new ResponseData<User>();
 		String sessionId = header.getSessionId();		
-		request.getSession().removeAttribute("sessionUser");				//从本地session删除user
+		request.getSession().removeAttribute(Constants.SESSION_ID);				//从本地session删除user
 		cache.remove(sessionId);															//从redis中删除sessionId
 		responsebody.setResult(new Result(Status.OK,"退出登录"));
 		return responsebody;
