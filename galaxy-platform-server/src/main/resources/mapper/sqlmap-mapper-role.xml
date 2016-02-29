@@ -5,6 +5,8 @@
 		 <id column="id" property="id" />
 		 <result column="name" property="name"/>
          <result column="role_code" property="roleCode"/>
+         <result column="user_id" property="userId"/>
+         
          <result column="description" property="description"/>
          <result column="sort" property="sort"/>
          <result column="disabled" property="disabled"/>
@@ -16,6 +18,7 @@
         	id,
         	name,
         	role_code,
+        	user_id,
         	description,
         	sort,
         	disabled,
@@ -29,6 +32,7 @@
 				<if test="id != null"> and id =#{id}</if>
 				<if test="name != null"> and name =#{name}</if>
 				<if test="roleCode != null"> and role_code =#{roleCode}</if>
+				<if test="userId != null"> and user_id =#{userId}</if>
 				<if test="description != null"> and description =#{description}</if>
 				<if test="sort != null"> and sort =#{sort}</if>
 				<if test="disabled != null"> and disabled =#{disabled}</if>
@@ -72,6 +76,7 @@
         	id,
         	name,
         	role_code,
+        	user_id,
         	description,
         	sort,
         	disabled,
@@ -80,6 +85,7 @@
         	   #{id},
         	   #{name},
         	   #{roleCode},
+        	   #{userId},
         	   #{description},
         	   #{sort},
         	   #{disabled},
@@ -94,6 +100,7 @@
 		<set>
 			<if test="name != null">  name =#{name},</if>
 			<if test="roleCode != null">  role_code =#{roleCode},</if>
+			<if test="userId != null">  user_id =#{userId},</if>
 			<if test="description != null">  description =#{description},</if>
 			<if test="sort != null">  sort =#{sort},</if>
 			<if test="disabled != null">  disabled =#{disabled},</if>
@@ -105,6 +112,7 @@
 				<if test="id != null"> and id =#{id}</if>
 				<if test="name != null"> and name =#{name}</if>
 				<if test="roleCode != null"> and role_code =#{roleCode}</if>
+				<if test="userId != null"> and user_id =#{userId}</if>
 				<if test="description != null"> and description =#{description}</if>
 				<if test="sort != null"> and sort =#{sort}</if>
 				<if test="disabled != null"> and disabled =#{disabled}</if>
@@ -119,6 +127,7 @@
 		<set>
 			<if test="name != null">  name =#{name},</if>
 			<if test="roleCode != null">  role_code =#{roleCode},</if>
+			<if test="userId != null">  user_id =#{userId},</if>
 			<if test="description != null">  description =#{description},</if>
 			<if test="sort != null">  sort =#{sort},</if>
 			<if test="disabled != null">  disabled =#{disabled},</if>
