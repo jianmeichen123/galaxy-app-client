@@ -6,7 +6,11 @@ var platformUrl={
 		/**
 		 * 跳转到首页
 		 */
-		toIndex:"/galaxy/toIndex"
+		toIndex:"/galaxy/toIndex",
+		/**
+		 * 用户管理首页
+		 */
+		userIndex:"/galaxy/user",
 }
 
 /**
