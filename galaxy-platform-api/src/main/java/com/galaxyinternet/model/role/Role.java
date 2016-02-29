@@ -25,6 +25,8 @@ public class Role extends BaseEntity {
 	 * role_code
 	 */
 	private String roleCode;
+	
+	private Long userId;
 	/**
 	 * description
 	 */
@@ -89,6 +91,16 @@ public class Role extends BaseEntity {
 
 	public void setDisabled(Integer disabled) {
 		this.disabled = disabled;
+	}
+
+	
+	
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	public String toString() {

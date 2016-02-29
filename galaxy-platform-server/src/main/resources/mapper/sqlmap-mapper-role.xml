@@ -5,6 +5,8 @@
 		 <id column="id" property="id" />
 		 <result column="name" property="name"/>
          <result column="role_code" property="roleCode"/>
+         <result column="user_id" property="userId"/>
+         
          <result column="description" property="description"/>
          <result column="sort" property="sort"/>
          <result column="disabled" property="disabled"/>
@@ -16,6 +18,7 @@
         	id,
         	name,
         	role_code,
+        	user_id,
         	description,
         	sort,
         	disabled,
@@ -29,6 +32,7 @@
 				<if test="id != null"> and id =#{id}</if>
 				<if test="name != null"> and name =#{name}</if>
 				<if test="roleCode != null"> and role_code =#{roleCode}</if>
+				<if test="userId != null"> and user_id =#{userId}</if>
 				<if test="description != null"> and description =#{description}</if>
 				<if test="sort != null"> and sort =#{sort}</if>
 				<if test="disabled != null"> and disabled =#{disabled}</if>
@@ -65,6 +69,11 @@
 		from t_role where id = #{id}
 	</select>
 	
+	<!-- 根据userID查询role的ID -->
+	<select id="selectIdByUserId" resultType="java.lang.Long" parameterType="java.lang.Long">
+		select id from t_role where user_id = #{userId}
+	</select>
+	
   	<insert id="insert" parameterType="Role" >
 	    <![CDATA[
 	        insert into
@@ -72,6 +81,7 @@
         	id,
         	name,
         	role_code,
+        	user_id,
         	description,
         	sort,
         	disabled,
@@ -80,6 +90,7 @@
         	   #{id},
         	   #{name},
         	   #{roleCode},
+        	   #{userId},
         	   #{description},
         	   #{sort},
         	   #{disabled},
@@ -94,6 +105,7 @@
 		<set>
 			<if test="name != null">  name =#{name},</if>
 			<if test="roleCode != null">  role_code =#{roleCode},</if>
+			<if test="userId != null">  user_id =#{userId},</if>
 			<if test="description != null">  description =#{description},</if>
 			<if test="sort != null">  sort =#{sort},</if>
 			<if test="disabled != null">  disabled =#{disabled},</if>
@@ -105,6 +117,7 @@
 				<if test="id != null"> and id =#{id}</if>
 				<if test="name != null"> and name =#{name}</if>
 				<if test="roleCode != null"> and role_code =#{roleCode}</if>
+				<if test="userId != null"> and user_id =#{userId}</if>
 				<if test="description != null"> and description =#{description}</if>
 				<if test="sort != null"> and sort =#{sort}</if>
 				<if test="disabled != null"> and disabled =#{disabled}</if>
@@ -119,6 +132,7 @@
 		<set>
 			<if test="name != null">  name =#{name},</if>
 			<if test="roleCode != null">  role_code =#{roleCode},</if>
+			<if test="userId != null">  user_id =#{userId},</if>
 			<if test="description != null">  description =#{description},</if>
 			<if test="sort != null">  sort =#{sort},</if>
 			<if test="disabled != null">  disabled =#{disabled},</if>
