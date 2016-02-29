@@ -58,7 +58,7 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 		isNull(Dict.COMMENT,entity);
 		isMoreThan(Dict.NAME, entity.getName(), 32);
 		isMoreThan(Dict.CODE, entity.getCode(), 32);
-		//
+		//判断待更新的字典是否存在
 		Dict dict = dictDao.selectByCode(entity.getCode());
 		if(dict == null){
 			throwPlatformException(MessageStatus.DATA_NOT_EXISTS, "该数据字典不存在");
@@ -67,6 +67,7 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 		entity.setParentCode(entity.getParentCode());
 		
 		int count = dictDao.selectCountByParentCodeAndName(entity);
+		//判断更新的名字是否重复
 		if(count >0 ){
 			throwPlatformException(MessageStatus.SAME_DATA_EXISTS, "该名称已存在");
 		}
@@ -133,11 +134,12 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 		}
 		names = new ArrayList<>();
 		
+		//判断待添加的数据字典父类型是否存在
 		Dict parentDict = dictDao.selectByCode(batchDictInsetParam.getParentCode());
 		if(parentDict == null){
 			throwPlatformException(MessageStatus.DATA_NOT_EXISTS,"待添加的数据字典父类型不存在");
 		}
-		
+		//得到一个parentCode下最大的value 
 		Integer max = dictDao.selectMaxValueByParentCode(batchDictInsetParam.getParentCode());
 		if(max == null){
 			max = 1;
@@ -150,12 +152,14 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 			dict.setCode(parentDict.getCode()+":"+max);
 			max ++;
 			validInsert(dict);
+			//判断待添加的数据字典名字是否有相同的
 			if(dict.getName()==null || names.contains(dict.getName())){
 				throwPlatformException(MessageStatus.PARAME_SAME, Dict.NAME);
 			}else {
 				names.add(dict.getName());
 			}
 		}
+		//判断待添加的数据字典名字和数据库已经存在是否有相同的
 		int count = dictDao.selectCountSameIn(batchDictInsetParam);
 		if(count > 0){
 			throwPlatformException(MessageStatus.SAME_DATA_EXISTS,"待添加数据已存在");
