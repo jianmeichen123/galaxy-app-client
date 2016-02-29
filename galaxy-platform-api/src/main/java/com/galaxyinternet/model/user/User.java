@@ -2,9 +2,9 @@ package com.galaxyinternet.model.user;
 
 import java.util.Date;
 
-import com.galaxyinternet.framework.core.model.BaseEntity;
+import com.galaxyinternet.framework.core.model.BaseUser;
 
-public class User extends BaseEntity {
+public class User extends BaseUser {
 	private static final long serialVersionUID = 1L;
 
 	private String realName;// 真实姓名
@@ -14,11 +14,11 @@ public class User extends BaseEntity {
 	private String telephone;// 座机
 	private String status;// 账户状态 正常 禁用
 	private String type;// 账户类型
-	private String employNo;//工号
+	private String employNo;// 工号
 	private Long departmentId;// 部门Id
 	private Long roleId;// 角色Id
 	private String departmentName;// 部门名称
-	
+
 	private String role;// 角色
 	private String password;// 密码
 	private String originPassword;// 初始密码
@@ -26,9 +26,10 @@ public class User extends BaseEntity {
 	private Date birth;// 生日
 	private String address;// 地址
 	private Boolean isAdmin;// 是否管理员
-	
-	/*private String salt;
-	private String originSalt;*/
+
+	/*
+	 * private String salt; private String originSalt;
+	 */
 
 	public String getRealName() {
 		return realName;
@@ -165,6 +166,7 @@ public class User extends BaseEntity {
 	public void setRoleId(Long roleId) {
 		this.roleId = roleId;
 	}
+
 	public String getEmployNo() {
 		return employNo;
 	}

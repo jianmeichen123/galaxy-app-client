@@ -26,30 +26,20 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	final Logger logger = LoggerFactory.getLogger(UserController.class);
 	@Autowired
 	private UserService userService;
-	//@Autowired
-	//UserRepository userRepository;
-	
+	// @Autowired
+	// UserRepository userRepository;
+
 	@Autowired
 	com.galaxyinternet.framework.cache.Cache cache;
-	
+
 	@Override
 	protected BaseService<User> getBaseService() {
 		return this.userService;
 	}
-	
-	/**
-	 * 用户登录
-	 * @author zcy
-	 */
-	@ResponseBody
-	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseData<User> login(User user) {
-		ResponseData<User> responseBody = userService.login(user);
-		return responseBody;
-	}
-	
+
 	/**
 	 * 重置密码 邮件通知
+	 * 
 	 * @param user
 	 * @return
 	 */
@@ -57,10 +47,10 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	@RequestMapping(value = "/resetPwd", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseData<User> resetPwd(User user) {
 		userService.resetPwd(user);
-		String toMail =  user.getEmail();    //"sue_vip@126.com"; 收件人邮件地址
+		String toMail = user.getEmail(); // "sue_vip@126.com"; 收件人邮件地址
 		String content = "<html>" + "<head></head>" + "<body>" + "<div align=center>"
-				+ "	<a href=http://localhost:8000/controller/vcs/login/toLogin target=_blank>" +
-				"您好，您密码已重置，请点击地址：http://localhost:8000/controller/vcs/login/toLogin  登陆 " + "	</a>" + "</div>"
+				+ "	<a href=http://localhost:8000/controller/vcs/login/toLogin target=_blank>"
+				+ "您好，您密码已重置，请点击地址：http://localhost:8000/controller/vcs/login/toLogin  登陆 " + "	</a>" + "</div>"
 				+ "</body>" + "</html>";// 邮件内容
 		String subject = "重置密码通知";// 邮件主题
 		SimpleMailSender.sendHtmlMail(toMail, subject, content);
@@ -68,6 +58,5 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		responseBody.setResult(new Result(Status.OK, user));
 		return responseBody;
 	}
-	
 
 }
