@@ -38,7 +38,7 @@
 						<dl class="fmdl fml fmdll clearfix">
 							<dt>所属部门：</dt>
 							<dd>
-								<select>
+								<select id="selectId">
 									<option>全部</option>
 								</select>
 							</dd>
@@ -77,8 +77,8 @@
 					<tbody>
 
 						<!-- 开始循环 -->
-						<c:when test="${not empty userList}">
-							<c:forEach items="${userList}" var="user" varStatus="vs">
+						<c:when test="${not empty content}">
+							<c:forEach items="${content}" var="user" varStatus="vs">
 								<tr>
 
 									<td class='center' style="width: 30px;">${vs.index+1}</td>
@@ -143,7 +143,7 @@
 				async : false,
 				type : 'POST',
 			    contentType:"application/json; charset=UTF-8",
-				dataType : "text",
+				dataType : "json",
 				cache : false,
 				error:function(){     
 			        alert('查询失败');     
@@ -161,7 +161,7 @@
 				async : false,
 				type : 'POST',
 			    contentType:"application/json; charset=UTF-8",
-				dataType : "text",
+				dataType : "json",
 				cache : false,
 				error:function(){     
 			        alert('添加失败');     
@@ -180,7 +180,7 @@
 				async : false,
 				type : 'POST',
 			    contentType:"application/json; charset=UTF-8",
-				dataType : "text",
+				dataType : "json",
 				cache : false,
 				error:function(){     
 			        alert('操作失败');     
@@ -201,7 +201,7 @@
 				async : false,
 				type : 'POST',
 			    contentType:"application/json; charset=UTF-8",
-				dataType : "text",
+				dataType : "json",
 				cache : false,
 				error:function(){     
 			        alert('密码重置失败');     
