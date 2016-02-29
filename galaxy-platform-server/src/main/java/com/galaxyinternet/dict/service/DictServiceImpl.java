@@ -13,6 +13,7 @@ import com.galaxyinternet.model.dict.BatchDictInsetParam;
 import com.galaxyinternet.model.dict.Dict;
 import com.galaxyinternet.service.DictService;
 import com.galaxyinternet.utils.MessageStatus;
+
 import static com.galaxyinternet.utils.ValidationUtil.isNull;
 import static com.galaxyinternet.utils.ValidationUtil.isEmptyOrMoreThan;
 import static com.galaxyinternet.utils.ValidationUtil.throwPlatformException;
