@@ -59,13 +59,13 @@ public class DictController extends BaseControllerImpl<Dict, DictBo> {
 		try {
 			dictService.insert(dict);
 			result.setStatus(Status.OK);
+			responseBody.setEntity(dict);
 		} catch (PlatformException e){
 			result.addError(e.getMessage());
 		} catch (Exception e) {
 			result.addError("系统错误");
 			logger.error("新增错误",e);
 		}
-		responseBody.setEntity(dict);
 		responseBody.setResult(result);
 		return responseBody;
 	}
@@ -166,8 +166,8 @@ public class DictController extends BaseControllerImpl<Dict, DictBo> {
 	    * @return ResponseData<Dict>    返回类型
 	    * @throws
 	 */
-	@ResponseBody
-	@RequestMapping(value = "/findByParentCode/{parentCode}", method = RequestMethod.GET)
+	@ResponseBody 
+	@RequestMapping(value = "/findByParentCode/{parentCode}", method = RequestMethod.POST)
 	public ResponseData<Dict> findByParentId(@PathVariable String parentCode) {
 		ResponseData<Dict> responseBody = new ResponseData<Dict>();
 		Result result = new Result();

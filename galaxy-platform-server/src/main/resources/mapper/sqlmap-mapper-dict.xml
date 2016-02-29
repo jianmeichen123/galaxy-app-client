@@ -154,16 +154,10 @@
 		AND
 			is_delete = 0				
 		AND
-			(name in
-				<foreach collection="dicts" index="item" item="item" open="(" separator="," close=")">
-		            #{item.name}
-		        </foreach>
-			or
-			dict_value in
-				<foreach collection="dicts" index="item" item="item" open="(" separator="," close=")">
-		            #{item.value}
-		        </foreach> 
-			)	
+			name in
+			<foreach collection="dicts" index="item" item="item" open="(" separator="," close=")">
+	            #{item.name}
+	        </foreach>
 	</select>
 	
 	<!--通过父id和名称查询  -->
@@ -191,5 +185,27 @@
 		WHERE  id = #{id}
 				
 	</update>
+   
+   <!-- 查询parentCode下最大的value -->
+	<select id="selectMaxValueByParentCode" resultType="java.lang.Integer" parameterType="string">
+		SELECT
+			MAX(dict_value)
+		FROM
+			dict
+		WHERE
+			parent_code = #{parentCode}		
+	</select>   
+   
+   <select id="selectByName" parameterType="string" resultMap="BaseResultMap" >
+   		SELECT
+			<include refid="Base_Column_List" />
+		FROM 
+			dict
+		WHERE
+			name = #{name}
+		AND
+			is_delete = 0		
+   </select>
+   
    
 </mapper>
