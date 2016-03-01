@@ -16,7 +16,7 @@ public class User extends BaseUser {
 	private String type;// 账户类型
 	private String employNo;// 工号
 	private Long departmentId;// 部门Id
-	private Long roleId;// 角色Id
+	
 	private String departmentName;// 部门名称
 
 	private String role;// 角色
@@ -159,13 +159,6 @@ public class User extends BaseUser {
 		this.isAdmin = isAdmin;
 	}
 
-	public Long getRoleId() {
-		return roleId;
-	}
-
-	public void setRoleId(Long roleId) {
-		this.roleId = roleId;
-	}
 
 	public String getEmployNo() {
 		return employNo;

@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.data.domain.Pageable;
 
+import com.galaxyinternet.bo.UserBo;
 import com.galaxyinternet.framework.core.model.Header;
 import com.galaxyinternet.framework.core.model.Page;
 import com.galaxyinternet.framework.core.model.ResponseData;
@@ -23,6 +24,14 @@ public interface UserService extends BaseService<User> {
 	 * @return
 	 */
 	Long insertUser(User user);
+	
+	/**
+	 * 更新用户
+	 * 
+	 * @param user
+	 * @return
+	 */
+	int updateUser(UserBo user);
 
 	/**
 	 * 重置密码

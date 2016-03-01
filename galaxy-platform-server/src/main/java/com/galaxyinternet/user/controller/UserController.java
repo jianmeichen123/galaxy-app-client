@@ -1,6 +1,9 @@
 package com.galaxyinternet.user.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.galaxyinternet.bo.UserBo;
 import com.galaxyinternet.common.controller.BaseControllerImpl;
+import com.galaxyinternet.exception.PlatformException;
 import com.galaxyinternet.framework.core.constants.UserConstant;
 import com.galaxyinternet.framework.core.model.Page;
 import com.galaxyinternet.framework.core.model.PageRequest;
@@ -23,7 +27,10 @@ import com.galaxyinternet.framework.core.model.Result;
 import com.galaxyinternet.framework.core.model.Result.Status;
 import com.galaxyinternet.framework.core.service.BaseService;
 import com.galaxyinternet.framework.core.utils.mail.SimpleMailSender;
+import com.galaxyinternet.model.department.Department;
 import com.galaxyinternet.model.user.User;
+import com.galaxyinternet.service.DepartmentService;
+import com.galaxyinternet.service.UserRoleService;
 import com.galaxyinternet.service.UserService;
 
 /**
@@ -37,6 +44,11 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	final Logger logger = LoggerFactory.getLogger(UserController.class);
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private DepartmentService departmentService;
+	@Autowired
+	private UserRoleService userRoleService;
 	@Override
 	protected BaseService<User> getBaseService() {
 		return this.userService;
@@ -47,7 +59,11 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	 * 默认页面
 	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public String list() {
+	public String list(HttpServletRequest request,HttpServletResponse response) {
+		List<Long>idList = userRoleService.selectRoleIdByUserId(1l);
+		System.out.println(idList.size());
+		List<Department> deptList = departmentService.queryAll();
+		request.setAttribute("deptList",deptList);
 		return "system/user/user_list";
 	}
 
@@ -120,6 +136,23 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 			}
 		}
 		
+		return responseBody;
+	}
+	@ResponseBody
+	@RequestMapping(value = "/updateUser", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseData<UserBo> updateUser(@RequestBody UserBo user) {
+		ResponseData<UserBo> responseBody = new ResponseData<UserBo>();
+		Result result = new Result();
+		try {
+			userService.updateUser(user);
+			result.setStatus(Status.OK);
+		} catch (PlatformException e){
+			result.addError(e.getMessage());
+		} catch (Exception e) {
+			result.addError("系统错误");
+			logger.error("更新错误",e);
+		}
+		responseBody.setResult(result);
 		return responseBody;
 	}
 }

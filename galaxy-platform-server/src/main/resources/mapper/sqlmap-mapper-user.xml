@@ -14,7 +14,6 @@
 		 <result column="department_id" property="departmentId" />
 		 
 		 <result column="department_name" property="departmentName"  />
-		 <result column="role_id" property="roleId"  />
 		 <result column="role" property="role"  />
 		 <result column="password" property="password"  />
 		 <result column="origin_password" property="originPassword"  />
@@ -40,7 +39,6 @@
         	type,
         	department_id,
         	department_name,
-        	role_id,
         	role,
         	password,
         	origin_password,
@@ -65,7 +63,6 @@
 				
 				<if test="departmentId != null"> and department_id =#{departmentId}</if>
 				<if test="departmentName != null"> and department_name like CONCAT("%",#{departmentName},"%")</if>
-				<if test="roleId != null"> and role_id =#{roleId}</if>
 				<if test="role != null"> and role =#{role}</if>
 				
 				<if test="status != null"> and status =#{status}</if>
@@ -119,7 +116,6 @@
         	  type,
         	  department_id,
         	  department_name,
-        	  role_id,
         	  role,
         	  password,
         	  origin_password,
@@ -141,7 +137,6 @@
         	   #{type},
         	   #{departmentId},
         	   #{departmentName},
-        	   #{roleId},
         	   #{role},
         	   #{password},
         	   #{originPassword},
@@ -168,7 +163,6 @@
 			<if test="type != null">  type =#{type},</if>
 			<if test="departmentId != null">  department_id =#{departmentId},</if>
 			<if test="departmentName != null">  department_name =#{departmentName},</if>
-			<if test="roleId != null">  role_id =#{roleId},</if>
 			<if test="role != null">  role =#{role},</if>
 			<if test="password != null">  password =#{password},</if>
 			<if test="originPassword != null">  origin_password =#{originPassword},</if>
@@ -192,7 +186,6 @@
 				<if test="type != null"> and type =#{type}</if>
 				<if test="departmentId != null"> and department_id =#{departmentId}</if>
 				<if test="departmentName != null"> and department_name =#{departmentName}</if>
-				<if test="roleId != null"> and role_id =#{roleId}</if>
 				<if test="role != null"> and role =#{role}</if>
 				<if test="password != null"> and password =#{password}</if>
 				<if test="originPassword != null"> and origin_password =#{originPassword}</if>
@@ -219,7 +212,6 @@
 			<if test="type != null">  type =#{type},</if>
 			<if test="departmentId != null">  department_id =#{departmentId},</if>
 			<if test="departmentName != null">  department_name =#{departmentName},</if>
-			<if test="roleId != null"> and role_id =#{roleId}</if>
 				<if test="role != null"> and role =#{role}</if>
 			<if test="password != null">  password =#{password},</if>
 			<if test="originPassword != null">  origin_password =#{originPassword},</if>
