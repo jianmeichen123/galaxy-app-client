@@ -8,6 +8,7 @@
 		 <result property="code" 			column="dict_code"  	jdbcType="VARCHAR"/>
 		 <result property="sort" 			column="dict_sort"  	jdbcType="TINYINT"   />
 		 
+		 <result property="text" 			column="text"  			jdbcType="VARCHAR"  />
 		 <result property="isDelete" 		column="is_delete"  	jdbcType="TINYINT"  />
 		 <result property="parentCode" 		column="parent_code"  	jdbcType="VARCHAR" />
 		 <result property="createdTime" 	column="created_time" 	jdbcType="BIGINT"/>
@@ -17,7 +18,7 @@
 	
 	<sql id="Base_Column_List">
         	id,name,dict_value,dict_code,dict_sort,
-        	is_delete,parent_code,created_time,updated_time
+        	is_delete,parent_code,created_time,updated_time,text
 	</sql>
 	
 	<!--新增  -->
@@ -26,10 +27,10 @@
 	        	INTO
 	       	 dict (
 		        name,dict_value,dict_code,dict_sort,
-	        	is_delete,parent_code,created_time,updated_time
+	        	text,is_delete,parent_code,created_time,updated_time
 	        ) VALUES (
 	        	#{name},#{value},#{code},#{sort},
-	        	0,#{parentCode},#{createdTime},#{createdTime}
+	        	text,0,#{parentCode},#{createdTime},#{createdTime}
 	        )
     </insert>
     
@@ -40,11 +41,11 @@
 	        	INTO
 	       	 dict (
 		        name,dict_value,dict_code,dict_sort,is_delete,
-	        	parent_code,created_time,updated_time
+	        	text,parent_code,created_time,updated_time
 	        ) VALUES 
 			 <foreach collection="dicts" item="item" index="index" separator="," >  
 		        ( #{item.name},#{item.value},#{item.code},#{item.sort},0 ,
-	        	#{parentCode},#{createdTime},#{createdTime})  
+	        	text,#{parentCode},#{createdTime},#{createdTime})  
 		    </foreach>  
     </insert>
     

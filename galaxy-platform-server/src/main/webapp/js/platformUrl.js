@@ -15,36 +15,36 @@ var platformUrl={
 		/**
 		 * 数据字典首页
 		 */
-		dictIndex:"/galaxy/dict/index",
+		dictIndex:"galaxy/dict/index",
 
 		/**
 		 * 数据字典首页
 		 */
-		dictIndex:"/galaxy/dict/index",
+		dictIndex:"galaxy/dict/index",
 		/**
 		 *  新增一个数据字典
 		 */
-		dictInsert:"/galaxy/dict/insert",
+		dictInsert:"galaxy/dict/insert",
 		/**
 		 * 批量新增数据字典
 		 */
-		dictBatchInsert:"/galaxy/dict/batchInsert",
+		dictBatchInsert:"galaxy/dict/batchInsert",
 		/**
 		 * 根据id更新数据字典
 		 */		
-		dictUpdateById:"/galaxy/dict/updateById",
+		dictUpdateById:"galaxy/dict/updateById/",
 		/**
 		 * 根据code更新数据字典
 		 */		
-		dictUpdate:"/galaxy/dict/update",
+		dictUpdate:"galaxy/dict/update",
 		/**
 		 * 根据code查询数据字典
 		 */	
-		dictFindByCode:"/galaxy/dict/findByCode",
+		dictFindByCode:"galaxy/dict/findByCode/",
 		/**
 		 * 根据findByParentCode查询数据字典
 		 */
-		dictFindByParentCode:"/galaxy/dict/findByParentCode",
+		dictFindByParentCode:"galaxy/dict/findByParentCode/",
 }
 
 /**

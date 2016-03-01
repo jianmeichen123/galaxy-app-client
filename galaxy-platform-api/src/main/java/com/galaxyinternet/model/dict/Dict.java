@@ -16,6 +16,7 @@ public class Dict extends BaseEntity{
 	public final static String COMMENT ="数据字典";
 	public final static String ID ="id";
 	public final static String NAME = "属性名称";
+	public final static String TEXT = "备注";
 	public final static String VALUE = "属性值";
 	public final static String CODE = "属性编码";
 	public final static String SORT = "属性排序值";
@@ -49,6 +50,11 @@ public class Dict extends BaseEntity{
 	private Integer isDelete;
 
 	private String parentCode;
+	
+	/**
+	 * 备注
+	 */
+	private String text;
 	
 	public String getName() {
 		return name;
@@ -96,5 +102,13 @@ public class Dict extends BaseEntity{
 
 	public void setParentCode(String parentCode) {
 		this.parentCode = parentCode;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
 	}
 }
