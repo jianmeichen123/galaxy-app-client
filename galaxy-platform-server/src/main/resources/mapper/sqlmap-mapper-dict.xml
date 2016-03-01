@@ -30,7 +30,7 @@
 	        	text,is_delete,parent_code,created_time,updated_time
 	        ) VALUES (
 	        	#{name},#{value},#{code},#{sort},
-	        	text,0,#{parentCode},#{createdTime},#{createdTime}
+	        	#{text},0,#{parentCode},#{createdTime},#{createdTime}
 	        )
     </insert>
     
@@ -45,7 +45,7 @@
 	        ) VALUES 
 			 <foreach collection="dicts" item="item" index="index" separator="," >  
 		        ( #{item.name},#{item.value},#{item.code},#{item.sort},0 ,
-	        	text,#{parentCode},#{createdTime},#{createdTime})  
+	        	#{text},#{parentCode},#{createdTime},#{createdTime})  
 		    </foreach>  
     </insert>
     
@@ -180,6 +180,7 @@
 		update dict
 		<set>
 			<if test="name != null and name !='' ">  name = #{name},</if>
+			<if test="text != null and text !='' ">  text = #{text},</if>
 			<if test="sort != null ">  dict_sort = #{sort},</if>
 			updated_time = #{updatedTime} 
 		</set>

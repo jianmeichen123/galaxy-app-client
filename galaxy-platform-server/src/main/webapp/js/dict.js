@@ -140,9 +140,17 @@ function save(tr){
 					 tr.removeAttr("action");
 				 }
 			}else if(action == "update"){
-				 if(data.result.status == "OK"){
-					tr.find("td").eq(0).html(json["name"]);
-					tr.find("td").eq(1).html(json["text"]);
+				 if(data.result.status == "OK"){ 
+					var name = json["name"];
+				 	if(name =='undefined'||name != undefined||name==""){
+				 		name = tr.find("input[name='name']").attr("old_val");
+				 	}
+					var text = json["text"];
+				 	if(text =='undefined'||text != undefined||text==""){
+				 		text = tr.find("input[name='text']").attr("old_val");
+				 	}
+					tr.find("td").eq(0).html(name);
+					tr.find("td").eq(1).html(text);
 					tr.removeAttr("action");
 				 }
 			}
@@ -180,7 +188,11 @@ function showSonDict(code,name){
 	if(sonDicts.length > 0){
 		$(sonDicts).each(function(){
 			var dict = $(this)[0];
-			var tr = "<tr code='"+dict.code+"' ><td>"+dict.name+"</td><td>"+dict.text+"</td></tr>";
+			var text = '';
+			if(dict.text !='undefined'&&dict.text != undefined){
+				text = dict.text;
+			}
+			var tr = "<tr code='"+dict.code+"' ><td>"+dict.name+"</td><td>"+text+"</td></tr>";
 			tbody.append(tr);
 		  });
 	}
