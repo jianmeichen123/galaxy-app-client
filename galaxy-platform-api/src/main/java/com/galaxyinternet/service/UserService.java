@@ -39,7 +39,7 @@ public interface UserService extends BaseService<User> {
 	 * @param user
 	 * @return
 	 */
-	ResponseData<User> login(User user);
+	ResponseData<User> login(User user, HttpServletRequest request);
 
 	/**
 	 * 用户注销

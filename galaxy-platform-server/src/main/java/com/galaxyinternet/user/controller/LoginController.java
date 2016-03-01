@@ -35,7 +35,13 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 	protected BaseService<User> getBaseService() {
 		return this.userService;
 	}
-
+	/**
+	 * 跳转登录页面
+	 */
+	@RequestMapping(value = "/toLogin")
+	public String toLogin() {
+		return "system/login";
+	}
 	/**
 	 * 用户登录
 	 * 
@@ -43,8 +49,8 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseData<User> login(User user) {
-		ResponseData<User> responseBody = userService.login(user);
+	public ResponseData<User> login(User user, HttpServletRequest request) {
+		ResponseData<User> responseBody = userService.login(user, request);
 		return responseBody;
 	}
 
@@ -58,6 +64,18 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 	public ResponseData<User> logout(Header header, HttpServletRequest request) {
 		ResponseData<User> responseBody = userService.logout(header, request);
 		return responseBody;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.galaxyinternet.common.controller.BaseControllerImpl#forwardPage(java.
+	 * lang.String, java.lang.String)
+	 */
+	@Override
+	public String forwardPage(String path, String page) {
+		return super.forwardPage(path, page);
 	}
 
 }
