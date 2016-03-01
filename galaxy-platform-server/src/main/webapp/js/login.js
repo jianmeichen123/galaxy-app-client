@@ -20,7 +20,6 @@ function checkform(){
 		  var b = new Base64();  
 	      var nickName = b.encode($("#nickName").val());  
 	      var password = b.encode($("#password").val());  
-	      alert(nickName+":"+password);
 	      $.ajax({
 		 	     cache: true,
 		 	     type: "POST",

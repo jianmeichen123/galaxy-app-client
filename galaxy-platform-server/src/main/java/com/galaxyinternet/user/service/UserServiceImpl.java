@@ -83,7 +83,6 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 			responsebody.setResult(new Result(Status.ERROR, "用户名或密码错误！"));
 		} else {
 			String sessionId = SessionUtils.createWebSessionId(); // 封装
-																	// responsebody
 			user.setSessionId(sessionId);
 			cache.set(sessionId, user); // 将sessionId存入cache
 			request.getSession().setAttribute(Constants.SESSION_USER_KEY, user);
