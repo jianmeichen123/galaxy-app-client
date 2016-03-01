@@ -1,5 +1,7 @@
 package com.galaxyinternet.user.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,12 @@ public class UserRoleServiceImpl extends BaseServiceImpl<UserRole>implements Use
 	protected BaseDao<UserRole, Long> getBaseDao() {
 		// TODO Auto-generated method stub
 		return this.userRoleDao;
+	}
+
+	@Override
+	public List<Long> selectRoleIdByUserId(Long userID) {
+		// TODO Auto-generated method stub
+		return userRoleDao.selectRoleIdByUserId(userID);
 	}
 
 
