@@ -37,7 +37,7 @@ function checkform(){
 		 	            	var sessionId = data.header.sessionId;
 		 	            	var userId = data.header.userId;
 		 	            	var loginName = data.header.loginName;
-		 	            	location.href=platformUrl.toIndex;
+		 	            	location.href=platformUrl.toIndex + "?sid=" + sessionId;
 		 	            }
 		 	  }}); 
 		} 
