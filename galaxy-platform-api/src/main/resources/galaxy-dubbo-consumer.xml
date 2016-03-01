@@ -47,5 +47,5 @@
     <dubbo:reference interface="com.galaxyinternet.service.DictService" id="dictService" version="1.0.0" />
 	 <dubbo:reference interface="com.galaxyinternet.service.UserService" id="com.galaxyinternet.service.UserService" version="1.0.0" />
     <dubbo:reference interface="com.galaxyinternet.service.RoleService" id="com.galaxyinternet.service.RoleService" version="1.0.0" />
-    <dubbo:reference interface="com.galaxyinternet.service.DepartmentService" idf="com.galaxyinternet.service.DepartmentService" version="1.0.0" />
+    <dubbo:reference interface="com.galaxyinternet.service.DepartmentService" id="com.galaxyinternet.service.DepartmentService" version="1.0.0" />
 </beans>
