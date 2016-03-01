@@ -35,7 +35,13 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 	protected BaseService<User> getBaseService() {
 		return this.userService;
 	}
-
+	/**
+	 * 跳转登录页面
+	 */
+	@RequestMapping(value = "/toLogin")
+	public String toLogin() {
+		return "system/login";
+	}
 	/**
 	 * 用户登录
 	 * 
