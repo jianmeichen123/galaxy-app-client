@@ -47,7 +47,7 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 		if(dict == null){
 			throwPlatformException(MessageStatus.DATA_NOT_EXISTS, "该数据字典不存在");
 		}
-		entity.setParentCode(entity.getParentCode());
+		entity.setParentCode(dict.getParentCode());
 		int count = dictDao.selectCountByParentCodeAndName(entity);
 		if(count >0 ){
 			throwPlatformException(MessageStatus.SAME_DATA_EXISTS, "该名称已存在");
@@ -74,7 +74,7 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 			throwPlatformException(MessageStatus.DATA_NOT_EXISTS, "该数据字典不存在");
 		}
 		entity.setId(dict.getId());
-		entity.setParentCode(entity.getParentCode());
+		entity.setParentCode(dict.getParentCode());
 		
 		int count = dictDao.selectCountByParentCodeAndName(entity);
 		//判断更新的名字是否重复

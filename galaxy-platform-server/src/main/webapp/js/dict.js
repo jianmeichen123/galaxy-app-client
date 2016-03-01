@@ -142,11 +142,11 @@ function save(tr){
 			}else if(action == "update"){
 				 if(data.result.status == "OK"){ 
 					var name = json["name"];
-				 	if(name =='undefined'||name != undefined||name==""){
+				 	if(name =='undefined'||name == undefined||name==""){
 				 		name = tr.find("input[name='name']").attr("old_val");
 				 	}
 					var text = json["text"];
-				 	if(text =='undefined'||text != undefined||text==""){
+				 	if(text =='undefined'||text == undefined||text==""){
 				 		text = tr.find("input[name='text']").attr("old_val");
 				 	}
 					tr.find("td").eq(0).html(name);
@@ -154,6 +154,9 @@ function save(tr){
 					tr.removeAttr("action");
 				 }
 			}
+			 if(data.result.status == "ERROR"){
+				 layer.msg(data.result.message);
+			 }
 		}
 	});	
 }
