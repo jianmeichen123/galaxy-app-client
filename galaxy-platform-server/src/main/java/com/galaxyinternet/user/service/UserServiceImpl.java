@@ -51,6 +51,8 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	public Long insertUser(User user) {
 		String oriPwd = PWDUtils.genRandomNum(6);
 		user.setOriginPassword(oriPwd);
+		//加密
+		user.setPassword(PWDUtils.genernateNewPassword(oriPwd));
 		return super.insert(user);
 	}
 
@@ -58,6 +60,8 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	public int resetPwd(User user) {
 
 		user.setPassword(user.getOriginPassword());
+		//加密
+	    user.setPassword(PWDUtils.genernateNewPassword(user.getOriginPassword()));
 		return super.updateById(user);
 	}
 
