@@ -38,7 +38,6 @@
 
 	<dubbo:consumer timeout="10000"  />
 	
-	<dubbo:consumer timeout="10000" check="false" />
 	
 	<dubbo:protocol name="${dubbo.protocol.name}" port="${dubbo.protocol.port}" />
 	
