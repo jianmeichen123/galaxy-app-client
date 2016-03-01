@@ -6,7 +6,7 @@ var platformUrl={
 		/**
 		 * 跳转到首页
 		 */
-		toIndex:"http://10.9.11.114:8080/galaxy-sop-server/galaxy/index",
+		toIndex:"http://localhost:8080/galaxy-sop-server/galaxy/index",
 		/**
 		 * 用户管理首页
 		 */
