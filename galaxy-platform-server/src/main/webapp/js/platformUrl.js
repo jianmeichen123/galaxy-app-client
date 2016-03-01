@@ -2,11 +2,11 @@ var platformUrl={
 		/**
 		 * 登录
 		 */
-		login:"/glaxy/login",
+		toLogin:"./galaxy/userlogin/login",
 		/**
 		 * 跳转到首页
 		 */
-		toIndex:"/galaxy/toIndex",
+		toIndex:"./galaxy/user/galaxyInternet/openurl/system/index",
 		/**
 		 * 用户管理首页
 		 */

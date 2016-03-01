@@ -8,14 +8,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+<%@ page import="com.galaxyinternet.model.user.User"%>
+<%@ page import="com.galaxyinternet.framework.core.constants.Constants"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
-<%User user = (User)request.getSession().getAttribute(Constants.SESSION_ID);%>
-<script type="text/javascript">
+<%User user = (User)request.getSession().getAttribute(Constants.SESSION_USER_KEY);%>
+<%-- <script type="text/javascript">
 	var contextPath = "<%=request.getContextPath()%>";
 	var currentUser={
 			id:'<%=user.getId()%>'
 		};
-</script>
+</script> --%>
 
 <!-- 这里写js和css文件---------start -->
 <script src="<%=request.getContextPath() %>/js/jquery-1.7.2.min.js" type="text/javascript"></script>
