@@ -31,8 +31,21 @@
 	http://code.alibabatech.com/schema/dubbo
     http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
     
-    <dubbo:service interface="dictService" ref="com.galaxyinternet.service.DictService" version="1.0.0"/>
-	 <dubbo:service interface="com.galaxyinternet.service.UserService" ref="com.galaxyinternet.service.UserService" version="1.0.0"/>
-    <dubbo:service interface="com.galaxyinternet.service.RoleService" ref="com.galaxyinternet.service.RoleService" version="1.0.0"/>
-    <dubbo:service interface="com.galaxyinternet.service.DepartmentService" ref="com.galaxyinternet.service.DepartmentService" version="1.0.0"/>
+    
+	<dubbo:application name="galaxy-platform-cnosumer" />
+
+	<dubbo:registry protocol="zookeeper" address="${dubbo.registry.address}" />
+
+	<dubbo:consumer timeout="10000"  />
+	
+	<dubbo:consumer timeout="10000" check="false" />
+	
+	<dubbo:protocol name="${dubbo.protocol.name}" port="${dubbo.protocol.port}" />
+	
+	<!-- 用户服务接口 -->
+	
+    <dubbo:reference interface="com.galaxyinternet.service.DictService" id="dictService" version="1.0.0" />
+	 <dubbo:reference interface="com.galaxyinternet.service.UserService" id="com.galaxyinternet.service.UserService" version="1.0.0" />
+    <dubbo:reference interface="com.galaxyinternet.service.RoleService" id="com.galaxyinternet.service.RoleService" version="1.0.0" />
+    <dubbo:reference interface="com.galaxyinternet.service.DepartmentService" idf="com.galaxyinternet.service.DepartmentService" version="1.0.0" />
 </beans>
