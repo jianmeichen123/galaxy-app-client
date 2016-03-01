@@ -35,13 +35,15 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 	protected BaseService<User> getBaseService() {
 		return this.userService;
 	}
+
 	/**
-	 * 跳转登录页面
+	 * 跳转登录
 	 */
 	@RequestMapping(value = "/toLogin")
 	public String toLogin() {
 		return "system/login";
 	}
+
 	/**
 	 * 用户登录
 	 * 
@@ -65,17 +67,4 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 		ResponseData<User> responseBody = userService.logout(header, request);
 		return responseBody;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.galaxyinternet.common.controller.BaseControllerImpl#forwardPage(java.
-	 * lang.String, java.lang.String)
-	 */
-	@Override
-	public String forwardPage(String path, String page) {
-		return super.forwardPage(path, page);
-	}
-
 }

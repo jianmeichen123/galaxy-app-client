@@ -1,6 +1,6 @@
 var platformUrl={
 		/**
-		 * 登录
+		 * 验证登录
 		 */
 		toLogin:"./galaxy/userlogin/login",
 		/**
