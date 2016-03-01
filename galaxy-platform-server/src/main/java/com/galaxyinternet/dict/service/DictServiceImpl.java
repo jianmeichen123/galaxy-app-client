@@ -36,8 +36,9 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 		
 		//验证
 		isNull(Dict.COMMENT,entity);
-		isMoreThan(Dict.NAME, entity.getName(), 32);
+		isEmptyOrMoreThan(Dict.NAME, entity.getName(), 32);
 		isNull(Dict.ID,entity.getId());
+		isMoreThan(Dict.TEXT, entity.getText(), 256);
 		//
 		Dict dict = dictDao.selectById(entity.getId());
 		if(dict == null){
@@ -57,8 +58,9 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 		
 		//验证
 		isNull(Dict.COMMENT,entity);
-		isMoreThan(Dict.NAME, entity.getName(), 32);
-		isMoreThan(Dict.CODE, entity.getCode(), 32);
+		isEmptyOrMoreThan(Dict.NAME, entity.getName(), 32);
+		isNull(Dict.CODE,entity.getCode());
+		isMoreThan(Dict.TEXT, entity.getText(), 256);
 		//判断待更新的字典是否存在
 		Dict dict = dictDao.selectByCode(entity.getCode());
 		if(dict == null){
@@ -80,7 +82,9 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 	private void validInsert(Dict dict){
 		//验证
 		isNull(Dict.COMMENT,dict);
+		isNull(Dict.NAME,dict.getName());
 		isEmptyOrMoreThan(Dict.NAME, dict.getName(), 32);
+		isMoreThan(Dict.TEXT, dict.getText(), 256);
 		//
 
 	}
