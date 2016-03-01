@@ -22,6 +22,7 @@ $(function(){
 	 * 添加一行
 	 */
 	$("#dcit_tab").on("click","a[action='insert_row']",function(){
+		cancel();
 		var tbody = $("#dict_son tbody");
 		if(tbody.find("tr[action='insert']").length == 0 ){
 			var tr = "<tr action='insert'><td><input name='name'></td><td><input name='text'></td></tr>";
@@ -41,34 +42,15 @@ $(function(){
 		}
 	});
 	$(".btnbox").on("click","a[action='cancel']",function(){
-		if($("#dict_son tbody").find("input[name='name']").length == 1 ){
-			var input = $("#dict_son tbody").find("input[name='name']");
-			var code = input.parent().attr("code");
-			if(code == "undefined" || code == undefined){
-				input.parent().parent().remove();
-			}else{
-				var old_val = input.attr("old_val");
-				input.parent().html(old_val);
-			}
-		}
+		cancel();
 	});
+	
 	$("#dict_son tbody").on("dblclick","tr",function(){
 		var  tr = $(this);
-		if($("#dict_son tbody").find("tr[action]").length == 1 ){
-			var tr = $("#dict_son tbody").find("tr[action]");
-			var code = tr.attr("code");
-			//新增的一行
-			if(code == "undefined" || code == undefined|| code == "insert"){
-				tr.remove();
-			}else{
-				//跟新的一行
-					tr.find("input").each(function(){
-						$(this).parent().html($(this).attr("old_val"));
-					});
-			}
-		}
-		tr.find("td")[0].html("<input old_val='"+tr.find("td")[0].html()+"' name=''>");
-		tr.find("td")[0].html("<input old_val='"+tr.find("td")[0].html()+"' name=''>");
+		cancel();
+		tr.find("td").eq(0).html("<input old_val='"+tr.find("td").eq(0).html()+"' name='name'>");
+		tr.find("td").eq(1).html("<input old_val='"+tr.find("td").eq(1).html()+"' name='text'>");
+		tr.attr("action","update");
 	});
 	
 	
@@ -102,6 +84,23 @@ $(function(){
 	
 }*/
 
+function cancel(){
+	if($("#dict_son tbody").find("tr[action]").length == 1 ){
+		var atr_act = $("#dict_son tbody").find("tr[action]");
+		var action = atr_act.attr("action");
+		//新增的一行
+		if( action == "insert"){
+			atr_act.remove();
+		}else if( action == "update"){
+			//跟新的一行
+			atr_act.find("td").each(function(){
+				var input = $(this).find("input[name]");
+				$(this).text(input.attr("old_val"));
+			});
+			atr_act.removeAttr("action");
+		}
+	}
+}
 function save(tr){
 	var action = tr.attr("action");
 	var code = tr.attr("code");
@@ -117,7 +116,7 @@ function save(tr){
 		json['parentCode'] = parentCode; 
 		url = platformUrl.dictInsert;
 	}else{
-		json['code'] = td.attr("code");
+		json['code'] = tr.attr("code");
 		url = platformUrl.dictUpdate;
 	}
 	$.ajax({
@@ -142,8 +141,9 @@ function save(tr){
 				 }
 			}else if(action == "update"){
 				 if(data.result.status == "OK"){
-					 input.parent().html(input.val());
-					 tr.removeAttr("action");
+					tr.find("td").eq(0).html(json["name"]);
+					tr.find("td").eq(1).html(json["text"]);
+					tr.removeAttr("action");
 				 }
 			}
 		}
