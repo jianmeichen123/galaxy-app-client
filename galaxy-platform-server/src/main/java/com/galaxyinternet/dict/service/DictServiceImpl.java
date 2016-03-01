@@ -81,6 +81,8 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 		if(count >0 ){
 			throwPlatformException(MessageStatus.SAME_DATA_EXISTS, "该名称已存在");
 		}
+		entity.setName(trim(entity.getName()));
+		entity.setText(trim(entity.getText()));
 		entity.setUpdatedTime(System.currentTimeMillis());
 		return dictDao.updateById(entity);
 	}
@@ -115,6 +117,8 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 		}else {
 			max++;
 		}
+		entity.setName(trim(entity.getName()));
+		entity.setText(trim(entity.getText()));
 		entity.setValue(max);
 		entity.setSort(max);
 		entity.setCode(parentDict.getCode()+":"+max);
@@ -162,6 +166,8 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 			dict.setSort(max);
 			dict.setValue(max);
 			dict.setCode(parentDict.getCode()+":"+max);
+			dict.setName(trim(dict.getName()));
+			dict.setText(trim(dict.getText()));
 			max ++;
 			validInsert(dict);
 			//判断待添加的数据字典名字是否有相同的
@@ -190,13 +196,26 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 
 	@Override
 	public int updateSort(Dict entity) {
-
 		isNull(Dict.COMMENT,entity);
-		isNull(Dict.ID,entity.getId());
-		
+		isNull(Dict.CODE,entity.getCode());
+		Dict dict = dictDao.selectByCode(entity.getCode());
+		if(dict == null){
+			throwPlatformException(MessageStatus.DATA_NOT_EXISTS, "该数据字典不存在");
+		}
+		entity.setId(dict.getId());
+		entity.setText(null);
 		entity.setName(null);
 		entity.setUpdatedTime(System.currentTimeMillis());
 		return dictDao.updateById(entity);
 	}
 
+	private String trim(String text){
+		if(text == null){
+			return null;
+		}else if(text.equals("")){
+			return "";
+		}else{
+			return text.trim();
+		}
+	}
 }
