@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.galaxyinternet.bo.UserBo;
 import com.galaxyinternet.dao.user.UserDao;
 import com.galaxyinternet.framework.cache.Cache;
 import com.galaxyinternet.framework.core.constants.Constants;
@@ -23,8 +24,10 @@ import com.galaxyinternet.framework.core.utils.SessionUtils;
 import com.galaxyinternet.model.department.Department;
 import com.galaxyinternet.model.role.Role;
 import com.galaxyinternet.model.user.User;
+import com.galaxyinternet.model.user.UserRole;
 import com.galaxyinternet.service.DepartmentService;
 import com.galaxyinternet.service.RoleService;
+import com.galaxyinternet.service.UserRoleService;
 import com.galaxyinternet.service.UserService;
 
 @Service("com.galaxyinternet.service.UserService")
@@ -36,6 +39,9 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 
 	@Autowired
 	private RoleService roleService;
+	
+	@Autowired
+	private UserRoleService userRoleService;
 	@Autowired
 	private DepartmentService departmentService;
 
@@ -113,14 +119,19 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		Page<User> page = userDao.selectPageList(query, pageable);
 		List<User> content = page.getContent();
 		List<Role> roleList = roleService.queryAll();
+		List<UserRole> userRoleList = userRoleService.queryAll();
 		List<Department> departList = departmentService.queryAll();
 
 		// 拼装关联数据
 		for (User user : content) {
-			for (Role role : roleList) {
+			for (UserRole userRole : userRoleList) {
 				// 目前一个用户对应一个角色，如果多个角色要考虑覆盖
-				if (user.getId().equals(role.getUserId())) {
-					user.setRole(role.getName());
+				if (user.getId().equals(userRole.getUserId())) {
+					for (Role role:roleList) {
+						if (role.getId().equals(userRole.getRoleId())) {
+							user.setRole(role.getName());
+						}
+					}
 				}
 			}
 			for (Department dept : departList) {
@@ -135,5 +146,15 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		page.setContent(content);
 
 		return page;
+	}
+
+	@Override
+	public int updateUser(UserBo user) {
+		int result1 = userDao.updateByIdSelective(user);
+		UserRole userRole = new UserRole();
+		userRole.setRoleId(user.getRoleId());
+		userRole.setUserId(user.getId());
+		long result2 = userRoleService.insert(userRole);
+		return (int) (result1&result2);
 	}
 }
