@@ -17,11 +17,14 @@ $(function(){
 		var li = $(this);
 		showSonDict(li.attr("code"),li.html());
 	});
-	
+
+	/**
+	 * 添加一行
+	 */
 	$("#dcit_tab").on("click","a[action='insert_row']",function(){
 		var tbody = $("#dict_son tbody");
-		var tr = "<tr><td><input name='name'></td></tr>";
-		if(tbody.find("input[name='name']").length == 0 ){
+		if(tbody.find("tr[action='insert']").length == 0 ){
+			var tr = "<tr action='insert'><td><input name='name'></td><td><input name='text'></td></tr>";
 			tbody.append(tr);
 		}
 	});
@@ -32,9 +35,9 @@ $(function(){
 	});
 	
 	$(".btnbox").on("click","a[action='save']",function(){
-		if($("#dict_son tbody").find("input[name='name']").length == 1 ){
-			var input = $("#dict_son tbody").find("input[name='name']");
-			save(input);
+		if($("#dict_son tbody").find("tr[action]").length == 1 ){
+			var tr = $("#dict_son tbody").find("tr[action]");
+			save(tr);
 		}
 	});
 	$(".btnbox").on("click","a[action='cancel']",function(){
@@ -51,18 +54,21 @@ $(function(){
 	});
 	$("#dict_son tbody").on("dblclick","tr",function(){
 		var  tr = $(this);
-		if($("#dict_son tbody").find("input[name='name']").length == 1 ){
-			var input = $("#dict_son tbody").find("input[name='name']");
-			var code = input.parent().attr("code");
-			if(code == "undefined" || code == undefined){
-				input.parent().parent().remove();
+		if($("#dict_son tbody").find("tr[action]").length == 1 ){
+			var tr = $("#dict_son tbody").find("tr[action]");
+			var code = tr.attr("code");
+			//新增的一行
+			if(code == "undefined" || code == undefined|| code == "insert"){
+				tr.remove();
 			}else{
-				var old_val = input.attr("old_val");
-				input.parent().html(old_val);
+				//跟新的一行
+					tr.find("input").each(function(){
+						$(this).parent().html($(this).attr("old_val"));
+					});
 			}
 		}
-		var update_input = "<input name='name' old_val='"+tr.find("td").html()+"'>";
-		tr.find("td").html(update_input);
+		tr.find("td")[0].html("<input old_val='"+tr.find("td")[0].html()+"' name=''>");
+		tr.find("td")[0].html("<input old_val='"+tr.find("td")[0].html()+"' name=''>");
 	});
 	
 	
@@ -96,23 +102,23 @@ $(function(){
 	
 }*/
 
-function save(input){
-	var parentCode = $("#dcit_tab h2").attr("code");
-	var td = input.parent();
-	var code = td.attr("code");
+function save(tr){
+	var action = tr.attr("action");
+	var code = tr.attr("code");
 	var json = {};
-	var action = "insert";
-	json['name'] = input.val(); 
+	$(tr).find("input").each(function(){
+		var input = $(this);
+		json[input.attr("name")] = input.val(); 
+	});
 	var url = '';
-	if(code == "undefined" || code == undefined){
+	if(action == "insert"){
 		//input.parent().parent().remove();
+		var parentCode = $("#dcit_tab h2").attr("code");
 		json['parentCode'] = parentCode; 
 		url = platformUrl.dictInsert;
-		action = "update" ;
 	}else{
 		json['code'] = td.attr("code");
 		url = platformUrl.dictUpdate;
-		action = "update" ;
 	}
 	$.ajax({
 		url : url,
@@ -129,14 +135,15 @@ function save(input){
 				 if(data.result.status == "OK"){
 					 console.log("insert");
 					 var new_dict  = data.entity;
-					 console.log(new_dict);
-					 var parent = input.parent();
-					 parent.html(new_dict.name);
-					 parent.attr("code",new_dict.code);
+					 tr.find("input[name='name']").parent().html(new_dict.name);
+					 tr.find("input[name='text']").parent().html(new_dict.text);
+					 tr.attr("code",new_dict.code);
+					 tr.removeAttr("action");
 				 }
 			}else if(action == "update"){
 				 if(data.result.status == "OK"){
 					 input.parent().html(input.val());
+					 tr.removeAttr("action");
 				 }
 			}
 		}
@@ -173,7 +180,7 @@ function showSonDict(code,name){
 	if(sonDicts.length > 0){
 		$(sonDicts).each(function(){
 			var dict = $(this)[0];
-			var tr = "<tr><td code='"+dict.code+"' >"+dict.name+"</td></tr>";
+			var tr = "<tr code='"+dict.code+"' ><td>"+dict.name+"</td><td>"+dict.text+"</td></tr>";
 			tbody.append(tr);
 		  });
 	}
