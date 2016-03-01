@@ -11,6 +11,27 @@ var platformUrl={
 		 * 用户管理首页
 		 */
 		userIndex:"/galaxy/user",
+        /**
+         * 分页查询
+         */
+        queryUserList:"galaxy/user/queryUserList",
+        /**
+         * 添加用户
+         */
+        addUser:"galaxy/user/add",
+        /**
+         * 启用禁用用户
+         */
+        disableUser:"galaxy/user/disableUser",
+        /**
+         * 重置密码
+         */
+        resetPwd:"galaxy/user/resetPwd",
+        
+        /**
+         * 查询部门
+         */
+        getDepartList:"/galaxy/dept/queryList",
 		
 		/**
 		 * 数据字典首页
