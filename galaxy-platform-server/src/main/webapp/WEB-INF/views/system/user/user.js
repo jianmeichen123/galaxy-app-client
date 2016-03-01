@@ -1,6 +1,4 @@
-//用户相关的js
-//检索
-function search() {
+function searchForm() {
 	var re = /^[0-9]+.?[0-9]*$/;
 	var value = $("#search_text").val();
 	var mobile = null;
@@ -20,10 +18,10 @@ function search() {
 		"status" : status,
 		"mobile" : mobile,
 		"realName" : realName,
-		"departId" : departId
+		"departmentId" : departId
 	};
 	$.ajax({
-		url : galaxy / user / queryUserList,
+		url : platformUrl.queryUserList,
 		data : data,
 		async : false,
 		type : 'POST',
@@ -41,7 +39,7 @@ function search() {
 //新增
 function add() {
 	$.ajax({
-		url : galaxy / user / add,
+		url : platformUrl.addUser,
 		data : $('#formid').serialize(),
 		async : false,
 		type : 'POST',
@@ -63,7 +61,7 @@ function disableUser(userId, status) {
 		'status' : status
 	};
 	$.ajax({
-		url : galaxy / user / disableUser,
+		url : platformUrl.disableUser,
 		data : data,
 		async : false,
 		type : 'POST',
@@ -85,7 +83,7 @@ function resetPwd(userId) {
 		'userId' : userId
 	};
 	$.ajax({
-		url : galaxy / user / resetPwd,
+		url : platformUrl.resetPwd,
 		data : data,
 		async : false,
 		type : 'POST',
@@ -97,6 +95,24 @@ function resetPwd(userId) {
 		},
 		success : function(data) {
 			alert("密码已重置")
+		}
+	});
+}
+
+function getDepartList() {
+	$.ajax({
+		url : platformUrl.getDepartList,
+		data : data,
+		async : false,
+		type : 'POST',
+		contentType : "application/json; charset=UTF-8",
+		dataType : "json",
+		cache : false,
+		error : function() {
+			alert('查询部门出错');
+		},
+		success : function(data) {
+			//初始化数据
 		}
 	});
 }

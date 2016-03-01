@@ -12,7 +12,7 @@
 <base href="<%=basePath%>">
 
 <!-- jsp文件头和头部 -->
-<%@ include file="../../common/taglib.jsp"%>
+<%@ include file="/WEB-INF/views/common/taglib.jsp"%>
 
 </head>
 <body>
@@ -49,9 +49,9 @@
 								<input type="text" id="search_text" class="txt"
 									placeholder="请输入姓名或手机号" />
 							</dd>
-							<dd>
-								<a href="search();" class="bluebtn ico cx">查询</a>
-							</dd>
+							
+							  <a href="javascript:void(0)" class="bluebtn ico cx"  onclick="searchForm()">查询</a>
+							
 						</dl>
 					</div>
 				</div>
@@ -77,7 +77,7 @@
 					<tbody>
 
 						<!-- 开始循环 -->
-						<c:when test="${not empty content}">
+				
 							<c:forEach items="${content}" var="user" varStatus="vs">
 								<tr>
 
@@ -108,18 +108,136 @@
 								</tr>
 
 							</c:forEach>
-						</c:when>
+						
+						
 					</tbody>
 				</table>
-
+				   <!--分页-->
+                <div class="pagright clearfix">
+                    <ul class="paging clearfix">
+                        <li>每页<input type="text" class="txt" value="20"/>条/共<span>9</span>条记录</li>
+                        <li class="margin">共1页</li>
+                        <li><a href="javascript:;">|&lt;</a></li>
+                        <li><a href="javascript:;">&lt;</a></li>
+                        <li><a href="javascript:;">&gt;</a></li>
+                        <li><a href="javascript:;">&gt;|</a></li>
+                        <li class="jump clearfix">
+                                                                                 第<input type="text" class="txt" value="1"/>页
+                            <input type="button" class="btn margin" value="GO">
+                        </li>
+                    </ul>
+               </div>
 			</div>
 
 		</div>
 		<!--/#page-content-->
 	</div>
+<!-- 
+ <script src="js/user.js" type="text/javascript"></script> -->
+<script type="text/javascript">
+//用户相关的js
+//检索
+function searchForm() {
+	var re = /^[0-9]+.?[0-9]*$/;
+	var value = $("#search_text").val();
+	var mobile = null;
+	var realName = null;
+	var status = null;
+	var departId = null;
+	if (re.test(value)) {
+		mobile = value;
+	} else {
+		realName = value;
+	}
+	if ($("#disabled").checked) {
+		status = 1;
+	}
 
- <script src="../user.js" type="text/javascript"></script>
+	var data = {
+		"status" : status,
+		"mobile" : mobile,
+		"realName" : realName,
+		"departmentId" : departId
+	};
+	$.ajax({
+		url : platformUrl.queryUserList,
+		data : data,
+		async : false,
+		type : 'POST',
+		contentType : "application/json; charset=UTF-8",
+		dataType : "json",
+		cache : false,
+		error : function() {
+			alert('查询失败');
+		},
+		success : function(data) {
+			//填充列表
+		}
+	});
+}
+//新增
+function add() {
+	$.ajax({
+		url : platformUrl.addUser,
+		data : $('#formid').serialize(),
+		async : false,
+		type : 'POST',
+		contentType : "application/json; charset=UTF-8",
+		dataType : "json",
+		cache : false,
+		error : function() {
+			alert('添加失败');
+		},
+		success : function(data) {
+			alert("添加成功")
+		}
+	});
+}
+//禁用用户
+function disableUser(userId, status) {
+	var data = {
+		'userId' : userId,
+		'status' : status
+	};
+	$.ajax({
+		url : platformUrl.disableUser,
+		data : data,
+		async : false,
+		type : 'POST',
+		contentType : "application/json; charset=UTF-8",
+		dataType : "json",
+		cache : false,
+		error : function() {
+			alert('操作失败');
+		},
+		success : function(data) {
+			alert("操作成功")
+		}
+	});
+}
 
+//重置密码
+function resetPwd(userId) {
+	var data = {
+		'userId' : userId
+	};
+	$.ajax({
+		url : platformUrl.resetPwd,
+		data : data,
+		async : false,
+		type : 'POST',
+		contentType : "application/json; charset=UTF-8",
+		dataType : "json",
+		cache : false,
+		error : function() {
+			alert('密码重置失败');
+		},
+		success : function(data) {
+			alert("密码已重置")
+		}
+	});
+}
+</script>
 </body>
 </html>
 
