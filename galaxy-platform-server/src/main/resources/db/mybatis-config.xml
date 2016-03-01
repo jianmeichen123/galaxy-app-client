@@ -8,7 +8,7 @@
 		<typeAlias alias="DictPO" type="com.galaxyinternet.model.dict.Dict" />
 		<typeAlias alias="Role" type="com.galaxyinternet.model.role.Role" />
 		<typeAlias alias="Department" type="com.galaxyinternet.model.department.Department" />
-		
+		<typeAlias alias="UserRole" type="com.galaxyinternet.model.user.UserRole" />
 		<!--param  -->
 		<typeAlias alias="BatchDictInsetParam" type="com.galaxyinternet.model.dict.BatchDictInsetParam" />
 		
