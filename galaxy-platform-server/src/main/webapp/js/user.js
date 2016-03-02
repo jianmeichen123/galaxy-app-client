@@ -1,3 +1,10 @@
+//用户相关的js
+
+$(function() {
+
+
+});
+//检索
 function searchForm() {
 	var re = /^[0-9]+.?[0-9]*$/;
 	var value = $("#search_text").val();
@@ -10,7 +17,10 @@ function searchForm() {
 	} else {
 		realName = value;
 	}
-	if ($("#disabled").checked) {
+	var val=$('input:radio[name="status"]:checked').val();
+	
+	if (val=="1") {
+		
 		status = 1;
 	}
 
@@ -20,9 +30,10 @@ function searchForm() {
 		"realName" : realName,
 		"departmentId" : departId
 	};
+	
 	$.ajax({
 		url : platformUrl.queryUserList,
-		data : data,
+		data : JSON.stringify(data),
 		async : false,
 		type : 'POST',
 		contentType : "application/json; charset=UTF-8",
@@ -35,6 +46,10 @@ function searchForm() {
 			//填充列表
 		}
 	});
+}
+
+function toadd() {
+	$("#userInfo").show();
 }
 //新增
 function add() {
@@ -95,24 +110,6 @@ function resetPwd(userId) {
 		},
 		success : function(data) {
 			alert("密码已重置")
-		}
-	});
-}
-
-function getDepartList() {
-	$.ajax({
-		url : platformUrl.getDepartList,
-		data : data,
-		async : false,
-		type : 'POST',
-		contentType : "application/json; charset=UTF-8",
-		dataType : "json",
-		cache : false,
-		error : function() {
-			alert('查询部门出错');
-		},
-		success : function(data) {
-			//初始化数据
 		}
 	});
 }

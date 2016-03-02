@@ -52,7 +52,7 @@
 			<div class="top clearfix">
 				<!--按钮-->
 				<div class="btnbox_f btnbox_f1 clearfix">
-					<a href="javascript:;" class="pubbtn bluebtn ico c4">添加人员</a>
+					<a href="javascript:;" onclick="toadd()" class="pubbtn bluebtn ico c4">添加人员</a>
 				</div>
 			</div>
 
@@ -63,14 +63,13 @@
 						<dt>账户状态：</dt>
 						<dd>
 							<label for=""><input type="radio" name="status">不限</label>
-							<label for=""><input type="radio" id="disabled"
-								name="status">已禁用</label>
+							<label for=""><input type="radio" id="disabled" value="1" name="status">已禁用</label>
 						</dd>
 					</dl>
 					<dl class="fmdl fml fmdll clearfix">
 						<dt>所属部门：</dt>
 						<dd>
-							<select>
+							<select id='selectDept'>
 								<option>全部</option>
 							</select>
 						</dd>
@@ -140,7 +139,7 @@
 						</tr>
 						
 					</c:forEach>
-                       <tr>
+                      <!--  <tr>
 							<td><input type="radio" name="document" checked /></td>
 							<td>xiaoerzh</td>
 							<td>正常</td>
@@ -151,7 +150,7 @@
 							<td>186021312</td>
 							<td>1059062211</td>
 							<td><a href="#" class="blue">禁用</a><a href="#" class="blue">重置密码</a></td>
-						</tr>
+						</tr> -->
 				</tbody>
 			</table>
 
@@ -172,114 +171,81 @@
 			</div>
 		</div>
 
+
+<div class="userinfrotc" id="userInfo" style="display:none">
+  
+  <div class="userinfro">
+  <dl>
+    <dt>真实姓名：</dt>
+    <dd><input type="text" id="realName" name="user.realName" value=""/></dd>
+  </dl>
+  <dl>
+    <dt>工号：</dt>
+   <dd><input type="text" id="employNo" name="user.employNo" value=""/></dd>
+  </dl>
+  <dl>
+    <dt>性别：</dt>
+    <dd>
+      <label for=""><input type="radio" name="user.gender">男</label>
+      <label for=""><input type="radio" name="user.gender">女</label>
+    </dd>
+  </dl>
+  <dl>
+    <dt>出生日期：</dt>
+    <dd>1989-01-01</dd>
+  </dl>
+  <dl>
+    <dt>公司邮箱：</dt>
+     <dd><input type="text" id="email" name="user.email" value=""/></dd>
+  </dl>
+  <dl>
+    <dt>登录名称：</dt>
+     <dd><input type="text" id="nickName" name="user.nickName" value=""/></dd>
+  </dl>
+  <dl>
+    <dt>手机号：</dt>
+     <dd><input type="text" id="mobile" name="user.mobile" value=""/></dd>
+  </dl>
+  <dl>
+    <dt>办公分机：</dt>
+     <dd><input type="text" id="telephone" name="user.telephone" value=""/></dd>
+  </dl>
+  <dl>
+    <dt>常用收件地址：</dt>
+    <dd><span> <dd><input type="text" id="address" name="user.address" value=""/></dd></span><a href="#" class="flr">使用公司地址</a></dd>
+  </dl>
+  <dl class="role">
+    <dt>职能角色：</dt>
+    <dd>
+      <div class="">
+        <label for=""><input type="radio" name="role">投资线</label>
+        <label for=""><input type="radio" name="role">总部职能部门</label>
+      </div>
+      <div class="">
+        <label for=""><input type="radio" value='1' name="role">董事长</label>
+        <label for=""><input type="radio" value='3' name="role">投资线合伙人 </label>
+        <label for=""><input type="radio" value='2' name="role">CEO </label>
+        <label for=""><input type="radio" value='4' name="role">投资经理 </label>
+        <label for=""><input type="radio" value='7' name="role">人事总监 </label>
+        <label for=""><input type="radio" value='8' name="role">人事经理  </label>
+        <label for=""><input type="radio" value='10' name="role">法务经理 </label>
+        <label for=""><input type="radio" value='12' name="role">财务经理 </label>
+      </div>
+    </dd>
+    <dd>
+    </dd>
+  </dl>
+  </div>
+    <div class="btnbox">
+      <a href="javascript:;" class="pubbtn bluebtn">保存</a><a href="javascript:;" class="pubbtn fffbtn"data-close="close">取消</a>
+    </div>
+</div>
 	</div>
-	<!-- 
- <script src="js/user.js" type="text/javascript"></script> -->
 
-	<script type="text/javascript">
-//用户相关的js
-//检索
-function searchForm() {
-	var re = /^[0-9]+.?[0-9]*$/;
-	var value = $("#search_text").val();
-	var mobile = null;
-	var realName = null;
-	var status = null;
-	var departId = null;
-	if (re.test(value)) {
-		mobile = value;
-	} else {
-		realName = value;
-	}
-	if ($("#disabled").checked) {
-		status = 1;
-	}
+ <script src="js/user.js" type="text/javascript"></script> 
 
-	var data = {
-		"status" : status,
-		"mobile" : mobile,
-		"realName" : realName,
-		"departmentId" : departId
-	};
-	$.ajax({
-		url : platformUrl.queryUserList,
-		data : data,
-		async : false,
-		type : 'POST',
-		contentType : "application/json; charset=UTF-8",
-		dataType : "json",
-		cache : false,
-		error : function() {
-			alert('查询失败');
-		},
-		success : function(data) {
-			//填充列表
-		}
-	});
-}
-//新增
-function add() {
-	$.ajax({
-		url : platformUrl.addUser,
-		data : $('#formid').serialize(),
-		async : false,
-		type : 'POST',
-		contentType : "application/json; charset=UTF-8",
-		dataType : "json",
-		cache : false,
-		error : function() {
-			alert('添加失败');
-		},
-		success : function(data) {
-			alert("添加成功")
-		}
-	});
-}
-//禁用用户
-function disableUser(userId, status) {
-	var data = {
-		'userId' : userId,
-		'status' : status
-	};
-	$.ajax({
-		url : platformUrl.disableUser,
-		data : data,
-		async : false,
-		type : 'POST',
-		contentType : "application/json; charset=UTF-8",
-		dataType : "json",
-		cache : false,
-		error : function() {
-			alert('操作失败');
-		},
-		success : function(data) {
-			alert("操作成功")
-		}
-	});
-}
+	
 
-//重置密码
-function resetPwd(userId) {
-	var data = {
-		'userId' : userId
-	};
-	$.ajax({
-		url : platformUrl.resetPwd,
-		data : data,
-		async : false,
-		type : 'POST',
-		contentType : "application/json; charset=UTF-8",
-		dataType : "json",
-		cache : false,
-		error : function() {
-			alert('密码重置失败');
-		},
-		success : function(data) {
-			alert("密码已重置")
-		}
-	});
-}
-</script>
 </body>
 </html>
 
