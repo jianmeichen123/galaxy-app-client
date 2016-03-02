@@ -77,7 +77,7 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 		entity.setParentCode(dict.getParentCode());
 		
 		if(dict.getName().equals(entity.getName())){
-			dict.setName(null);
+			entity.setName(null);
 		}else{
 			int count = dictDao.selectCountByParentCodeAndName(entity);
 			//判断更新的名字是否重复
