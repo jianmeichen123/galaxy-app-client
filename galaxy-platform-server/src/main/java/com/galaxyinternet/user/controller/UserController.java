@@ -30,7 +30,6 @@ import com.galaxyinternet.framework.core.utils.mail.SimpleMailSender;
 import com.galaxyinternet.model.department.Department;
 import com.galaxyinternet.model.user.User;
 import com.galaxyinternet.service.DepartmentService;
-import com.galaxyinternet.service.UserRoleService;
 import com.galaxyinternet.service.UserService;
 
 /**
@@ -47,8 +46,6 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	
 	@Autowired
 	private DepartmentService departmentService;
-	@Autowired
-	private UserRoleService userRoleService;
 	@Override
 	protected BaseService<User> getBaseService() {
 		return this.userService;
@@ -60,10 +57,13 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public String list(HttpServletRequest request,HttpServletResponse response) {
-		List<Long>idList = userRoleService.selectRoleIdByUserId(1l);
-		System.out.println(idList.size());
+		//部门列表
 		List<Department> deptList = departmentService.queryAll();
+		//默认取一页数据
+		PageRequest pageable = new PageRequest();
+		Page<User> page = userService.queryUserList(null, pageable);
 		request.setAttribute("deptList",deptList);
+		request.setAttribute("content",page.getContent());
 		return "system/user/user_list";
 	}
 
