@@ -66,7 +66,7 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		request.setAttribute("deptList", deptList);
 		request.setAttribute("content", page.getContent());
 		*/ 
-		return "system/user/user_list";
+		return"system/user/user_list";
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		ResponseData<User> responseBody = new ResponseData<User>();
 		
 		try {
-			userService.resetPwd(user);
+			userService.resetPwd(user.getId());
 			responseBody.setResult(new Result(Status.OK, user));
 
 		} catch (PlatformException e) {

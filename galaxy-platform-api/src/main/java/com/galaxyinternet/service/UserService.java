@@ -36,10 +36,10 @@ public interface UserService extends BaseService<User> {
 	/**
 	 * 重置密码
 	 * 
-	 * @param user
+	 * @param userId
 	 * @return
 	 */
-	int resetPwd(User user);
+	int resetPwd(Long userId);
 
 	/**
 	 * 用户登录
