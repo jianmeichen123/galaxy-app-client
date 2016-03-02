@@ -75,10 +75,11 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 		}
 		entity.setId(dict.getId());
 		entity.setParentCode(dict.getParentCode());
-		
+		//相等不用更新
 		if(dict.getName().equals(entity.getName())){
 			entity.setName(null);
 		}else{
+			//不同 查询有无重复
 			int count = dictDao.selectCountByParentCodeAndName(entity);
 			//判断更新的名字是否重复
 			if(count >0 ){
