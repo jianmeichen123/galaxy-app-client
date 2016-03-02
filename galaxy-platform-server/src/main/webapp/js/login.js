@@ -44,14 +44,14 @@ function checkform(){
   }
  
  function saveCookie(nickName,password){
-	 var mydate = new Date();
-	 var cookievalue= nickName+":"+mydate.getMilliseconds()+":"+password;
-	 $.cookie('autologin', cookievalue,{expires: 1000*60*60*24});
+	 var cookietime = new Date(); 
+	 var cookievalue= nickName+":"+cookietime.getMilliseconds()+":"+password;
+	 $.cookie('autologin', cookievalue,{expires: 30*24});
  }
  
  function callbackFun(data){
 	var sessionId = data.header.sessionId;
   	var userId = data.header.userId;
   	var loginName = data.header.loginName;
-  	location.href=platformUrl.toIndex + "?sid=" + sessionId;
+  	location.href=platformUrl.toIndex+ "?sid=" + sessionId;
  }
