@@ -173,7 +173,7 @@ public class DictController extends BaseControllerImpl<Dict, DictBo> {
 	    * @throws
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/findByCode/{code}", method = RequestMethod.GET)
+	@RequestMapping(value = "/findByCode/{code}", method = RequestMethod.POST)
 	public ResponseData<Dict> findByCode(@PathVariable String code) {
 		ResponseData<Dict> responseBody = new ResponseData<Dict>();
 		Result result = new Result();
@@ -194,7 +194,7 @@ public class DictController extends BaseControllerImpl<Dict, DictBo> {
 	
 	/**
 	 * 
-	    * @Title: findByParentCode
+	    * @Title: z
 	    * @Description: 根据findByParentCode查询数据字典
 	    * @param @param parentId
 	    * @param @return    参数
