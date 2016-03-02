@@ -43,6 +43,7 @@
 	<script src="js/axure_ext.js" type="text/javascript"></script>
 	<script type="text/javascript" src="js/base64.js"></script>
 	<script type="text/javascript" src="js/layer/layer.js"></script>
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>
 	<script type="text/javascript" src="js/login.js"></script>
 </body>
 </html>
