@@ -3,18 +3,18 @@
  * 
  * @param reqUrl
  *            请求地址
- * @param jsonData
- *            请求json
+ * @param jsonObj
+ *            请求json对象
  * @param sessionId
  *            请求头中需携带的sessionid
  * @param callbackFun
  *            处理成功后的回调方法
  */
-function sendPostRequest(reqUrl, jsonData, sessionId, callbackFun) {
+function sendPostRequestByJsonObj(reqUrl, jsonObj, callbackFun, sessionId) {
 	$.ajax({
 		url : reqUrl,
 		type : "POST",
-		data : jsonData,
+		data : JSON.stringify(jsonObj),
 		dataType : "json",
 		cache : false,
 		contentType : "application/json; charset=UTF-8",
@@ -41,22 +41,39 @@ function sendPostRequest(reqUrl, jsonData, sessionId, callbackFun) {
 }
 
 /**
- * 发送get请求
+ * 发送post请求
  * 
  * @param reqUrl
  *            请求地址
- * @param jsonData
- *            请求json
+ * @param jsonStr
+ *            请求json字符串
  * @param sessionId
  *            请求头中需携带的sessionid
  * @param callbackFun
  *            处理成功后的回调方法
  */
-function sendGetRequest(reqUrl, jsonData, sessionId, callbackFun) {
+function sendPostRequestByJsonStr(reqUrl, jsonStr, callbackFun, sessionId) {
+	sendPostRequestByJsonObj(reqUrl, JSON.parse(jsonStr), callbackFun,
+			sessionId);
+}
+
+/**
+ * 发送get请求
+ * 
+ * @param reqUrl
+ *            请求地址
+ * @param jsonObj
+ *            请求json对象
+ * @param sessionId
+ *            请求头中需携带的sessionid
+ * @param callbackFun
+ *            处理成功后的回调方法
+ */
+function sendGetRequest(reqUrl, jsonObj, callbackFun, sessionId) {
 	$.ajax({
 		url : reqUrl,
 		type : "GET",
-		data : jsonData,
+		data : jsonObj,
 		dataType : "json",
 		cache : false,
 		contentType : "application/json; charset=UTF-8",
