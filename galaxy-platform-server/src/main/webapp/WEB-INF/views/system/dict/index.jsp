@@ -8,6 +8,7 @@
 %>
 <!doctype html>
 <html>
+<base href="<%=basePath%>">
 <head>
 <meta charset="utf-8">
 <title>繁星</title>
@@ -82,6 +83,7 @@
                          <thead>
                               <tr>
                                   <th>类型名称</th>
+                                  <th>备注</th>
                               </tr>
                           </thead>
                           <tbody>
@@ -98,6 +100,8 @@
 <script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
 <script src="js/axure.js" type="text/javascript"></script>
 <script src="js/axure_ext.js" type="text/javascript"></script>
+<script src="js/layer/layer.js" type="text/javascript"></script>
+<script src="js/platformUrl.js" type="text/javascript"></script>
 <script src="js/dict.js" type="text/javascript"></script>
 </body>
 </html>

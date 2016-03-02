@@ -130,6 +130,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 					for (Role role:roleList) {
 						if (role.getId().equals(userRole.getRoleId())) {
 							user.setRole(role.getName());
+							user.setRoleId(role.getId());
 						}
 					}
 				}
