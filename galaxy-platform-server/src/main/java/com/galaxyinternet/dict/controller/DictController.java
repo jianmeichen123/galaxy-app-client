@@ -21,7 +21,6 @@ import com.galaxyinternet.framework.core.model.ResponseData;
 import com.galaxyinternet.framework.core.model.Result;
 import com.galaxyinternet.framework.core.model.Result.Status;
 import com.galaxyinternet.framework.core.service.BaseService;
-import com.galaxyinternet.model.dict.BatchDictInsetParam;
 import com.galaxyinternet.model.dict.Dict;
 import com.galaxyinternet.service.DictService;
 
@@ -43,10 +42,9 @@ public class DictController extends BaseControllerImpl<Dict, DictBo> {
 	}
 	
 	
-	@ResponseBody
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index() {
-		return "system/dict/dict.jsp";
+		return "system/dict/index";
 	}
 	
 	/**
