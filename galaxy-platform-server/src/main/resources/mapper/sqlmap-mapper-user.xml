@@ -62,8 +62,6 @@
 				<if test="mobile != null"> and mobile like CONCAT("%",#{mobile},"%")</if>
 				
 				<if test="departmentId != null"> and department_id =#{departmentId}</if>
-				<if test="departmentName != null"> and department_name like CONCAT("%",#{departmentName},"%")</if>
-				<if test="role != null"> and role =#{role}</if>
 				
 				<if test="status != null"> and status =#{status}</if>
 				<if test="telephone != null"> and telephone =#{telephone}</if>
@@ -115,8 +113,6 @@
         	  status,
         	  type,
         	  department_id,
-        	  department_name,
-        	  role,
         	  password,
         	  origin_password,
         	  gender,
@@ -136,8 +132,6 @@
         	   #{status},
         	   #{type},
         	   #{departmentId},
-        	   #{departmentName},
-        	   #{role},
         	   #{password},
         	   #{originPassword},
         	   #{gender},
@@ -162,8 +156,6 @@
 			<if test="status != null">  status =#{status},</if>
 			<if test="type != null">  type =#{type},</if>
 			<if test="departmentId != null">  department_id =#{departmentId},</if>
-			<if test="departmentName != null">  department_name =#{departmentName},</if>
-			<if test="role != null">  role =#{role},</if>
 			<if test="password != null">  password =#{password},</if>
 			<if test="originPassword != null">  origin_password =#{originPassword},</if>
 			<if test="gender != null">  gender =#{gender},</if>
@@ -185,8 +177,6 @@
 				<if test="status != null"> and status =#{status}</if>
 				<if test="type != null"> and type =#{type}</if>
 				<if test="departmentId != null"> and department_id =#{departmentId}</if>
-				<if test="departmentName != null"> and department_name =#{departmentName}</if>
-				<if test="role != null"> and role =#{role}</if>
 				<if test="password != null"> and password =#{password}</if>
 				<if test="originPassword != null"> and origin_password =#{originPassword}</if>
 				<if test="gender != null"> and gender =#{gender}</if>
@@ -211,8 +201,6 @@
 			<if test="status != null">  status =#{status},</if>
 			<if test="type != null">  type =#{type},</if>
 			<if test="departmentId != null">  department_id =#{departmentId},</if>
-			<if test="departmentName != null">  department_name =#{departmentName},</if>
-				<if test="role != null"> and role =#{role}</if>
 			<if test="password != null">  password =#{password},</if>
 			<if test="originPassword != null">  origin_password =#{originPassword},</if>
 			<if test="gender != null">  gender =#{gender},</if>

@@ -26,6 +26,7 @@ public class User extends BaseUser {
 	private Date birth;// 生日
 	private String address;// 地址
 	private Boolean isAdmin;// 是否管理员
+	private Long roleId;// 角色Id
 
 	/*
 	 * private String salt; private String originSalt;
@@ -167,5 +168,11 @@ public class User extends BaseUser {
 	public void setEmployNo(String employNo) {
 		this.employNo = employNo;
 	}
+	public Long getRoleId() {
+		return roleId;
+	}
 
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
+	}
 }
