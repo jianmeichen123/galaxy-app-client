@@ -4,7 +4,6 @@ $(document).ready(function(){
 		if(logincookie != null && logincookie !=""){
 			var nickName = logincookie.split(":")[0];
 			var password = logincookie.split(":")[2];
-			alert(nickName+password);
 			var jsonData={"nickName":nickName,"password":password};
 			sendPostRequestByJsonObj(platformUrl.toLogin,jsonData,callbackFun,null);
 		}
