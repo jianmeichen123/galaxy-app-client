@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -50,8 +51,8 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 	 * @author zcy
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseData<User> login(User user, HttpServletRequest request) {
+	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE )
+	public ResponseData<User> login(@RequestBody User user, HttpServletRequest request) {
 		ResponseData<User> responseBody = userService.login(user, request);
 		return responseBody;
 	}
