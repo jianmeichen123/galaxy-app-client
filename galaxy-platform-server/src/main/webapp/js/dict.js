@@ -5,34 +5,24 @@ $(function() {
 	var parentDicts = getDictList("XHHL");
 	if (parentDicts.length > 0) {
 		var parent_dict_div = $("#dict_parent");
-		$(parentDicts).each(
-				function() {
-					var dict = $(this)[0];
-					var li = '<li data-tab="nav" ' + ' code="' + dict.code + '"' + '>' + dict.name + '</li>';
-					parent_dict_div.append(li);
-				});
+		$(parentDicts).each(function() {
+			var dict = $(this)[0];
+			var li = '<li data-tab="nav" ' + ' code="' + dict.code + '"' + '>' + dict.name + '</li>';
+			parent_dict_div.append(li);
+		});
 		showSonDict(parentDicts[0].code, parentDicts[0].name);
 	}
-	// 切换数据字典父类型
-	$("#dict_parent").on("click", "li", function() {
-		var li = $(this);
-		showSonDict(li.attr("code"), li.html());
-	});
-
 	/**
 	 * 添加一行
 	 */
-	$("#dcit_tab")
-			.on("click",
-				"a[action='insert_row']",
-				function() {
-					cancel();
-					var tbody = $("#dict_son tbody");
-					if (tbody.find("tr[action='insert']").length == 0) {
-						var tr = "<tr action='insert'><td><input name='name'></td><td><input name='text'></td></tr>";
-						tbody.append(tr);
-					}
-					});
+	$("#dcit_tab").on("click","a[action='insert_row']",function() {
+		cancel();
+		var tbody = $("#dict_son tbody");
+		if (tbody.find("tr[action='insert']").length == 0) {
+			var tr = "<tr action='insert'><td><input name='name'></td><td><input name='text'></td></tr>";
+			tbody.append(tr);
+		}
+	});
 
 	// 切换数据字典tab
 	$("#dict_parent").on("click", "li", function() {
@@ -67,39 +57,19 @@ $(function() {
 		cancel();
 	});
 	// 双击更新
-	$("#dict_son tbody").on(
-			"dblclick",
-			"tr",
-			function() {
-				var tr = $(this);
-				cancel();
-				tr.find("td").eq(0).html(
-						"<input old_val='" + tr.find("td").eq(0).html()
-								+ "' name='name' value='"
-								+ tr.find("td").eq(0).html() + "'>");
-				tr.find("td").eq(1).html(
-						"<input old_val='" + tr.find("td").eq(1).html()
-								+ "' name='text'  value='"
-								+ tr.find("td").eq(1).html() + "'>");
-				tr.attr("action", "update");
-			});
-
-	$("#dcit_tab").on("click", "a[action='batchInsert']", function() {
-		batchInsert();
+	$("#dict_son tbody").on("dblclick","tr",function() {
+		var tr = $(this);
+		cancel();
+		tr.find("td").eq(0).html("<input old_val='" + tr.find("td").eq(0).html()+ "' name='name' value='" + tr.find("td").eq(0).html() + "'>");
+		tr.find("td").eq(1).html("<input old_val='" + tr.find("td").eq(1).html()+ "' name='text'  value='" + tr.find("td").eq(1).html() + "'>");
+		tr.attr("action", "update");
 	});
+
+/*	$("#dcit_tab").on("click", "a[action='batchInsert']", function() {
+		batchInsert();
+	});*/
 });
 
-/*
- * function batchInsert(){ var parentCode = $("#dcit_tab h2").attr("code"); var
- * json = {}; json['parentCode']= parentCode;
- * 
- * $.ajax({ url : "galaxy/dict/batchInsert", data:JSON.stringify(json), async :
- * false, type : 'POST', contentType:"application/json; charset=UTF-8", dataType :
- * "json", cache : false, error:function(){ }, success : function(data) {
- * if(data.result.status == "OK"){ var name = $("#dcit_tab h2").html();
- * showSonDict(parentCode,name); } } });
- *  }
- */
 
 function cancel() {
 	if ($("#dict_son tbody").find("tr[action]").length == 1) {
@@ -155,25 +125,19 @@ function save(tr) {
 						layer.msg(data.result.message);
 					} else if (action == "insert") {
 						var new_dict = data.entity;
-						tr.find("input[name='name']").parent().html(
-								new_dict.name);
-						tr.find("input[name='text']").parent().html(
-								new_dict.text);
+						tr.find("input[name='name']").parent().html(new_dict.name);
+						tr.find("input[name='text']").parent().html(new_dict.text);
 						tr.attr("code", new_dict.code);
 						tr.removeAttr("action");
 						layer.msg("成功");
 					} else if (action == "update") {
 						var name = json["name"];
-						if (name == 'undefined' || name == undefined
-								|| name == "") {
-							name = tr.find("input[name='name']").attr(
-									"old_val");
+						if (name == 'undefined' || name == undefined || name == "") {
+							name = tr.find("input[name='name']").attr("old_val");
 						}
 						var text = json["text"];
-						if (text == 'undefined' || text == undefined
-								|| text == "") {
-							text = tr.find("input[name='text']").attr(
-									"old_val");
+						if (text == 'undefined' || text == undefined || text == "") {
+							text = tr.find("input[name='text']").attr("old_val");
 						}
 						tr.find("td").eq(0).html(name);
 						tr.find("td").eq(1).html(text);
@@ -212,16 +176,14 @@ function showSonDict(code, name) {
 	$("#dcit_tab h2").attr("code", code)
 	tbody.html("");
 	if (sonDicts.length > 0) {
-		$(sonDicts).each(
-				function() {
-					var dict = $(this)[0];
-					var text = '';
-					if (dict.text != 'undefined' && dict.text != undefined) {
-						text = dict.text;
-					}
-					var tr = "<tr code='" + dict.code + "' ><td>" + dict.name
-							+ "</td><td>" + text + "</td></tr>";
-					tbody.append(tr);
-				});
+		$(sonDicts).each(function() {
+			var dict = $(this)[0];
+			var text = '';
+			if (dict.text != 'undefined' && dict.text != undefined) {
+				text = dict.text;
+			}
+			var tr = "<tr code='" + dict.code + "' ><td>" + dict.name + "</td><td>" + text + "</td></tr>";
+			tbody.append(tr);
+		});
 	}
 }
