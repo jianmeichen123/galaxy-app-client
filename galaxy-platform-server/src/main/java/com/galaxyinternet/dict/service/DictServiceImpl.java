@@ -76,12 +76,16 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 		entity.setId(dict.getId());
 		entity.setParentCode(dict.getParentCode());
 		
-		int count = dictDao.selectCountByParentCodeAndName(entity);
-		//判断更新的名字是否重复
-		if(count >0 ){
-			throwPlatformException(MessageStatus.SAME_DATA_EXISTS, "该名称已存在");
+		if(dict.getName().equals(entity.getName())){
+			dict.setName(null);
+		}else{
+			int count = dictDao.selectCountByParentCodeAndName(entity);
+			//判断更新的名字是否重复
+			if(count >0 ){
+				throwPlatformException(MessageStatus.SAME_DATA_EXISTS, "该名称已存在");
+			}
+			entity.setName(trim(entity.getName()));
 		}
-		entity.setName(trim(entity.getName()));
 		entity.setText(trim(entity.getText()));
 		entity.setUpdatedTime(System.currentTimeMillis());
 		return dictDao.updateById(entity);

@@ -45,7 +45,7 @@ public interface DictService extends BaseService<Dict> {
 	    * @Description: 批量添加数据字典
 	    *  		1.只能同时为一个parentId下添加数据字典
 	    *  		2.code值全局不重复
-	    *  		3.相同parentId下 value和name不重复
+	    *  		3.相同parentId下 name不重复
 	    * @param @param batchDictInsetParam
 	    * @param @return    参数
 	    * @return int    成功插入几条
@@ -59,7 +59,7 @@ public interface DictService extends BaseService<Dict> {
 	    * @Description: 单独更新排序
 	    * 		.只能同时为一个parentId下添加数据字典
 	    *  		2.code值全局不重复
-	    *  		3.相同parentId下 value和name不重复
+	    *  		3.相同parentId下 name不重复
 	    * @param @param entity
 	    * @param @return    参数
 	    * @return int    成功更新几条

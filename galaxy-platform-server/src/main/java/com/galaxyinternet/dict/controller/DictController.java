@@ -79,8 +79,8 @@ public class DictController extends BaseControllerImpl<Dict, DictBo> {
 
 	
 	
-
-	/**
+/*
+	*//**
 	 * 
 	    * @Title: batchInsert
 	    * @Description: 批量新增数据字典
@@ -88,7 +88,7 @@ public class DictController extends BaseControllerImpl<Dict, DictBo> {
 	    * @param @return    参数
 	    * @return ResponseData<Dict>    返回类型
 	    * @throws
-	 */
+	 *//*
 	@ResponseBody
 	@RequestMapping(value = "/batchInsert", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseData<Dict> batchInsert( @RequestBody BatchDictInsetParam batchDictInsetParam) {
@@ -106,8 +106,8 @@ public class DictController extends BaseControllerImpl<Dict, DictBo> {
 		responseBody.setResult(result);
 		return responseBody;
 	}
-	
-	/**
+	*/
+/*	*//**
 	 * 
 	    * @Title: update
 	    * @Description: 根据id更新数据字典
@@ -115,7 +115,7 @@ public class DictController extends BaseControllerImpl<Dict, DictBo> {
 	    * @param @return    参数
 	    * @return ResponseData<Dict>    返回类型
 	    * @throws
-	 */
+	 *//*
 	@ResponseBody
 	@RequestMapping(value = "/updateById", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseData<Dict> updateById(@RequestBody Dict dict) {
@@ -133,7 +133,7 @@ public class DictController extends BaseControllerImpl<Dict, DictBo> {
 		responseBody.setResult(result);
 		return responseBody;
 	}
-	
+	*/
 	
 	
 	/**
