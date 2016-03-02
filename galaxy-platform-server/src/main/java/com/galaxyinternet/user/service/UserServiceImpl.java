@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.dubbo.common.utils.StringUtils;
 import com.galaxyinternet.bo.UserBo;
 import com.galaxyinternet.dao.user.UserDao;
 import com.galaxyinternet.framework.cache.Cache;
@@ -39,7 +40,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 
 	@Autowired
 	private RoleService roleService;
-	
+
 	@Autowired
 	private UserRoleService userRoleService;
 	@Autowired
@@ -63,8 +64,8 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	}
 
 	@Override
-	public int resetPwd(User user) {
-
+	public int resetPwd(Long userId) {
+		User user = userDao.selectById(userId);
 		user.setPassword(user.getOriginPassword());
 		// 加密
 		user.setPassword(PWDUtils.genernateNewPassword(user.getOriginPassword()));
@@ -76,9 +77,15 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 
 		ResponseData<User> responsebody = new ResponseData<User>();
 
+		String nickName = user.getNickName(); // 判断参数是否为空
+		String password = user.getPassword();
+		if (StringUtils.isBlank(nickName) || StringUtils.isBlank(password)) {
+			responsebody.setResult(new Result(Status.ERROR, "用户名或密码不能为空！"));
+			return responsebody;
+		}
 		// 获取解密后的nickName和password
-		String nickName = PWDUtils.decodePasswordByBase64(user.getNickName());
-		String password = PWDUtils.decodePasswordByBase64(user.getPassword());
+		nickName = PWDUtils.decodePasswordByBase64(nickName);
+		password = PWDUtils.decodePasswordByBase64(password);
 
 		password = PWDUtils.genernateNewPassword(password); // 重新加密password
 		user.setNickName(nickName);
@@ -107,8 +114,13 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	public ResponseData<User> logout(Header header, HttpServletRequest request) {
 		ResponseData<User> responsebody = new ResponseData<User>();
 		String sessionId = header.getSessionId();
-		request.getSession().removeAttribute(Constants.SESSION_USER_KEY); // 从本地session删除user
-		cache.remove(sessionId); // 从redis中删除sessionId
+		if (StringUtils.isBlank(sessionId)) {
+			responsebody.setResult(new Result(Status.ERROR, "sessionId为空！"));
+			return responsebody;
+		} else {
+			request.getSession().removeAttribute(Constants.SESSION_USER_KEY); // 从本地session删除user
+			cache.remove(sessionId); // 从redis中删除sessionId
+		}
 		responsebody.setResult(new Result(Status.OK, "退出登录"));
 		return responsebody;
 	}
@@ -127,7 +139,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 			for (UserRole userRole : userRoleList) {
 				// 目前一个用户对应一个角色，如果多个角色要考虑覆盖
 				if (user.getId().equals(userRole.getUserId())) {
-					for (Role role:roleList) {
+					for (Role role : roleList) {
 						if (role.getId().equals(userRole.getRoleId())) {
 							user.setRole(role.getName());
 						}
@@ -155,6 +167,6 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		userRole.setRoleId(user.getRoleId());
 		userRole.setUserId(user.getId());
 		long result2 = userRoleService.insert(userRole);
-		return (int) (result1&result2);
+		return (int) (result1 & result2);
 	}
 }

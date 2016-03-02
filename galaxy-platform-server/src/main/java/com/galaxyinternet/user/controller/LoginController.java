@@ -62,7 +62,7 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 	 * @author zcy
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/logout", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/logout", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseData<User> logout(Header header, HttpServletRequest request) {
 		ResponseData<User> responseBody = userService.logout(header, request);
 		return responseBody;
