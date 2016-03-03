@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.galaxyinternet.bo.UserBo;
 import com.galaxyinternet.common.controller.BaseControllerImpl;
 import com.galaxyinternet.exception.PlatformException;
+import com.galaxyinternet.framework.core.constants.Constants;
 import com.galaxyinternet.framework.core.constants.UserConstant;
 import com.galaxyinternet.framework.core.model.Page;
 import com.galaxyinternet.framework.core.model.PageRequest;
@@ -147,7 +148,7 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 
 		ResponseData<User> responseBody = new ResponseData<User>();
 
-		Object obj = request.getSession().getAttribute("sessionUser");
+		Object obj = request.getSession().getAttribute(Constants.SESSION_USER_KEY);
 		if (obj == null) {
 			responseBody.setResult(
 					new Result(Status.ERROR, "validate loging session failed"));
