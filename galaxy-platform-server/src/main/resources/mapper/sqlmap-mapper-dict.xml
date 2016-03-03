@@ -209,5 +209,13 @@
 			is_delete = 0		
    </select>
    
+    <select id="select"  resultMap="BaseResultMap" >
+   		SELECT
+			<include refid="Base_Column_List" />
+		FROM 
+			dict
+		WHERE
+			is_delete = 0		
+   </select>
    
 </mapper>
