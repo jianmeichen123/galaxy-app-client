@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -75,10 +76,16 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	public ResponseData<User> login(User user, HttpServletRequest request) {
 
 		ResponseData<User> responsebody = new ResponseData<User>();
-
+		String nickName = user.getNickName();
+		String password = user.getPassword();
+		
+		if(StringUtils.isBlank(nickName)||StringUtils.isBlank(password)){
+			responsebody.setResult(new Result(Status.ERROR,Constants.IS_UP_EMPTY,"用户名或密码不能为空！"));
+			return responsebody;
+		}
 		// 获取解密后的nickName和password
-		String nickName = PWDUtils.decodePasswordByBase64(user.getNickName());
-		String password = PWDUtils.decodePasswordByBase64(user.getPassword());
+	    nickName = PWDUtils.decodePasswordByBase64(nickName);
+		password = PWDUtils.decodePasswordByBase64(password);
 
 		password = PWDUtils.genernateNewPassword(password); // 重新加密password
 		user.setNickName(nickName);
@@ -86,7 +93,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 
 		user = userDao.selectOne(user); // 根据表单输入字段查询用户
 		if (user == null) {
-			responsebody.setResult(new Result(Status.ERROR, "用户名或密码错误！"));
+			responsebody.setResult(new Result(Status.ERROR, Constants.IS_UP_WRONG,"用户名或密码错误！"));
 		} else {
 			String sessionId = SessionUtils.createWebSessionId(); // 封装
 			user.setSessionId(sessionId);
@@ -98,7 +105,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 			header.setSessionId(sessionId);
 			header.setUserId(user.getId());
 			responsebody.setHeader(header);
-			responsebody.setResult(new Result(Status.OK, "登录成功！"));
+			responsebody.setResult(new Result(Status.OK, Constants.LOGIN_SUCCESS, "登录成功！"));
 		}
 		return responsebody;
 	}
@@ -107,8 +114,12 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	public ResponseData<User> logout(Header header, HttpServletRequest request) {
 		ResponseData<User> responsebody = new ResponseData<User>();
 		String sessionId = header.getSessionId();
+		if(StringUtils.isBlank(sessionId)){
+			responsebody.setResult(new Result(Status.ERROR, Constants.IS_SESSIONID_EMPTY,"sessionId为空！"));
+			return responsebody;
+		}
 		request.getSession().removeAttribute(Constants.SESSION_USER_KEY); // 从本地session删除user
-		cache.remove(sessionId); // 从redis中删除sessionId
+		cache.remove(sessionId); 																	// 从redis中删除sessionId
 		responsebody.setResult(new Result(Status.OK, "退出登录"));
 		return responsebody;
 	}
