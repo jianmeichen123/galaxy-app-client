@@ -118,7 +118,7 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 		}
 		Integer max = dictDao.selectMaxValueByParentCode(entity.getParentCode());
 		if(max == null){
-			max = 1;
+			max = Dict.INIT_VALUE;
 		}else {
 			max++;
 		}
@@ -163,7 +163,7 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 		//得到一个parentCode下最大的value 
 		Integer max = dictDao.selectMaxValueByParentCode(batchDictInsetParam.getParentCode());
 		if(max == null){
-			max = 1;
+			max = Dict.INIT_VALUE;
 		}else {
 			max++;
 		}
