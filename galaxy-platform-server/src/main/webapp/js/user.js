@@ -1,7 +1,9 @@
 //用户相关的js
 var deptList ={"1":"1","2":'item2'};
-$(function() {
+ $(function() {
 
+	
+	
 	var deptSelect =$('#selectDept'); 
 	
 	
@@ -13,7 +15,22 @@ $(function() {
 		deptSelect.append(option);
 	});
 	
+
+	
 });
+
+function save(){
+	alert("save")
+	var pop = $("#pop");
+	var json = {};
+	$(pop).find("input").each(function(){
+		if($(this).val().trim()!=""){
+			json[$(this).attr("name")]= $(this).val();
+		}
+	});
+	
+	console.log(json);
+}
 //检索
 function searchForm() {
 	var re = /^[0-9]+.?[0-9]*$/;
@@ -131,3 +148,34 @@ function callbackFun(data){
 	deptList =data.entityList;
   	
  }
+
+function test(){
+	$("#popTxt").on("click","a[action='save']",function() {
+		alert("sssss");
+		var pop = $("#pop");
+		var json = {};
+		$(pop).find("input").each(function(){
+			if($(this).val().trim()!=""){
+				json[$(this).attr("name")]= $(this).val();
+			}
+		});
+		
+		console.log(json);
+		
+		$.ajax({
+			url : platformUrl.addUser,
+			data : JSON.stringify(json),
+			async : false,
+			type : 'POST',
+			contentType : "application/json; charset=UTF-8",
+			dataType : "json",
+			cache : false,
+			error : function() {
+				alert('添加失败');
+			},
+			success : function(data) {
+				alert("添加成功")
+			}
+		});
+	});
+}

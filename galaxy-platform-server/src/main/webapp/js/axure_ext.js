@@ -151,9 +151,9 @@ $(function(){
 		var $self = $(this);
 		var _url = $self.attr("href");
 		$.getHtml({
-			url:_url,//模版请求地址
+			url:_url,
 			data:"",//传递参数
-			okback:function(){}//模版反回成功执行	
+			okback:function(){test();}//模版反回成功执行	
 		});
 		return false;
 	});
