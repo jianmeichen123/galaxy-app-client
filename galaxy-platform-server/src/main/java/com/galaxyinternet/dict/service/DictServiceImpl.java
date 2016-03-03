@@ -223,4 +223,9 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 			return text.trim();
 		}
 	}
+
+	@Override
+	public List<Dict> selectAll() {
+		return dictDao.selectAll();
+	}
 }
