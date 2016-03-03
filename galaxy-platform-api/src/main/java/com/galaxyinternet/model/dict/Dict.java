@@ -13,7 +13,7 @@ import com.galaxyinternet.framework.core.model.BaseEntity;
  */
 public class Dict extends BaseEntity{
 
-	public final static int INIT_VALUE = 10;
+	//public final static int INIT_VALUE = 10;
 	public final static String COMMENT ="数据字典";
 	public final static String ID ="id";
 	public final static String NAME = "属性名称";

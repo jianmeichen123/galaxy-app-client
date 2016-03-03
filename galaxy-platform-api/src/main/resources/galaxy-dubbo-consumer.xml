@@ -40,6 +40,5 @@
     <dubbo:reference interface="com.galaxyinternet.service.DepartmentService" id="com.galaxyinternet.service.DepartmentService" version="1.0.0" />
 
 
-	<dubbo:reference interface="com.galaxyinternet.service.DictUilt" id="com.galaxyinternet.service.DictUilt" version="1.0.0" />
 	
 </beans>

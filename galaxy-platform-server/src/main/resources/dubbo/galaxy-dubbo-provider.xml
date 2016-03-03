@@ -37,13 +37,8 @@
     <dubbo:protocol name="${dubbo.protocol.name}" port="${dubbo.protocol.port}" />
     <dubbo:consumer timeout="10000" check="false" />
  	
- 	
- 	<dubbo:service interface="com.galaxyinternet.service.DictService" ref="com.galaxyinternet.service.DictService" version="1.0.0"/>   
     <dubbo:service interface="com.galaxyinternet.service.UserService" ref="com.galaxyinternet.service.UserService" version="1.0.0"/>
     <dubbo:service interface="com.galaxyinternet.service.UserRoleService" ref="com.galaxyinternet.service.UserRoleService" version="1.0.0"/>
     <dubbo:service interface="com.galaxyinternet.service.RoleService" ref="com.galaxyinternet.service.RoleService" version="1.0.0"/>
     <dubbo:service interface="com.galaxyinternet.service.DepartmentService" ref="com.galaxyinternet.service.DepartmentService" version="1.0.0"/>
-    
-    
-    <dubbo:service interface="com.galaxyinternet.service.DictUilt" ref="com.galaxyinternet.service.DictUilt" version="1.0.0"/>
 </beans>
