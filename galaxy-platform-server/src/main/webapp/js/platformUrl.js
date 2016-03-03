@@ -18,7 +18,7 @@ var platformUrl={
         /**
          * 添加用户
          */
-        addUser:"galaxy/user/add",
+        addUser:"galaxy/user/updateUser",
         /**
          * 启用禁用用户
          */
