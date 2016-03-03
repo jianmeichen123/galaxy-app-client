@@ -6,7 +6,7 @@ var platformUrl={
 		/**
 		 * 跳转到首页
 		 */
-		toIndex:"http://127.0.0.1:8800/galaxy-sop-server/galaxy/redirect",
+		toIndex:"http://127.0.0.1:8888/galaxy-sop-server/galaxy/redirect",
 		/**
 		 * 用户管理首页
 		 */
