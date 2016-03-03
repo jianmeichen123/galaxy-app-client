@@ -25,4 +25,8 @@
 	<import resource="classpath*:applicationContext-cache.xml" />
 	<!-- <import resource="classpath*:redis/galaxy-redis-config.xml" /> -->
 	<!-- <import resource="classpath*:redis/userRepository-context.xml" /> -->
+	
+	<bean class="com.galaxyinternet.utils.InitAppliacaion">  
+	</bean>  
+	
 </beans>
