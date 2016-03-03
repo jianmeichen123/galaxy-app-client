@@ -16,7 +16,7 @@
 <link href="css/axure.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
-	div class="header clearfix">
+	<div class="header clearfix">
 
 	<a href="javascript:;" class="logo null">繁星</a>
 	<!--头部中间-->
@@ -52,7 +52,8 @@
 			<div class="top clearfix">
 				<!--按钮-->
 				<div class="btnbox_f btnbox_f1 clearfix">
-					<a href="javascript:;" onclick="toadd()" class="pubbtn bluebtn ico c4">添加人员</a>
+					<a href="html/userinfrotc.html" data-btn="userinfro"
+						class="pubbtn bluebtn ico c4">添加人员</a>
 				</div>
 			</div>
 
@@ -63,14 +64,15 @@
 						<dt>账户状态：</dt>
 						<dd>
 							<label for=""><input type="radio" name="status">不限</label>
-							<label for=""><input type="radio" id="disabled" value="1" name="status">已禁用</label>
+							<label for=""><input type="radio" id="disabled" value="1"
+								name="status">已禁用</label>
 						</dd>
 					</dl>
 					<dl class="fmdl fml fmdll clearfix">
 						<dt>所属部门：</dt>
 						<dd>
 							<select id='selectDept'>
-								<option>全部</option>
+								<option value="">全部</option>
 							</select>
 						</dd>
 					</dl>
@@ -137,9 +139,9 @@
 								</div>
 							</td>
 						</tr>
-						
+
 					</c:forEach>
-                      <!--  <tr>
+					<!--  <tr>
 							<td><input type="radio" name="document" checked /></td>
 							<td>xiaoerzh</td>
 							<td>正常</td>
@@ -172,79 +174,14 @@
 		</div>
 
 
-<div class="userinfrotc" id="userInfo" style="display:none">
-  
-  <div class="userinfro">
-  <dl>
-    <dt>真实姓名：</dt>
-    <dd><input type="text" id="realName" name="user.realName" value=""/></dd>
-  </dl>
-  <dl>
-    <dt>工号：</dt>
-   <dd><input type="text" id="employNo" name="user.employNo" value=""/></dd>
-  </dl>
-  <dl>
-    <dt>性别：</dt>
-    <dd>
-      <label for=""><input type="radio" name="user.gender">男</label>
-      <label for=""><input type="radio" name="user.gender">女</label>
-    </dd>
-  </dl>
-  <dl>
-    <dt>出生日期：</dt>
-    <dd>1989-01-01</dd>
-  </dl>
-  <dl>
-    <dt>公司邮箱：</dt>
-     <dd><input type="text" id="email" name="user.email" value=""/></dd>
-  </dl>
-  <dl>
-    <dt>登录名称：</dt>
-     <dd><input type="text" id="nickName" name="user.nickName" value=""/></dd>
-  </dl>
-  <dl>
-    <dt>手机号：</dt>
-     <dd><input type="text" id="mobile" name="user.mobile" value=""/></dd>
-  </dl>
-  <dl>
-    <dt>办公分机：</dt>
-     <dd><input type="text" id="telephone" name="user.telephone" value=""/></dd>
-  </dl>
-  <dl>
-    <dt>常用收件地址：</dt>
-    <dd><span> <dd><input type="text" id="address" name="user.address" value=""/></dd></span><a href="#" class="flr">使用公司地址</a></dd>
-  </dl>
-  <dl class="role">
-    <dt>职能角色：</dt>
-    <dd>
-      <div class="">
-        <label for=""><input type="radio" name="role">投资线</label>
-        <label for=""><input type="radio" name="role">总部职能部门</label>
-      </div>
-      <div class="">
-        <label for=""><input type="radio" value='1' name="role">董事长</label>
-        <label for=""><input type="radio" value='3' name="role">投资线合伙人 </label>
-        <label for=""><input type="radio" value='2' name="role">CEO </label>
-        <label for=""><input type="radio" value='4' name="role">投资经理 </label>
-        <label for=""><input type="radio" value='7' name="role">人事总监 </label>
-        <label for=""><input type="radio" value='8' name="role">人事经理  </label>
-        <label for=""><input type="radio" value='10' name="role">法务经理 </label>
-        <label for=""><input type="radio" value='12' name="role">财务经理 </label>
-      </div>
-    </dd>
-    <dd>
-    </dd>
-  </dl>
-  </div>
-    <div class="btnbox">
-      <a href="javascript:;" class="pubbtn bluebtn">保存</a><a href="javascript:;" class="pubbtn fffbtn"data-close="close">取消</a>
-    </div>
-</div>
+
+
+	</div>
 	</div>
 
- <script src="js/user.js" type="text/javascript"></script> 
+	<script src="js/user.js" type="text/javascript"></script>
 
-	
+
 
 </body>
 </html>
