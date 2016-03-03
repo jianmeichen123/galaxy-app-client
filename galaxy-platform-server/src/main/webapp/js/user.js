@@ -1,8 +1,18 @@
 //用户相关的js
-
+var deptList ={"1":"1","2":'item2'};
 $(function() {
 
-
+	var deptSelect =$('#selectDept'); 
+	
+	
+	sendGetRequest(platformUrl.getDepartList,null,callbackFun,null);
+	$(deptList).each(function(){
+		var item = $(this)[0];
+		console.log(item);
+		var option = "<option value='"+item.id+"'>"+item.name+"</option>"
+		deptSelect.append(option);
+	});
+	
 });
 //检索
 function searchForm() {
@@ -11,7 +21,8 @@ function searchForm() {
 	var mobile = null;
 	var realName = null;
 	var status = null;
-	var departId = null;
+	var options=$("#selectDept option:selected");  
+	var departId = options.val();
 	if (re.test(value)) {
 		mobile = value;
 	} else {
@@ -22,6 +33,9 @@ function searchForm() {
 	if (val=="1") {
 		
 		status = 1;
+	}
+	if (departId ==""){
+		departId =null;
 	}
 
 	var data = {
@@ -113,3 +127,7 @@ function resetPwd(userId) {
 		}
 	});
 }
+function callbackFun(data){
+	deptList =data.entityList;
+  	
+ }

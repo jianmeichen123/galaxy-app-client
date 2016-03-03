@@ -31,7 +31,7 @@ var platformUrl={
         /**
          * 查询部门
          */
-        getDepartList:"/galaxy/user/departmentList",
+        getDepartList:"galaxy/user/departmentList",
 		
 		/**
 		 * 数据字典首页
