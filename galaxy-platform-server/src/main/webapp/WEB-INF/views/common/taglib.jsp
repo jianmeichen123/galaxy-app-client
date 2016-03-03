@@ -11,20 +11,21 @@
 <%@ page import="com.galaxyinternet.model.user.User"%>
 <%@ page import="com.galaxyinternet.framework.core.constants.Constants"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
-<%User user = (User)request.getSession().getAttribute(Constants.SESSION_USER_KEY);%>
-<%-- <script type="text/javascript">
-	var contextPath = "<%=request.getContextPath()%>";
-	var currentUser={
-			id:'<%=user.getId()%>'
-		};
-</script> --%>
-
+<%User user = (User)request.getSession().getAttribute(Constants.SESSION_USER_KEY);
+String endpoint = (String)application.getAttribute(Constants.GALAXYINTERNET_FX_ENDPOINT);
+%>
 <!-- 这里写js和css文件---------start -->
 <script src="<%=request.getContextPath() %>/js/jquery-1.7.2.min.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath() %>/js/json2.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath() %>/js/common.js" type="text/javascript"></script>
-<script src="<%=request.getContextPath() %>/js/platformUrl.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath() %>/js/axure.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath() %>/js/axure_ext.js" type="text/javascript"></script>
 <!-- end -->
-
+<script type="text/javascript">
+	var contextEndPoint = '<%=endpoint%>';
+	endpointObj = JSON.parse(contextEndPoint);
+	alert(endpointObj["galaxy.project.sop.endpoint"])
+	
+	document.write("contextEndPoint="+contextEndPoint);
+</script>
+<script src="<%=request.getContextPath() %>/js/platformUrl.js" type="text/javascript"></script>

@@ -34,8 +34,7 @@
 				<value>galaxy.project.report.endpoint</value>
 			</list>
 		</constructor-arg>
-		<constructor-arg index="2" value="galaxyinternet_fx_endpoint" />
-		<constructor-arg index="3" ref="cache" />
+		<constructor-arg index="2" ref="cache" />
 	</bean>
 
 </beans>
