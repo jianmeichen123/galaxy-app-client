@@ -27,7 +27,7 @@ public class Dict extends BaseEntity{
 	 * 当父code不存在时 默认code为XHHL 此时该数据字典为第一级
 	 * 
 	 */
-	public final static String CODE_PARENT = "XHHL";
+	public final static String CODE_PARENT = "xhhl";
 	
 	
 	private static final long serialVersionUID = -8582891750808839253L;

@@ -38,4 +38,8 @@
     <dubbo:reference interface="com.galaxyinternet.service.UserRoleService" id="com.galaxyinternet.service.UserRoleService" version="1.0.0" />
     <dubbo:reference interface="com.galaxyinternet.service.RoleService" id="com.galaxyinternet.service.RoleService" version="1.0.0" />
     <dubbo:reference interface="com.galaxyinternet.service.DepartmentService" id="com.galaxyinternet.service.DepartmentService" version="1.0.0" />
+
+
+	<dubbo:reference interface="com.galaxyinternet.service.DictUilt" id="com.galaxyinternet.service.DictUilt" version="1.0.0" />
+	
 </beans>

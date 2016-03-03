@@ -79,6 +79,8 @@ public interface DictService extends BaseService<Dict> {
 	    * @throws
 	 */
 	int updateByCode(Dict entity);
+	
+	List<Dict> selectAll();
 }
 
 
