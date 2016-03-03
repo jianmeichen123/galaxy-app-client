@@ -27,7 +27,7 @@
 
 	<!-- 用于初始化不同项目的请求地址，存入redis中 -->
 	<bean id="com.galaxyinternet.framework.core.config.ConfigBean" class="com.galaxyinternet.framework.core.config.ConfigBean">
-		<constructor-arg index="0" value="" />
+		<constructor-arg index="0" value="endpoint.properties" />
 		<constructor-arg index="1">
 			<list>
 				<value>galaxy.project.sop.endpoint</value>
