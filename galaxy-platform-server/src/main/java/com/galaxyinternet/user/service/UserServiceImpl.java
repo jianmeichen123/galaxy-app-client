@@ -8,9 +8,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.galaxyinternet.bo.UserBo;
 import com.galaxyinternet.dao.user.UserDao;
+import com.galaxyinternet.dao.user.UserRoleDao;
 import com.galaxyinternet.framework.cache.Cache;
 import com.galaxyinternet.framework.core.constants.Constants;
 import com.galaxyinternet.framework.core.dao.BaseDao;
@@ -37,7 +39,8 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 
 	@Autowired
 	private UserDao userDao;
-
+	@Autowired
+	private UserRoleDao userRoleDao;
 	@Autowired
 	private RoleService roleService;
 	
@@ -160,13 +163,15 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		return page;
 	}
 
-	@Override
-	public int updateUser(UserBo user) {
-		int result1 = userDao.updateByIdSelective(user);
-		UserRole userRole = new UserRole();
-		userRole.setRoleId(user.getRoleId());
-		userRole.setUserId(user.getId());
-		long result2 = userRoleService.insert(userRole);
-		return (int) (result1&result2);
-	}
+
+    @Override
+    @Transactional
+    public int updateUser(UserBo user) {
+        int result1 = userDao.updateByIdSelective(user);
+        UserRole userRole = new UserRole();
+        userRole.setRoleId(user.getRoleId());
+        userRole.setUserId(user.getId());
+        long result2 = userRoleService.insertUserRole(userRole);
+        return (int) (result1&result2);
+    }
 }

@@ -24,8 +24,5 @@ String endpoint = (String)application.getAttribute(Constants.GALAXYINTERNET_FX_E
 <script type="text/javascript">
 	var contextEndPoint = '<%=endpoint%>';
 	endpointObj = JSON.parse(contextEndPoint);
-	alert(endpointObj["galaxy.project.sop.endpoint"])
-	
-	document.write("contextEndPoint="+contextEndPoint);
 </script>
 <script src="<%=request.getContextPath() %>/js/platformUrl.js" type="text/javascript"></script>

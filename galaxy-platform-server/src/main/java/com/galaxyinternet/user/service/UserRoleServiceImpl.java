@@ -30,5 +30,11 @@ public class UserRoleServiceImpl extends BaseServiceImpl<UserRole>implements Use
 		return userRoleDao.selectRoleIdByUserId(userID);
 	}
 
+	@Override
+	public long insertUserRole(UserRole userRole) {
+		// TODO Auto-generated method stub
+		return userRoleDao.insertUserRole(userRole);
+	}
+
 
 }

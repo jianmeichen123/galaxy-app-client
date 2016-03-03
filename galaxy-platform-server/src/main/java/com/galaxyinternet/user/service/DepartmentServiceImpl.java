@@ -1,5 +1,7 @@
 package com.galaxyinternet.user.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,12 @@ public class DepartmentServiceImpl extends BaseServiceImpl<Department>implements
 	@Override
 	protected BaseDao<Department, Long> getBaseDao() {
 		return this.departmentDao;
+	}
+
+	@Override
+	public List<Department> queryListByType(Integer type) {
+		// TODO Auto-generated method stub
+		return departmentDao.queryListByType(type);
 	}
 	
 	

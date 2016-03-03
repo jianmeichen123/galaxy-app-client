@@ -65,12 +65,10 @@
 	    <![CDATA[
 	        insert into
 	        t_user_role (
-        	id,
         	role_id,
         	user_id,
         	created_time
 	        ) values (
-        	   #{id},
         	   #{roleId},
         	   #{userId},
         	   #{createdTime}

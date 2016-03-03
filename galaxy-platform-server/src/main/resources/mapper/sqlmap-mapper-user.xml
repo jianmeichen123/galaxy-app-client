@@ -222,4 +222,21 @@
 	<delete id="deleteById" parameterType="java.lang.Long">
 		delete from t_user where id = #{id}
 	</delete>
+	
+	 	<insert id="insertUserRole" parameterType="com.galaxyinternet.model.user.UserRole" >
+	    <![CDATA[
+	        insert into
+	        t_user_role (
+        	id,
+        	role_id,
+        	user_id,
+        	created_time
+	        ) values (
+        	   #{id},
+        	   #{roleId},
+        	   #{userId},
+        	   #{createdTime}
+	        )
+	    ]]>
+    </insert>
 </mapper>

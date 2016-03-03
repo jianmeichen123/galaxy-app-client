@@ -31,7 +31,7 @@
 				<if test="parentId != null"> and parent_id =#{parentId}</if>
 				<if test="createdTime != null"> and created_time =#{createdTime}</if>
 				<if test="updatedTime != null"> and updated_time =#{updatedTime}</if>
-				
+				and type !=2
 			</trim>
 		</where>
 		<if test="sorting != null">order by ${sorting}</if>
@@ -39,7 +39,12 @@
 			limit #{offset}, #{limit}
 		</if>
 	</sql>
-	
+		<sql id="Type_Where_Clause">
+		<where>
+				<if test="type != null"> and type =#{type}</if>
+		</where>
+		
+	</sql>
 	<!-- 查询总数 -->
 	<select id="selectCount" resultType="java.lang.Long"
 		parameterType="java.util.Map">
@@ -53,6 +58,12 @@
 		<include refid="Base_Column_List" />
 		from t_department
 		<include refid="Base_Where_Clause" />
+	</select>
+	
+	<select id="queryListByType" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from t_department where type=#{type} and type!=2
 	</select>
 
 	<!-- 根据ID查询 -->

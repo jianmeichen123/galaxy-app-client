@@ -198,12 +198,17 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/departmentList", method = RequestMethod.GET)
-	public ResponseData<Department> departmentList() {
+	public ResponseData<Department> departmentList(Integer type) {
 
 		ResponseData<Department> responseBody = new ResponseData<Department>();
 		try {
 			// 部门列表
-			List<Department> deptList = departmentService.queryAll();
+			List<Department> deptList = null;
+			if (null == type) {
+				deptList = departmentService.queryAll();
+			} else {
+				deptList = departmentService.queryListByType(type);
+			}
 			responseBody.setEntityList(deptList);
 			responseBody.setResult(new Result(Status.OK, ""));
 			return responseBody;

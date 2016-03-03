@@ -1,12 +1,11 @@
 //用户相关的js
-var deptList ={"1":"1","2":'item2'};
+var deptList ={};
+var deptListByType ={};
  $(function() {
 
-	
-	
 	var deptSelect =$('#selectDept'); 
 	
-	
+	var json={"type":null};
 	sendGetRequest(platformUrl.getDepartList,null,callbackFun,null);
 	$(deptList).each(function(){
 		var item = $(this)[0];
@@ -148,10 +147,23 @@ function callbackFun(data){
 	deptList =data.entityList;
   	
  }
-
+function callbackFun1(data){
+	deptListByType =data.entityList;
+  	
+ }
 function test(){
+	var deptSelect1 =$('#selectId'); 
+	
+	var json={"type":1};
+	sendGetRequest(platformUrl.getDepartList,json,callbackFun1,null);
+	$(deptListByType).each(function(){
+		var item = $(this)[0];
+		console.log(item);
+		var option = "<option value='"+item.id+"'>"+item.name+"</option>"
+		deptSelect1.append(option);
+	});
+	
 	$("#popTxt").on("click","a[action='save']",function() {
-		alert("sssss");
 		var pop = $("#pop");
 		var json = {};
 		$(pop).find("input").each(function(){
@@ -159,9 +171,12 @@ function test(){
 				json[$(this).attr("name")]= $(this).val();
 			}
 		});
-		
+		var options=$("#selectId option:selected");  
+		var departId = options.val();
+		if(json['departmentId']=="on"&&departId!=''){
+			json['departmentId'] = departId;
+		}
 		console.log(json);
-		
 		$.ajax({
 			url : platformUrl.addUser,
 			data : JSON.stringify(json),
