@@ -82,6 +82,9 @@
 				<dubbo.registry.address>zookeeper://10.9.210.22:12181?client=zkclient</dubbo.registry.address>
 				<dubbo.protocol.port>8081</dubbo.protocol.port>
 
+				<galaxy.project.sop.endpoint>http://127.0.0.1:8888/</galaxy.project.sop.endpoint>
+				<galaxy.project.report.endpoint>http://127.0.0.1:8866/</galaxy.project.report.endpoint>
+
 				<!-- memcached <memcached.list_1.ip>192.168.101.22</memcached.list_1.ip> 
 					<memcached.list_1.port>11211</memcached.list_1.port> <memcached.object_1.ip>192.168.101.22</memcached.object_1.ip> 
 					<memcached.object_1.port>11211</memcached.object_1.port> <mongodb.dbname>community</mongodb.dbname> 

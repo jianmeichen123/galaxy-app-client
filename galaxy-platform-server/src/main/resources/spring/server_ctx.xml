@@ -2,7 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
-    xmlns:task="http://www.springframework.org/schema/task" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans   
           http://www.springframework.org/schema/beans/spring-beans-4.0.xsd   
            http://www.springframework.org/schema/context   
@@ -14,10 +14,9 @@
            http://www.springframework.org/schema/task 
            http://www.springframework.org/schema/task/spring-task-4.0.xsd 
            http://www.springframework.org/schema/mvc 
-		   http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd"
-           >
+		   http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
-	<!-- 属性配置信息  -->
+	<!-- 属性配置信息 -->
 	<import resource="conf_util/property_config_ctx.xml" />
 	<import resource="conf_main/main_ctx.xml" />
 	<!-- <import resource="classpath*:galaxy-mongo-config.xml" /> -->
@@ -25,4 +24,18 @@
 	<import resource="classpath*:applicationContext-cache.xml" />
 	<!-- <import resource="classpath*:redis/galaxy-redis-config.xml" /> -->
 	<!-- <import resource="classpath*:redis/userRepository-context.xml" /> -->
+
+	<!-- 用于初始化不同项目的请求地址，存入redis中 -->
+	<bean id="com.galaxyinternet.framework.core.config.ConfigBean" class="com.galaxyinternet.framework.core.config.ConfigBean">
+		<constructor-arg index="0" value="" />
+		<constructor-arg index="1">
+			<list>
+				<value>galaxy.project.sop.endpoint</value>
+				<value>galaxy.project.report.endpoint</value>
+			</list>
+		</constructor-arg>
+		<constructor-arg index="2" value="galaxyinternet_fx_endpoint" />
+		<constructor-arg index="3" ref="cache" />
+	</bean>
+
 </beans>
