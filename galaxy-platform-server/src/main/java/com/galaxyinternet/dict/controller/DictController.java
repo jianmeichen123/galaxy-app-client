@@ -66,8 +66,10 @@ public class DictController extends BaseControllerImpl<Dict, DictBo> {
 			result.setStatus(Status.OK);
 			responseBody.setEntity(dict);
 		} catch (PlatformException e){
-			result.addError(e.getMessage());
+			result.setErrorCode(e.getCode()+"");
+			result.setMessage(e.getMessage());
 		} catch (Exception e) {
+			result.setMessage("系统错误");
 			result.addError("系统错误");
 			logger.error("新增错误",e);
 		}
@@ -152,8 +154,10 @@ public class DictController extends BaseControllerImpl<Dict, DictBo> {
 			dictService.updateByCode(dict);
 			result.setStatus(Status.OK);
 		} catch (PlatformException e){
-			result.addError(e.getMessage());
+			result.setErrorCode(e.getCode()+"");
+			result.setMessage(e.getMessage());
 		} catch (Exception e) {
+			result.setMessage("系统错误");
 			result.addError("系统错误");
 			logger.error("更新错误",e);
 		}
@@ -180,8 +184,10 @@ public class DictController extends BaseControllerImpl<Dict, DictBo> {
 			responseBody.setEntity(entity);
 			result.setStatus(Status.OK);
 		} catch (PlatformException e){
-			result.addError(e.getMessage());
+			result.setErrorCode(e.getCode()+"");
+			result.setMessage(e.getMessage());
 		} catch (Exception e) {
+			result.setMessage("系统错误");
 			result.addError("系统错误");
 			logger.error("根据code查找数据字典错误",e);
 		}
@@ -210,8 +216,10 @@ public class DictController extends BaseControllerImpl<Dict, DictBo> {
 			responseBody.setPageList(page);
 			result.setStatus(Status.OK);
 		} catch (PlatformException e){
-			result.addError(e.getMessage());
+			result.setErrorCode(e.getCode()+"");
+			result.setMessage(e.getMessage());
 		}  catch (Exception e) {
+			result.setMessage("系统错误");
 			result.addError("系统错误");
 			logger.error("根据parentId查找数据字典错误",e);
 		}
