@@ -108,7 +108,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 			header.setSessionId(sessionId);
 			header.setUserId(user.getId());
 			responsebody.setHeader(header);
-			responsebody.setResult(new Result(Status.OK, Constants.LOGIN_SUCCESS, "登录成功！"));
+			responsebody.setResult(new Result(Status.OK, Constants.OPTION_SUCCESS, "登录成功！"));
 		}
 		return responsebody;
 	}
@@ -123,7 +123,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		}
 		request.getSession().removeAttribute(Constants.SESSION_USER_KEY); // 从本地session删除user
 		cache.remove(sessionId); 																	// 从redis中删除sessionId
-		responsebody.setResult(new Result(Status.OK, "退出登录"));
+		responsebody.setResult(new Result(Status.OK, Constants.OPTION_SUCCESS, "退出登录"));
 		return responsebody;
 	}
 
