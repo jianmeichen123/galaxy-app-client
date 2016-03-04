@@ -12,6 +12,8 @@
 <head>
 <meta charset="utf-8">
 <title>繁星</title>
+<!-- jsp文件头和头部 -->
+<%@ include file="/WEB-INF/views/common/taglib.jsp"%>
 <link href="css/axure.css" type="text/css" rel="stylesheet"/>
 <!--[if lt IE 9]><link href="css/lfie8.css" type="text/css" rel="stylesheet"/><![endif]-->
 </head>
@@ -97,10 +99,6 @@
     </div>
  
 </div>
-<script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
-<script src="js/axure.js" type="text/javascript"></script>
-<script src="js/axure_ext.js" type="text/javascript"></script>
-<script src="js/common.js" type="text/javascript"></script>
 <script src="js/layer/layer.js" type="text/javascript"></script>
 <script src="js/platformUrl.js" type="text/javascript"></script>
 <script src="js/dict.js" type="text/javascript"></script>
