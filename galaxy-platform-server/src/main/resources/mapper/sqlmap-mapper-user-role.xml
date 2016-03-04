@@ -56,12 +56,19 @@
 		<include refid="Base_Column_List" />
 		from t_user_role where id = #{id}
 	</select>
+	
+	<!-- 根据ID查询 -->
+	<select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from t_user_role where user_id = #{userId}
+	</select>
 	<!-- 根据userID查询role的ID -->
 	<select id="selectRoleIdByUserId" resultType="java.lang.Long" parameterType="java.lang.Long">
 		select role_id from t_user_role where user_id = #{userId}
 	</select>
 	
-  	<insert id="insert" parameterType="UserRole" >
+  	<insert id="insert" parameterType="UserRole" useGeneratedKeys="true" keyProperty="id">
 	    <![CDATA[
 	        insert into
 	        t_user_role (
@@ -106,7 +113,15 @@
 		</set>
 		where id = #{id}
 	</update>
-    
+    <update id="updateByUserId" parameterType="java.lang.Long">
+		update t_user_role
+		<set>
+			<if test="roleId != null">  role_id =#{roleId},</if>
+			<if test="createdTime != null">  created_time =#{createdTime},</if>
+			<if test="updatedTime != null">  updated_time =#{updatedTime}</if>
+		</set>
+		where user_id = #{userId}
+	</update>
     <!-- 删除 -->
 	<delete id="delete" parameterType="java.util.Map">
 		delete from t_user_role

@@ -192,7 +192,7 @@
 	<update id="updateById" parameterType="UserPO">
 		update t_user
 		<set>
-		    <if test="employNo != null"> and employ_no =#{employNo}</if>
+		    <if test="employNo != null"> employ_no =#{employNo},</if>
 			<if test="realName != null">  real_name =#{realName},</if>
 			<if test="nickName != null">  nick_name =#{nickName},</if>
 			<if test="email != null">  email =#{email},</if>
@@ -223,7 +223,7 @@
 		delete from t_user where id = #{id}
 	</delete>
 	
-	 	<insert id="insertUserRole" parameterType="com.galaxyinternet.model.user.UserRole" >
+	 	<insert id="insertUserRole" parameterType="com.galaxyinternet.model.user.UserRole"  useGeneratedKeys="true" keyProperty="id">
 	    <![CDATA[
 	        insert into
 	        t_user_role (

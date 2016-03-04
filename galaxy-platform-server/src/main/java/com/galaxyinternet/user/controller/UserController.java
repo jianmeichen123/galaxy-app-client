@@ -148,13 +148,13 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 
 		ResponseData<User> responseBody = new ResponseData<User>();
 
-		Object obj = request.getSession().getAttribute(Constants.SESSION_USER_KEY);
+/*		Object obj = request.getSession().getAttribute(Constants.SESSION_USER_KEY);
 		if (obj == null) {
 			responseBody.setResult(
 					new Result(Status.ERROR, "validate loging session failed"));
 			return responseBody;
 		}
-
+*/
 		try {
 
 			Page<User> page = userService.queryUserList(query, pageable);

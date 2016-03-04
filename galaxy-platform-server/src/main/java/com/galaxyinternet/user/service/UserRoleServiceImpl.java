@@ -33,7 +33,13 @@ public class UserRoleServiceImpl extends BaseServiceImpl<UserRole>implements Use
 	@Override
 	public long insertUserRole(UserRole userRole) {
 		// TODO Auto-generated method stub
-		return userRoleDao.insertUserRole(userRole);
+		UserRole role =  userRoleDao.selectByUserId(userRole.getUserId());
+		if (role != null) {
+			role.setRoleId(userRole.getRoleId());
+			return userRoleDao.updateById(role);
+		} else {
+			return userRoleDao.insertUserRole(userRole);
+		}
 	}
 
 

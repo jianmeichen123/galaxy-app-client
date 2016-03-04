@@ -63,7 +63,7 @@
 	<select id="queryListByType" resultMap="BaseResultMap" parameterType="java.lang.Integer">
 		select
 		<include refid="Base_Column_List" />
-		from t_department where type=#{type} and type!=2
+		from t_department where type=#{type}
 	</select>
 
 	<!-- 根据ID查询 -->

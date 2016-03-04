@@ -167,7 +167,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
     @Override
     @Transactional
     public int updateUser(UserBo user) {
-        int result1 = userDao.updateByIdSelective(user);
+        int result1 = userDao.updateById(user);
         UserRole userRole = new UserRole();
         userRole.setRoleId(user.getRoleId());
         userRole.setUserId(user.getId());

@@ -173,6 +173,9 @@ function test(){
 		});
 		var options=$("#selectId option:selected");  
 		var departId = options.val();
+		
+		var val=$('input:radio[name="roleId"]:checked').val();
+		json['roleId'] =val;
 		if(json['departmentId']=="on"&&departId!=''){
 			json['departmentId'] = departId;
 		}
