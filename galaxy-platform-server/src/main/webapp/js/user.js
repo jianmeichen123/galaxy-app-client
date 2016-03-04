@@ -266,7 +266,12 @@ function doSumbit(){
 				
 				
 				layer.msg("添加成功");
+				
 			}
 		});
 	});
+}
+
+function useCompanyAddress() {
+	$("#address").val("北京市海淀区上地创新大厦三层");
 }
