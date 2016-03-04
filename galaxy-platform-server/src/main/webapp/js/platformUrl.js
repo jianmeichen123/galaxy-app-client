@@ -1,7 +1,7 @@
-var Constants = {
+/*var Constants = {
 	sopEndpointURL : endpointObj["galaxy.project.sop.endpoint"],
 	reportEndpointURL : endpointObj["galaxy.project.report.endpoint"]
-}
+}*/
 
 var platformUrl = {
 	/**
@@ -11,11 +11,11 @@ var platformUrl = {
 	/**
 	 * 跳转到首页
 	 */
-	toIndex : Constants.sopEndpointURL + "/galaxy/redirect",
+//	toIndex : Constants.sopEndpointURL + "/galaxy/redirect",
 	/**
 	 * 用户管理首页
 	 */
-	userIndex : "/galaxy/user",
+	userIndex : "galaxy/user",
 	/**
 	 * 分页查询
 	 */
@@ -37,6 +37,10 @@ var platformUrl = {
 	 * 查询部门
 	 */
 	getDepartList : "galaxy/user/departmentList",
+	/**
+	 * 查询用户 自动补全
+	 */
+	getUserList : "galaxy/user/userList",
 
 	/**
 	 * 数据字典首页

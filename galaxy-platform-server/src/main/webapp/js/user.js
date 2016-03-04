@@ -1,6 +1,7 @@
 //用户相关的js
 var deptList ={};
 var deptListByType ={};
+var userList = {};
  $(function() {
 
 	var deptSelect =$('#selectDept'); 
@@ -9,7 +10,7 @@ var deptListByType ={};
 	sendGetRequest(platformUrl.getDepartList,null,callbackFun,null);
 	$(deptList).each(function(){
 		var item = $(this)[0];
-		console.log(item);
+	//	console.log(item);
 		var option = "<option value='"+item.id+"'>"+item.name+"</option>"
 		deptSelect.append(option);
 	});
@@ -139,14 +140,54 @@ function callbackFun1(data){
 	deptListByType =data.entityList;
   	
  }
+function setData(data){
+	
+	userList =data.entityList;
+	console.log(userList);
+  	
+ }
 function doSumbit(){
 	var deptSelect1 =$('#selectId'); 
+	
+	//获取用户列表作为 typehead数据源
+	sendGetRequest(platformUrl.getUserList,null,setData,null);
+	var objMap = {}; 
+	//typehead
+	$("#realName").typeahead({
+	    source: function (query, process) {  
+            var names = [];  
+            $.each(userList, function (index, ele) {  
+                objMap[ele.realName] = ele.id;  
+                names.push(ele.realName);  
+                console.log(ele.realName);
+            });  
+            process(names);//调用处理函数，格式化  
+        }, 
+
+	    items: 8,//最多显示个数
+	    updater: function (item) {
+	    	    // $('#realName').val(item.name);
+	             return item;
+	             },
+	   
+	    displayText: function (item) {
+	    	console.log(item);
+	        return "\"" + item.name+ "\" [" + item.initials+ "]";
+	    },
+	    autoSelect:true,
+	    afterSelect: function (item) {
+	    	console.log(objMap[item]);//取出选中项的值 
+	        return this.$element.val(item.name);
+	    },
+	    delay: 0//延迟时间
+	});
+	
 	
 	var json={"type":1};
 	sendGetRequest(platformUrl.getDepartList,json,callbackFun1,null);
 	$(deptListByType).each(function(){
 		var item = $(this)[0];
-		console.log(item);
+	//	console.log(item);
 		var option = "<option value='"+item.id+"'>"+item.name+"</option>"
 		deptSelect1.append(option);
 	});

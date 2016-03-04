@@ -180,7 +180,7 @@
 	</div>
 	<script src="js/layer/layer.js" type="text/javascript"></script>
 	<script src="js/user.js" type="text/javascript"></script>
-	
+	<script src="js/bootstrap3-typeahead.js"></script>
 
 
 

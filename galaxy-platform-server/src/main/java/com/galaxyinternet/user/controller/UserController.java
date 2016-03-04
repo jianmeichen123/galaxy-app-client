@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.galaxyinternet.bo.UserBo;
 import com.galaxyinternet.common.controller.BaseControllerImpl;
 import com.galaxyinternet.exception.PlatformException;
-import com.galaxyinternet.framework.core.constants.Constants;
 import com.galaxyinternet.framework.core.constants.UserConstant;
 import com.galaxyinternet.framework.core.model.Page;
 import com.galaxyinternet.framework.core.model.PageRequest;
@@ -224,4 +223,32 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		return responseBody;
 	}
 
+	/**
+	 * 获取部门列表
+	 * @author zhaoying
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/userList", method = RequestMethod.GET)
+	public ResponseData<User> userList() {
+
+		ResponseData<User> responseBody = new ResponseData<User>();
+		try {
+			// 用户列表
+			List<User> userList = userService.queryAll();
+			
+			responseBody.setEntityList(userList);
+			responseBody.setResult(new Result(Status.OK, ""));
+			return responseBody;
+
+		} catch (PlatformException e) {
+			responseBody
+					.setResult(new Result(Status.ERROR, "userList faild"));
+
+			if (logger.isErrorEnabled()) {
+				logger.error("userList ", e);
+			}
+		}
+		return responseBody;
+	}
 }
