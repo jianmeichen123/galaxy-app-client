@@ -79,10 +79,10 @@
 				<!-- dubbo -->
 				<dubbo.application.name>galaxyDubboprovider</dubbo.application.name>
 				<dubbo.protocol.name>dubbo</dubbo.protocol.name>
-				<dubbo.registry.address>zookeeper://10.9.210.22:12181?client=zkclient</dubbo.registry.address>
+				<dubbo.registry.address>zookeeper://127.0.0.1:2181?client=zkclient</dubbo.registry.address>
 				<dubbo.protocol.port>8081</dubbo.protocol.port>
 
-				<galaxy.project.sop.endpoint>http://127.0.0.1:8888/</galaxy.project.sop.endpoint>
+				<galaxy.project.sop.endpoint>http://127.0.0.1:8888/galaxy-sop-server</galaxy.project.sop.endpoint>
 				<galaxy.project.report.endpoint>http://127.0.0.1:8866/</galaxy.project.report.endpoint>
 
 				<!-- memcached <memcached.list_1.ip>192.168.101.22</memcached.list_1.ip> 
