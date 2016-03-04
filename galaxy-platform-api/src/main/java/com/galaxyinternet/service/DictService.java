@@ -80,7 +80,6 @@ public interface DictService extends BaseService<Dict> {
 	 */
 	int updateByCode(Dict entity);
 	
-	List<Dict> selectAll();
 }
 
 
