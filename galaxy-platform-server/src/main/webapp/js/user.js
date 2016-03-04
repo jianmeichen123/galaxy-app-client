@@ -18,18 +18,6 @@ var deptListByType ={};
 	
 });
 
-function save(){
-	alert("save")
-	var pop = $("#pop");
-	var json = {};
-	$(pop).find("input").each(function(){
-		if($(this).val().trim()!=""){
-			json[$(this).attr("name")]= $(this).val();
-		}
-	});
-	
-	console.log(json);
-}
 //检索
 function searchForm() {
 	var re = /^[0-9]+.?[0-9]*$/;
@@ -70,7 +58,7 @@ function searchForm() {
 		dataType : "json",
 		cache : false,
 		error : function() {
-			alert('查询失败');
+			layer.msg('查询失败');
 		},
 		success : function(data) {
 			//填充列表
@@ -92,10 +80,10 @@ function add() {
 		dataType : "json",
 		cache : false,
 		error : function() {
-			alert('添加失败');
+			layer.msg('添加失败');
 		},
 		success : function(data) {
-			alert("添加成功")
+			layer.msg("添加成功")
 		}
 	});
 }
@@ -114,10 +102,10 @@ function disableUser(userId, status) {
 		dataType : "json",
 		cache : false,
 		error : function() {
-			alert('操作失败');
+			layer.msg('操作失败');
 		},
 		success : function(data) {
-			alert("操作成功")
+			layer.msg("操作成功")
 		}
 	});
 }
@@ -136,10 +124,10 @@ function resetPwd(userId) {
 		dataType : "json",
 		cache : false,
 		error : function() {
-			alert('密码重置失败');
+			layer.msg('密码重置失败');
 		},
 		success : function(data) {
-			alert("密码已重置")
+			layer.msg("密码已重置")
 		}
 	});
 }
@@ -151,7 +139,7 @@ function callbackFun1(data){
 	deptListByType =data.entityList;
   	
  }
-function test(){
+function doSumbit(){
 	var deptSelect1 =$('#selectId'); 
 	
 	var json={"type":1};
@@ -166,6 +154,42 @@ function test(){
 	$("#popTxt").on("click","a[action='save']",function() {
 		var pop = $("#pop");
 		var json = {};
+		
+		if (pop.find("input[name='realName']").val()==""){
+			layer.msg("请填写真实姓名");
+			return;
+		}
+		
+		if (pop.find("input[name='employNo']").val()==""){
+			layer.msg("请填写工号");
+			return;
+		}
+
+		if (pop.find('input:radio[name="gender"]:checked').val()==null){
+			layer.msg("请选择性别");
+			return;
+		}
+		if (pop.find("input[name='email']").val()==""){
+			layer.msg("请填写邮箱");
+			return;
+		}
+		if (pop.find("input[name='nickName']").val()==""){
+			layer.msg("请填写登录名");
+			return;
+		}
+		if (pop.find("input[name='mobile']").val()==""){
+			layer.msg("请填写邮手机号");
+			return;
+		}
+	
+		if (pop.find('input:radio[name="departmentId"]:checked').val()==null){
+			layer.msg("请选择职能部门");
+			return;
+		}
+		if (pop.find('input:radio[name="roleId"]:checked').val()==null){
+			layer.msg("请选择角色");
+			return;
+		}
 		$(pop).find("input").each(function(){
 			if($(this).val().trim()!=""){
 				json[$(this).attr("name")]= $(this).val();
@@ -179,7 +203,6 @@ function test(){
 		if(json['departmentId']=="on"&&departId!=''){
 			json['departmentId'] = departId;
 		}
-		console.log(json);
 		$.ajax({
 			url : platformUrl.addUser,
 			data : JSON.stringify(json),
@@ -189,10 +212,19 @@ function test(){
 			dataType : "json",
 			cache : false,
 			error : function() {
-				alert('添加失败');
+				layer.msg("添加失败");
 			},
 			success : function(data) {
-				alert("添加成功")
+				//清除表单数据
+				$(pop).find("input").each(function(){
+					if($(this).val().trim()!=""){
+						json[$(this).attr("name")]= null;
+					}
+				});
+				//刷新列表
+				
+				
+				layer.msg("添加成功");
 			}
 		});
 	});
