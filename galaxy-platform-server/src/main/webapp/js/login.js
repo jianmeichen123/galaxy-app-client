@@ -49,8 +49,13 @@ function checkform(){
  }
  
  function callbackFun(data){
-	var sessionId = data.header.sessionId;
-  	var userId = data.header.userId;
-  	var loginName = data.header.loginName;
-  	location.href=platformUrl.toIndex+ "?sid=" + sessionId;
+	 if(data.result.status=="OK"){
+		 var sessionId = data.header.sessionId;
+		  	var userId = data.header.userId;
+		  	var loginName = data.header.loginName;
+		  	location.href=platformUrl.toIndex+ "?sid=" + sessionId;
+	 }else{
+		 layer.msg(data.result.message);
+	 }
+	
  }
