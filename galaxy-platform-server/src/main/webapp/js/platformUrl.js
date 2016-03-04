@@ -1,7 +1,7 @@
-/*var Constants = {
+var Constants = {
 	sopEndpointURL : endpointObj["galaxy.project.sop.endpoint"],
 	reportEndpointURL : endpointObj["galaxy.project.report.endpoint"]
-}*/
+}
 
 var platformUrl = {
 	/**
@@ -11,7 +11,7 @@ var platformUrl = {
 	/**
 	 * 跳转到首页
 	 */
-//	toIndex : Constants.sopEndpointURL + "/galaxy/redirect",
+    toIndex : Constants.sopEndpointURL + "/galaxy/redirect",
 	/**
 	 * 用户管理首页
 	 */
