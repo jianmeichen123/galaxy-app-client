@@ -1,16 +1,21 @@
 /**
  * 数据字典页面js
  */
+var dicts = null;
+var select_tr = null;
 $(function() {
-	var parentDicts = getDictList("XHHL");
-	if (parentDicts.length > 0) {
+	sendPostRequestByJsonObj( platformUrl.dictFindByParentCode + "xhhl", null, getDictList, "V0VCNzc0MDE0NTY5MTI5NDI4OTQzOTQ4NjQxNDI5NzQ5NzYx");
+	
+	if (dicts.length > 0) {
 		var parent_dict_div = $("#dict_parent");
-		$(parentDicts).each(function() {
+		$(dicts).each(function() {
 			var dict = $(this)[0];
-			var li = '<li data-tab="nav" ' + ' code="' + dict.code + '"' + '>' + dict.name + '</li>';
-			parent_dict_div.append(li);
+			if(dict.code !=""){
+				var li = '<li data-tab="nav" ' + ' code="' + dict.code + '"' + '>' + dict.name + '</li>';
+				parent_dict_div.append(li);
+			}
 		});
-		showSonDict(parentDicts[0].code, parentDicts[0].name);
+		showSonDict(dicts[0].code, dicts[0].name);
 	}
 	/**
 	 * 添加一行
@@ -110,73 +115,52 @@ function save(tr) {
 		json['code'] = tr.attr("code");
 		url = platformUrl.dictUpdate;
 	}
-	$.ajax({
-				url : url,
-				data : JSON.stringify(json),
-				async : false,
-				type : 'POST',
-				contentType : "application/json; charset=UTF-8",
-				dataType : "json",
-				cache : false,
-				error : function() {
-				},
-				success : function(data) {
-					if(data.result.status == "ERROR"){
-						layer.msg(data.result.message);
-					} else if (action == "insert") {
-						var new_dict = data.entity;
-						tr.find("input[name='name']").parent().html(new_dict.name);
-						tr.find("input[name='text']").parent().html(new_dict.text);
-						tr.attr("code", new_dict.code);
-						tr.removeAttr("action");
-						layer.msg("成功");
-					} else if (action == "update") {
-						var name = json["name"];
-						if (name == 'undefined' || name == undefined || name == "") {
-							name = tr.find("input[name='name']").attr("old_val");
-						}
-						var text = json["text"];
-						if (text == 'undefined' || text == undefined || text == "") {
-							text = tr.find("input[name='text']").attr("old_val");
-						}
-						tr.find("td").eq(0).html(name);
-						tr.find("td").eq(1).html(text);
-						tr.removeAttr("action");
-						layer.msg("成功");
-					}
-				}
-			});
+	select_tr = tr;
+	sendPostRequestByJsonObj(url, json, saveCallBack, "V0VCNzc0MDE0NTY5MTI5NDI4OTQzOTQ4NjQxNDI5NzQ5NzYx");
 }
 
-function getDictList(parentCode) {
-	var dicts;
-	$.ajax({
-		url : platformUrl.dictFindByParentCode + parentCode,
-		async : false,
-		type : 'POST',
-		contentType : "application/json; charset=UTF-8",
-		dataType : "json",
-		cache : false,
-		error : function() {
-		},
-		success : function(data) {
-			if (data.result.status == 'OK') {
-				dicts = data.pageList.content;
-			}
+
+function saveCallBack(data){
+	var action = select_tr.attr("action");
+	if(data.result.status == "ERROR"){
+		layer.msg(data.result.message);
+	} else if (action == "insert") {
+		var new_dict = data.entity;
+		select_tr.find("input[name='name']").parent().html(new_dict.name);
+		select_tr.find("input[name='text']").parent().html(new_dict.text);
+		select_tr.attr("code", new_dict.code);
+		select_tr.removeAttr("action");
+		layer.msg("成功");
+	} else if (action == "update") {
+		var name = select_tr.find("input[name='name']").val();
+		if (name == 'undefined' || name == undefined || name == "") {
+			name = select_tr.find("input[name='name']").attr("old_val");
 		}
-	});
-	return dicts;
+		var text = select_tr.find("input[name='text']").val();
+		if (text == 'undefined' || text == undefined || text == "") {
+			text = select_tr.find("input[name='text']").attr("old_val");
+		}
+		select_tr.find("td").eq(0).html(name);
+		select_tr.find("td").eq(1).html(text);
+		select_tr.removeAttr("action");
+		layer.msg("成功");
+	}
+}
+function getDictList(data) {
+	if (data.result.status == 'OK') {
+		dicts = data.pageList.content;
+	}
 }
 
 // 显示
 function showSonDict(code, name) {
-	var sonDicts = getDictList(code);
+	sendPostRequestByJsonObj( platformUrl.dictFindByParentCode + code, null, getDictList, "V0VCNzc0MDE0NTY5MTI5NDI4OTQzOTQ4NjQxNDI5NzQ5NzYx");
 	var tbody = $("#dict_son tbody");
 	$("#dcit_tab h2").html(name);
 	$("#dcit_tab h2").attr("code", code)
 	tbody.html("");
-	if (sonDicts.length > 0) {
-		$(sonDicts).each(function() {
+	if (dicts.length > 0) {
+		$(dicts).each(function() {
 			var dict = $(this)[0];
 			var text = '';
 			if (dict.text != 'undefined' && dict.text != undefined) {

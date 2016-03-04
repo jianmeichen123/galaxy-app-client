@@ -100,8 +100,10 @@
 <script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
 <script src="js/axure.js" type="text/javascript"></script>
 <script src="js/axure_ext.js" type="text/javascript"></script>
+<script src="js/common.js" type="text/javascript"></script>
 <script src="js/layer/layer.js" type="text/javascript"></script>
 <script src="js/platformUrl.js" type="text/javascript"></script>
 <script src="js/dict.js" type="text/javascript"></script>
+
 </body>
 </html>
