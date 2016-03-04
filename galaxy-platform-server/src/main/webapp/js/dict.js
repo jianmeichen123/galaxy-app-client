@@ -4,7 +4,7 @@
 var dicts = null;
 var select_tr = null;
 $(function() {
-	sendPostRequestByJsonObj( platformUrl.dictFindByParentCode + "xhhl", null, getDictList, "V0VCNzc0MDE0NTY5MTI5NDI4OTQzOTQ4NjQxNDI5NzQ5NzYx");
+	sendPostRequestByJsonObj( platformUrl.dictFindByParentCode + "xhhl", null, getDictList,null);
 	
 	if (dicts.length > 0) {
 		var parent_dict_div = $("#dict_parent");
@@ -116,7 +116,7 @@ function save(tr) {
 		url = platformUrl.dictUpdate;
 	}
 	select_tr = tr;
-	sendPostRequestByJsonObj(url, json, saveCallBack, "V0VCNzc0MDE0NTY5MTI5NDI4OTQzOTQ4NjQxNDI5NzQ5NzYx");
+	sendPostRequestByJsonObj(url, json, saveCallBack,null);
 }
 
 
