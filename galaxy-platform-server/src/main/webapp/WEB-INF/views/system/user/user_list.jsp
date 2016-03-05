@@ -14,9 +14,9 @@
 <!-- jsp文件头和头部 -->
 <%@ include file="/WEB-INF/views/common/taglib.jsp"%>
     <!-- bootstrap-table -->
-	<link rel="stylesheet" href="http://static.workflow.com/bootstrap-table/bootstrap-table.css"  type="text/css">
+	<link rel="stylesheet" href="bootstrap-table/bootstrap-table.css"  type="text/css">
 	<!-- datetimepicker -->
-	<link rel="stylesheet" href="http://static.workflow.com/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css"  type="text/css">
+	<link rel="stylesheet" href="bootstrap-datetimepicker/css/bootstrap-datetimepicker.css"  type="text/css">
 		
 <link href="css/axure.css" type="text/css" rel="stylesheet" />
 </head>
@@ -142,11 +142,12 @@
 	<script src="js/layer/layer.js" type="text/javascript"></script>
 	<script src="js/user.js" type="text/javascript"></script>
 	<script src="js/bootstrap3-typeahead.js"></script>
-	<script src="js/bootstrap-table.js"></script>
-	<script src="http://static.workflow.com/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+	<!-- bootstrap-table -->
+	<script src="bootstrap-table/bootstrap-table-xhhl.js"></script>
+	<script src="bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
 	<!-- datetimepicker -->
-	<script src="http://static.workflow.com/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-	<script src="http://static.workflow.com/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+	<script src="bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+	<script src="bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 
 	<script src="js/init.js"></script>	
 
