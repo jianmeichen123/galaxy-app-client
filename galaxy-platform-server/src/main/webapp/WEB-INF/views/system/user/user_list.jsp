@@ -99,7 +99,7 @@
 					    <div class="form-inline" role="form">
 					        <div class="form-group">
 					            <div class="input-group">
-					                <input class="form-control" type="text" placeholder="名称" name="name">
+					                <input class="form-control" type="text" placeholder="名称" name="nickName">
 					            </div>
 					        </div>
 					        <div class="form-group">
