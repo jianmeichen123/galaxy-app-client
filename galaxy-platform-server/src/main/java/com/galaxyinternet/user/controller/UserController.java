@@ -144,7 +144,7 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	@ResponseBody
 	@RequestMapping(value = "/queryUserList", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseData<User> queryUserList(HttpServletRequest request,
-			@RequestBody UserQuery userQuery) {
+			@RequestBody User user) {
 		ResponseData<User> responseBody = new ResponseData<User>();
 /*		Object obj = request.getSession().getAttribute(Constants.SESSION_USER_KEY);
 		if (obj == null) {
@@ -154,8 +154,7 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		}
 */
 		try {
-
-			Page<User> pageUser = userService.queryPageList(userQuery);
+			Page<User> pageUser = userService.queryPageList(user,new PageRequest(user.getPageNum(), user.getPageSize()));
 			responseBody.setPageList(pageUser);
 			responseBody.setResult(new Result(Status.OK, ""));
 			return responseBody;
