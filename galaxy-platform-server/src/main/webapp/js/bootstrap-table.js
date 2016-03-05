@@ -1697,8 +1697,8 @@
                 order: params.sortOrder
             };
             if (this.options.pagination) {
-            	params.size = this.options.pageSize;
-            	params.page = this.options.pageNumber-1;
+            	params.pageSize = this.options.pageSize;
+            	params.pageNum = this.options.pageNumber-1;
             }
         }
         
