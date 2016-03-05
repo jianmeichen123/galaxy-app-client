@@ -21,6 +21,7 @@ import com.galaxyinternet.framework.core.model.Page;
 import com.galaxyinternet.framework.core.model.ResponseData;
 import com.galaxyinternet.framework.core.model.Result;
 import com.galaxyinternet.framework.core.model.Result.Status;
+import com.galaxyinternet.framework.core.query.Query;
 import com.galaxyinternet.framework.core.service.impl.BaseServiceImpl;
 import com.galaxyinternet.framework.core.utils.PWDUtils;
 import com.galaxyinternet.framework.core.utils.SessionUtils;
@@ -127,6 +128,41 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		return responsebody;
 	}
 
+	@Override
+	public Page<User> queryPageList(Query query) {
+		Page<User> page = userDao.selectPageList(query);
+		List<User> content = page.getContent();
+		List<Role> roleList = roleService.queryAll();
+		List<UserRole> userRoleList = userRoleService.queryAll();
+		List<Department> departList = departmentService.queryAll();
+
+		// 拼装关联数据
+		for (User user : content) {
+			for (UserRole userRole : userRoleList) {
+				// 目前一个用户对应一个角色，如果多个角色要考虑覆盖
+				if (user.getId().equals(userRole.getUserId())) {
+					for (Role role:roleList) {
+						if (role.getId().equals(userRole.getRoleId())) {
+							user.setRole(role.getName());
+							user.setRoleId(role.getId());
+						}
+					}
+				}
+			}
+			for (Department dept : departList) {
+				if (user.getDepartmentId().equals(dept.getId())) {
+					user.setDepartmentName(dept.getName());
+
+				}
+			}
+
+		}
+
+		page.setContent(content);
+
+		return page;
+	}
+	
 	@Override
 	public Page<User> queryUserList(User query, Pageable pageable) {
 

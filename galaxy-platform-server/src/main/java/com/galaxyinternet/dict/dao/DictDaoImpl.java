@@ -8,6 +8,7 @@ import org.springframework.util.Assert;
 import com.galaxyinternet.dao.dict.DictDao;
 import com.galaxyinternet.framework.core.dao.impl.BaseDaoImpl;
 import com.galaxyinternet.framework.core.exception.DaoException;
+import com.galaxyinternet.framework.core.query.Query;
 import com.galaxyinternet.model.dict.BatchDictInsetParam;
 import com.galaxyinternet.model.dict.Dict;
 
@@ -108,6 +109,5 @@ public class DictDaoImpl extends BaseDaoImpl<Dict, Long>implements DictDao {
 			throw new DaoException(String.format("查询同一parentCode下value最大值", getSqlName("selectMaxValueByParentCode")), e);
 		}
 	}
-	
 	
 }

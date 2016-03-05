@@ -13,6 +13,11 @@
 
 <!-- jsp文件头和头部 -->
 <%@ include file="/WEB-INF/views/common/taglib.jsp"%>
+    <!-- bootstrap-table -->
+	<link rel="stylesheet" href="http://static.workflow.com/bootstrap-table/bootstrap-table.css"  type="text/css">
+	<!-- datetimepicker -->
+	<link rel="stylesheet" href="http://static.workflow.com/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css"  type="text/css">
+		
 <link href="css/axure.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
@@ -89,88 +94,44 @@
 					</dl>
 				</div>
 			</div>
+			<div class="tab-pane active" id="view">		
+					<div id="custom-toolbar">
+					    <div class="form-inline" role="form">
+					        <div class="form-group">
+					            <div class="input-group">
+					                <input class="form-control" type="text" placeholder="名称" name="name">
+					            </div>
+					        </div>
+					        <div class="form-group">
+					            <div class="input-group">
+					                <input class="form-control" type="date" placeholder="创建时间(开始)" name="createTimeStart">
+					            </div>
+					        	<div class="input-group">
+					                <input class="form-control" type="date" placeholder="创建时间(结束)" name="createTimeEnd">
+					            </div>
+					        </div>
+					        <button type="submit" class="btn btn-default" name="querySearch">搜索</button>
+					    </div>
+					</div>
+					<table id="data-table" data-url="galaxy/user/queryUserList" data-height="555" data-method="post" data-show-refresh="true" 
+					data-side-pagination="server" data-pagination="true" data-page-list="[4, 20, 50]" data-search="false">
+						   <thead>
+						    <tr>
+					        <th data-field="nickName" data-align="center" class="data-input">登陆名称</th>
+					        <th data-field="status" data-align="center" class="data-input">账户状态<</th>
+					        <th data-field="realName" data-align="center" class="col-md-1 status ">真实姓名</th>
+					        <th data-field="gender" data-align="center" >性别</th>
+					        <th data-field="departmentName" data-align="center" >所属部门</th>
+					        <th data-field="role" data-align="center" class="col-md-2" >职能角色</th>
+					        <th data-field="mobile" data-align="center" class="col-md-2" >手机号</th>
+					        <th data-field="telephone" data-align="center" class="col-md-2" >办公分机</th>
+					        <th data-align="center" class="col-md-2" data-formatter="editor">操作</th>
 
+   						 	</tr>	
+   						 	</thead>
+					</table>
+	              </div>
 
-
-			<!--表格内容-->
-			<table width="100%" cellspacing="0" cellpadding="0">
-				<thead>
-					<tr>
-						<th></th>
-						<th class="width_gd">登陆名称</th>
-						<th>账户状态</th>
-						<th>真实姓名</th>
-						<th>性别</th>
-						<th>所属部门</th>
-						<th>职能角色</th>
-						<th>手机号</th>
-						<th>办公分机</th>
-						<th>操作</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${content}" var="user" varStatus="vs">
-						<tr>
-
-							<td><input type="radio" name="document" /></td>
-							<td>${user.nickName }</td>
-							<td><c:if test="${user.status == 0 }"> 正常</c:if> <c:if
-									test="${user.status == 1 }"> 已禁用</c:if></td>
-							<td>${user.realName }</td>
-							<td><c:if test="${user.gender == 0 }"> 男</c:if> <c:if
-									test="${user.gender == 1 }"> 女</c:if></td>
-							<td>${user.departmentId}</td>
-							<td>${user.roleId}</td>
-							<td>${user.mobile}</td>
-							<td>${user.telephone}</td>
-							<td style="width: 60px;">
-								<div class=''>
-									<c:if test="${user.status == 0 }">
-										<a href="disableUser('${user.id }','${user.status }'};"
-											class="blue">禁用</a>
-									</c:if>
-									<c:if test="${user.status == 1 }">
-										<a href="disableUser('${user.id }','${user.status }'};"
-											class="blue">启用</a>
-									</c:if>
-									<a href="resetPwd('${user.id }'};" class="blue">重置密码</a>
-
-
-								</div>
-							</td>
-						</tr>
-
-					</c:forEach>
-					<!--  <tr>
-							<td><input type="radio" name="document" checked /></td>
-							<td>xiaoerzh</td>
-							<td>正常</td>
-							<td>张三</td>
-							<td>男</td>
-							<td>旅游</td>
-							<td>投资经理</td>
-							<td>186021312</td>
-							<td>1059062211</td>
-							<td><a href="#" class="blue">禁用</a><a href="#" class="blue">重置密码</a></td>
-						</tr> -->
-				</tbody>
-			</table>
-
-			<!--分页-->
-			<div class="pagright clearfix">
-				<ul class="paging clearfix">
-					<li>每页<input type="text" class="txt" value="20" />条/共<span>9</span>条记录
-					</li>
-					<li class="margin">共1页</li>
-					<li><a href="javascript:;">|&lt;</a></li>
-					<li><a href="javascript:;">&lt;</a></li>
-					<li><a href="javascript:;">&gt;</a></li>
-					<li><a href="javascript:;">&gt;|</a></li>
-					<li class="jump clearfix">第<input type="text" class="txt"
-						value="1" />页 <input type="button" class="btn margin" value="GO">
-					</li>
-				</ul>
-			</div>
 		</div>
 
 
@@ -181,8 +142,13 @@
 	<script src="js/layer/layer.js" type="text/javascript"></script>
 	<script src="js/user.js" type="text/javascript"></script>
 	<script src="js/bootstrap3-typeahead.js"></script>
+	<script src="js/bootstrap-table.js"></script>
+	<script src="http://static.workflow.com/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+	<!-- datetimepicker -->
+	<script src="http://static.workflow.com/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+	<script src="http://static.workflow.com/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 
-
+	<script src="js/init.js"></script>	
 
 </body>
 </html>

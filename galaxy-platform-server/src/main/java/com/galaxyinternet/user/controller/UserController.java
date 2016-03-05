@@ -29,6 +29,7 @@ import com.galaxyinternet.framework.core.service.BaseService;
 import com.galaxyinternet.framework.core.utils.mail.SimpleMailSender;
 import com.galaxyinternet.model.department.Department;
 import com.galaxyinternet.model.user.User;
+import com.galaxyinternet.query.UserQuery;
 import com.galaxyinternet.service.DepartmentService;
 import com.galaxyinternet.service.UserService;
 
@@ -143,10 +144,8 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	@ResponseBody
 	@RequestMapping(value = "/queryUserList", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseData<User> queryUserList(HttpServletRequest request,
-			@RequestBody User query, PageRequest pageable) {
-
+			@RequestBody UserQuery userQuery) {
 		ResponseData<User> responseBody = new ResponseData<User>();
-
 /*		Object obj = request.getSession().getAttribute(Constants.SESSION_USER_KEY);
 		if (obj == null) {
 			responseBody.setResult(
@@ -156,8 +155,8 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 */
 		try {
 
-			Page<User> page = userService.queryUserList(query, pageable);
-			responseBody.setPageList(page);
+			Page<User> pageUser = userService.queryPageList(userQuery);
+			responseBody.setPageList(pageUser);
 			responseBody.setResult(new Result(Status.OK, ""));
 			return responseBody;
 
