@@ -65,20 +65,19 @@
 			</div>
 
 			<!-- 搜索条件 -->
-			<div class="min_document clearfix">
+			<div class="min_document clearfix"  id="custom-toolbar">
 				<div class="bottom searchall clearfix">
 					<dl class="fmdl fml fmdll clearfix">
-						<dt>账户状态：</dt>
+						<dt>账户状态： </dt>
 						<dd>
-							<label for=""><input type="radio" name="status">不限</label>
-							<label for=""><input type="radio" id="disabled" value="1"
-								name="status">已禁用</label>
+							<label for=""><input type="radio"  value="0" name="status" checked="checked">不限</label>
+							<label for=""><input type="radio" id="disabled" value="1" name="status">已禁用</label>
 						</dd>
 					</dl>
 					<dl class="fmdl fml fmdll clearfix">
 						<dt>所属部门：</dt>
-						<dd>
-							<select id='selectDept'>
+						<dd>  
+							<select id='selectDept'  name="selectDept">
 								<option value="">全部</option>
 							</select>
 						</dd>
@@ -87,34 +86,16 @@
 						<dt></dt>
 						<dd>
 							<input type="text" class="txt" id="search_text"
-								placeholder="请输入姓名或手机号" />
+								placeholder="请输入姓名或手机号" name="nameMbLike" />
 						</dd>
 						<dd>
 							<a href="javascript:void(0)" class="bluebtn ico cx"
-								onclick="searchForm()">查询</a>
+								action="querySearch">查询</a>
 						</dd>
 					</dl>
 				</div>
 			</div>
 			<div class="tab-pane active" id="view">		
-					<div id="custom-toolbar">
-					    <div class="form-inline" role="form">
-					        <div class="form-group">
-					            <div class="input-group">
-					                <input class="form-control" type="text" placeholder="名称" name="nickName">
-					            </div>
-					        </div>
-					        <div class="form-group">
-					            <div class="input-group">
-					                <input class="form-control" type="date" placeholder="创建时间(开始)" name="createTimeStart">
-					            </div>
-					        	<div class="input-group">
-					                <input class="form-control" type="date" placeholder="创建时间(结束)" name="createTimeEnd">
-					            </div>
-					        </div>
-					        <button type="submit" class="btn btn-default" name="querySearch">搜索</button>
-					    </div>
-					</div>
 					<table id="data-table" data-url="galaxy/user/queryUserList" data-height="555" data-method="post" data-show-refresh="true" 
 					data-side-pagination="server" data-pagination="true" data-page-list="[15, 20, 30]" data-search="false">
 						   <thead>
@@ -146,14 +127,20 @@
 		<!-- bootstrap-table -->
 	
 	<script src="http://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.js"></script>
+	<!-- <script src="js/bootstrap3-typeahead.js"></script> -->
+	<!-- bootstrap-table -->
 	<script src="bootstrap-table/bootstrap-table-xhhl.js"></script>
 	<script src="bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
 	<!-- datetimepicker -->
 	<script src="bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 	<script src="bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
-
 	<script src="js/init.js"></script>	
-
+	<script type="text/javascript">
+		function editor(row){
+			return "aa";
+		}
+	
+	</script>
 </body>
 </html>
 
