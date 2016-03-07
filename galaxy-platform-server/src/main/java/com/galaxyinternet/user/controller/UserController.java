@@ -185,8 +185,16 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		ResponseData<UserBo> responseBody = new ResponseData<UserBo>();
 		Result result = new Result();
 		try {
-			userService.updateUser(user);
-			result.setStatus(Status.OK);
+			int value = userService.updateUser(user);
+			System.out.println(value+"");
+			
+			if (value ==1) {
+				result.setStatus(Status.OK);
+			} else {
+				result.setStatus(Status.ERROR);
+				result.addError("系统暂不支持新增用户");
+			}
+			
 		} catch (PlatformException e) {
 			result.addError(e.getMessage());
 		} catch (Exception e) {

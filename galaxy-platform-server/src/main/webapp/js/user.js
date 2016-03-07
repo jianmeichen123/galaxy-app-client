@@ -338,21 +338,28 @@ function doSumbit() {
 								layer.msg("添加失败");
 							},
 							success : function(data) {
-								// 清除表单数据
-								$(pop).find("input").each(function() {
-									if ($(this).val().trim() != "") {
-										json[$(this).attr("name")] = null;
-									}
+								
+								if (data.result.status!="OK")  {
+									layer.msg(data.result.errorCode);
+								} else {
+									// 清除表单数据
+									$(pop).find("input").each(function() {
+										if ($(this).val().trim() != "") {
+											json[$(this).attr("name")] = null;
+										}
 
-								});
-								// 刷新列表
-								// $('#popTxt').close();
+									});
+									
+									// 刷新列表
+									// $('#popTxt').close();
 
-								layer.msg("添加成功", {
-									time : 1000
-								}, function() {
-									history.go(0);
-								});
+									layer.msg("添加成功", {
+										time : 1000
+									}, function() {
+										history.go(0);
+									});
+								}
+								
 							}
 						});
 					});

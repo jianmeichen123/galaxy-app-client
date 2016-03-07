@@ -1,5 +1,7 @@
 package com.galaxyinternet.user.service;
 
+import static com.galaxyinternet.utils.ValidationUtil.throwPlatformException;
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +33,7 @@ import com.galaxyinternet.service.DepartmentService;
 import com.galaxyinternet.service.RoleService;
 import com.galaxyinternet.service.UserRoleService;
 import com.galaxyinternet.service.UserService;
+import com.galaxyinternet.utils.MessageStatus;
 
 @Service("com.galaxyinternet.service.UserService")
 public class UserServiceImpl extends BaseServiceImpl<User> implements UserService {
@@ -66,6 +69,10 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	@Override
 	public int resetPwd(Long userId) {
 		User user = userDao.selectById(userId);
+		if (user.getOriginPassword() == null) {
+			throwPlatformException(MessageStatus.FIELD_NOT_ALLOWED_EMPTY, "原始密码");
+		}
+		
 		// 加密
 		user.setPassword(PWDUtils.genernateNewPassword(user.getOriginPassword()));
 		return super.updateById(user);
@@ -199,6 +206,11 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
     @Transactional
     public int updateUser(UserBo user) {
         int result1 = userDao.updateById(user);
+       
+        if (user.getId()==null || user.getRoleId() == null) {
+        	throwPlatformException(MessageStatus.FIELD_NOT_ALLOWED_EMPTY, "不能新建用户,用户ID");
+        }
+        
         UserRole userRole = new UserRole();
         userRole.setRoleId(user.getRoleId());
         userRole.setUserId(user.getId());
