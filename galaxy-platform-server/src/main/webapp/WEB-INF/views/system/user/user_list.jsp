@@ -13,6 +13,8 @@
 
 <!-- jsp文件头和头部 -->
 <%@ include file="/WEB-INF/views/common/taglib.jsp"%>
+
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"  type="text/css">
     <!-- bootstrap-table -->
 	<link rel="stylesheet" href="bootstrap-table/bootstrap-table.css"  type="text/css">
 	<!-- datetimepicker -->
@@ -95,7 +97,7 @@
 			</div>
 			<div class="tab-pane active" id="view">		
 					<table id="data-table" data-url="galaxy/user/queryUserList" data-height="555" data-method="post" data-show-refresh="true" 
-					data-side-pagination="server" data-pagination="true" data-page-list="[4, 20, 50]" data-search="false">
+					data-side-pagination="server" data-pagination="true" data-page-list="[2, 4, 10]" data-search="false">
 						   <thead>
 						    <tr>
 					        <th data-field="nickName" data-align="center" class="data-input">登陆名称</th>

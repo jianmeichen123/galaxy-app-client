@@ -126,8 +126,9 @@ function saveCallBack(data){
 		layer.msg(data.result.message);
 	} else if (action == "insert") {
 		var new_dict = data.entity;
-		select_tr.find("input[name='name']").parent().html(new_dict.name);
-		select_tr.find("input[name='text']").parent().html(new_dict.text);
+		select_tr.find("input[name]").each(function(){
+			$(this).parent().html($(this).val());
+		});
 		select_tr.attr("code", new_dict.code);
 		select_tr.removeAttr("action");
 		layer.msg("成功");
