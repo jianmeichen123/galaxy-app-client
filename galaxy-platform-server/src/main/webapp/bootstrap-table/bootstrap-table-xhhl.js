@@ -1650,10 +1650,8 @@
     BootstrapTable.prototype.getCustomToolbar = function () {
     	var toolbar = $("#custom-toolbar");
     	var query = {};
-    	
     	toolbar.find("input[name][type!='radio']").each(function(){
     		var input = $(this);
-    		console.log(input.val());
     		var name = input.attr("name");
     		var val = input.val();
     		if(val!=''){
@@ -1663,7 +1661,7 @@
     	toolbar.find("input[type='radio']").each(function(){
     		var input = $(this);
     		var name = input.attr("name");
-    		if(input.attr("checked")=="checked"){
+    		if(input.attr("checked")=="checked"||input.prop("checked")==true){
     			var val = input.val();
         		if(val!=''){
         			query[name]=val;
