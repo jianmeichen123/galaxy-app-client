@@ -106,7 +106,9 @@ function disableUser(id, status) {
 			layer.msg('操作失败');
 		},
 		success : function(data) {
-			layer.msg("操作成功",function(){
+			layer.msg("操作成功",{
+			    time: 1000 
+			},function(){
 				history.go(0);
 			});
 		}
@@ -311,8 +313,11 @@ function doSumbit(){
 				//刷新列表
 //				$('#popTxt').close();
 				
-				layer.msg("添加成功");
-				history.go(0);
+				layer.msg("添加成功",{
+				    time: 1000 
+				},function(){
+					history.go(0);
+				});
 			}
 		});
 	});
