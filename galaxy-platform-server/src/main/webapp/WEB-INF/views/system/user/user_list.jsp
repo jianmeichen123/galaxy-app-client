@@ -96,8 +96,8 @@
 				</div>
 			</div>
 			<div class="tab-pane active" id="view">		
-					<table id="data-table" data-url="galaxy/user/queryUserList" data-height="555" data-method="post" data-show-refresh="true" 
-					data-side-pagination="server" data-pagination="true" data-page-list="[15, 20, 30]" data-search="false">
+					<table id="data-table" data-url="galaxy/user/queryUserList" data-height="555" data-method="post" data-show-refresh="false" 
+					data-side-pagination="server" data-pagination="true" data-page-list="[2, 20, 30]" data-search="false">
 						   <thead>
 						    <tr>
 					        <th data-field="nickName" data-align="center" class="data-input">登陆名称</th>
@@ -108,16 +108,17 @@
 					        <th data-field="role" data-align="center" class="col-md-2" >职能角色</th>
 					        <th data-field="mobile" data-align="center" class="col-md-2" >手机号</th>
 					        <th data-field="telephone" data-align="center" class="col-md-2" >办公分机</th>
-					        <th data-align="center" class="col-md-2" data-formatter="editor">操作</th>
-
+					        
+					        <th data-align="center" class="col-md-2" data-formatter="del" del-by="id">删除</th>
+							<th data-align="center" class="col-md-2" data-formatter="update">更新</th>
+							<th data-align="center" class="col-md-2" data-formatter="detail">查看</th>
+  
    						 	</tr>	
    						 	</thead>
 					</table>
 	              </div>
 
 		</div>
-
-
 
 
 	</div>
@@ -135,12 +136,6 @@
 	<script src="bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 	<script src="bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 	<script src="js/init.js"></script>	
-	<script type="text/javascript">
-		function editor(row){
-			return "aa";
-		}
-	
-	</script>
 </body>
 </html>
 

@@ -497,11 +497,12 @@
     
     BootstrapTable.prototype.initCustomToolbar = function () {
     	
+    	var that = $(this);
     	$("#custom-toolbar").on("click","button[type='submit']",function(){
-    		$('#data-table').bootstrapTable("querySearch");
+    		that.trigger("querySearch");
     	});
     	$("#custom-toolbar").on("click","a[action='querySearch']",function(){
-    		$('#data-table').bootstrapTable("querySearch");
+    		that.trigger("querySearch");
     	});
 	}
     BootstrapTable.prototype.initLocale = function () {
@@ -1542,7 +1543,7 @@
         }
 
         // click to select by column
-        this.$body.find('> tr[data-index] > td').off('click dblclick').on('click dblclick', function (e) {
+        this.$body.find('> tr[data-index] > td').off(' dblclick').on('click dblclick', function (e) {
             var $td = $(this),
                 $tr = $td.parent(),
                 item = that.data[$tr.data('index')],
@@ -1698,7 +1699,6 @@
         }
 
         if (this.options.queryParamsType === 'limit') {
-        	console.log("limit");
             params = {
                 search: params.searchText,
                 sort: params.sortName,
@@ -1713,7 +1713,6 @@
         }
         ///修改
         if (this.options.queryParamsType === 'size|page') {
-        	console.log("size|page")
             params = {
                 search: params.searchText,
                 sort: params.sortName,
@@ -2055,7 +2054,6 @@
 
     BootstrapTable.prototype.load = function (data) {
         var fixedScroll = false;
-        console.log(data);
         // #431: support pagination
         if (this.options.sidePagination === 'server') {
         	//修改
