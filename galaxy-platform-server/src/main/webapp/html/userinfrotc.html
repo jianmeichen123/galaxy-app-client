@@ -3,9 +3,11 @@
   <div class="userinfro">
 
   <dl>
+  <div class="ui-widget">
     <dt>真实姓名：</dt>
-    <dd><input type="text"  class="input-sm form-control" id="realName" name="realName" data-provide="typeahead" /></dd>
-    <dd><input type="hidden" id="userId" name="id" value="1"/></dd>
+    <dd><input type="text"  class="input-sm form-control" id="realName" name="realName"  /></dd>
+    <dd><input type="hidden" id="userId" name="id" value=""/></dd>
+  </div>
   </dl>
   <dl>
     <dt>工号：</dt>
@@ -20,7 +22,7 @@
   </dl>
   <dl>
     <dt>出生日期：</dt>
-    <dd>1989-01-01</dd>
+    <dd><input type="text" id="birth" name="birth" value=""/></dd>
   </dl>
   <dl>
     <dt>公司邮箱：</dt>
@@ -47,7 +49,7 @@
     <dd>
       <div class="top">
         <label for="">
-          <input type="radio" name="departmentId">
+          <input type="radio" value="10000" name="departmentId">
           <select id='selectId'>
             <option value="">投资线</option>
           </select>

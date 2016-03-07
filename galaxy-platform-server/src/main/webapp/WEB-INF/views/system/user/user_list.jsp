@@ -21,6 +21,7 @@
 	<link rel="stylesheet" href="bootstrap-datetimepicker/css/bootstrap-datetimepicker.css"  type="text/css">
 		
 <link href="css/axure.css" type="text/css" rel="stylesheet" />
+<link href="css/jquery-ui.min.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
 	<div class="header clearfix">
@@ -128,6 +129,7 @@
 	
 	<script src="http://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.js"></script>
 	<!-- <script src="js/bootstrap3-typeahead.js"></script> -->
+	<script src="js/jquery-ui.min.js"></script>
 	<!-- bootstrap-table -->
 	<script src="bootstrap-table/bootstrap-table-xhhl.js"></script>
 	<script src="bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>

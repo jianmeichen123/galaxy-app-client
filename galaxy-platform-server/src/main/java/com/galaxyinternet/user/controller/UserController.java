@@ -29,7 +29,6 @@ import com.galaxyinternet.framework.core.service.BaseService;
 import com.galaxyinternet.framework.core.utils.mail.SimpleMailSender;
 import com.galaxyinternet.model.department.Department;
 import com.galaxyinternet.model.user.User;
-import com.galaxyinternet.query.UserQuery;
 import com.galaxyinternet.service.DepartmentService;
 import com.galaxyinternet.service.UserService;
 
@@ -102,7 +101,7 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 				+ "您好，您密码已重置，请点击地址：http://localhost:8000/controller/vcs/login/toLogin  登陆 "
 				+ "	</a>" + "</div>" + "</body>" + "</html>";// 邮件内容
 		String subject = "重置密码通知";// 邮件主题
-		//SimpleMailSender.sendHtmlMail(toMail, subject, content);
+		SimpleMailSender.sendHtmlMail(toMail, subject, content);
 		
 		responseBody.setResult(new Result(Status.OK, user));
 		return responseBody;
@@ -229,15 +228,17 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/userList", method = RequestMethod.GET)
-	public ResponseData<User> userList() {
-
+	public ResponseData<User> userList(HttpServletRequest request) {
+		String realName = request.getParameter("realName") ;
+		User user = new User();
+		user.setRealName(realName);
 		ResponseData<User> responseBody = new ResponseData<User>();
 		try {
 			// 用户列表
-			List<User> userList = userService.queryAll();
-			
-			responseBody.setEntityList(userList);
+			Page<User> pageUser = userService.queryUserList(user,null);
+			responseBody.setPageList(pageUser);
 			responseBody.setResult(new Result(Status.OK, ""));
+//			responseBody.setEntityList(userList);
 			return responseBody;
 
 		} catch (PlatformException e) {

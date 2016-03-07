@@ -149,42 +149,81 @@ function setData(data){
   	
  }
 function doSumbit(){
+	
 	var deptSelect1 =$('#selectId'); 
 	
-	//获取用户列表作为 typehead数据源
-	sendGetRequest(platformUrl.getUserList,null,setData,null);
-	var objMap = {}; 
-	//typehead
-	$("#realName").typeahead({
-	    source: function (query, process) {  
-            var names = [];  
-            $.each(userList, function (index, ele) {  
-                objMap[ele.realName] = ele.id;  
-                names.push(ele.realName);  
-                console.log(ele.realName);
-            });  
-            process(names);//调用处理函数，格式化  
-        }, 
-
-	    items: 8,//最多显示个数
-	    updater: function (item) {
-	    	    // $('#realName').val(item.name);
-	             return item;
-	             },
-	   
-	    displayText: function (item) {
-	    	console.log(item);
-	        return "\"" + item.name+ "\" [" + item.initials+ "]";
-	    },
-	    autoSelect:true,
-	    afterSelect: function (item) {
-	    	console.log(objMap[item]);//取出选中项的值 
-	        return this.$element.val(item.name);
-	    },
-	    delay: 0//延迟时间
-	});
 	
-	
+	    $( "#realName" ).autocomplete({
+	      /*source: function( request, response ) {
+	        var matcher = new RegExp( $.ui.autocomplete.escapeRegex( request.term ), "i" );
+	        response( $.grep( names, function( value ) {
+	          value = value.label || value.value || value;
+	          return matcher.test( value ) || matcher.test( normalize( value ) );
+	        }) );
+	      },*/
+	    source:function( request, response ) {
+	    	  $.ajax({              
+	    	  url: platformUrl.getUserList, 
+	    	  dataType: "json", 
+	    	  contentType : "application/json; charset=UTF-8",
+	    	  data:{                    
+	    		  realName: request.term           
+	    		  },
+	    	  type : 'GET',
+	    	 /* data:{                    
+	    		  searchDbInforItem: request.term   
+	    		  },  */        
+	    		  success: function( data ) {   
+	    			  response( $.map(data.pageList.content, function( item ) { 
+	    				  return {                              
+	    					    label: item.realName,    //显示在匹配下拉框的内容
+//								mytext: item.mail,    //可以自定义，用来赋值给其他input框或div域
+//								value: item.displayname,    //是返回值属性         
+	    					    id:item.id,
+	    					    employNo:item.employNo,       
+	    					    gender:item.gender,  
+	    					    birth:item.birth,
+	    					    email:item.email,       
+	    					    nickName:item.nickName,         
+	    					    mobile:item.mobile,   
+	    					    telephone: item.telephone,     
+	    					    address:item.address,  
+	    					    roleId:item.roleId,  
+	    					    departmentId: item.departmentId
+	    					  }                 
+	    				  }));           
+	    			  }               
+	    		  });         
+	      },
+	      minLength: 1,   
+	      select: function( event, ui ) { 
+	    	  $("#userId").val(ui.item.id);
+	    	   $("#nickName").val(ui.item.nickName);
+	    	   $("#birth").val(ui.item.birth);
+	    	   $("#employNo").val(ui.item.employNo);
+	    	   $("#gender").val(ui.item.gender);
+	    	   if (ui.item.gender ==true) {
+	    		   $("input[name='gender'][value=1]").attr("checked",true); 
+	    	   } else {
+	    		   $("input[name='gender'][value=0]").attr("checked",true); 
+	    	   }
+	    	  
+	    	   $("#email").val(ui.item.email);
+	    	  $("#mobile").val(ui.item.mobile);
+	    	  $("#telephone").val(ui.item.telephone);
+	    	   $("#address").val(ui.item.address);
+	    	  $("#roleId").val(ui.item.roleId);
+	    	  $("input[name='roleId'][value='"+ui.item.roleId+"']").attr("checked",true);
+	    	  
+	    	  if (ui.item.departmentId==100) {
+	    		  $("input[name='departmentId'][value=100]").attr("checked",true); 
+	    	  } else {
+	    		  $("input[name='departmentId'][value=10000]").attr("checked",true); 
+	    		  $("#selectId").val(ui.item.departmentId);
+	    	  }
+	     } 
+	    });
+  
 	var json={"type":1};
 	sendGetRequest(platformUrl.getDepartList,json,callbackFun1,null);
 	$(deptListByType).each(function(){
@@ -243,8 +282,13 @@ function doSumbit(){
 		
 		var val=$('input:radio[name="roleId"]:checked').val();
 		json['roleId'] =val;
-		if(json['departmentId']=="on"&&departId!=''){
+		json['departmentId'] = departId;
+		var value = $("input[name='departmentId']:checked").val();
+		json['departmentId'] = value;
+		
+		if(json['departmentId']=='10000'&&departId!=''){
 			json['departmentId'] = departId;
+			
 		}
 		$.ajax({
 			url : platformUrl.addUser,
@@ -265,10 +309,12 @@ function doSumbit(){
 					}
 				});
 				//刷新列表
+//				$('#popTxt').close();
 				
-				
-				layer.msg("添加成功");
-				
+				layer.msg("添加成功",function(){
+					layer.closeAll();
+				});
+			  
 			}
 		});
 	});
