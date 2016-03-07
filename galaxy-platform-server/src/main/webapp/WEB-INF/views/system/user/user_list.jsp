@@ -68,7 +68,7 @@
 			<div class="min_document clearfix"  id="custom-toolbar">
 				<div class="bottom searchall clearfix">
 					<dl class="fmdl fml fmdll clearfix">
-						<dt>账户状态：</dt>
+						<dt>账户状态： </dt>
 						<dd>
 							<label for=""><input type="radio"  value="0" name="status" checked="checked">不限</label>
 							<label for=""><input type="radio" id="disabled" value="1" name="status">已禁用</label>
@@ -76,7 +76,7 @@
 					</dl>
 					<dl class="fmdl fml fmdll clearfix">
 						<dt>所属部门：</dt>
-						<dd>
+						<dd>  
 							<select id='selectDept'  name="selectDept">
 								<option value="">全部</option>
 							</select>
