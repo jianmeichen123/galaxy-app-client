@@ -134,7 +134,12 @@ function resetPwd(id) {
 			layer.msg('密码重置失败');
 		},
 		success : function(data) {
-			layer.msg("密码已重置");
+			if (data.result.status!="OK")  {
+				layer.msg(data.result.errorCode);
+			} else {
+				layer.msg("密码已重置");
+			}
+			
 		}
 	});
 }

@@ -81,7 +81,7 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	public ResponseData<User> resetPwd(@RequestBody User user) {
 		
 		ResponseData<User> responseBody = new ResponseData<User>();
-		
+		Result result = new Result();
 		try {
 			userService.resetPwd(user.getId());
 			responseBody.setResult(new Result(Status.OK, user));
@@ -102,9 +102,15 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 				+ "您好，您密码已重置，请点击地址：http://localhost:8000/controller/vcs/login/toLogin  登陆 "
 				+ "	</a>" + "</div>" + "</body>" + "</html>";// 邮件内容
 		String subject = "重置密码通知";// 邮件主题
-		SimpleMailSender.sendHtmlMail(toMail, subject, content);
+		boolean bl = SimpleMailSender.sendHtmlMail(toMail, subject, content);
+		if (bl== false) {
+			result.setStatus(Status.ERROR);
+			result.addError("邮件发送失败");
+			responseBody.setResult(result);
+		} else {
+			responseBody.setResult(new Result(Status.OK, ""));
+		}
 		
-		responseBody.setResult(new Result(Status.OK, user));
 		return responseBody;
 	}
 
@@ -186,8 +192,6 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		Result result = new Result();
 		try {
 			int value = userService.updateUser(user);
-			System.out.println(value+"");
-			
 			if (value ==1) {
 				result.setStatus(Status.OK);
 			} else {
