@@ -102,7 +102,7 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 				+ "您好，您密码已重置，请点击地址：http://localhost:8000/controller/vcs/login/toLogin  登陆 "
 				+ "	</a>" + "</div>" + "</body>" + "</html>";// 邮件内容
 		String subject = "重置密码通知";// 邮件主题
-		SimpleMailSender.sendHtmlMail(toMail, subject, content);
+		//SimpleMailSender.sendHtmlMail(toMail, subject, content);
 		
 		responseBody.setResult(new Result(Status.OK, user));
 		return responseBody;
@@ -120,7 +120,7 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		ResponseData<User> responseBody = new ResponseData<User>();
 		try {
 
-			userService.updateByIdSelective(user);
+			userService.updateById(user);
 			responseBody.setResult(new Result(Status.OK, user));
 
 		} catch (PlatformException e) {

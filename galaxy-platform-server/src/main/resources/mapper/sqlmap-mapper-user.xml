@@ -159,7 +159,7 @@
 			<if test="password != null">  password =#{password},</if>
 			<if test="originPassword != null">  origin_password =#{originPassword},</if>
 			<if test="gender != null">  gender =#{gender},</if>
-			<if test="isAdmin != null">  isAdmin =#{isAdmin},</if>
+			<if test="isAdmin != null">  is_admin =#{isAdmin},</if>
 			<if test="address != null">  address =#{address},</if>
 			<if test="birth != null">  birth =#{birth},</if>
 			<if test="createdTime != null">  created_time =#{createdTime},</if>
@@ -180,7 +180,7 @@
 				<if test="password != null"> and password =#{password}</if>
 				<if test="originPassword != null"> and origin_password =#{originPassword}</if>
 				<if test="gender != null"> and gender =#{gender}</if>
-				<if test="isAdmin != null"> and isAdmin =#{isAdmin}</if>
+				<if test="isAdmin != null"> and is_admin =#{isAdmin}</if>
 				<if test="address != null"> and address =#{address}</if>
 				<if test="birth != null"> and birth =#{birth}</if>
 				<if test="createdTime != null"> and created_time =#{createdTime}</if>
@@ -204,7 +204,7 @@
 			<if test="password != null">  password =#{password},</if>
 			<if test="originPassword != null">  origin_password =#{originPassword},</if>
 			<if test="gender != null">  gender =#{gender},</if>
-			<if test="isAdmin != null">  isAdmin =#{isAdmin},</if>
+			<if test="isAdmin != null">  is_admin =#{isAdmin},</if>
 			<if test="address != null">  address =#{address},</if>
 			<if test="birth != null">  birth =#{birth},</if>
 			<if test="createdTime != null">  created_time =#{createdTime},</if>

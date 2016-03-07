@@ -89,14 +89,14 @@ function add() {
 	});
 }
 //禁用用户
-function disableUser(userId, status) {
+function disableUser(id, status) {
 	var data = {
-		'userId' : userId,
+		'id' : id,
 		'status' : status
 	};
 	$.ajax({
 		url : platformUrl.disableUser,
-		data : data,
+		data : JSON.stringify(data),
 		async : false,
 		type : 'POST',
 		contentType : "application/json; charset=UTF-8",
@@ -106,19 +106,21 @@ function disableUser(userId, status) {
 			layer.msg('操作失败');
 		},
 		success : function(data) {
-			layer.msg("操作成功")
+			layer.msg("操作成功",function(){
+				history.go(0);
+			});
 		}
 	});
 }
 
 //重置密码
-function resetPwd(userId) {
+function resetPwd(id) {
 	var data = {
-		'userId' : userId
+		'id' : id
 	};
 	$.ajax({
 		url : platformUrl.resetPwd,
-		data : data,
+		data : JSON.stringify(data),
 		async : false,
 		type : 'POST',
 		contentType : "application/json; charset=UTF-8",
@@ -128,7 +130,7 @@ function resetPwd(userId) {
 			layer.msg('密码重置失败');
 		},
 		success : function(data) {
-			layer.msg("密码已重置")
+			layer.msg("密码已重置");
 		}
 	});
 }
@@ -274,4 +276,14 @@ function doSumbit(){
 
 function useCompanyAddress() {
 	$("#address").val("北京市海淀区上地创新大厦三层");
+}
+
+//操作链接
+function editor(index,row){
+	var id=row.id;
+	var status = row.status;
+	var text = status==1?'启用用户':'禁用用户';
+	var disableUrl ="<a class='' href='javascript:disableUser("+id+","+status+")'>"+text+"</a>";
+	var resetUrl = "<a class='' href='javascript:resetPwd("+id+")'>重置密码</a>";
+	return disableUrl+"  "+resetUrl;
 }

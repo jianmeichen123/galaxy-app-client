@@ -70,7 +70,6 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	@Override
 	public int resetPwd(Long userId) {
 		User user = userDao.selectById(userId);
-		user.setPassword(user.getOriginPassword());
 		// 加密
 		user.setPassword(PWDUtils.genernateNewPassword(user.getOriginPassword()));
 		return super.updateById(user);
