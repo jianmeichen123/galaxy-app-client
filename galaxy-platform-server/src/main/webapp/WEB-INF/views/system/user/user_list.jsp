@@ -116,11 +116,11 @@
 					    </div>
 					</div>
 					<table id="data-table" data-url="galaxy/user/queryUserList" data-height="555" data-method="post" data-show-refresh="true" 
-					data-side-pagination="server" data-pagination="true" data-page-list="[2, 4, 10]" data-search="false">
+					data-side-pagination="server" data-pagination="true" data-page-list="[15, 20, 30]" data-search="false">
 						   <thead>
 						    <tr>
 					        <th data-field="nickName" data-align="center" class="data-input">登陆名称</th>
-					        <th data-field="status" data-align="center" class="data-input">账户状态<</th>
+					        <th data-field="status" data-align="center" class="data-input">账户状态</th>
 					        <th data-field="realName" data-align="center" class="col-md-1 status ">真实姓名</th>
 					        <th data-field="gender" data-align="center" >性别</th>
 					        <th data-field="departmentName" data-align="center" >所属部门</th>
@@ -143,8 +143,9 @@
 	</div>
 	<script src="js/layer/layer.js" type="text/javascript"></script>
 	<script src="js/user.js" type="text/javascript"></script>
-	<script src="js/bootstrap3-typeahead.js"></script>
-	<!-- bootstrap-table -->
+		<!-- bootstrap-table -->
+	
+	<script src="http://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.js"></script>
 	<script src="bootstrap-table/bootstrap-table-xhhl.js"></script>
 	<script src="bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
 	<!-- datetimepicker -->
