@@ -7,7 +7,7 @@ var platformUrl = {
 	/**
 	 * 验证登录
 	 */
-	toLogin : "./galaxy/userlogin/login",
+	toLogin : "galaxy/userlogin/login",
 	/**
 	 * 跳转到首页
 	 */
