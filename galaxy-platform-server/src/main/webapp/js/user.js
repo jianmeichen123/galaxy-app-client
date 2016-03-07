@@ -347,3 +347,13 @@ function formatStatus(index,row) {
 		return "正常";
 	}
 }
+
+function formatDept(index,row) {
+	if (row.departmentName==null) {
+		return "总部职能部门";
+	} else {
+		return row.departmentName;
+	}
+}
+
+
