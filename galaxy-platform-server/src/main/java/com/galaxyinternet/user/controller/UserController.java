@@ -153,7 +153,8 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 			return responseBody;
 		}
 */
-		try {
+		
+		try { 
 			Page<User> pageUser = userService.queryPageList(user,new PageRequest(user.getPageNum(), user.getPageSize()));
 			responseBody.setPageList(pageUser);
 			responseBody.setResult(new Result(Status.OK, ""));
