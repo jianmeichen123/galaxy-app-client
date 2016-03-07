@@ -309,6 +309,7 @@ function doSumbit(){
 					if($(this).val().trim()!=""){
 						json[$(this).attr("name")]= null;
 					}
+					
 				});
 				//刷新列表
 //				$('#popTxt').close();
