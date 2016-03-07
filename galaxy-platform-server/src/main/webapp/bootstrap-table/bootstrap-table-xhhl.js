@@ -496,7 +496,11 @@
     };
     
     BootstrapTable.prototype.initCustomToolbar = function () {
+    	
     	$("#custom-toolbar").on("click","button[type='submit']",function(){
+    		$('#data-table').bootstrapTable("querySearch");
+    	});
+    	$("#custom-toolbar").on("click","a[action='querySearch']",function(){
     		$('#data-table').bootstrapTable("querySearch");
     	});
 	}
@@ -1646,10 +1650,29 @@
     BootstrapTable.prototype.getCustomToolbar = function () {
     	var toolbar = $("#custom-toolbar");
     	var query = {};
-    	toolbar.find("input").each(function(){
+    	toolbar.find("input[name]").each(function(){
     		var input = $(this);
     		var name = input.attr("name");
     		var val = input.val();
+    		if(val!=''){
+    			query[name]=val;
+    		}
+    	});
+    	toolbar.find("input[type='radio']").each(function(){
+    		var input = $(this);
+    		var name = input.attr("name");
+    		if(input.attr("checked")=="checked"){
+    			var val = input.val();
+        		if(val!=''){
+        			query[name]=val;
+        		}
+    		}
+    	});
+    	
+    	toolbar.find("select[name]").each(function(){
+    		var select = $(this);
+    		var name = select.attr("name");
+    		var val = select.val();
     		if(val!=''){
     			query[name]=val;
     		}
@@ -2360,6 +2383,7 @@
     
     ///
     BootstrapTable.prototype.querySearch = function (params) {
+    	console.log("params="+params);
         this.options.pageNumber = 1;
         this.initServer(params && params.silent, params && params.query);
     };
