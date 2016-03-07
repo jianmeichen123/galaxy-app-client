@@ -64,5 +64,5 @@ public interface UserService extends BaseService<User> {
 	 * @param pageable
 	 * @return
 	 */
-	Page<User> queryUserList(User query, Pageable pageable);
+	Page<User> queryUserPageList(User query, Pageable pageable);
 }

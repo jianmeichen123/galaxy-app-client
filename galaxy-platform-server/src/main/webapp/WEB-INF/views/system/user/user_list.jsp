@@ -102,9 +102,9 @@
 						   <thead>
 						    <tr>
 					        <th data-field="nickName" data-align="center" class="data-input">登陆名称</th>
-					        <th data-field="status" data-align="center" class="data-input">账户状态</th>
+					        <th data-field="status" data-align="center" data-formatter="formatStatus" class="data-input">账户状态</th>
 					        <th data-field="realName" data-align="center" class="col-md-1 status ">真实姓名</th>
-					        <th data-field="gender" data-align="center" >性别</th>
+					        <th data-field="gender" data-align="center" data-formatter="formatGender">性别</th>
 					        <th data-field="departmentName" data-align="center" >所属部门</th>
 					        <th data-field="role" data-align="center" class="col-md-2" >职能角色</th>
 					        <th data-field="mobile" data-align="center" class="col-md-2" >手机号</th>

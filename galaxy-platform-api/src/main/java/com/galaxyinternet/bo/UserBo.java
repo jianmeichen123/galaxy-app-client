@@ -8,15 +8,6 @@ public class UserBo extends User {
 	private String extendFiled;// 业务对象中扩展的字段
 	
 
-	public Integer getPageSize() {
-		return pageSize;
-	}
-
-	public void setPageSize(Integer pageSize) {
-		this.pageSize = pageSize;
-	}
-
-
 	public String getExtendFiled() {
 		return extendFiled;
 	}

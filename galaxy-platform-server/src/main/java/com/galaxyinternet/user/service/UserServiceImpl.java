@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.galaxyinternet.bo.UserBo;
 import com.galaxyinternet.dao.user.UserDao;
-import com.galaxyinternet.dao.user.UserRoleDao;
 import com.galaxyinternet.framework.cache.Cache;
 import com.galaxyinternet.framework.core.constants.Constants;
 import com.galaxyinternet.framework.core.dao.BaseDao;
@@ -21,7 +20,6 @@ import com.galaxyinternet.framework.core.model.Page;
 import com.galaxyinternet.framework.core.model.ResponseData;
 import com.galaxyinternet.framework.core.model.Result;
 import com.galaxyinternet.framework.core.model.Result.Status;
-import com.galaxyinternet.framework.core.query.Query;
 import com.galaxyinternet.framework.core.service.impl.BaseServiceImpl;
 import com.galaxyinternet.framework.core.utils.PWDUtils;
 import com.galaxyinternet.framework.core.utils.SessionUtils;
@@ -40,8 +38,6 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 
 	@Autowired
 	private UserDao userDao;
-	@Autowired
-	private UserRoleDao userRoleDao;
 	@Autowired
 	private RoleService roleService;
 	
@@ -127,7 +123,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		return responsebody;
 	}
 
-	@Override
+	/*@Override
 	public Page<User> queryPageList(Query query) {
 		Page<User> page = userDao.selectPageList(query);
 		List<User> content = page.getContent();
@@ -161,9 +157,9 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 
 		return page;
 	}
-	
+	*/
 	@Override
-	public Page<User> queryUserList(User query, Pageable pageable) {
+	public Page<User> queryUserPageList(User query, Pageable pageable) {
 
 		Page<User> page = userDao.selectPageList(query, pageable);
 		List<User> content = page.getContent();

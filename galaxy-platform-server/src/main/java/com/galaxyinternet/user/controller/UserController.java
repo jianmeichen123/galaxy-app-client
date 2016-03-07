@@ -26,6 +26,7 @@ import com.galaxyinternet.framework.core.model.ResponseData;
 import com.galaxyinternet.framework.core.model.Result;
 import com.galaxyinternet.framework.core.model.Result.Status;
 import com.galaxyinternet.framework.core.service.BaseService;
+import com.galaxyinternet.framework.core.utils.StringEx;
 import com.galaxyinternet.framework.core.utils.mail.SimpleMailSender;
 import com.galaxyinternet.model.department.Department;
 import com.galaxyinternet.model.user.User;
@@ -152,9 +153,17 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 			return responseBody;
 		}
 */
+		String nameMbLike = user.getNameMbLike();
 		
+		if (StringUtils.isNotBlank(nameMbLike)) {
+			if(StringEx.isInteger(nameMbLike)) {
+				user.setMobile(nameMbLike);
+			} else {
+				user.setRealName(nameMbLike);
+			}
+		}
 		try { 
-			Page<User> pageUser = userService.queryPageList(user,new PageRequest(user.getPageNum(), user.getPageSize()));
+			Page<User> pageUser = userService.queryUserPageList(user,new PageRequest(user.getPageNum(), user.getPageSize()));
 			responseBody.setPageList(pageUser);
 			responseBody.setResult(new Result(Status.OK, ""));
 			return responseBody;
@@ -235,7 +244,7 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		ResponseData<User> responseBody = new ResponseData<User>();
 		try {
 			// 用户列表
-			Page<User> pageUser = userService.queryUserList(user,null);
+			Page<User> pageUser = userService.queryUserPageList(user,null);
 			responseBody.setPageList(pageUser);
 			responseBody.setResult(new Result(Status.OK, ""));
 //			responseBody.setEntityList(userList);

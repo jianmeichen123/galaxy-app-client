@@ -311,10 +311,8 @@ function doSumbit(){
 				//刷新列表
 //				$('#popTxt').close();
 				
-				layer.msg("添加成功",function(){
-					layer.closeAll();
-				});
-			  
+				layer.msg("添加成功");
+				history.go(0);
 			}
 		});
 	});
@@ -332,4 +330,20 @@ function editor(index,row){
 	var disableUrl ="<a class='' href='javascript:disableUser("+id+","+status+")'>"+text+"</a>";
 	var resetUrl = "<a class='' href='javascript:resetPwd("+id+")'>重置密码</a>";
 	return disableUrl+"  "+resetUrl;
+}
+
+function formatGender(index,row) {
+	if (row.gender==true) {
+		return "男";
+	} else {
+		return "女";
+	}
+}
+
+function formatStatus(index,row) {
+	if (row.status==1) {
+		return "已禁用";
+	} else {
+		return "正常";
+	}
 }

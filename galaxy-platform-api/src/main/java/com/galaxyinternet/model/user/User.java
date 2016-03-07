@@ -28,9 +28,20 @@ public class User extends BaseUser {
 	private Boolean isAdmin;// 是否管理员
 	private Long roleId;// 角色Id
 
+	
+	private String nameMbLike;
+	
 	/*
 	 * private String salt; private String originSalt;
 	 */
+
+	public String getNameMbLike() {
+		return nameMbLike;
+	}
+
+	public void setNameMbLike(String nameMbLike) {
+		this.nameMbLike = nameMbLike;
+	}
 
 	public String getRealName() {
 		return realName;
