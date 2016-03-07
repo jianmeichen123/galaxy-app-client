@@ -2383,7 +2383,6 @@
     
     ///
     BootstrapTable.prototype.querySearch = function (params) {
-    	console.log("params="+params);
         this.options.pageNumber = 1;
         this.initServer(params && params.silent, params && params.query);
     };
