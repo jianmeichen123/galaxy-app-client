@@ -105,7 +105,7 @@
 					        <th data-field="status" data-align="center" data-formatter="formatStatus" class="data-input">账户状态</th>
 					        <th data-field="realName" data-align="center" class="col-md-1 status ">真实姓名</th>
 					        <th data-field="gender" data-align="center" data-formatter="formatGender">性别</th>
-					        <th data-field="departmentName" data-align="center" >所属部门</th>
+					        <th data-field="departmentName" data-align="center" data-formatter="formatDept">所属部门</th>
 					        <th data-field="role" data-align="center" class="col-md-2" >职能角色</th>
 					        <th data-field="mobile" data-align="center" class="col-md-2" >手机号</th>
 					        <th data-field="telephone" data-align="center" class="col-md-2" >办公分机</th>

@@ -151,6 +151,14 @@ function setData(data){
   	
  }
 function doSumbit(){
+	$('#birth').datetimepicker({
+	      format:'yyyy-mm-dd',      //格式化日期
+	      timepicker:true,    //关闭时间选项
+	      minView: "month", 
+	      autoclose: true,
+	      yearEnd:2050,        //设置最大年份
+	      language: 'zh-CN', //汉化 
+	});
 	
 	var deptSelect1 =$('#selectId'); 
 	
@@ -202,6 +210,7 @@ function doSumbit(){
 	    	  $("#userId").val(ui.item.id);
 	    	   $("#nickName").val(ui.item.nickName);
 	    	   $("#birth").val(ui.item.birth);
+	    	   
 	    	   $("#employNo").val(ui.item.employNo);
 	    	   $("#gender").val(ui.item.gender);
 	    	   if (ui.item.gender ==true) {
@@ -288,7 +297,7 @@ function doSumbit(){
 		var value = $("input[name='departmentId']:checked").val();
 		json['departmentId'] = value;
 		
-		if(json['departmentId']=='10000'&&departId!=''){
+		if((json['departmentId']=='10000'||json['departmentId']=='on')&&departId!=''){
 			json['departmentId'] = departId;
 			
 		}
@@ -353,3 +362,13 @@ function formatStatus(index,row) {
 		return "正常";
 	}
 }
+
+function formatDept(index,row) {
+	if (row.departmentName==null) {
+		return "总部职能部门";
+	} else {
+		return row.departmentName;
+	}
+}
+
+
