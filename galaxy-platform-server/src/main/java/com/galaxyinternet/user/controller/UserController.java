@@ -278,7 +278,6 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	/**
 	 * 获取表单提交时的token，防止重复提交
 	 */
-	@Token
 	@ResponseBody
 	@RequestMapping(value = "/formtoken", method = RequestMethod.POST)
 	public String fetchFormToken(HttpServletRequest request) {
