@@ -14,11 +14,9 @@
 <!-- jsp文件头和头部 -->
 <%@ include file="/WEB-INF/views/common/taglib.jsp"%>
 
-	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"  type="text/css">
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"  type="text/css">
     <!-- bootstrap-table -->
-	<link rel="stylesheet" href="bootstrap-table/bootstrap-table.css"  type="text/css">
-	<!-- datetimepicker -->
-	<link rel="stylesheet" href="bootstrap-datetimepicker/css/bootstrap-datetimepicker.css"  type="text/css">
+	<link rel="stylesheet" href="bootstrap/bootstrap-table/bootstrap-table.css"  type="text/css">
 		
 <link href="css/axure.css" type="text/css" rel="stylesheet" />
 <link href="css/jquery-ui.min.css" type="text/css" rel="stylesheet" />
@@ -97,8 +95,7 @@
 				</div>
 			</div>
 			<div class="tab-pane active" id="view">		
-					<table id="data-table" data-url="galaxy/user/queryUserList" data-height="555" data-method="post" data-show-refresh="true" 
-					data-side-pagination="server" data-pagination="true" data-page-list="[15, 20, 30]" data-search="false">
+					<table id="data-table" data-url="galaxy/user/queryUserList"  data-page-list="[15, 20, 30]" >
 						   <thead>
 						    <tr>
 					        <th data-field="nickName" data-align="center" class="data-input">登陆名称</th>
@@ -127,15 +124,11 @@
 	<script src="js/user.js" type="text/javascript"></script>
 		<!-- bootstrap-table -->
 	
-	<script src="http://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.js"></script>
 	<!-- <script src="js/bootstrap3-typeahead.js"></script> -->
 	<script src="js/jquery-ui.min.js"></script>
 	<!-- bootstrap-table -->
-	<script src="bootstrap-table/bootstrap-table-xhhl.js"></script>
-	<script src="bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
-	<!-- datetimepicker -->
-	<script src="bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-	<script src="bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+	<script src="bootstrap/bootstrap-table/bootstrap-table-xhhl.js"></script>
+	<script src="bootstrap/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
 	<script src="js/init.js"></script>	
 </body>
 </html>
