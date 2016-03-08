@@ -1,5 +1,5 @@
 package com.galaxyinternet.user.controller;
-
+import static com.galaxyinternet.framework.core.form.Token.TOKEN;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +20,8 @@ import com.galaxyinternet.bo.UserBo;
 import com.galaxyinternet.common.controller.BaseControllerImpl;
 import com.galaxyinternet.exception.PlatformException;
 import com.galaxyinternet.framework.core.constants.UserConstant;
+import com.galaxyinternet.framework.core.form.Token;
+import com.galaxyinternet.framework.core.form.TokenGenerator;
 import com.galaxyinternet.framework.core.model.Page;
 import com.galaxyinternet.framework.core.model.PageRequest;
 import com.galaxyinternet.framework.core.model.ResponseData;
@@ -271,5 +273,17 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 			}
 		}
 		return responseBody;
+	}
+	
+	/**
+	 * 获取表单提交时的token，防止重复提交
+	 */
+	@Token
+	@ResponseBody
+	@RequestMapping(value = "/formtoken", method = RequestMethod.POST)
+	public String fetchFormToken(HttpServletRequest request) {
+		String token = TokenGenerator.getInstance().generateToken();
+		request.getSession().setAttribute(TOKEN, token);
+		return "{" + TOKEN + ":" + token + "}";
 	}
 }
