@@ -167,7 +167,6 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	*/
 	@Override
 	public Page<User> queryUserPageList(User query, Pageable pageable) {
-		query.getKeyword();
 		Page<User> page = userDao.selectPageList(query, pageable);
 		List<User> content = page.getContent();
 		List<Role> roleList = roleService.queryAll();
