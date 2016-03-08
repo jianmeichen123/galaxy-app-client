@@ -1,53 +1,53 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.galaxyinternet.model.user.User">
-   	<resultMap id="BaseResultMap" type="UserPO">
-		 <id column="id" property="id" />
-		 <result column="employ_no" property="employNo"  />
-		 <result column="real_name" property="realName"  />
-		 <result column="nick_name" property="nickName" />
-		 <result column="email"  property="email" />
-		 <result column="mobile" property="mobile" />
-		 <result column="telephone" property="telephone"  />
-		 <result column="status" property="status"  />
-		 <result column="type" property="type"  />
-		 <result column="department_id" property="departmentId" />
-		 
-		 <result column="department_name" property="departmentName"  />
-		 <result column="role" property="role"  />
-		 <result column="password" property="password"  />
-		 <result column="origin_password" property="originPassword"  />
-		 <result column="gender" property="gender" jdbcType="BIT" />
-         <result column="is_admin" property="isAdmin" jdbcType="BIT" />
-         <result column="birth" property="birth"  />
-         <result column="address" property="address"  />
-		 <result column="created_time" property="createdTime"  />
-		 <result column="updated_time" property="updatedTime"  />
+	<resultMap id="BaseResultMap" type="UserPO">
+		<id column="id" property="id" />
+		<result column="employ_no" property="employNo" />
+		<result column="real_name" property="realName" />
+		<result column="nick_name" property="nickName" />
+		<result column="email" property="email" />
+		<result column="mobile" property="mobile" />
+		<result column="telephone" property="telephone" />
+		<result column="status" property="status" />
+		<result column="type" property="type" />
+		<result column="department_id" property="departmentId" />
 
-    
+		<result column="department_name" property="departmentName" />
+		<result column="role" property="role" />
+		<result column="password" property="password" />
+		<result column="origin_password" property="originPassword" />
+		<result column="gender" property="gender" jdbcType="BIT" />
+		<result column="is_admin" property="isAdmin" jdbcType="BIT" />
+		<result column="birth" property="birth" />
+		<result column="address" property="address" />
+		<result column="created_time" property="createdTime" />
+		<result column="updated_time" property="updatedTime" />
+
+
 	</resultMap>
-	
+
 	<sql id="Base_Column_List">
-        	id,
-        	employ_no,
-        	real_name,
-        	nick_name,
-        	email,
-        	mobile,
-        	telephone,
-        	status,
-        	type,
-        	department_id,
-        	department_name,
-        	role,
-        	password,
-        	origin_password,
-        	gender,
-        	is_admin,
-        	birth,
-        	address,
-        	created_time,
-        	updated_time
+		id,
+		employ_no,
+		real_name,
+		nick_name,
+		email,
+		mobile,
+		telephone,
+		status,
+		type,
+		department_id,
+		department_name,
+		role,
+		password,
+		origin_password,
+		gender,
+		is_admin,
+		birth,
+		address,
+		created_time,
+		updated_time
 	</sql>
 
 	<sql id="Base_Where_Clause">
@@ -63,13 +63,13 @@
 				<if test="telephone != null"> and telephone =#{telephone}</if>
 				<if test="createdTime != null"> and created_time =#{createdTime}</if>
 				<if test="updatedTime != null"> and updated_time =#{updatedTime}</if>
-				<!-- 模糊查询  -->
-				 <if test="keyword != null">    
-				 CONCAT(real_name,mobile)   LIKE '%${keyword}%'
-				 	<if test="escapeChar ">
-				 		  escape '/' 
-				 	</if>
-				 </if>
+				<!-- 模糊查询 -->
+				<if test="keyword != null">
+					CONCAT(real_name,mobile) LIKE '%${keyword}%'
+					<if test="escapeChar ">
+						escape '/'
+					</if>
+				</if>
 			</trim>
 		</where>
 		<if test="sorting != null"> order by ${sorting}</if>
@@ -77,7 +77,7 @@
 			limit #{offset}, #{limit}
 		</if>
 	</sql>
-	
+
 	<!-- 查询总数 -->
 	<select id="selectCount" resultType="java.lang.Long"
 		parameterType="java.util.Map">
@@ -99,8 +99,8 @@
 		<include refid="Base_Column_List" />
 		from t_user where id = #{id}
 	</select>
-	
-  	<insert id="insert" parameterType="UserPO" >
+
+	<insert id="insert" parameterType="UserPO">
 	    <![CDATA[
 	        insert into
 	        t_user (
@@ -142,29 +142,29 @@
         	   #{createdTime}
 	        )
 	    ]]>
-    </insert>
-    
-    <!-- 更新 -->
+	</insert>
+
+	<!-- 更新 -->
 	<update id="updateByIdSelective" parameterType="UserPO">
 		update t_user
 		<set>
-		    <if test="employNo != null">  employ_no =#{employNo},</if>
-			<if test="realName != null">  real_name =#{realName},</if>
-			<if test="nickName != null">  nick_name =#{nickName},</if>
-			<if test="email != null">  email =#{email},</if>
-			<if test="mobile != null">  mobile =#{mobile},</if>
-			<if test="telephone != null">  telephone =#{telephone},</if>
-			<if test="status != null">  status =#{status},</if>
-			<if test="type != null">  type =#{type},</if>
-			<if test="departmentId != null">  department_id =#{departmentId},</if>
-			<if test="password != null">  password =#{password},</if>
-			<if test="originPassword != null">  origin_password =#{originPassword},</if>
-			<if test="gender != null">  gender =#{gender},</if>
-			<if test="isAdmin != null">  is_admin =#{isAdmin},</if>
-			<if test="address != null">  address =#{address},</if>
-			<if test="birth != null">  birth =#{birth},</if>
-			<if test="createdTime != null">  created_time =#{createdTime},</if>
-			<if test="updatedTime != null">  updated_time =#{updatedTime}</if>
+			<if test="employNo != null"> employ_no =#{employNo},</if>
+			<if test="realName != null"> real_name =#{realName},</if>
+			<if test="nickName != null"> nick_name =#{nickName},</if>
+			<if test="email != null"> email =#{email},</if>
+			<if test="mobile != null"> mobile =#{mobile},</if>
+			<if test="telephone != null"> telephone =#{telephone},</if>
+			<if test="status != null"> status =#{status},</if>
+			<if test="type != null"> type =#{type},</if>
+			<if test="departmentId != null"> department_id =#{departmentId},</if>
+			<if test="password != null"> password =#{password},</if>
+			<if test="originPassword != null"> origin_password =#{originPassword},</if>
+			<if test="gender != null"> gender =#{gender},</if>
+			<if test="isAdmin != null"> is_admin =#{isAdmin},</if>
+			<if test="address != null"> address =#{address},</if>
+			<if test="birth != null"> birth =#{birth},</if>
+			<if test="createdTime != null"> created_time =#{createdTime},</if>
+			<if test="updatedTime != null"> updated_time =#{updatedTime}</if>
 		</set>
 		<where>
 			<trim prefixOverrides="and">
@@ -189,42 +189,44 @@
 			</trim>
 		</where>
 	</update>
-    <!-- 通过ID更新 -->
+	<!-- 通过ID更新 -->
 	<update id="updateById" parameterType="UserPO">
 		update t_user
 		<set>
-		    <if test="employNo != null"> employ_no =#{employNo},</if>
-			<if test="realName != null">  real_name =#{realName},</if>
-			<if test="nickName != null">  nick_name =#{nickName},</if>
-			<if test="email != null">  email =#{email},</if>
-			<if test="mobile != null">  mobile =#{mobile},</if>
-			<if test="telephone != null">  telephone =#{telephone},</if>
-			<if test="status != null">  status =#{status},</if>
-			<if test="type != null">  type =#{type},</if>
-			<if test="departmentId != null">  department_id =#{departmentId},</if>
-			<if test="password != null">  password =#{password},</if>
-			<if test="originPassword != null">  origin_password =#{originPassword},</if>
-			<if test="gender != null">  gender =#{gender},</if>
-			<if test="isAdmin != null">  is_admin =#{isAdmin},</if>
-			<if test="address != null">  address =#{address},</if>
-			<if test="birth != null">  birth =#{birth},</if>
-			<if test="createdTime != null">  created_time =#{createdTime},</if>
-			<if test="updatedTime != null">  updated_time =#{updatedTime}</if>
+			<if test="employNo != null"> employ_no =#{employNo},</if>
+			<if test="realName != null"> real_name =#{realName},</if>
+			<if test="nickName != null"> nick_name =#{nickName},</if>
+			<if test="email != null"> email =#{email},</if>
+			<if test="mobile != null"> mobile =#{mobile},</if>
+			<if test="telephone != null"> telephone =#{telephone},</if>
+			<if test="status != null"> status =#{status},</if>
+			<if test="type != null"> type =#{type},</if>
+			<if test="departmentId != null"> department_id =#{departmentId},</if>
+			<if test="password != null"> password =#{password},</if>
+			<if test="originPassword != null"> origin_password =#{originPassword},</if>
+			<if test="gender != null"> gender =#{gender},</if>
+			<if test="isAdmin != null"> is_admin =#{isAdmin},</if>
+			<if test="address != null"> address =#{address},</if>
+			<if test="birth != null"> birth =#{birth},</if>
+			<if test="createdTime != null"> created_time =#{createdTime},</if>
+			<if test="updatedTime != null"> updated_time =#{updatedTime}</if>
 		</set>
 		where id = #{id}
 	</update>
-    
-    <!-- 删除 -->
+
+	<!-- 删除 -->
 	<delete id="delete" parameterType="java.util.Map">
 		delete from t_user
 		<include refid="Base_Where_Clause" />
 	</delete>
-     <!-- 根据ID删除 -->
+	<!-- 根据ID删除 -->
 	<delete id="deleteById" parameterType="java.lang.Long">
-		delete from t_user where id = #{id}
+		delete from t_user where
+		id = #{id}
 	</delete>
-	
-	 	<insert id="insertUserRole" parameterType="com.galaxyinternet.model.user.UserRole"  useGeneratedKeys="true" keyProperty="id">
+
+	<insert id="insertUserRole" parameterType="com.galaxyinternet.model.user.UserRole"
+		useGeneratedKeys="true" keyProperty="id">
 	    <![CDATA[
 	        insert into
 	        t_user_role (
@@ -239,5 +241,5 @@
         	   #{createdTime}
 	        )
 	    ]]>
-    </insert>
+	</insert>
 </mapper>
