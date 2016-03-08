@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.galaxyinternet.bo.UserBo;
 import com.galaxyinternet.common.controller.BaseControllerImpl;
 import com.galaxyinternet.exception.PlatformException;
+import com.galaxyinternet.framework.cache.Cache;
+import com.galaxyinternet.framework.core.constants.Constants;
 import com.galaxyinternet.framework.core.constants.UserConstant;
 import com.galaxyinternet.framework.core.form.TokenGenerator;
 import com.galaxyinternet.framework.core.model.Page;
@@ -28,7 +30,7 @@ import com.galaxyinternet.framework.core.model.ResponseData;
 import com.galaxyinternet.framework.core.model.Result;
 import com.galaxyinternet.framework.core.model.Result.Status;
 import com.galaxyinternet.framework.core.service.BaseService;
-import com.galaxyinternet.framework.core.utils.StringEx;
+import com.galaxyinternet.framework.core.utils.EncodeUtils;
 import com.galaxyinternet.framework.core.utils.mail.SimpleMailSender;
 import com.galaxyinternet.model.department.Department;
 import com.galaxyinternet.model.user.User;
@@ -47,6 +49,9 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	final Logger logger = LoggerFactory.getLogger(UserController.class);
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private Cache cache;
 
 	@Autowired
 	private DepartmentService departmentService;
@@ -272,8 +277,13 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	@ResponseBody
 	@RequestMapping(value = "/formtoken", method = RequestMethod.POST)
 	public String fetchFormToken(HttpServletRequest request) {
-		String token = TokenGenerator.getInstance().generateToken();
-		request.getSession().setAttribute(TOKEN, token);
-		return "{" + TOKEN + ":" + token + "}";
+		String sessionId = request.getHeader(Constants.SESSION_ID_KEY);
+		String tokenKey = request.getRequestURL().append(sessionId).toString();
+		tokenKey = EncodeUtils.encodeUrlSafeBase64(tokenKey.getBytes());
+		String tokenValue = TokenGenerator.getInstance().generateToken();
+		request.getSession().setAttribute(tokenKey, tokenValue);
+		cache.set(tokenKey, Constants.REDIS_TIMEOUT_SECONDS, tokenValue);
+		request.setAttribute(Constants.REQUEST_SCOPE_TOKEN_KEY, tokenKey);
+		return "{" + TOKEN + ":" + tokenValue + "}";
 	}
 }
