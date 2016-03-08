@@ -85,7 +85,7 @@
 						<dt></dt>
 						<dd>
 							<input type="text" class="txt" id="search_text"
-								placeholder="请输入姓名或手机号" name="nameMbLike" />
+								placeholder="请输入姓名或手机号" name="keyword" />
 						</dd>
 						<dd>
 							<a href="javascript:void(0)" class="bluebtn ico cx"

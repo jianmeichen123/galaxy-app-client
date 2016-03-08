@@ -57,21 +57,22 @@
 				<if test="employNo != null"> and employ_no =#{employNo}</if>
 				<if test="nickName != null"> and nick_name =#{nickName}</if>
 				<if test="password != null"> and password =#{password}</if>
-				<if test="realName != null"> and real_name like CONCAT("%",#{realName},"%")</if>
 				<if test="email != null"> and email =#{email}</if>
-				<if test="mobile != null"> and mobile like CONCAT("%",#{mobile},"%")</if>
-				
 				<if test="departmentId != null"> and department_id =#{departmentId}</if>
-				
 				<if test="status != null"> and status =#{status}</if>
 				<if test="telephone != null"> and telephone =#{telephone}</if>
 				<if test="createdTime != null"> and created_time =#{createdTime}</if>
 				<if test="updatedTime != null"> and updated_time =#{updatedTime}</if>
-				<!-- 模糊查询 -->
-				<!-- <if test="nameLike != null">and name like CONCAT("%",#{nameLike},"%")</if> -->
+				<!-- 模糊查询  -->
+				 <if test="keyword != null">    
+				 CONCAT(real_name,mobile)   LIKE '%${keyword}%'
+				 	<if test="escapeChar ">
+				 		  escape '/' 
+				 	</if>
+				 </if>
 			</trim>
 		</where>
-		<if test="sorting != null">order by ${sorting}</if>
+		<if test="sorting != null"> order by ${sorting}</if>
 		<if test="offset != null and limit != null">
 			limit #{offset}, #{limit}
 		</if>

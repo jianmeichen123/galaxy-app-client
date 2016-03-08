@@ -161,15 +161,6 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 			return responseBody;
 		}
 */
-		String nameMbLike = user.getNameMbLike();
-		
-		if (StringUtils.isNotBlank(nameMbLike)) {
-			if(StringEx.isInteger(nameMbLike)) {
-				user.setMobile(nameMbLike);
-			} else {
-				user.setRealName(nameMbLike);
-			}
-		}
 		try { 
 			Page<User> pageUser = userService.queryUserPageList(user,new PageRequest(user.getPageNum(), user.getPageSize()));
 			responseBody.setPageList(pageUser);
