@@ -95,7 +95,7 @@
 				</div>
 			</div>
 			<div class="tab-pane active" id="view">		
-					<table id="data-table" data-url="galaxy/user/queryUserList"  data-page-list="[15, 20, 30]" >
+					<table id="data-table" data-url="galaxy/user/queryUserList"  data-page-list="[2, 10, 30]" >
 						   <thead>
 						    <tr>
 					        <th data-field="nickName" data-align="center" class="data-input">登陆名称</th>
@@ -126,6 +126,8 @@
 	
 	<!-- <script src="js/bootstrap3-typeahead.js"></script> -->
 	<script src="js/jquery-ui.min.js"></script>
+		<!-- bootstrap-table -->
+	<script src="bootstrap/js/bootstrap.min.js"></script>	
 	<!-- bootstrap-table -->
 	<script src="bootstrap/bootstrap-table/bootstrap-table-xhhl.js"></script>
 	<script src="bootstrap/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
