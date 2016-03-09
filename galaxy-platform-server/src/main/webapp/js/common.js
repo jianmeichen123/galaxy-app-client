@@ -33,11 +33,12 @@ function sendPostRequestByJsonObj(reqUrl, jsonObj, callbackFun, sessionId) {
 			alert("connetion error");
 		},
 		success : function(data) {
-			if(data.result.errorCode=="3"){
+			/*var errorCode =data.result.errorCode;
+			if(errorCode!=null&&errorCode=="3"){
 				layer.msg(data.result.message,{time:1000},function(){
 					location.href = platformUrl.toLoginPage;
 				})
-			}
+			}*/
 			if (callbackFun) {
 				callbackFun(data);
 			}
