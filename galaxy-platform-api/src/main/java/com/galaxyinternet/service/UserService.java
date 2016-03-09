@@ -56,7 +56,7 @@ public interface UserService extends BaseService<User> {
 	 * @param user
 	 * @return
 	 */
-	ResponseData<User> logout(Header header, HttpServletRequest request);
+	ResponseData<User> logout(HttpServletRequest request);
 	
 	/**
 	 * 分页查询用户
