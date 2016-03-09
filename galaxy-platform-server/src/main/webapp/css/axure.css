@@ -503,7 +503,7 @@ right: 200px;}
 .dictionary ul{ float:left; width:140px; margin:46px 3px 0 0}
 .dictionary ul li{ float:left; width:140px; height:30px; cursor:pointer; margin:0 0 2px; border-radius:4px; text-align:center; line-height:30px; background:#ffffff; font-size:14px; color:#3e4351}
 .dictionary ul .on{ background:#66b1f2; color:#FFF}
-.dictionary .tabbox{ float:left; width:312px; display:none}
+.dictionary .tabbox{ float:left; width:312px;}
 .dictionary .tabbox dt{ height:45px; border-radius:4px 4px 0 0; margin:0 0 2px; padding:0 12px; background:#FFF; font-size:16px; color:#6b799f; line-height:44px}
 .dictionary .tabbox .tool{ float:right; height:14px; margin:14px 0 0}
 .dictionary .tabbox .tool .ico{ background-image:url(../img/dictionary.png); margin:0 10px 0 0; height:14px; float:left}
