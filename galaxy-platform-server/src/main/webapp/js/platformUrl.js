@@ -4,6 +4,11 @@ var Constants = {
 }
 
 var platformUrl = {
+		
+	/**
+	 * 跳转登录页
+	 */
+	toLoginPage :"galaxy/userlogin/toLogin",
 	/**
 	 * 验证登录
 	 */
@@ -11,7 +16,7 @@ var platformUrl = {
 	/**
 	 * 跳转到首页
 	 */
-    toIndex : Constants.sopEndpointURL + "/galaxy/redirect",
+    toIndex :Constants.sopEndpointURL+  "/galaxy/redirect",
 	/**
 	 * 用户管理首页
 	 */

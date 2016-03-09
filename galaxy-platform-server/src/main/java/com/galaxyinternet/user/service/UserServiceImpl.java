@@ -117,9 +117,9 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	}
 
 	@Override
-	public ResponseData<User> logout(Header header, HttpServletRequest request) {
+	public ResponseData<User> logout(HttpServletRequest request) {
 		ResponseData<User> responsebody = new ResponseData<User>();
-		String sessionId = header.getSessionId();
+		String sessionId = request.getHeader(Constants.SESSION_ID_KEY);
 		if(StringUtils.isBlank(sessionId)){
 			responsebody.setResult(new Result(Status.ERROR, Constants.IS_SESSIONID_EMPTY,"sessionId为空！"));
 			return responsebody;

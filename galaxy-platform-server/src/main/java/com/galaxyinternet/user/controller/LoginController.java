@@ -1,6 +1,7 @@
 package com.galaxyinternet.user.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,8 +65,8 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/logout", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseData<User> logout(Header header, HttpServletRequest request) {
-		ResponseData<User> responseBody = userService.logout(header, request);
+	public ResponseData<User> logout(HttpServletRequest request) {
+		ResponseData<User> responseBody = userService.logout(request);
 		return responseBody;
 	}
 }
