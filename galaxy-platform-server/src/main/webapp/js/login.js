@@ -53,9 +53,14 @@ function checkform(){
 		 var sessionId = data.header.sessionId;
 		  	var userId = data.header.userId;
 		  	var loginName = data.header.loginName;
-		  	location.href=platformUrl.toIndex+ "?sid=" + sessionId;
+		  	location.href="galaxy/user"
 	 }else{
 		 layer.msg(data.result.message);
 	 }
-	
+ }
+ function keylogin(){
+	 if (event.keyCode == 13)
+	  {
+	    login();
+	  }
  }
