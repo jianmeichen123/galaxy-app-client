@@ -111,7 +111,6 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		String subject = "重置密码通知";// 邮件主题
 		boolean bl = SimpleMailSender.sendHtmlMail(toMail, subject, content);
 		if (bl== false) {
-			result.setStatus(Status.ERROR);
 			result.addError("邮件发送失败");
 			responseBody.setResult(result);
 		} else {
@@ -193,7 +192,6 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 			if (value ==1) {
 				result.setStatus(Status.OK);
 			} else {
-				result.setStatus(Status.ERROR);
 				result.addError("系统暂不支持新增用户");
 			}
 			
