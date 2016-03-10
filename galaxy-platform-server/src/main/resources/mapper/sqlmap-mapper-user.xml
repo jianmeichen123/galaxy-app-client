@@ -55,6 +55,8 @@
 			<trim prefixOverrides="and">
 				<if test="id != null"> and id =#{id}</if>
 				<if test="employNo != null"> and employ_no =#{employNo}</if>
+				<if test="realName != null"> and real_name like CONCAT("%",#{realName},"%")</if>
+				
 				<if test="nickName != null"> and nick_name =#{nickName}</if>
 				<if test="password != null"> and password =#{password}</if>
 				<if test="email != null"> and email =#{email}</if>

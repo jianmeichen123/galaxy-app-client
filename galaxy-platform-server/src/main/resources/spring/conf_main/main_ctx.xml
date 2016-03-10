@@ -49,10 +49,6 @@
 		<property name="password" value="${jdbc.password}" />
 	</bean>
 
-	<!-- <bean id="dataSourceUser" parent="dataSource_parent"> <property name="url" 
-		value="${jdbc.url.user}" /> <property name="username" value="${jdbc.username}" 
-		/> <property name="password" value="${jdbc.password}" /> </bean> -->
-
 	<bean id="txManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
@@ -91,17 +87,10 @@
 	</bean>
 
 	<!-- 配置SQLSession模板 -->
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate"
-		scope="prototype">
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>
 	
 	<tx:annotation-driven transaction-manager="txManager" />
-
-	<!-- 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.galaxyinternet.admin.mapper" />
-		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
-		<property name="markerInterface" value="com.galaxyinternet.common.mapper.SqlMapper" />
-	</bean> -->
 
 </beans>

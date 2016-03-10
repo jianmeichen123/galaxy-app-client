@@ -111,7 +111,6 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		String subject = "重置密码通知";// 邮件主题
 		boolean bl = SimpleMailSender.sendHtmlMail(toMail, subject, content);
 		if (bl== false) {
-			result.setStatus(Status.ERROR);
 			result.addError("邮件发送失败");
 			responseBody.setResult(result);
 		} else {
@@ -193,7 +192,6 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 			if (value ==1) {
 				result.setStatus(Status.OK);
 			} else {
-				result.setStatus(Status.ERROR);
 				result.addError("系统暂不支持新增用户");
 			}
 			
@@ -282,7 +280,7 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		tokenKey = EncodeUtils.encodeUrlSafeBase64(tokenKey.getBytes());
 		String tokenValue = TokenGenerator.getInstance().generateToken();
 		request.getSession().setAttribute(tokenKey, tokenValue);
-		cache.set(tokenKey, Constants.REDIS_TIMEOUT_SECONDS, tokenValue);
+		cache.set(tokenKey, Constants.TOKEN_IN_REDIS_TIMEOUT_SECONDS, tokenValue);
 		request.setAttribute(Constants.REQUEST_SCOPE_TOKEN_KEY, tokenKey);
 		return "{" + TOKEN + ":" + tokenValue + "}";
 	}

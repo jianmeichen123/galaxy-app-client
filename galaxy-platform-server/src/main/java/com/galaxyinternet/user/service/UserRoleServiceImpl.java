@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.galaxyinternet.dao.user.UserRoleDao;
 import com.galaxyinternet.framework.core.dao.BaseDao;
@@ -20,19 +21,17 @@ public class UserRoleServiceImpl extends BaseServiceImpl<UserRole>implements Use
 
 	@Override
 	protected BaseDao<UserRole, Long> getBaseDao() {
-		// TODO Auto-generated method stub
 		return this.userRoleDao;
 	}
 
 	@Override
 	public List<Long> selectRoleIdByUserId(Long userID) {
-		// TODO Auto-generated method stub
 		return userRoleDao.selectRoleIdByUserId(userID);
 	}
 
 	@Override
+	@Transactional
 	public long insertUserRole(UserRole userRole) {
-		// TODO Auto-generated method stub
 		UserRole role =  userRoleDao.selectByUserId(userRole.getUserId());
 		if (role != null) {
 			role.setRoleId(userRole.getRoleId());
@@ -41,6 +40,4 @@ public class UserRoleServiceImpl extends BaseServiceImpl<UserRole>implements Use
 			return userRoleDao.insertUserRole(userRole);
 		}
 	}
-
-
 }

@@ -25,9 +25,6 @@ public class DepartmentServiceImpl extends BaseServiceImpl<Department>implements
 
 	@Override
 	public List<Department> queryListByType(Integer type) {
-		// TODO Auto-generated method stub
 		return departmentDao.queryListByType(type);
 	}
-	
-	
 }

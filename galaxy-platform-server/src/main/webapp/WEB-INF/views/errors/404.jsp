@@ -1,25 +1,30 @@
-<%@ page language="java" pageEncoding="UTF-8"
-	contentType="text/html;charset=UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<%@ page language="java" contentType="text/html;charset=utf-8"
+	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>很抱歉，没有找到此页面</title>
-</head>
-<body>
-	<div class="dl-bj">
-		<div class="dl-div1">
-			<div class="dl-content1">
-				<div class="cr-left"></div>
-				<div class="dl-zc-cz">
-					<div class="dl-zc-c">
-						<ul>
-							<li>很抱歉，没有找到此页面</li>
-							<li>请联系管理员</li>
-						</ul>
-					</div>
-				</div>
-			</div>
+<base href="<%=basePath%>">
+<title>HTTP Status 404</title>
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="description" content="404 - 请求资源不存在">
+<jsp:include page="../common/taglib.jsp"/
+  </head>
+<body
+	style="background-image: url('img/404.jpg'); background-repeat: no-repeat;">
+	<div class="noPageBg">
+		<div class="noPageBtnContainer">
+			<table>
+				<tr>
+					<td><a class="noPageBtn"
+						onclick="location.href='<%=basePath%>sop/galaxy/index'">返回首页</a></td>
+				</tr>
+			</table>
 		</div>
 	</div>
 </body>

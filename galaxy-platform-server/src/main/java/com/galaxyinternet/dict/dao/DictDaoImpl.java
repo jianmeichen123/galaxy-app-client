@@ -8,21 +8,21 @@ import org.springframework.util.Assert;
 import com.galaxyinternet.dao.dict.DictDao;
 import com.galaxyinternet.framework.core.dao.impl.BaseDaoImpl;
 import com.galaxyinternet.framework.core.exception.DaoException;
-import com.galaxyinternet.framework.core.query.Query;
 import com.galaxyinternet.model.dict.BatchDictInsetParam;
 import com.galaxyinternet.model.dict.Dict;
 
 @Repository("dictDao")
-public class DictDaoImpl extends BaseDaoImpl<Dict, Long>implements DictDao {
+public class DictDaoImpl extends BaseDaoImpl<Dict, Long> implements DictDao {
 
-	
 	@Override
 	public int selectCountSame(Dict dict) {
 		Assert.notNull(dict);
 		try {
 			return sqlSessionTemplate.selectOne(getSqlName("selectCountSame"), dict);
 		} catch (Exception e) {
-			throw new DaoException(String.format("查询同一parent与传入参数数据相同（in） 语句：%s", getSqlName("selectCountByParentIdAndNameOrValue")), e);
+			throw new DaoException(
+					String.format("查询同一parent与传入参数数据相同（in） 语句：%s", getSqlName("selectCountByParentIdAndNameOrValue")),
+					e);
 		}
 	}
 
@@ -32,7 +32,8 @@ public class DictDaoImpl extends BaseDaoImpl<Dict, Long>implements DictDao {
 		try {
 			return sqlSessionTemplate.selectOne(getSqlName("selectCountByParentCodeAndName"), dict);
 		} catch (Exception e) {
-			throw new DaoException(String.format("根据parentCode和名称查询总数！语句：%s", getSqlName("selectCountByParentCodeAndName")), e);
+			throw new DaoException(
+					String.format("根据parentCode和名称查询总数！语句：%s", getSqlName("selectCountByParentCodeAndName")), e);
 		}
 	}
 
@@ -76,7 +77,6 @@ public class DictDaoImpl extends BaseDaoImpl<Dict, Long>implements DictDao {
 		}
 	}
 
-
 	@Override
 	public int selectCountInCodes(List<String> codes) {
 		Assert.notNull(codes);
@@ -97,17 +97,15 @@ public class DictDaoImpl extends BaseDaoImpl<Dict, Long>implements DictDao {
 		}
 	}
 
-	
-	
-	
 	@Override
 	public Integer selectMaxValueByParentCode(String parentCode) {
 		Assert.notNull(parentCode);
 		try {
 			return sqlSessionTemplate.selectOne(getSqlName("selectMaxValueByParentCode"), parentCode);
 		} catch (Exception e) {
-			throw new DaoException(String.format("查询同一parentCode下value最大值", getSqlName("selectMaxValueByParentCode")), e);
+			throw new DaoException(String.format("查询同一parentCode下value最大值", getSqlName("selectMaxValueByParentCode")),
+					e);
 		}
 	}
-	
+
 }

@@ -50,7 +50,7 @@ public class DictController extends BaseControllerImpl<Dict, DictBo> {
 	/**
 	 * 
 	    * @Title: insert
-	    * @Description: TODO 新增一个数据字典
+	    * @Description: 新增一个数据字典
 	    * @param @param dict
 	    * @param @return    参数
 	    * @return ResponseData<Dict>    返回类型
@@ -66,12 +66,8 @@ public class DictController extends BaseControllerImpl<Dict, DictBo> {
 			result.setStatus(Status.OK);
 			responseBody.setEntity(dict);
 		} catch (PlatformException e){
-			result.setStatus(Status.ERROR);
-			result.setErrorCode(e.getCode()+"");
-			result.setMessage(e.getMessage());
+			result.addError(e.getMessage(), e.getCode()+"");
 		} catch (Exception e) {
-			result.setStatus(Status.ERROR);
-			result.setMessage("系统错误");
 			result.addError("系统错误");
 			logger.error("新增错误",e);
 		}
@@ -156,18 +152,17 @@ public class DictController extends BaseControllerImpl<Dict, DictBo> {
 			dictService.updateByCode(dict);
 			result.setStatus(Status.OK);
 		} catch (PlatformException e){
-			result.setStatus(Status.ERROR);
-			result.setErrorCode(e.getCode()+"");
-			result.setMessage(e.getMessage());
+			result.addError(e.getMessage(), e.getCode()+"");
 		} catch (Exception e) {
-			result.setStatus(Status.ERROR);
 			result.addError("系统错误");
-			result.setMessage("系统错误");
 			logger.error("更新错误",e);
 		}
 		responseBody.setResult(result);
 		return responseBody;
 	}
+	
+	
+	
 	
 	/**
 	 * 
@@ -188,13 +183,9 @@ public class DictController extends BaseControllerImpl<Dict, DictBo> {
 			responseBody.setEntity(entity);
 			result.setStatus(Status.OK);
 		} catch (PlatformException e){
-			result.setStatus(Status.ERROR);
-			result.setErrorCode(e.getCode()+"");
-			result.setMessage(e.getMessage());
+			result.addError(e.getMessage(), e.getCode()+"");
 		} catch (Exception e) {
-			result.setStatus(Status.ERROR);
 			result.addError("系统错误");
-			result.setMessage("系统错误");
 			logger.error("根据code查找数据字典错误",e);
 		}
 		responseBody.setResult(result);
@@ -222,13 +213,9 @@ public class DictController extends BaseControllerImpl<Dict, DictBo> {
 			responseBody.setPageList(page);
 			result.setStatus(Status.OK);
 		} catch (PlatformException e){
-			result.setStatus(Status.ERROR);
-			result.setErrorCode(e.getCode()+"");
-			result.setMessage(e.getMessage());
+			result.addError(e.getMessage(), e.getCode()+"");
 		}  catch (Exception e) {
-			result.setStatus(Status.ERROR);
 			result.addError("系统错误");
-			result.setMessage("系统错误");
 			logger.error("根据parentId查找数据字典错误",e);
 		}
 		responseBody.setResult(result);
