@@ -186,13 +186,18 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 					}
 				}
 			}
-			for (Department dept : departList) {
-				if (user.getDepartmentId().equals(dept.getId())) {
-					user.setDepartmentName(dept.getName());
+			
+			if (user.getDepartmentId() != null) {
+				for (Department dept : departList) {
+					
+					if (user.getDepartmentId().equals(dept.getId())) {
+						user.setDepartmentName(dept.getName());
 
+					}
 				}
-			}
 
+			}
+			
 		}
 
 		page.setContent(content);
