@@ -282,7 +282,7 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		tokenKey = EncodeUtils.encodeUrlSafeBase64(tokenKey.getBytes());
 		String tokenValue = TokenGenerator.getInstance().generateToken();
 		request.getSession().setAttribute(tokenKey, tokenValue);
-		cache.set(tokenKey, Constants.REDIS_TIMEOUT_SECONDS, tokenValue);
+		cache.set(tokenKey, Constants.TOKEN_IN_REDIS_TIMEOUT_SECONDS, tokenValue);
 		request.setAttribute(Constants.REQUEST_SCOPE_TOKEN_KEY, tokenKey);
 		return "{" + TOKEN + ":" + tokenValue + "}";
 	}
