@@ -32,11 +32,11 @@
 	</bean>
 	
 	<!-- begin 此处设置用来直接访问静态资源文件 -->
-	<mvc:resources location="/css/" mapping="/css/**" />
+	<!-- <mvc:resources location="/css/" mapping="/css/**" /> -->
 	<!-- <mvc:resources location="/html/" mapping="/html/**" /> 路径有问题-->
-	<mvc:resources location="/img/" mapping="/img/**" />
+	<!-- <mvc:resources location="/img/" mapping="/img/**" />
 	<mvc:resources location="/js/" mapping="/js/**" />
-	<mvc:resources location="/bootstrap/" mapping="/bootstrap/**" />
+	<mvc:resources location="/bootstrap/" mapping="/bootstrap/**" /> -->
 	<!-- end -->
 
 	<!-- 定义扫描Controller的base-package -->

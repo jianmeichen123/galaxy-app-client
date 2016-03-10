@@ -1,7 +1,9 @@
 package com.galaxyinternet.user.controller;
 import static com.galaxyinternet.framework.core.form.Token.TOKEN;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -292,10 +294,12 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/formtoken", method = RequestMethod.POST)
-	public String fetchFormToken(HttpServletRequest request) {
+	public  Map<String, String> fetchFormToken(HttpServletRequest request) {
 		String tokenValue = TokenGenerator.getInstance().generateToken();
 		request.getSession().setAttribute(tokenValue, tokenValue);
 		cache.set(tokenValue, Constants.TOKEN_IN_REDIS_TIMEOUT_SECONDS, tokenValue);
-		return "{\"" + TOKEN + "\":" + tokenValue + "}";
+		Map<String, String> map = new HashMap<String, String>();
+		map.put(TOKEN, tokenValue);
+		return map;
 	}
 }
