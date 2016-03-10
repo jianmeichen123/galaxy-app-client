@@ -25,7 +25,7 @@
 		<div class="min clearfix">
 			<div class="loginbox">
 				<h2 class="ico null">繁星</h2>
-				<form id="defaultForm" method="post" class="form-horizontal" >
+				<form id="defaultForm" method="post" class="form-horizontal" onkeydown="keylogin();">
 					<input id="nickName" name="nickName" type="text"
 						class="txt ico uname" placeholder="用户名" /> <input id="password"
 						name="password" type="password" class="txt ico uword"
