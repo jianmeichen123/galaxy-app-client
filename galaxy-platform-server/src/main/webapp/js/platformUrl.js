@@ -80,6 +80,11 @@ var platformUrl = {
 	 * 根据findByParentCode查询数据字典
 	 */
 	dictFindByParentCode : "galaxy/dict/findByParentCode/",
+	
+	/**
+	 * 获取token
+	 */
+	getToken:"galaxy/user/formtoken"
 }
 
 /**

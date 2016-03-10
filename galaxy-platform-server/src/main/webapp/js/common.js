@@ -14,7 +14,7 @@ function sendPostRequestByJsonObj(reqUrl, jsonObj, callbackFun, sessionId) {
 	$.ajax({
 		url : reqUrl,
 		type : "POST",
-		data : JSON.stringify(jsonObj),
+	    data : JSON.stringify(jsonObj),
 		dataType : "json",
 		cache : false,
 		contentType : "application/json; charset=UTF-8",
@@ -22,11 +22,6 @@ function sendPostRequestByJsonObj(reqUrl, jsonObj, callbackFun, sessionId) {
 			if (sessionId) {
 				xhr.setRequestHeader("sessionId", sessionId);
 			}
-			xhr.setRequestHeader("Access-Control-Allow-Headers",
-					"X-Requested-With");
-			xhr
-					.setRequestHeader("Access-Control-Allow-Headers",
-							"Content-Type");
 		},
 		async : false,
 		error : function(request) {
@@ -34,7 +29,7 @@ function sendPostRequestByJsonObj(reqUrl, jsonObj, callbackFun, sessionId) {
 		},
 		success : function(data) {
 			/*var errorCode =data.result.errorCode;
-			if(errorCode!=null&&errorCode=="3"){
+			if(typeof(errorCode) != "undefined"&&errorCode=="3"){
 				layer.msg(data.result.message,{time:1000},function(){
 					location.href = platformUrl.toLoginPage;
 				})
@@ -87,11 +82,6 @@ function sendGetRequest(reqUrl, jsonObj, callbackFun, sessionId) {
 			if (sessionId) {
 				xhr.setRequestHeader("sessionId", sessionId);
 			}
-			xhr.setRequestHeader("Access-Control-Allow-Headers",
-					"X-Requested-With");
-			xhr
-					.setRequestHeader("Access-Control-Allow-Headers",
-							"Content-Type");
 		},
 		async : false,
 		error : function(request) {
@@ -104,7 +94,44 @@ function sendGetRequest(reqUrl, jsonObj, callbackFun, sessionId) {
 		}
 	});
 }
-
+/**
+ * 发送post请求
+ * 
+ * @param reqUrl
+ *            请求地址
+ * @param sessionId
+ *            请求头中需携带的sessionid
+ * @param callbackFun
+ *            处理成功后的回调方法
+ */
+function sendPostRequest(reqUrl, callbackFun, sessionId) {
+	$.ajax({
+		url : reqUrl,
+		type : "POST",
+		cache : false,
+		contentType : "application/json; charset=UTF-8",
+		beforeSend : function(xhr) {
+			if (sessionId) {
+				xhr.setRequestHeader("sessionId", sessionId);
+			}
+		},
+		async : false,
+		error : function(request) {
+			alert("connetion error");
+		},
+		success : function(data) {
+			/*var errorCode =data.result.errorCode;
+			if(typeof(errorCode) != "undefined"&&errorCode=="3"){
+				layer.msg(data.result.message,{time:1000},function(){
+					location.href = platformUrl.toLoginPage;
+				})
+			}*/
+			if (callbackFun) {
+				callbackFun(data);
+			}
+		}
+	});
+}
 /**
  * 使用localstage存储数据 <br/>
  * 注意：IE、Firefox测试的时候需要把文件上传到服务器上（或者localhost），直接点开本地的HTML文件，是不行的。

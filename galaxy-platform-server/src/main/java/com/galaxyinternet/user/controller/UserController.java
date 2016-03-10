@@ -1,10 +1,13 @@
 package com.galaxyinternet.user.controller;
 import static com.galaxyinternet.framework.core.form.Token.TOKEN;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -12,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,8 +34,8 @@ import com.galaxyinternet.framework.core.model.ResponseData;
 import com.galaxyinternet.framework.core.model.Result;
 import com.galaxyinternet.framework.core.model.Result.Status;
 import com.galaxyinternet.framework.core.service.BaseService;
-import com.galaxyinternet.framework.core.utils.EncodeUtils;
 import com.galaxyinternet.framework.core.utils.mail.SimpleMailSender;
+import com.galaxyinternet.framework.core.validator.ValidatorResultHandler;
 import com.galaxyinternet.model.department.Department;
 import com.galaxyinternet.model.user.User;
 import com.galaxyinternet.service.DepartmentService;
@@ -182,26 +186,39 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 
 		return responseBody;
 	}
+
+	/**
+	 * 更新用户
+	 * @param user
+	 * @param result
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value = "/updateUser", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseData<UserBo> updateUser(@RequestBody UserBo user) {
+	public ResponseData<UserBo> updateUser( @RequestBody @Valid UserBo user,BindingResult result) {
 		ResponseData<UserBo> responseBody = new ResponseData<UserBo>();
-		Result result = new Result();
+		
+		Result validationResult = ValidatorResultHandler.handle(result);
+		if (validationResult.getStatus() == Status.ERROR) {
+			responseBody.setResult(validationResult);
+			return responseBody;
+		}
+		Result jsonResult = new Result();
 		try {
 			int value = userService.updateUser(user);
 			if (value ==1) {
-				result.setStatus(Status.OK);
+				jsonResult.setStatus(Status.OK);
 			} else {
-				result.addError("系统暂不支持新增用户");
+				jsonResult.addError("系统暂不支持新增用户");
 			}
 			
 		} catch (PlatformException e) {
-			result.addError(e.getMessage());
+			jsonResult.addError(e.getMessage());
 		} catch (Exception e) {
-			result.addError("系统错误");
+			jsonResult.addError("系统错误");
 			logger.error("更新错误", e);
 		}
-		responseBody.setResult(result);
+		responseBody.setResult(jsonResult);
 		return responseBody;
 	}
 
@@ -239,7 +256,7 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	}
 
 	/**
-	 * 获取部门列表
+	 * 获取用户列表
 	 * @author zhaoying
 	 * @return
 	 */
@@ -248,7 +265,10 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	public ResponseData<User> userList(HttpServletRequest request) {
 		String realName = request.getParameter("realName") ;
 		User user = new User();
-		user.setRealName(realName);
+		if (StringUtils.isNotBlank(realName)) {
+			user.setRealName(realName);
+		}
+		
 		ResponseData<User> responseBody = new ResponseData<User>();
 		try {
 			// 用户列表
@@ -274,14 +294,12 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/formtoken", method = RequestMethod.POST)
-	public String fetchFormToken(HttpServletRequest request) {
-		String sessionId = request.getHeader(Constants.SESSION_ID_KEY);
-		String tokenKey = request.getRequestURL().append(sessionId).toString();
-		tokenKey = EncodeUtils.encodeUrlSafeBase64(tokenKey.getBytes());
+	public  Map<String, String> fetchFormToken(HttpServletRequest request) {
 		String tokenValue = TokenGenerator.getInstance().generateToken();
-		request.getSession().setAttribute(tokenKey, tokenValue);
-		cache.set(tokenKey, Constants.TOKEN_IN_REDIS_TIMEOUT_SECONDS, tokenValue);
-		request.setAttribute(Constants.REQUEST_SCOPE_TOKEN_KEY, tokenKey);
-		return "{" + TOKEN + ":" + tokenValue + "}";
+		request.getSession().setAttribute(tokenValue, tokenValue);
+		cache.set(tokenValue, Constants.TOKEN_IN_REDIS_TIMEOUT_SECONDS, tokenValue);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put(TOKEN, tokenValue);
+		return map;
 	}
 }

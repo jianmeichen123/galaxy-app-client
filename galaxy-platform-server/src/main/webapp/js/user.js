@@ -2,6 +2,7 @@
 var deptList = {};
 var deptListByType = {};
 var userList = {};
+var TOKEN ;
 $(function() {
 
 	var deptSelect = $('#selectDept');
@@ -158,6 +159,7 @@ function setData(data) {
 
 }
 function doSumbit() {
+	
 	$('#birth').datetimepicker({
 		format : 'yyyy-mm-dd', // 格式化日期
 		timepicker : true, // 关闭时间选项
@@ -166,7 +168,9 @@ function doSumbit() {
 		yearEnd : 2050, // 设置最大年份
 		language : 'zh-CN', // 汉化
 	});
-
+	
+	//获取TOKEN 用于验证表单提交
+	sendPostRequest(platformUrl.getToken,callback,sessionId);
 	var deptSelect1 = $('#selectId');
 
 	$("#realName").autocomplete(
@@ -339,6 +343,11 @@ function doSumbit() {
 							contentType : "application/json; charset=UTF-8",
 							dataType : "json",
 							cache : false,
+							beforeSend : function(xhr) {
+								if (TOKEN) {
+									xhr.setRequestHeader("TOKEN", TOKEN);
+								}
+							},
 							error : function() {
 								layer.msg("添加失败");
 							},
@@ -367,9 +376,13 @@ function doSumbit() {
 								
 							}
 						});
+					
 					});
 }
-
+function callback(data){
+	TOKEN=data.TOKEN;
+	 return TOKEN;
+}
 function useCompanyAddress() {
 	$("#address").val("北京市海淀区上地创新大厦三层");
 }
