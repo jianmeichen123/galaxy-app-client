@@ -95,7 +95,8 @@
 				</div>
 			</div>
 			<div class="tab-pane active" id="view">		
-					<table id="data-table" data-url="galaxy/user/queryUserList"  data-page-list="[2, 10, 30]" >
+					<table id="data-table" data-url="galaxy/user/queryUserList"  data-page-list="[2, 10, 30]" 
+					data-toolbar="#custom-toolbar">
 						   <thead>
 						    <tr>
 					        <th data-field="nickName" data-align="center" class="data-input">登陆名称</th>
