@@ -278,6 +278,6 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		String tokenValue = TokenGenerator.getInstance().generateToken();
 		request.getSession().setAttribute(tokenValue, tokenValue);
 		cache.set(tokenValue, Constants.TOKEN_IN_REDIS_TIMEOUT_SECONDS, tokenValue);
-		return GSONUtil.toJson("{\"" + TOKEN + "\":" + tokenValue + "}");
+		return "{\"" + TOKEN + "\":" + tokenValue + "}";
 	}
 }
