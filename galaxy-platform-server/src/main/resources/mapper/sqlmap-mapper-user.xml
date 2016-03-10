@@ -69,10 +69,14 @@
 				<!-- <if test="nameLike != null">and name like CONCAT("%",#{nameLike},"%")</if> -->
 				
 				 <if test="keyword != null">    
-				 CONCAT(real_name,mobile)   LIKE '%${keyword}%'
-				 	<if test="escapeChar ">
-				 		  escape '/' 
-				 	</if>
+					 real_name  LIKE '%${keyword}%'  
+					 	<if test="escapeChar ">
+					 		  escape '/' 
+					 	</if>
+					 or mobile LIKE '%${keyword}%'  
+					 <if test="escapeChar ">
+					 		  escape '/' 
+					 	</if>
 				 </if>
 			</trim>
 		</where>
