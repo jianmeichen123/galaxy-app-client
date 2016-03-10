@@ -18,7 +18,6 @@ public class RoleServiceImpl extends BaseServiceImpl<Role>implements RoleService
 
 	@Override
 	protected BaseDao<Role, Long> getBaseDao() {
-		// TODO Auto-generated method stub
 		return this.roleDao;
 	}
 

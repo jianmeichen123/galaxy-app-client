@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.galaxyinternet.dao.dict.DictDao;
 import com.galaxyinternet.framework.core.dao.BaseDao;
@@ -32,6 +33,7 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 	}
 	
 	@Override
+	@Transactional
 	public int updateById(Dict entity) {
 		
 		//验证
@@ -57,6 +59,7 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 	}
 	
 	@Override
+	@Transactional
 	public int updateByCode(Dict entity) {
 		
 		//验证
@@ -99,10 +102,10 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 		isNull(Dict.NAME,dict.getName());
 		isEmptyOrMoreThan(Dict.NAME, dict.getName(), 32);
 		isMoreThan(Dict.TEXT, dict.getText(), 256);
-		//
-
 	}
+	
 	@Override
+	@Transactional
 	public Long insert(Dict entity) {
 		
 		validInsert(entity);
@@ -132,16 +135,13 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 		
 	}
 	
-	
-	
-	
 	@Override
 	public List<Dict> selectByParentCode(String parentCode) {
 		return dictDao.selectByParentCode(parentCode);
 	}
 
-
 	@Override
+	@Transactional
 	public int insertInBatch(BatchDictInsetParam batchDictInsetParam) {
 		
 		isNull(Dict.COMMENT,batchDictInsetParam);
@@ -200,6 +200,7 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 
 
 	@Override
+	@Transactional
 	public int updateSort(Dict entity) {
 		isNull(Dict.COMMENT,entity);
 		isNull(Dict.CODE,entity.getCode());

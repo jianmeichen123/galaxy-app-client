@@ -178,7 +178,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 			for (UserRole userRole : userRoleList) {
 				// 目前一个用户对应一个角色，如果多个角色要考虑覆盖
 				if (user.getId().equals(userRole.getUserId())) {
-					for (Role role:roleList) {
+					for (Role role : roleList) {
 						if (role.getId().equals(userRole.getRoleId())) {
 							user.setRole(role.getName());
 							user.setRoleId(role.getId());
@@ -186,10 +186,10 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 					}
 				}
 			}
-			
+
 			if (user.getDepartmentId() != null) {
 				for (Department dept : departList) {
-					
+
 					if (user.getDepartmentId().equals(dept.getId())) {
 						user.setDepartmentName(dept.getName());
 
@@ -197,28 +197,26 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 				}
 
 			}
-			
+
 		}
-
 		page.setContent(content);
-
 		return page;
 	}
 
 
-    @Override
-    @Transactional
-    public int updateUser(UserBo user) {
-        int result1 = userDao.updateById(user);
-       
-        if (user.getId()==null || user.getRoleId() == null) {
-        	throwPlatformException(MessageStatus.FIELD_NOT_ALLOWED_EMPTY, "不能新建用户,用户ID");
-        }
-        
-        UserRole userRole = new UserRole();
-        userRole.setRoleId(user.getRoleId());
-        userRole.setUserId(user.getId());
-        long result2 = userRoleService.insertUserRole(userRole);
-        return (int) (result1&result2);
-    }
+	@Override
+	@Transactional
+	public int updateUser(UserBo user) {
+		int result1 = userDao.updateById(user);
+
+		if (user.getId() == null || user.getRoleId() == null) {
+			throwPlatformException(MessageStatus.FIELD_NOT_ALLOWED_EMPTY, "不能新建用户,用户ID");
+		}
+
+		UserRole userRole = new UserRole();
+		userRole.setRoleId(user.getRoleId());
+		userRole.setUserId(user.getId());
+		long result2 = userRoleService.insertUserRole(userRole);
+		return (int) (result1 & result2);
+	}
 }
