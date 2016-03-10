@@ -263,12 +263,12 @@ function doSumbit() {
 				deptSelect1.append(option);
 			});
 
-	$("#popTxt")
+	$(".poptxt")
 			.on(
 					"click",
 					"a[action='save']",
 					function() {
-						var pop = $("#pop");
+						var pop = $(".pop");
 						var json = {};
 
 						if (pop.find("input[name='realName']").val() == "") {

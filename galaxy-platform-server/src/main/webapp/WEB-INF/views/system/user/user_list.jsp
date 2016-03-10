@@ -17,9 +17,9 @@
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"  type="text/css">
     <!-- bootstrap-table -->
 	<link rel="stylesheet" href="bootstrap/bootstrap-table/bootstrap-table.css"  type="text/css">
-		
-<link href="css/axure.css" type="text/css" rel="stylesheet" />
-<link href="css/jquery-ui.min.css" type="text/css" rel="stylesheet" />
+	<link rel="stylesheet" href="bootstrap/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"  type="text/css">
+    <link href="css/axure.css" type="text/css" rel="stylesheet" />
+    <link href="css/jquery-ui.min.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
 	<div class="header clearfix">
@@ -130,6 +130,7 @@
 	<script src="bootstrap/js/bootstrap.min.js"></script>	
 	<!-- bootstrap-table -->
 	<script src="bootstrap/bootstrap-table/bootstrap-table-xhhl.js"></script>
+	<script src="bootstrap/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 	<script src="bootstrap/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
 	<script src="js/init.js"></script>	
 </body>
