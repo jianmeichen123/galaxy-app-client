@@ -30,7 +30,7 @@ import com.galaxyinternet.framework.core.model.ResponseData;
 import com.galaxyinternet.framework.core.model.Result;
 import com.galaxyinternet.framework.core.model.Result.Status;
 import com.galaxyinternet.framework.core.service.BaseService;
-import com.galaxyinternet.framework.core.utils.EncodeUtils;
+import com.galaxyinternet.framework.core.utils.GSONUtil;
 import com.galaxyinternet.framework.core.utils.mail.SimpleMailSender;
 import com.galaxyinternet.model.department.Department;
 import com.galaxyinternet.model.user.User;
@@ -275,13 +275,9 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	@ResponseBody
 	@RequestMapping(value = "/formtoken", method = RequestMethod.POST)
 	public String fetchFormToken(HttpServletRequest request) {
-		String sessionId = request.getHeader(Constants.SESSION_ID_KEY);
-		String tokenKey = request.getRequestURL().append(sessionId).toString();
-		tokenKey = EncodeUtils.encodeUrlSafeBase64(tokenKey.getBytes());
 		String tokenValue = TokenGenerator.getInstance().generateToken();
-		request.getSession().setAttribute(tokenKey, tokenValue);
-		cache.set(tokenKey, Constants.TOKEN_IN_REDIS_TIMEOUT_SECONDS, tokenValue);
-		request.setAttribute(Constants.REQUEST_SCOPE_TOKEN_KEY, tokenKey);
-		return "{" + TOKEN + ":" + tokenValue + "}";
+		request.getSession().setAttribute(tokenValue, tokenValue);
+		cache.set(tokenValue, Constants.TOKEN_IN_REDIS_TIMEOUT_SECONDS, tokenValue);
+		return GSONUtil.toJson("{\"" + TOKEN + "\":" + tokenValue + "}");
 	}
 }
