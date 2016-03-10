@@ -74,7 +74,7 @@
 				<jdbc.username>fxuser</jdbc.username>
 				<jdbc.password>fxdb_Fp9EPkG2</jdbc.password>
 				<!-- 本地项目地址 -->
-				<log4j.path>/data/apps/tomcat-fx-8080/logs</log4j.path>
+				<log4j.path>/data/apps/tomcat-platform-8080/logs</log4j.path>
 
 				<!-- dubbo -->
 				<dubbo.application.name>galaxyDubboprovider</dubbo.application.name>
