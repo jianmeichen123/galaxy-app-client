@@ -150,6 +150,8 @@ function saveCallBack(data){
 function getDictList(data) {
 	if (data.result.status == 'OK') {
 		dicts = data.pageList.content;
+	}else{
+		dicts = {};
 	}
 }
 
