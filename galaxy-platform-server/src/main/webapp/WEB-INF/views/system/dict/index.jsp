@@ -50,10 +50,10 @@
 	<!--左侧导航-->
 	<ul class="lft">
     	<li>
-        	<a href="http://fx.qa.galaxyinternet.com/platform/galaxy/user?sid="<%=sessionId%>>用户管理</a>
+        	<a href="http://fx.qa.galaxyinternet.com/platform/galaxy/user?sid=<%=sessionId%>>用户管理</a>
         </li>
         <li class="on">
-        	<a href="http://fx.qa.galaxyinternet.com/platform/galaxy/dict/index?sid="<%=sessionId%>>数据字典</a>
+        	<a href="http://fx.qa.galaxyinternet.com/platform/galaxy/dict/index?sid=<%=sessionId%>>数据字典</a>
         </li>
     </ul>
     <!--右中部内容-->
