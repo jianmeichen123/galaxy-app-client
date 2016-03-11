@@ -10,7 +10,6 @@
 <html lang="en">
 <head>
 <base href="<%=basePath%>">
-<%@ include file="/WEB-INF/views/common/taglib.jsp"%>
 <!-- jsp文件头和头部 -->
 
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"  type="text/css">
