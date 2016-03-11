@@ -31,12 +31,13 @@
 						name="password" type="password" class="txt ico uword"
 						placeholder="密码" /> <label><input type="checkbox">自动登录</label>
 					<a href="javascript:;" class="login null ico" onclick="login();">登录</a>
-					<p class="tips ico">建议使用IE10以上浏览器</p>
+					  <p class="tips ico">建议使用IE10以上浏览器<a href="http://windows.microsoft.com/zh-cn/internet-explorer/download-ie">版本过低，点击下载！</a>
+            		</p>
 				</form>
 			</div>
 		</div>
 		<div class="btm">
-			<a href="javascript:;">www.wangzhi.com</a>
+			<a href="javascript:;">http://www.galaxyinternet.com/</a>
 		</div>
 	</div>
 	<script src="js/axure.js" type="text/javascript"></script>
