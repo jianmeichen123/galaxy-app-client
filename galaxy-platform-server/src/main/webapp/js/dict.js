@@ -32,6 +32,8 @@ $(function() {
 	// 切换数据字典tab
 	$("#dict_parent").on("click", "li", function() {
 		var li = $(this);
+		li.parent().find("li").removeClass("on");
+		li.addClass("on");
 		showSonDict(li.attr("code"), li.html());
 	});
 	// 保存
