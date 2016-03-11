@@ -9,6 +9,8 @@ var platformUrl = {
 	 * 跳转登录页
 	 */
 	toLoginPage :"galaxy/userlogin/toLogin",
+	
+	logout:"galaxy/userlogin/logout",
 	/**
 	 * 验证登录
 	 */

@@ -11,8 +11,10 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <%User user = (User)request.getSession().getAttribute(Constants.SESSION_USER_KEY);
 String sessionId = "";
+String nick_name = "";
 if(null != user) {
 	sessionId = user.getSessionId();
+	nick_name = user.getNickName();
 }
 String endpoint = (String)application.getAttribute(OSSConstant.GALAXYINTERNET_FX_ENDPOINT);
 %>
@@ -27,5 +29,7 @@ String endpoint = (String)application.getAttribute(OSSConstant.GALAXYINTERNET_FX
 	var contextEndPoint = '<%=endpoint%>';
 	endpointObj = JSON.parse(contextEndPoint);
 	var sessionId = '<%=sessionId%>';
+	//alert("taglib-sessionId:"+sessionId);
+	var nick_name = '<%=nick_name%>';
 </script>
 <script src="<%=request.getContextPath() %>/js/platformUrl.js" type="text/javascript"></script>

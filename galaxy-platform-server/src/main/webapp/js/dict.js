@@ -116,7 +116,7 @@ function save(tr) {
 		url = platformUrl.dictUpdate;
 	}
 	select_tr = tr;
-	sendPostRequestByJsonObj(url, json, saveCallBack,null);
+	sendPostRequestByJsonObj(url, json, saveCallBack,sessionId);
 }
 
 
