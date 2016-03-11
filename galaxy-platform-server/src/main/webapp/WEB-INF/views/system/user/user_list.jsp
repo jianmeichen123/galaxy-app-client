@@ -92,7 +92,7 @@
 								placeholder="请输入姓名或手机号" name="keyword" />
 						</dd>
 						<dd>
-							<a href="javascript:void(0)" class="bluebtn ico cx"
+							<a href="javascript:void(0)" class="bluebtn ico cx" id="searchButton"
 								action="querySearch">查询</a>
 						</dd>
 					</dl>
