@@ -2,26 +2,28 @@ package com.galaxyinternet.model.user;
 
 import java.util.Date;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 import com.galaxyinternet.framework.core.model.BaseUser;
 
 public class User extends BaseUser {
 	private static final long serialVersionUID = 1L;
 
-	@NotEmpty(message="真实姓名不能为空")
+	@NotBlank(message="真实姓名不能为空")
 	private String realName;// 真实姓名
-	@NotEmpty(message="登陆名称不能为空")
+	@NotBlank(message="登陆名称不能为空")
 	private String nickName;// 登录名称
-	@NotEmpty(message="邮箱不能为空")
+	@NotBlank(message="邮箱不能为空")
 	private String email;// 邮箱
 	private String mobile;// 手机
 	private String telephone;// 座机
 	private String status;// 账户状态 正常 禁用
 	private String type;// 账户类型
-	@NotEmpty(message="工号不能为空")
+	@NotBlank(message="工号不能为空")
 	private String employNo;// 工号
-	@NotEmpty(message="部门id不能为空")
+	@NotNull(message="部门id不能为空")
 	private Long departmentId;// 部门Id
 	
 	private String departmentName;// 部门名称
@@ -33,7 +35,7 @@ public class User extends BaseUser {
 	private Date birth;// 生日
 	private String address;// 地址
 	private Boolean isAdmin;// 是否管理员
-	@NotEmpty(message="角色不能为空")
+	@NotNull(message="角色不能为空")
 	private Long roleId;// 角色Id
 
 	
