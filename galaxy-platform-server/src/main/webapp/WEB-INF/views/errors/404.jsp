@@ -13,8 +13,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
 <meta http-equiv="description" content="404 - 请求资源不存在">
-<jsp:include page="../common/taglib.jsp"/
-  </head>
+<jsp:include page="../common/taglib.jsp" />
+</head>
 <body
 	style="background-image: url('img/404.jpg'); background-repeat: no-repeat;">
 	<div class="noPageBg">
