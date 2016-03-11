@@ -39,7 +39,7 @@
 				}
 			},
 			error : function(request) {
-				alert("connetion error");
+				//alert("connetion error");
 			},
 			success : function(data) {
 				if(data.result.status=="OK"){
