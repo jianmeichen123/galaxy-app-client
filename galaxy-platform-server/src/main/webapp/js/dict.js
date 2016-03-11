@@ -4,7 +4,7 @@
 var dicts = null;
 var select_tr = null;
 $(function() {
-	sendPostRequestByJsonObj( platformUrl.dictFindByParentCode + "xhhl", null, getDictList,null);
+	sendPostRequestByJsonObj( platformUrl.dictFindByParentCode + "xhhl", null, getDictList,sessionId);
 	
 	if (dicts.length > 0) {
 		var parent_dict_div = $("#dict_parent");
@@ -155,7 +155,7 @@ function getDictList(data) {
 
 // 显示
 function showSonDict(code, name) {
-	sendPostRequestByJsonObj( platformUrl.dictFindByParentCode + code, null, getDictList, "V0VCNzc0MDE0NTY5MTI5NDI4OTQzOTQ4NjQxNDI5NzQ5NzYx");
+	sendPostRequestByJsonObj( platformUrl.dictFindByParentCode + code, null, getDictList, sessionId);
 	var tbody = $("#dict_son tbody");
 	$("#dcit_tab h2").html(name);
 	$("#dcit_tab h2").attr("code", code)
