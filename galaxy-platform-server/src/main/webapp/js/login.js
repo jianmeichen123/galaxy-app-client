@@ -57,5 +57,10 @@ function checkform(){
 	 }else{
 		 layer.msg(data.result.message);
 	 }
-	
+ }
+ function keylogin(){
+	 if (event.keyCode == 13)
+	  {
+	    login();
+	  }
  }
