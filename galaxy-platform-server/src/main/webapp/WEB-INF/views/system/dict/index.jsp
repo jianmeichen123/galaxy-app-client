@@ -19,8 +19,9 @@
 </head>
 
 <body>
-<jsp:include page="/WEB-INF/views/common/header.jsp" flush="true"></jsp:include>
-<!-- <div class="header clearfix">
+<%-- <jsp:include page="/WEB-INF/views/common/header.jsp" flush="true"></jsp:include>
+ --%>
+  <div class="header clearfix">
 
   <a href="javascript:;" class="logo null">繁星</a>
     头部中间
@@ -45,7 +46,7 @@
         <b class="line null">分割线</b>
         <a href="javascript:;" class="loginout">退出</a>
     </div>
-</div> -->
+</div> 
 <div class="pagebox clearfix">
 	<!--左侧导航-->
 	<ul class="lft">
