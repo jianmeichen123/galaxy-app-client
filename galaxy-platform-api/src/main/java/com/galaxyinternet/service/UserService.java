@@ -5,10 +5,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.data.domain.Pageable;
 
 import com.galaxyinternet.bo.UserBo;
-import com.galaxyinternet.framework.core.model.Header;
 import com.galaxyinternet.framework.core.model.Page;
 import com.galaxyinternet.framework.core.model.ResponseData;
 import com.galaxyinternet.framework.core.service.BaseService;
+import com.galaxyinternet.model.department.Department;
+import com.galaxyinternet.model.role.Role;
 import com.galaxyinternet.model.user.User;
 
 /**
@@ -65,4 +66,18 @@ public interface UserService extends BaseService<User> {
 	 * @return
 	 */
 	Page<User> queryUserPageList(User query, Pageable pageable);
+	
+	/**
+	 * 根据用户ID查询部门
+	 * @param userId
+	 * @return
+	 */
+	Department getDepartmentByUserId(Long userId);
+	
+	/**
+	 * 根据用户id获取角色
+	 * @param userId
+	 * @return
+	 */
+	Role getRoleByUserId(Long userId);
 }

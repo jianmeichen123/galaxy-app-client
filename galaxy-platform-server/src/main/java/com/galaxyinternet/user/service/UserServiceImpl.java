@@ -219,4 +219,30 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		long result2 = userRoleService.insertUserRole(userRole);
 		return (int) (result1 & result2);
 	}
+
+	@Override
+	public Department getDepartmentByUserId(Long userId) {
+		User user = userDao.selectById(userId);
+		if (user.getDepartmentId() != null) {
+			Long deptId = user.getDepartmentId();
+			return departmentService.queryById(deptId);
+		} else {
+			return null;
+		}
+		
+	}
+
+	@Override
+	public Role getRoleByUserId(Long userId) {
+		UserRole userRole = new UserRole();
+		userRole.setUserId(userId);
+		userRole = userRoleService.queryOne(userRole);
+		if (userRole.getRoleId() != null) {
+			Role role = roleService.queryById(userRole.getRoleId());		
+			return role;
+		} else {
+			return null;
+		}
+		
+	}
 }
