@@ -25,7 +25,7 @@ function sendPostRequestByJsonObj(reqUrl, jsonObj, callbackFun, sessionId) {
 		},
 		async : false,
 		error : function(request) {
-			alert("connetion error");
+			//alert("connetion error");
 		},
 		success : function(data) {
 			/*var errorCode =data.result.errorCode;
@@ -85,7 +85,7 @@ function sendGetRequest(reqUrl, jsonObj, callbackFun, sessionId) {
 		},
 		async : false,
 		error : function(request) {
-			alert("connetion error");
+			//alert("connetion error");
 		},
 		success : function(data) {
 			if (callbackFun) {
@@ -117,7 +117,7 @@ function sendPostRequest(reqUrl, callbackFun, sessionId) {
 		},
 		async : false,
 		error : function(request) {
-			alert("connetion error");
+			//alert("connetion error");
 		},
 		success : function(data) {
 			/*var errorCode =data.result.errorCode;
