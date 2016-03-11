@@ -15,6 +15,7 @@ $(function() {
 				parent_dict_div.append(li);
 			}
 		});
+		dicts = {};
 		showSonDict(dicts[0].code, dicts[0].name);
 	}
 	/**
