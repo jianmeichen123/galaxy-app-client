@@ -6,7 +6,14 @@ var TOKEN ;
 $(function() {
 
 	var deptSelect = $('#selectDept');
-
+	$('input:radio[name="status"]').change(
+		function() {
+			 $("#searchButton").click();
+			});
+	
+	$("#selectDept").change(function() {
+		$("#searchButton").click();
+	});
 	var json = {
 		"type" : null
 	};
