@@ -1,5 +1,7 @@
 package com.galaxyinternet.operationMessage.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.galaxyinternet.bo.OperationMessageBo;
 import com.galaxyinternet.common.controller.BaseControllerImpl;
 import com.galaxyinternet.exception.PlatformException;
+import com.galaxyinternet.framework.core.model.Page;
+import com.galaxyinternet.framework.core.model.PageRequest;
 import com.galaxyinternet.framework.core.model.ResponseData;
 import com.galaxyinternet.framework.core.model.Result;
 import com.galaxyinternet.framework.core.model.Result.Status;
@@ -57,4 +61,20 @@ public class OperationMessageController extends BaseControllerImpl<OperationMess
 		return responseBody;
 	}
 
+	
+	@ResponseBody
+	@RequestMapping(value = "/queryList", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseData<OperationMessage> queryUserList(HttpServletRequest request,@RequestBody OperationMessageBo operationMessageBo) {
+		ResponseData<OperationMessage> responseBody = new ResponseData<OperationMessage>();
+		try { 
+			Page<OperationMessage> operationMessage = operationMessageService.queryPageList(operationMessageBo,new PageRequest(operationMessageBo.getPageNum(), operationMessageBo.getPageSize()));
+			responseBody.setPageList(operationMessage);
+			responseBody.setResult(new Result(Status.OK, ""));
+			return responseBody;
+		} catch (PlatformException e) {
+			responseBody.setResult(new Result(Status.ERROR, "queryUserList faild"));
+			logger.error("queryUserList ", e);
+		}
+		return responseBody;
+	}
 }
