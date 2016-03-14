@@ -170,11 +170,6 @@
 		</dependency>
 		<dependency>
 			<groupId>com.galaxyinternet</groupId>
-			<artifactId>galaxy-common</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.galaxyinternet</groupId>
 			<artifactId>galaxy-cache</artifactId>
 			<version>${project.version}</version>
 			<exclusions>
