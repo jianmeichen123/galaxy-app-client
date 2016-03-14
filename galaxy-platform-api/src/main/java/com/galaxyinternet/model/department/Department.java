@@ -16,6 +16,17 @@ public class Department extends BaseEntity {
 
     private Long parentId;
     private Integer type;
+    //部门负责人ID关联 
+    private Long managerId;
+    
+    
+	public Long getManagerId() {
+		return managerId;
+	}
+
+	public void setManagerId(Long managerId) {
+		this.managerId = managerId;
+	}
 
 	public String getName() {
 		return name;

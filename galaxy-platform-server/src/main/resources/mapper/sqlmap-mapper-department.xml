@@ -6,6 +6,8 @@
 		 <result column="name" property="name"/>
 		 <result column="type" property="type"  />
          <result column="remark" property="remark"/>
+         <result column="manager_id" property="managerId"/>
+         
          <result column="parent_id" property="parentId"/>
 		 <result column="created_time" property="createdTime" />
 		 <result column="updated_time"  property="updatedTime"/>
@@ -16,6 +18,7 @@
         	name,
         	type,
         	remark,
+        	manager_id,
         	parent_id,
         	created_time,
         	updated_time
@@ -27,6 +30,7 @@
 				<if test="id != null"> and id =#{id}</if>
 				<if test="name != null"> and name =#{name}</if>
 				<if test="type != null"> and type =#{type}</if>
+				<if test="managerId != null"> and manager_id =#{managerId}</if>
 				<if test="remark != null"> and remark =#{remark}</if>
 				<if test="parentId != null"> and parent_id =#{parentId}</if>
 				<if test="createdTime != null"> and created_time =#{createdTime}</if>
@@ -80,6 +84,7 @@
         	   id,
         	   name,
         	   type,
+        	   manager_id,
         	   remark,
         	   parent_id,
         	   created_time
@@ -87,6 +92,7 @@
         	   #{id},
         	   #{name},
         	   #{type},
+        	   #{managerId},
         	   #{remark},
         	   #{parentId},
         	   #{createdTime}
@@ -100,6 +106,7 @@
 		<set>
 			<if test="name != null">  name =#{name},</if>
 			<if test="type != null">  type =#{type},</if>
+			<if test="managerId != null">  manager_id =#{managerId},</if>
 			<if test="remark != null">  remark =#{remark},</if>
 			<if test="parentId != null">  parent_id =#{parentId},</if>
 			<if test="createdTime != null">  created_time =#{createdTime},</if>
@@ -110,6 +117,7 @@
 				<if test="id != null"> and id =#{id}</if>
 				<if test="name != null"> and name =#{name}</if>
 				<if test="type != null"> and type =#{type}</if>
+				<if test="managerId != null"> and manager_id =#{managerId}</if>
 				<if test="remark != null"> and remark =#{remark}</if>
 				<if test="parentId != null"> and parent_id =#{parentId}</if>
 				<if test="createdTime != null"> and created_time =#{createdTime}</if>
@@ -124,6 +132,7 @@
 		<set>
 			<if test="name != null">  name =#{name},</if>
 			<if test="type != null">  type =#{type},</if>
+			<if test="managerId != null">  manager_id =#{managerId},</if>
 			<if test="remark != null">  remark =#{remark},</if>
 			<if test="parentId != null"> parent_id =#{parentId},</if>
 			<if test="createdTime != null"> created_time =#{createdTime},</if>
