@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.galaxyinternet.bo.UserBo;
 import com.galaxyinternet.dao.user.UserDao;
+import com.galaxyinternet.framework.cache.Cache;
 import com.galaxyinternet.framework.core.constants.Constants;
 import com.galaxyinternet.framework.core.dao.BaseDao;
 import com.galaxyinternet.framework.core.model.Header;
@@ -47,7 +48,10 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	private UserRoleService userRoleService;
 	@Autowired
 	private DepartmentService departmentService;
-
+	
+	@Autowired
+	private Cache cache;
+	
 	@Override
 	protected BaseDao<User, Long> getBaseDao() {
 		return this.userDao;
@@ -99,7 +103,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		} else {
 			String sessionId = SessionUtils.createWebSessionId(); // 封装
 			user.setSessionId(sessionId);
-			//cache.set(sessionId, user); // 将sessionId存入cache
+			cache.set(sessionId, user); // 将sessionId存入cache
 			request.getSession().setAttribute(Constants.SESSION_USER_KEY, user);
 
 			Header header = new Header();
@@ -121,7 +125,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 			return responsebody;
 		}
 		request.getSession().removeAttribute(Constants.SESSION_USER_KEY); // 从本地session删除user
-		//cache.remove(sessionId); 																	// 从redis中删除sessionId
+		cache.remove(sessionId); 																	// 从redis中删除sessionId
 		responsebody.setResult(new Result(Status.OK, Constants.OPTION_SUCCESS, "退出登录"));
 		return responsebody;
 	}
