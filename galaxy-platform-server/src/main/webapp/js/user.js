@@ -375,6 +375,12 @@ function doSumbit() {
 								if (TOKEN) {
 									xhr.setRequestHeader("TOKEN", TOKEN);
 								}
+								if (sessionId) {
+									xhr.setRequestHeader("sessionId", sessionId);
+								}
+								if(userId){
+									xhr.setRequestHeader("guserId", userId);
+								}
 							},
 							error : function() {
 								layer.msg("添加失败");
