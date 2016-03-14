@@ -25,7 +25,7 @@ String endpoint = (String)application.getAttribute(OSSConstant.GALAXYINTERNET_FX
 <script type="text/javascript">
 	var contextEndPoint = '<%=endpoint%>';
 	endpointObj = JSON.parse(contextEndPoint);
-	var sessionId = '<%=sessionId%>',nick_name = '<%=nick_name%>',userId = '<%=userId%>';
+	sessionId = '<%=sessionId%>',nick_name = '<%=nick_name%>',userId = '<%=userId%>';
 </script>
 <script src="<%=request.getContextPath() %>/js/common.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath() %>/js/axure.js" type="text/javascript"></script>
