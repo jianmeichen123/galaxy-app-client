@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.galaxyinternet.model.operationMessage.OperationMessage">
+   	<resultMap id="BaseResultMap" type="OperationMessagePO">
+		
+		 <id 		column="id" 			property="id"			jdbcType="BIGINT" />
+		 <result 	column="department" 	property="department"  	jdbcType="VARCHAR"/>
+		 <result 	column="role" 			property="role"  		jdbcType="VARCHAR"/>
+		 <result 	column="type" 			property="type"  		jdbcType="VARCHAR"/>
+		 <result 	column="project_name" 	property="projectName"  jdbcType="VARCHAR"/>
+		 
+		 <result 	column="operator" 		property="operator"  	jdbcType="VARCHAR"/>
+		 <result 	column="content" 		property="content"  	jdbcType="VARCHAR"/>
+		 <result 	column="module" 		property="module"  		jdbcType="INTEGER" />
+		 <result 	column="created_time" 	property="createdTime" 	jdbcType="BIGINT" />
+
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id,department,role,type,project_name,
+		operator,content,created_time
+	</sql>
+
+
+	
+	<!--新增  -->
+	<insert id="insert" parameterType="OperationMessagePO" >
+	        INSERT 
+	        	INTO
+	       	 t_operation_message (
+				department,role,type,project_name,module,
+				operator,content,created_time
+	        ) VALUES (
+	        	#{department},#{role},#{type},#{projectName},#{module},
+	        	#{operator},#{content},#{createdTime}
+	        )
+    </insert>
+    
+    
+    
+    	<sql id="Base_Where_Clause">
+		<where>
+			<trim prefixOverrides="and">
+				<if test="id != null"> and id = #{id}</if>
+				<if test="type != null"> and type =# {type}</if>
+				<if test="module != null"> and module =# {module}</if>
+				
+				<if test="realName != null"> and real_name like CONCAT("%",#{realName},"%")</if>
+				
+				<!-- 模糊查询 -->
+				
+				 <if test="keyword != null">    
+					 project_name  LIKE '%${keyword}%'  
+					 	<if test="escapeChar ">
+					 		  escape '/' 
+					 	</if>
+					 </if>
+			</trim>
+		</where>
+		<if test="sorting != null"> order by ${sorting}</if>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</sql>
+	
+	
+		<!-- 查询 -->
+	<select id="select" resultMap="BaseResultMap" parameterType="java.util.Map">
+		select
+		<include refid="Base_Column_List" />
+		from t_operation_message
+		<include refid="Base_Where_Clause" />
+	</select>
+	
+</mapper>
