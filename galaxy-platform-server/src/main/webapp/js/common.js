@@ -57,8 +57,7 @@ function sendPostRequestByJsonObj(reqUrl, jsonObj, callbackFun) {
  *            处理成功后的回调方法
  */
 function sendPostRequestByJsonStr(reqUrl, jsonStr, callbackFun) {
-	sendPostRequestByJsonObj(reqUrl, JSON.parse(jsonStr), callbackFun,
-			sessionId,userId);
+	sendPostRequestByJsonObj(reqUrl, JSON.parse(jsonStr), callbackFun);
 }
 
 /**
@@ -141,6 +140,22 @@ function sendPostRequest(reqUrl, callbackFun) {
 		}
 	});
 }
+
+/**
+ * url:统一跳转url  
+ * 
+ */
+function forwardWithHeader(url){
+	if(url.indexOf("?")==-1){
+		window.location.href = url+"?sid="+sessionId+"&guid="+userId;
+	}else{
+		window.location.href = url+"&sid="+sessionId+"&guid="+userId;
+	}
+}
+
+
+
+
 /**
  * 使用localstage存储数据 <br/>
  * 注意：IE、Firefox测试的时候需要把文件上传到服务器上（或者localhost），直接点开本地的HTML文件，是不行的。
