@@ -21,6 +21,7 @@ public enum MessageStatus  {
 	FIELD_LENGTH_MUST_BETWEEN(10019, "%s长度必须大于%d和小于%d"),
 	FILED_NOT_IN_ENUM_VALUES(10020, "不支持的%s"),
 	PARAME_SAME(10021, "传入参数%s重复"),
+	OPERATION_MESSAGE_MODULE_ERROR(10101,"消息提醒模块参数错误"),
 	;
 	
 	private int status;
