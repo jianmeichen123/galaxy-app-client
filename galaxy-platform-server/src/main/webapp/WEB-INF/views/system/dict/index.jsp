@@ -19,18 +19,12 @@
 </head>
 
 <body>
+<%@ include file="/WEB-INF/views/common/header.jsp"%>
 <div class="pagebox clearfix">
 	<!--左侧导航-->
-	<ul class="lft">
-    	<li>
-        	<a href="javascript:;">用户管理</a>
-        </li>
-        <li class="on">
-        	<a href="javascript:;">数据字典</a>
-        </li>
-    </ul>
-    <!--右中部内容-->
- 	<div class="ritmin">
+	<jsp:include page="/WEB-INF/views/common/leftmenu.jsp" flush="true"></jsp:include>
+	<!-- -左侧导航 -->
+ 	<div class="ritmin" source="dict">
     	<h2>数据字典</h2>
         <div class="dictionary clearfix">
         	<ul class="clearfix" id="dict_parent">

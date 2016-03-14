@@ -28,7 +28,7 @@
 	<bean
 		class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"></bean>
 
-	<bean id="dataSource_parent" class="org.apache.commons.dbcp.BasicDataSource">
+	<bean id="dataSource_parent" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="maxActive" value="80" />
 		<property name="minIdle" value="20" />

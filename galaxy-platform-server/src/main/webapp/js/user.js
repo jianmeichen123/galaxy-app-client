@@ -16,7 +16,7 @@ $(function() {
 	var json = {
 		"type" : null
 	};
-	sendGetRequest(platformUrl.getDepartList, null, callbackFun, sessionId);
+	sendGetRequest(platformUrl.getDepartList, null, callbackFun);
 	$(deptList).each(
 			function() {
 				var item = $(this)[0];
@@ -86,7 +86,7 @@ function disableUser(id, status) {
 		'status' : status
 	};
 	
-	sendPostRequestByJsonObj(platformUrl.disableUser, data, disableUserCallBack,sessionId);
+	sendPostRequestByJsonObj(platformUrl.disableUser, data, disableUserCallBack);
 
 	
 	/*$.ajax({
@@ -285,7 +285,7 @@ function doSumbit() {
 	var json = {
 		"type" : 1
 	};
-	sendGetRequest(platformUrl.getDepartList, json, callbackFun1, sessionId);
+	sendGetRequest(platformUrl.getDepartList, json, callbackFun1);
 	$(deptListByType).each(
 			function() {
 				var item = $(this)[0];

@@ -5,7 +5,7 @@ $(document).ready(function(){
 			var nickName = logincookie.split(":")[0];
 			var password = logincookie.split(":")[2];
 			var jsonData={"nickName":nickName,"password":password};
-			sendPostRequestByJsonObj(platformUrl.toLogin,jsonData,callbackFun,null);
+			sendPostRequestByJsonObj(platformUrl.toLogin,jsonData,callbackFun);
 		}
 })
 
@@ -38,7 +38,7 @@ function checkform(){
 		 if(autologin){
 			 saveCookie(nickName,password);
 		 }
-		 sendPostRequestByJsonObj(platformUrl.toLogin,jsonData,callbackFun,null);
+		 sendPostRequestByJsonObj(platformUrl.toLogin,jsonData,callbackFun);
 		} 
   }
  
@@ -50,10 +50,9 @@ function checkform(){
  
  function callbackFun(data){
 	 if(data.result.status=="OK"){
-		 var sessionId = data.header.sessionId;
-		  	var userId = data.header.userId;
-		  	var loginName = data.header.loginName;
-		  	location.href=platformUrl.toIndex+ "?sid=" + sessionId;
+		sessionId = data.header.sessionId;
+		userId = data.header.userId;
+		forwardIndexWithHeader(platformUrl.toIndex,sessionId,userId);
 	 }else{
 		 layer.msg(data.result.message);
 	 }
@@ -64,3 +63,5 @@ function checkform(){
 	    login();
 	  }
  }
+ 
+ 
