@@ -20,42 +20,15 @@
     <link href="css/jquery-ui.min.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/common/header.jsp" flush="true"></jsp:include>
-<!-- 	<div class="header clearfix">
-
-	<a href="javascript:;" class="logo null">繁星</a>
-	头部中间
-	<div class="min clearfix">
-		用户信息
-		<div class="usermsg clearfix">
-			<span class="light_blue">当前您有：</span> <a href="javascript:;"
-				class="work">待办任务<em>23</em></a> <a href="javascript:;" class="work">紧急任务<em
-				class="bubble">5</em></a> <a href="javascript:;" class="work">消息提醒<em>4</em></a>
-		</div>
-		当日信息
-		<div class="todaymsg clearfix">
-			<span>北京</span> <span class="weather1">小雨</span> <span>7/-13度；</span>
-			<span>今日限行尾号为 5、0，明日为不限行！</span>
-		</div>
-	</div>
-	头部右边
-	<div class="usermsg rit clearfix">
-		<span class="ico name">早上好，闫皓</span> <b class="line null">分割线</b> <a
-			href="javascript:logout();" class="loginout">退出</a>
-	</div>
-	</div> -->
+<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="pagebox clearfix">
+	
 		<!--左侧导航-->
-		<ul class="lft">
-			<li class="on">
-        	<a href="http://fx.qa.galaxyinternet.com/platform/galaxy/user?sid=<%=sessionId%>">用户管理</a>
-        </li>
-        <li >
-        	<a href="http://fx.qa.galaxyinternet.com/platform/galaxy/dict/index?sid=<%=sessionId%>">数据字典</a>
-        </li>
-		</ul>
+		<jsp:include page="/WEB-INF/views/common/leftmenu.jsp" flush="true"></jsp:include>
+		<!--左侧导航-->
+		
 		<!--右中部内容-->
-		<div class="ritmin">
+		<div class="ritmin"  source="user">
 			<h2>用户管理</h2>
 			<!--页眉-->
 			<div class="top clearfix">

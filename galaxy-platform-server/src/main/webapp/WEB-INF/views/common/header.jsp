@@ -1,5 +1,4 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/common/taglib.jsp"%>
 <div class="header clearfix">
 	<a href="javascript:;" class="logo null">繁星</a>
     <!--头部中间-->
