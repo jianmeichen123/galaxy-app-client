@@ -10,7 +10,7 @@
  * @param callbackFun
  *            处理成功后的回调方法
  */
-function sendPostRequestByJsonObj(reqUrl, jsonObj, callbackFun, sessionId) {
+function sendPostRequestByJsonObj(reqUrl, jsonObj, callbackFun) {
 	$.ajax({
 		url : reqUrl,
 		type : "POST",
@@ -21,6 +21,9 @@ function sendPostRequestByJsonObj(reqUrl, jsonObj, callbackFun, sessionId) {
 		beforeSend : function(xhr) {
 			if (sessionId) {
 				xhr.setRequestHeader("sessionId", sessionId);
+			}
+			if(userId){
+				xhr.setRequestHeader("guserId", userId);
 			}
 		},
 		async : false,
@@ -53,9 +56,8 @@ function sendPostRequestByJsonObj(reqUrl, jsonObj, callbackFun, sessionId) {
  * @param callbackFun
  *            处理成功后的回调方法
  */
-function sendPostRequestByJsonStr(reqUrl, jsonStr, callbackFun, sessionId) {
-	sendPostRequestByJsonObj(reqUrl, JSON.parse(jsonStr), callbackFun,
-			sessionId);
+function sendPostRequestByJsonStr(reqUrl, jsonStr, callbackFun) {
+	sendPostRequestByJsonObj(reqUrl, JSON.parse(jsonStr), callbackFun);
 }
 
 /**
@@ -70,7 +72,7 @@ function sendPostRequestByJsonStr(reqUrl, jsonStr, callbackFun, sessionId) {
  * @param callbackFun
  *            处理成功后的回调方法
  */
-function sendGetRequest(reqUrl, jsonObj, callbackFun, sessionId) {
+function sendGetRequest(reqUrl, jsonObj, callbackFun) {
 	$.ajax({
 		url : reqUrl,
 		type : "GET",
@@ -81,6 +83,9 @@ function sendGetRequest(reqUrl, jsonObj, callbackFun, sessionId) {
 		beforeSend : function(xhr) {
 			if (sessionId) {
 				xhr.setRequestHeader("sessionId", sessionId);
+			}
+			if(userId){
+				xhr.setRequestHeader("guserId", userId);
 			}
 		},
 		async : false,
@@ -104,7 +109,7 @@ function sendGetRequest(reqUrl, jsonObj, callbackFun, sessionId) {
  * @param callbackFun
  *            处理成功后的回调方法
  */
-function sendPostRequest(reqUrl, callbackFun, sessionId) {
+function sendPostRequest(reqUrl, callbackFun) {
 	$.ajax({
 		url : reqUrl,
 		type : "POST",
@@ -113,6 +118,9 @@ function sendPostRequest(reqUrl, callbackFun, sessionId) {
 		beforeSend : function(xhr) {
 			if (sessionId) {
 				xhr.setRequestHeader("sessionId", sessionId);
+			}
+			if(userId){
+				xhr.setRequestHeader("guserId", userId);
 			}
 		},
 		async : false,
@@ -132,6 +140,22 @@ function sendPostRequest(reqUrl, callbackFun, sessionId) {
 		}
 	});
 }
+
+/**
+ * url:统一跳转url  
+ * 
+ */
+function forwardWithHeader(url){
+	if(url.indexOf("?")==-1){
+		window.location.href = url+"?sid="+sessionId+"&guid="+userId;
+	}else{
+		window.location.href = url+"&sid="+sessionId+"&guid="+userId;
+	}
+}
+
+
+
+
 /**
  * 使用localstage存储数据 <br/>
  * 注意：IE、Firefox测试的时候需要把文件上传到服务器上（或者localhost），直接点开本地的HTML文件，是不行的。
