@@ -10,7 +10,7 @@
  * @param callbackFun
  *            处理成功后的回调方法
  */
-function sendPostRequestByJsonObj(reqUrl, jsonObj, callbackFun, sessionId) {
+function sendPostRequestByJsonObj(reqUrl, jsonObj, callbackFun) {
 	$.ajax({
 		url : reqUrl,
 		type : "POST",
@@ -21,6 +21,9 @@ function sendPostRequestByJsonObj(reqUrl, jsonObj, callbackFun, sessionId) {
 		beforeSend : function(xhr) {
 			if (sessionId) {
 				xhr.setRequestHeader("sessionId", sessionId);
+			}
+			if(userId){
+				xhr.setRequestHeader("guserId", userId);
 			}
 		},
 		async : false,
@@ -53,9 +56,9 @@ function sendPostRequestByJsonObj(reqUrl, jsonObj, callbackFun, sessionId) {
  * @param callbackFun
  *            处理成功后的回调方法
  */
-function sendPostRequestByJsonStr(reqUrl, jsonStr, callbackFun, sessionId) {
+function sendPostRequestByJsonStr(reqUrl, jsonStr, callbackFun) {
 	sendPostRequestByJsonObj(reqUrl, JSON.parse(jsonStr), callbackFun,
-			sessionId);
+			sessionId,userId);
 }
 
 /**
@@ -70,7 +73,7 @@ function sendPostRequestByJsonStr(reqUrl, jsonStr, callbackFun, sessionId) {
  * @param callbackFun
  *            处理成功后的回调方法
  */
-function sendGetRequest(reqUrl, jsonObj, callbackFun, sessionId) {
+function sendGetRequest(reqUrl, jsonObj, callbackFun) {
 	$.ajax({
 		url : reqUrl,
 		type : "GET",
@@ -81,6 +84,9 @@ function sendGetRequest(reqUrl, jsonObj, callbackFun, sessionId) {
 		beforeSend : function(xhr) {
 			if (sessionId) {
 				xhr.setRequestHeader("sessionId", sessionId);
+			}
+			if(userId){
+				xhr.setRequestHeader("guserId", userId);
 			}
 		},
 		async : false,
@@ -104,7 +110,7 @@ function sendGetRequest(reqUrl, jsonObj, callbackFun, sessionId) {
  * @param callbackFun
  *            处理成功后的回调方法
  */
-function sendPostRequest(reqUrl, callbackFun, sessionId) {
+function sendPostRequest(reqUrl, callbackFun) {
 	$.ajax({
 		url : reqUrl,
 		type : "POST",
@@ -113,6 +119,9 @@ function sendPostRequest(reqUrl, callbackFun, sessionId) {
 		beforeSend : function(xhr) {
 			if (sessionId) {
 				xhr.setRequestHeader("sessionId", sessionId);
+			}
+			if(userId){
+				xhr.setRequestHeader("guserId", userId);
 			}
 		},
 		async : false,
