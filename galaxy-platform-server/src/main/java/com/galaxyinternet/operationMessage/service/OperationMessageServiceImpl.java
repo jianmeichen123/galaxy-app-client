@@ -1,5 +1,8 @@
 package com.galaxyinternet.operationMessage.service;
 
+import static com.galaxyinternet.utils.ValidationUtil.isEmptyOrMoreThan;
+import static com.galaxyinternet.utils.ValidationUtil.isNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,10 +11,6 @@ import com.galaxyinternet.framework.core.dao.BaseDao;
 import com.galaxyinternet.framework.core.service.impl.BaseServiceImpl;
 import com.galaxyinternet.model.operationMessage.OperationMessage;
 import com.galaxyinternet.service.OperationMessageService;
-import static com.galaxyinternet.utils.ValidationUtil.isNull;
-import static com.galaxyinternet.utils.ValidationUtil.isEmptyOrMoreThan;
-import static com.galaxyinternet.utils.ValidationUtil.throwPlatformException;
-import static com.galaxyinternet.utils.ValidationUtil.isMoreThan;
 @Service("com.galaxyinternet.service.OperationMessageService")
 public class OperationMessageServiceImpl extends BaseServiceImpl<OperationMessage>implements OperationMessageService {
 	//private final Logger logger = LoggerFactory.getLogger(getClass());
