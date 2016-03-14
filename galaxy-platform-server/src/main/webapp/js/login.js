@@ -1,5 +1,5 @@
 
-$(document).ready(function(){ 
+/*$(document).ready(function(){ 
 		var logincookie = $.cookie("autologin");
 		if(logincookie != null && logincookie !=""){
 			var nickName = logincookie.split(":")[0];
@@ -8,7 +8,7 @@ $(document).ready(function(){
 			sendPostRequestByJsonObj(platformUrl.toLogin,jsonData,callbackFun);
 		}
 })
-
+*/
 function checkform(){
     var username =$("#nickName").val();
     var password =$("#password").val();
@@ -38,21 +38,22 @@ function checkform(){
 		 if(autologin){
 			 saveCookie(nickName,password);
 		 }
-		 sendPostRequestByJsonObj(platformUrl.toLogin,jsonData,callbackFun);
+		 sendPostRequestByJsonObj(platformUrl.toLogin,jsonData,logincallback);
 		} 
   }
  
- function saveCookie(nickName,password){
+/* function saveCookie(nickName,password){
 	 var cookietime = new Date(); 
 	 var cookievalue= nickName+":"+cookietime.getMilliseconds()+":"+password;
 	 $.cookie('autologin', cookievalue,{expires: 30*24});
- }
+ }*/
  
- function callbackFun(data){
+ function logincallback(data){
 	 if(data.result.status=="OK"){
-		sessionId = data.header.sessionId;
-		userId = data.header.userId;
+		 var sessionId = data.header.sessionId;
+		 var userId = data.header.userId;
 		forwardIndexWithHeader(platformUrl.toIndex,sessionId,userId);
+		return false;
 	 }else{
 		 layer.msg(data.result.message);
 	 }
@@ -63,5 +64,30 @@ function checkform(){
 	    login();
 	  }
  }
+ function logout(){
+		$.ajax({
+			url : platformUrl.logout,
+			type : "POST",
+			dataType : "json",
+			contentType : "application/json; charset=UTF-8",
+			async : false,
+			beforeSend : function(xhr) {
+				if (sessionId) {
+					xhr.setRequestHeader("sessionId", sessionId);
+				}
+			},
+			error : function(request) {
+				alert("connetion error");
+			},
+			success : function(data) {
+				if(data.result.status=="OK"){
+					location.href=platformUrl.toLoginPage;
+				}
+			}
+		}); 
+	} 
  
- 
+ $(function(){
+		var source=$(".ritmin").attr("source");
+		var li =$(".lft li a[target='"+source+"']").parent().addClass("on");
+	})

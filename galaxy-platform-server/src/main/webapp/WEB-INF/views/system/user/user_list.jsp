@@ -110,32 +110,8 @@
 	<script src="bootstrap/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 	<script src="bootstrap/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
 	<script src="js/init.js"></script>	
+	<script src="js/login.js"></script>
 	<script src="<%=request.getContextPath() %>/js/axure_ext.js" type="text/javascript"></script>
-	
 </body>
-<script type="text/javascript">
-function logout(){
-	$.ajax({
-		url : platformUrl.logout,
-		type : "POST",
-		dataType : "json",
-		contentType : "application/json; charset=UTF-8",
-		async : false,
-		beforeSend : function(xhr) {
-			if (sessionId) {
-				xhr.setRequestHeader("sessionId", sessionId);
-			}
-		},
-		error : function(request) {
-			alert("connetion error");
-		},
-		success : function(data) {
-			if(data.result.status=="OK"){
-				location.href=platformUrl.toLoginPage;
-			}
-		}
-	}); 
-} 
-</script>
 </html>
 

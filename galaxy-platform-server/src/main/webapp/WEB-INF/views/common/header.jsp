@@ -24,27 +24,4 @@
         <a href="javascript:logout()" class="loginout">退出</a>
     </div>
 </div>
-<script type="text/javascript">
- function logout(){
-		$.ajax({
-			url : platformUrl.logout,
-			type : "POST",
-			dataType : "json",
-			contentType : "application/json; charset=UTF-8",
-			async : false,
-			beforeSend : function(xhr) {
-				if (sessionId) {
-					xhr.setRequestHeader("sessionId", sessionId);
-				}
-			},
-			error : function(request) {
-				//alert("connetion error");
-			},
-			success : function(data) {
-				if(data.result.status=="OK"){
-					location.href=platformUrl.toLoginPage;
-				}
-			}
-		}); 
-} 
-</script>
+<script src="js/login.js"></script>
