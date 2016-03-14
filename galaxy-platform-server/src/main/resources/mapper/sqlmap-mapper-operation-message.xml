@@ -38,7 +38,7 @@
     
     
     
-    	<sql id="Base_Where_Clause">
+    <sql id="Base_Where_Clause">
 		<where>
 			<trim prefixOverrides="and">
 				<if test="id != null"> and id = #{id}</if>
