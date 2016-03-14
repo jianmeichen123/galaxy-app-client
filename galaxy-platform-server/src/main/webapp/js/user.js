@@ -214,6 +214,9 @@ function doSumbit() {
 							if (sessionId) {
 								xhr.setRequestHeader("sessionId", sessionId);
 							}
+							if(userId){
+								xhr.setRequestHeader("guserId", userId);
+							}
 						},
 						type : 'GET',
 						/*
