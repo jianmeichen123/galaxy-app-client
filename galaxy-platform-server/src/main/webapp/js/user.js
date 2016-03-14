@@ -4,7 +4,6 @@ var deptListByType = {};
 var userList = {};
 var TOKEN ;
 $(function() {
-
 	var deptSelect = $('#selectDept');
 	$('input:radio[name="status"]').change(
 		function() {
@@ -17,7 +16,7 @@ $(function() {
 	var json = {
 		"type" : null
 	};
-	sendGetRequest(platformUrl.getDepartList, null, callbackFun, null);
+	sendGetRequest(platformUrl.getDepartList, null, callbackFun, sessionId);
 	$(deptList).each(
 			function() {
 				var item = $(this)[0];
@@ -59,8 +58,7 @@ function searchForm() {
 		"realName" : realName,
 		"departmentId" : departId
 	};
-
-	$.ajax({
+	/*$.ajax({
 		url : platformUrl.queryUserList,
 		data : JSON.stringify(data),
 		async : false,
@@ -74,37 +72,24 @@ function searchForm() {
 		success : function(data) {
 			// 填充列表
 		}
-	});
+	});*/
 }
 
 function toadd() {
 	$("#userInfo").show();
 }
-// 新增
-function add() {
-	$.ajax({
-		url : platformUrl.addUser,
-		data : $('#formid').serialize(),
-		async : false,
-		type : 'POST',
-		contentType : "application/json; charset=UTF-8",
-		dataType : "json",
-		cache : false,
-		error : function() {
-			layer.msg('添加失败');
-		},
-		success : function(data) {
-			layer.msg("添加成功")
-		}
-	});
-}
+
 // 禁用用户
 function disableUser(id, status) {
 	var data = {
 		'id' : id,
 		'status' : status
 	};
-	$.ajax({
+	
+	sendPostRequestByJsonObj(platformUrl.disableUser, data, disableUserCallBack,sessionId);
+
+	
+	/*$.ajax({
 		url : platformUrl.disableUser,
 		data : JSON.stringify(data),
 		async : false,
@@ -122,7 +107,32 @@ function disableUser(id, status) {
 				history.go(0);
 			});
 		}
-	});
+	});*/
+}
+function disableUserCallBack(data) {
+	if (data.result.status!="OK") {
+		layer.msg("操作失败");
+	} else {
+		layer.msg("操作成功", {
+			time : 1000
+		}, function() {
+			history.go(0);
+		});
+	}
+	
+}
+
+function resetPwdCallBack(data) {
+	if (data.result.status!="OK")  {
+		layer.msg("密码重置失败");
+	} else {
+		layer.msg("密码已重置", {
+			time : 1000
+		}, function() {
+			history.go(0);
+		});
+	}
+	
 }
 
 // 重置密码
@@ -130,7 +140,8 @@ function resetPwd(id) {
 	var data = {
 		'id' : id
 	};
-	$.ajax({
+	sendPostRequestByJsonObj(platformUrl.resetPwd, data, resetPwdCallBack,sessionId);
+/*	$.ajax({
 		url : platformUrl.resetPwd,
 		data : JSON.stringify(data),
 		async : false,
@@ -149,7 +160,7 @@ function resetPwd(id) {
 			}
 			
 		}
-	});
+	});*/
 }
 function callbackFun(data) {
 	deptList = data.entityList;
@@ -165,6 +176,8 @@ function setData(data) {
 	console.log(userList);
 
 }
+
+
 function doSumbit() {
 	
 	$('#birth').datetimepicker({
@@ -196,6 +209,11 @@ function doSumbit() {
 						contentType : "application/json; charset=UTF-8",
 						data : {
 							realName : request.term
+						},
+						beforeSend : function(xhr) {
+							if (sessionId) {
+								xhr.setRequestHeader("sessionId", sessionId);
+							}
 						},
 						type : 'GET',
 						/*
@@ -264,7 +282,7 @@ function doSumbit() {
 	var json = {
 		"type" : 1
 	};
-	sendGetRequest(platformUrl.getDepartList, json, callbackFun1, null);
+	sendGetRequest(platformUrl.getDepartList, json, callbackFun1, sessionId);
 	$(deptListByType).each(
 			function() {
 				var item = $(this)[0];

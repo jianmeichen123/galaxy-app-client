@@ -61,8 +61,8 @@
 			<div class="top clearfix">
 				<!--按钮-->
 				<div class="btnbox_f btnbox_f1 clearfix">
-					<a href="html/userinfrotc.html" data-btn="userinfro"
-						class="pubbtn bluebtn ico c4">添加人员</a>
+					<button href="html/userinfrotc.html" data-btn="userinfro"
+						class="pubbtn bluebtn ico c4">添加人员</button>
 				</div>
 			</div>
 
@@ -137,6 +137,8 @@
 	<script src="bootstrap/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 	<script src="bootstrap/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
 	<script src="js/init.js"></script>	
+	<script src="<%=request.getContextPath() %>/js/axure_ext.js" type="text/javascript"></script>
+	
 </body>
 <script type="text/javascript">
 function logout(){
