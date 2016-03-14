@@ -38,14 +38,12 @@
     
     
     
-    	<sql id="Base_Where_Clause">
+    <sql id="Base_Where_Clause">
 		<where>
 			<trim prefixOverrides="and">
 				<if test="id != null"> and id = #{id}</if>
 				<if test="type != null"> and type =# {type}</if>
 				<if test="module != null"> and module =# {module}</if>
-				
-				<if test="realName != null"> and real_name like CONCAT("%",#{realName},"%")</if>
 				
 				<!-- 模糊查询 -->
 				
@@ -72,4 +70,10 @@
 		<include refid="Base_Where_Clause" />
 	</select>
 	
+	
+		<!-- 查询总数 -->
+	<select id="selectCount" resultType="java.lang.Long" parameterType="java.util.Map">
+		select count(id) from t_operation_message
+		<include refid="Base_Where_Clause" />
+	</select>
 </mapper>
