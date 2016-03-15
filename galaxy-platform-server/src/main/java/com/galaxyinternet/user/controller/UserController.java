@@ -27,6 +27,7 @@ import com.galaxyinternet.exception.PlatformException;
 import com.galaxyinternet.framework.cache.Cache;
 import com.galaxyinternet.framework.core.constants.Constants;
 import com.galaxyinternet.framework.core.constants.UserConstant;
+import com.galaxyinternet.framework.core.form.Token;
 import com.galaxyinternet.framework.core.form.TokenGenerator;
 import com.galaxyinternet.framework.core.model.Page;
 import com.galaxyinternet.framework.core.model.PageRequest;
@@ -193,6 +194,7 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	 * @param result
 	 * @return
 	 */
+	@Token
 	@ResponseBody
 	@RequestMapping(value = "/updateUser", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseData<UserBo> updateUser( @RequestBody @Valid UserBo user,BindingResult result) {
@@ -294,12 +296,15 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/formtoken", method = RequestMethod.POST)
-	public  Map<String, String> fetchFormToken(HttpServletRequest request) {
+	public  Map<String, Object> fetchFormToken(HttpServletRequest request) {
 		String tokenValue = TokenGenerator.getInstance().generateToken();
 		request.getSession().setAttribute(tokenValue, tokenValue);
+		Result result = new Result();
+		result.setErrorCode(Constants.OPTION_SUCCESS);
 		cache.set(tokenValue, Constants.TOKEN_IN_REDIS_TIMEOUT_SECONDS, tokenValue);
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put(TOKEN, tokenValue);
+		map.put("result", result);
 		return map;
 	}
 }

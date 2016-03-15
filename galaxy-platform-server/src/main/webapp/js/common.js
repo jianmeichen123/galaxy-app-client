@@ -31,12 +31,9 @@ function sendPostRequestByJsonObj(reqUrl, jsonObj, callbackFun) {
 			//alert("connetion error");
 		},
 		success : function(data) {
-			/*var result = data.result;
-			if(result.hasOwnProperty("errorCode")){
-				if(data.result.errorCode=="3"){
-					location.href = platformUrl.toLoginPage;
-			    }
-			}*/
+			if(data.result.errorCode=="3"){
+				location.href = platformUrl.toLoginPage;
+			}
 			if (callbackFun) {
 				callbackFun(data);
 			}
@@ -93,13 +90,9 @@ function sendGetRequest(reqUrl, jsonObj, callbackFun) {
 			//alert("connetion error");
 		},
 		success : function(data) {
-			/*var result = data.result;
-			if(result.hasOwnProperty("errorCode")){
-				if(data.result.errorCode=="3"){
-					location.href = platformUrl.toLoginPage;
-			    }
-			}*/
-		
+			if(data.result.errorCode=="3"){
+				location.href = platformUrl.toLoginPage;
+			}
 			if (callbackFun) {
 				callbackFun(data);
 			}
@@ -135,12 +128,9 @@ function sendPostRequest(reqUrl, callbackFun) {
 			//alert("connetion error");
 		},
 		success : function(data) {
-			/*var result = data.result;
-			if(result.hasOwnProperty("")){
-				if(data.result.errorCode=="3"){
-					location.href = platformUrl.toLoginPage;
-			    }
-			}*/
+			if(data.result.errorCode=="3"){
+				location.href = platformUrl.toLoginPage;
+			}
 			if (callbackFun) {
 				callbackFun(data);
 			}
