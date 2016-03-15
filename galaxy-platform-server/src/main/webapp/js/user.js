@@ -179,7 +179,6 @@ function setData(data) {
 
 
 function doSumbit() {
-	
 	$('#birth').datetimepicker({
 		format : 'yyyy-mm-dd', // 格式化日期
 		timepicker : true, // 关闭时间选项
@@ -190,7 +189,7 @@ function doSumbit() {
 	});
 	
 	//获取TOKEN 用于验证表单提交
-	sendPostRequest(platformUrl.getToken,callback,sessionId);
+	sendPostRequest(platformUrl.getToken,callback);
 	var deptSelect1 = $('#selectId');
 
 	$("#realName").autocomplete(
@@ -300,6 +299,7 @@ function doSumbit() {
 					"click",
 					"a[action='save']",
 					function() {
+						
 						var pop = $(".pop");
 						var json = {};
 
@@ -363,6 +363,11 @@ function doSumbit() {
 							json['departmentId'] = departId;
 
 						}
+						if ($("#birth").val() != null) {
+							json['birthStr'] = $("#birth").val();
+						}
+						/*
+						sendPostRequestByJsonObj(platformUrl.addUser,json,callbackadd);*/
 						$.ajax({
 							url : platformUrl.addUser,
 							data : JSON.stringify(json),
@@ -388,7 +393,7 @@ function doSumbit() {
 							success : function(data) {
 								
 								if (data.result.status!="OK")  {
-									layer.msg(data.result.errorCode);
+									layer.msg(data.result.message);
 								} else {
 									// 清除表单数据
 									$(pop).find("input").each(function() {
@@ -413,6 +418,29 @@ function doSumbit() {
 					
 					});
 }
+
+function callbackadd(data) {
+	if (data.result.status!="OK")  {
+		layer.msg(data.result.errorCode);
+	} else {
+		var pop = $(".pop");
+		var json = {};
+		// 清除表单数据
+		$(pop).find("input").each(function() {
+			if ($(this).val().trim() != "") {
+				json[$(this).attr("name")] = null;
+			}
+
+		});
+
+		layer.msg("添加成功", {
+			time : 1000
+		}, function() {
+			history.go(0);
+		});
+	}
+	
+}
 function callback(data){
 	TOKEN=data.TOKEN;
 	 return TOKEN;
@@ -425,7 +453,7 @@ function useCompanyAddress() {
 function editor(index, row) {
 	var id = row.id;
 	var status = row.status;
-	var text = status == 1 ? '启用用户' : '禁用用户';
+	var text = status == 1 ? '启用' : '禁用';
 	var disableUrl = "<a class='' href='javascript:disableUser(" + id + ","
 			+ status + ")'>" + text + "</a>";
 	var resetUrl = "<a class='' href='javascript:resetPwd(" + id
