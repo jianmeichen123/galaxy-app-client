@@ -10,8 +10,5 @@ import com.galaxyinternet.model.operationMessage.OperationMessage;
 public interface OperationMessageService extends BaseService<OperationMessage> {
 
 	Page<OperationMessage> queryPageList(OperationMessageBo query, Pageable pageable);
-	
-	
-	int selectCountByOperator(Long operator);
 
 }

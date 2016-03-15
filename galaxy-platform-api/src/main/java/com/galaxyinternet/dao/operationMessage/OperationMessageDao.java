@@ -10,7 +10,4 @@ public interface OperationMessageDao extends BaseDao<OperationMessage, Long>{
 	
 	List<String> selectProjecIdsByOperatorId(Long operator);
 	
-	
-	int selectCountByOperatorId(Long operator);
-	
 }

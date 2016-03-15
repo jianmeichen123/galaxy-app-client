@@ -23,15 +23,4 @@ public class operationMessageDaoImpl extends BaseDaoImpl<OperationMessage, Long>
 		}
 	}
 	
-	@Override
-	public int selectCountByOperatorId(Long operator) {
-		Assert.notNull(operator);
-		try {
-			return sqlSessionTemplate.selectOne(getSqlName("selectCountByOperatorId"), operator);
-		} catch (Exception e) {
-			throw new DaoException(String.format("查询个人消息提醒总数 ！语句：%s", getSqlName("selectCountByOperator")), e);
-		}
-	}
-
-	
 }
