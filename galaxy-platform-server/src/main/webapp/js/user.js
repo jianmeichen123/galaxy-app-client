@@ -179,7 +179,6 @@ function setData(data) {
 
 
 function doSumbit() {
-	
 	$('#birth').datetimepicker({
 		format : 'yyyy-mm-dd', // 格式化日期
 		timepicker : true, // 关闭时间选项
@@ -364,6 +363,9 @@ function doSumbit() {
 							json['departmentId'] = departId;
 
 						}
+						if ($("#birth").val() != null) {
+							json['birthStr'] = $("#birth").val();
+						}
 						/*
 						sendPostRequestByJsonObj(platformUrl.addUser,json,callbackadd);*/
 						$.ajax({
@@ -391,7 +393,7 @@ function doSumbit() {
 							success : function(data) {
 								
 								if (data.result.status!="OK")  {
-									layer.msg(data.result.errorCode);
+									layer.msg(data.result.message);
 								} else {
 									// 清除表单数据
 									$(pop).find("input").each(function() {
