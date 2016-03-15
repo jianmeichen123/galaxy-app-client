@@ -300,6 +300,7 @@ function doSumbit() {
 					"click",
 					"a[action='save']",
 					function() {
+						
 						var pop = $(".pop");
 						var json = {};
 
@@ -363,9 +364,9 @@ function doSumbit() {
 							json['departmentId'] = departId;
 
 						}
-						
-						sendPostRequestByJsonObj(platformUrl.addUser,json,callbackadd);
-						/*$.ajax({
+						/*
+						sendPostRequestByJsonObj(platformUrl.addUser,json,callbackadd);*/
+						$.ajax({
 							url : platformUrl.addUser,
 							data : JSON.stringify(json),
 							async : false,
@@ -411,7 +412,7 @@ function doSumbit() {
 								}
 								
 							}
-						});*/
+						});
 					
 					});
 }
@@ -429,9 +430,6 @@ function callbackadd(data) {
 			}
 
 		});
-		
-		// 刷新列表
-		// $('#popTxt').close();
 
 		layer.msg("添加成功", {
 			time : 1000
