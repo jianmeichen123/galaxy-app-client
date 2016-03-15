@@ -48,6 +48,10 @@ var platformUrl = {
 	 * 查询用户 自动补全
 	 */
 	getUserList : "galaxy/user/userList",
+	/**
+	 * 检测用户名是否重复
+	 */
+	checkNickName:"galaxy/user/checkNickName",
 
 	/**
 	 * 数据字典首页
