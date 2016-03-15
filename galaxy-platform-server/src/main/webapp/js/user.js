@@ -190,7 +190,7 @@ function doSumbit() {
 	});
 	
 	//获取TOKEN 用于验证表单提交
-	sendPostRequest(platformUrl.getToken,callback,sessionId);
+	sendPostRequest(platformUrl.getToken,callback);
 	var deptSelect1 = $('#selectId');
 
 	$("#realName").autocomplete(
@@ -363,7 +363,9 @@ function doSumbit() {
 							json['departmentId'] = departId;
 
 						}
-						$.ajax({
+						
+						sendPostRequestByJsonObj(platformUrl.addUser,json,callbackadd);
+						/*$.ajax({
 							url : platformUrl.addUser,
 							data : JSON.stringify(json),
 							async : false,
@@ -409,9 +411,35 @@ function doSumbit() {
 								}
 								
 							}
-						});
+						});*/
 					
 					});
+}
+
+function callbackadd(data) {
+	if (data.result.status!="OK")  {
+		layer.msg(data.result.errorCode);
+	} else {
+		var pop = $(".pop");
+		var json = {};
+		// 清除表单数据
+		$(pop).find("input").each(function() {
+			if ($(this).val().trim() != "") {
+				json[$(this).attr("name")] = null;
+			}
+
+		});
+		
+		// 刷新列表
+		// $('#popTxt').close();
+
+		layer.msg("添加成功", {
+			time : 1000
+		}, function() {
+			history.go(0);
+		});
+	}
+	
 }
 function callback(data){
 	TOKEN=data.TOKEN;
