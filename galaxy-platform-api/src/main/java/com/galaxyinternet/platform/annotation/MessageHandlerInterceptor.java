@@ -13,6 +13,7 @@ import com.galaxyinternet.framework.core.constants.Constants;
 import com.galaxyinternet.model.operationMessage.OperationMessage;
 import com.galaxyinternet.model.operationMessage.OperationType;
 import com.galaxyinternet.model.user.User;
+import com.galaxyinternet.platform.constant.PlatformConst;
 import com.galaxyinternet.service.OperationMessageService;
 
 /**
@@ -54,7 +55,7 @@ public class MessageHandlerInterceptor extends HandlerInterceptorAdapter {
 					entity.setOperator(user.getRealName());
 					entity.setRole(user.getRole());
 					entity.setType(type.getType());
-					entity.setProjectName(request.getParameter(OperationType.REQUEST_SCOPE_PROJECT_NAME));
+					entity.setProjectName(request.getParameter(PlatformConst.REQUEST_SCOPE_PROJECT_NAME));
 					Integer module = type.getModule();
 					entity.setModule(module == null ? OperationType.getModule(user.getRoleId()) : module);
 					operationMessageService.insert(entity);

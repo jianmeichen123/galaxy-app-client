@@ -1,26 +1,25 @@
 package com.galaxyinternet.model.operationMessage;
 
+import com.galaxyinternet.platform.constant.PlatformConst;
+
 public enum OperationType {
 
-	QUERY("", OperationType.PROJECT_TYPE, "查看"), 
-	CREATE("", OperationType.PROJECT_TYPE, "创建"), 
-	CLOSE("",OperationType.PROJECT_TYPE, "关闭"), 
-	CEO_REVIEW_SCHEDULE("", OperationType.PROJECT_TYPE,"CEO评审排期"), 
-	APPLY_PROJECT_SCHEDULE("", OperationType.PROJECT_TYPE,"申请立项会排期"), 
-	APPLY_VOTE_SCHEDULE("", OperationType.PROJECT_TYPE, "申请投决会排期"),
-	SIGNED_INVESTMENT_INTENT("", OperationType.PROJECT_TYPE, "签署投资意向书",OperationType.MODULE_BROADCAST_MESSAGE),
-	OPEN_DUE_DILIGENCE_INVESTIGATION("", OperationType.PROJECT_TYPE, "尽职调查开启"),
-	SIGNED_INVESTMENT_AGREEMENT("", OperationType.PROJECT_TYPE, "签署投资协议",OperationType.MODULE_BROADCAST_MESSAGE),
-	INTO_DELIVERY_STAGE("", OperationType.PROJECT_TYPE, "进入交割阶段"),
-	ADD_INTERVIEW_RECORD("", OperationType.PROJECT_TYPE, "添加访谈记录"),
-	ADD_MEETING_RECORD("", OperationType.PROJECT_TYPE, "添加回忆纪要"),
-	CLAIM_TASK("", OperationType.TASK_TYPE, "认领任务"),
-	COMPLETE_TASK("", OperationType.TASK_TYPE, "完成任务");
+	QUERY("", PlatformConst.PROJECT_TYPE, "查看"), 
+	CREATE("", PlatformConst.PROJECT_TYPE, "创建"), 
+	CLOSE("",PlatformConst.PROJECT_TYPE, "关闭"), 
+	CEO_REVIEW_SCHEDULE("", PlatformConst.PROJECT_TYPE,"CEO评审排期"), 
+	APPLY_PROJECT_SCHEDULE("", PlatformConst.PROJECT_TYPE,"申请立项会排期"), 
+	APPLY_VOTE_SCHEDULE("", PlatformConst.PROJECT_TYPE, "申请投决会排期"),
+	SIGNED_INVESTMENT_INTENT("", PlatformConst.PROJECT_TYPE, "签署投资意向书",PlatformConst.MODULE_BROADCAST_MESSAGE),
+	OPEN_DUE_DILIGENCE_INVESTIGATION("", PlatformConst.PROJECT_TYPE, "尽职调查开启"),
+	SIGNED_INVESTMENT_AGREEMENT("", PlatformConst.PROJECT_TYPE, "签署投资协议",PlatformConst.MODULE_BROADCAST_MESSAGE),
+	INTO_DELIVERY_STAGE("", PlatformConst.PROJECT_TYPE, "进入交割阶段"),
+	ADD_INTERVIEW_RECORD("", PlatformConst.PROJECT_TYPE, "添加访谈记录"),
+	ADD_MEETING_RECORD("", PlatformConst.PROJECT_TYPE, "添加回忆纪要"),
+	CLAIM_TASK("", PlatformConst.TASK_TYPE, "认领任务"),
+	COMPLETE_TASK("", PlatformConst.TASK_TYPE, "完成任务");
 	
-	public static final String REQUEST_SCOPE_PROJECT_NAME = "galaxy_project_name";
-	static final String PROJECT_TYPE = "项目";
-	static final String TASK_TYPE = "任务";
-	static final Integer MODULE_BROADCAST_MESSAGE = 1;//消息广播
+	
 
 	private OperationType(String uniqueKey, String type, String content,Integer module) {
 		this.uniqueKey = uniqueKey;
@@ -69,7 +68,7 @@ public enum OperationType {
 	public static Integer getModule(Long roleId){
 		if(null == roleId) return null;
 		if(roleId.longValue() == 1 || roleId.longValue() == 2){//高管：董事长，CEO
-			return OperationType.MODULE_BROADCAST_MESSAGE;
+			return PlatformConst.MODULE_BROADCAST_MESSAGE;
 		}
 		return null;
 	}
