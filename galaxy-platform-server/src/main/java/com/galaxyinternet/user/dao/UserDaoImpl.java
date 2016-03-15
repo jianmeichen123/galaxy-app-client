@@ -8,4 +8,10 @@ import com.galaxyinternet.model.user.User;
 
 @Repository("userDao")
 public class UserDaoImpl extends BaseDaoImpl<User, Long>implements UserDao {
+
+	@Override
+	public User selectByNickName(User user) {
+		return sqlSessionTemplate.selectOne(getSqlName("selectByNickName"),
+				user);
+	}
 }

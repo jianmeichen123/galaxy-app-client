@@ -9,16 +9,20 @@
 		 <result 	column="type" 			property="type"  		jdbcType="VARCHAR"/>
 		 <result 	column="project_name" 	property="projectName"  jdbcType="VARCHAR"/>
 		 
+		 <result 	column="project_id" 	property="projectId"  	jdbcType="BIGINT"/>
 		 <result 	column="operator" 		property="operator"  	jdbcType="VARCHAR"/>
 		 <result 	column="content" 		property="content"  	jdbcType="VARCHAR"/>
 		 <result 	column="module" 		property="module"  		jdbcType="INTEGER" />
+		 <result 	column="operator_id" 	property="operatorId"  	jdbcType="BIGINT" />
+		 
 		 <result 	column="created_time" 	property="createdTime" 	jdbcType="BIGINT" />
 
 	</resultMap>
 	
 	<sql id="Base_Column_List">
 		id,department,role,type,project_name,
-		operator,content,created_time,module
+		operator,content,created_time,module,project_id,
+		operator_id
 	</sql>
 
 
@@ -29,10 +33,12 @@
 	        	INTO
 	       	 t_operation_message (
 				department,role,type,project_name,module,
-				operator,content,created_time
+				operator,content,project_id，created_time,
+				operator_id
 	        ) VALUES (
 	        	#{department},#{role},#{type},#{projectName},#{module},
-	        	#{operator},#{content},#{createdTime}
+	        	#{operator},#{content},#{projectId}，#{createdTime},
+	        	#{operatorId}
 	        )
     </insert>
     
@@ -44,7 +50,12 @@
 				<if test="id != null"> AND id = #{id}</if>
 				<if test="type != null"> AND type = #{type}</if>
 				<if test="module != null"> AND module = #{module}</if>
-				
+				<if test="projectIds != null"> 
+					AND project_id IN
+							<foreach collection="projectIds" index="item" item="item" open="(" separator="," close=")">
+					            #{item}
+					        </foreach>
+				</if>
 				<!-- 模糊查询 -->
 				
 				 <if test="keyword != null">    
@@ -56,6 +67,7 @@
 			</trim>
 		</where>
 		<if test="sorting != null"> ORDER BY ${sorting}</if>
+		<if test="sorting == null"> ORDER BY id desc </if>
 		<if test="offset != null and limit != null">
 			LIMIT #{offset}, #{limit}
 		</if>
@@ -75,5 +87,26 @@
 	<select id="selectCount" resultType="java.lang.Long" parameterType="java.util.Map">
 		select count(id) from t_operation_message
 		<include refid="Base_Where_Clause" />
+	</select>
+	
+	<!-- 根据操作人查询项目id -->
+	<select id="selectProjecIdsByOperatorId" resultType="string" parameterType="java.lang.Long">
+		SELECT
+			distinct project_id
+		FROM 
+			t_operation_message
+		WHERE
+			operator_id = #{operatorId}	
+	</select>	
+	
+	
+	<!-- 查询个人消息提醒总数 -->
+	<select id="selectCountByOperatorId" resultType="int" parameterType="java.lang.Long">
+		SELECT 
+			COUNT(id) 
+		FROM 
+			t_operation_message
+		WHERE
+			operator_id = #{operatorId}		
 	</select>
 </mapper>

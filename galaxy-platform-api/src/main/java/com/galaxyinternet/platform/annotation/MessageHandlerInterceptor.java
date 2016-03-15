@@ -1,6 +1,7 @@
 package com.galaxyinternet.platform.annotation;
 
 import java.lang.reflect.Method;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,11 +20,10 @@ import com.galaxyinternet.service.OperationMessageService;
 /**
  * @description 消息提醒拦截器
  * @author keifer
- * @used 
- * 1.在你的controller中的方法中加入注解@Logger <br/>
- * 2.在方法处理前或后，在reqeust中设置操作的项目名称。例如：request.setParameter(OperationType.REQUEST_SCOPE_PROJECT_NAME,"星河互联创业项目") <br/>
- * 3.需要在springmvc配置文件中添加如下配置 <br/>
- * {@code
+ * @used 1.在你的controller中的方法中加入注解@Logger <br/>
+ *       2.在方法处理前或后，在reqeust中设置操作的项目名称。例如：ControllerUtils.setRequestParamsForMessageTip(request,"星河互联创业项目",68) <br/>
+ *       3.需要在springmvc配置文件中添加如下配置 <br/>
+ *       {@code
  * <mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
@@ -55,7 +55,12 @@ public class MessageHandlerInterceptor extends HandlerInterceptorAdapter {
 					entity.setOperator(user.getRealName());
 					entity.setRole(user.getRole());
 					entity.setType(type.getType());
-					entity.setProjectName(request.getParameter(PlatformConst.REQUEST_SCOPE_PROJECT_NAME));
+					@SuppressWarnings("unchecked")
+					Map<String, Object> map = (Map<String, Object>) request
+							.getAttribute(PlatformConst.REQUEST_SCOPE_MESSAGE_TIP);
+					if (null != map && !map.isEmpty()) {
+						entity.setProjectName(String.valueOf(map.get(PlatformConst.REQUEST_SCOPE_PROJECT_NAME)));
+					}
 					Integer module = type.getModule();
 					entity.setModule(module == null ? OperationType.getModule(user.getRoleId()) : module);
 					operationMessageService.insert(entity);

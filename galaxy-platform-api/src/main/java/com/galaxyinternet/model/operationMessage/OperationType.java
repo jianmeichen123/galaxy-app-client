@@ -21,18 +21,19 @@ public enum OperationType {
 	
 	
 
-	private OperationType(String uniqueKey, String type, String content,Integer module) {
+	private OperationType(String uniqueKey, String type, String content, Integer module) {
 		this.uniqueKey = uniqueKey;
 		this.type = type;
 		this.content = content;
 		this.module = module;
 	}
+
 	private OperationType(String uniqueKey, String type, String content) {
 		this.uniqueKey = uniqueKey;
 		this.type = type;
 		this.content = content;
 	}
-	
+
 	public static OperationType getObject(String uniqueKey) {
 		OperationType[] types = OperationType.values();
 		OperationType result = null;
@@ -61,13 +62,15 @@ public enum OperationType {
 	public String getUniqueKey() {
 		return uniqueKey;
 	}
-	
+
 	public Integer getModule() {
 		return module;
 	}
-	public static Integer getModule(Long roleId){
-		if(null == roleId) return null;
-		if(roleId.longValue() == 1 || roleId.longValue() == 2){//高管：董事长，CEO
+
+	public static Integer getModule(Long roleId) {
+		if (null == roleId)
+			return null;
+		if (roleId.longValue() == 1 || roleId.longValue() == 2) {// 高管：董事长，CEO
 			return PlatformConst.MODULE_BROADCAST_MESSAGE;
 		}
 		return null;
