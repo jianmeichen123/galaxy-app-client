@@ -1,12 +1,15 @@
 package com.galaxyinternet.model.user;
 
+import java.text.ParseException;
 import java.util.Date;
 
 import javax.validation.constraints.NotNull;
 
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.galaxyinternet.framework.core.model.BaseUser;
+import com.galaxyinternet.framework.core.utils.DateUtil;
 
 public class User extends BaseUser {
 	private static final long serialVersionUID = 1L;
@@ -33,6 +36,8 @@ public class User extends BaseUser {
 	private String originPassword;// 初始密码
 	private Boolean gender;// 性别
 	private Date birth;// 生日
+	private String birthStr;
+	
 	private String address;// 地址
 	private Boolean isAdmin;// 是否管理员
 	@NotNull(message="角色不能为空")
@@ -41,9 +46,19 @@ public class User extends BaseUser {
 	
 	private String nameMbLike;
 	
+	
+	
 	/*
 	 * private String salt; private String originSalt;
 	 */
+
+	public String getBirthStr() {
+		return birthStr;
+	}
+
+	public void setBirthStr(String birthStr) {
+		this.birthStr = birthStr;
+	}
 
 	public String getNameMbLike() {
 		return nameMbLike;
@@ -158,6 +173,13 @@ public class User extends BaseUser {
 	}
 
 	public Date getBirth() {
+		if (StringUtils.isNotBlank(this.getBirthStr())) {
+			try {
+				this.setBirth(DateUtil.convertStringToDate(this.getBirthStr()));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
 		return birth;
 	}
 
