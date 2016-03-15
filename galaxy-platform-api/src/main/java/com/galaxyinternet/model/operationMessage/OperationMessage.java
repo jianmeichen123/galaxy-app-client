@@ -13,7 +13,7 @@ public class OperationMessage extends BaseEntity{
 
 	public final static String DEPARTMENT = "投资线/部门";
 	public final static String ROLE = "角色";
-	public final static String TYPE = "消息类型	";
+	public final static String TYPE = "消息类型";
 	public final static String PROJECT_NAME = "项目名称";
 	public final static String OPERATOR = "操作人";
 	public final static String CONTENT = "消息内容";
