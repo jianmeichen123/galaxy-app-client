@@ -60,6 +60,10 @@ public class MessageHandlerInterceptor extends HandlerInterceptorAdapter {
 					operationMessageService.insert(entity);
 				}
 			}
+			OperationLog operationLog = method.getAnnotation(OperationLog.class);
+			if (operationLog != null) {
+				// TODO 这里添加SOP中操作操作日志的逻辑
+			}
 		}
 		super.afterCompletion(request, response, handler, ex);
 	}
