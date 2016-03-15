@@ -28,6 +28,9 @@ public class OperationMessage extends BaseEntity{
 	private String operator;
 	private String content;
 	private Integer module;
+	private Integer projectId;
+	private Long operatorId;
+	
 	public String getDepartment() {
 		return department;
 	}
@@ -70,5 +73,18 @@ public class OperationMessage extends BaseEntity{
 	public void setModule(Integer module) {
 		this.module = module;
 	}
+	public Integer getProjectId() {
+		return projectId;
+	}
+	public void setProjectId(Integer projectId) {
+		this.projectId = projectId;
+	}
+	public Long getOperatorId() {
+		return operatorId;
+	}
+	public void setOperatorId(Long operatorId) {
+		this.operatorId = operatorId;
+	}
+
 	
 }

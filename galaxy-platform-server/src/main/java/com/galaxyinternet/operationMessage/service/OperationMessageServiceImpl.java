@@ -4,11 +4,16 @@ import static com.galaxyinternet.utils.ValidationUtil.isMoreThan;
 import static com.galaxyinternet.utils.ValidationUtil.isNull;
 import static com.galaxyinternet.utils.ValidationUtil.throwPlatformException;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.galaxyinternet.bo.OperationMessageBo;
 import com.galaxyinternet.dao.operationMessage.OperationMessageDao;
 import com.galaxyinternet.framework.core.dao.BaseDao;
+import com.galaxyinternet.framework.core.model.Page;
 import com.galaxyinternet.framework.core.service.impl.BaseServiceImpl;
 import com.galaxyinternet.model.operationMessage.OperationMessage;
 import com.galaxyinternet.service.OperationMessageService;
@@ -48,5 +53,24 @@ public class OperationMessageServiceImpl extends BaseServiceImpl<OperationMessag
 		}
 		entity.setCreatedTime(System.currentTimeMillis());
 		return operationMessageDao.insert(entity);
+	}
+	
+	@Override
+	public Page<OperationMessage> queryPageList(OperationMessageBo query, Pageable pageable) {
+		isNull(OperationMessage.COMMENT,query);
+		isNull(OperationMessage.OPERATOR,query.getOperatorId());
+		if(query.getModule()!= null &&query.getModule() == 2){
+			query.setModule(null);
+			List<String> projectIds = operationMessageDao.selectProjecIdsByOperatorId(query.getOperatorId());
+			if(projectIds.size() >0){
+				query.setProjectIds(projectIds);
+			}
+		}
+		return operationMessageDao.selectPageList(query, pageable);
+	}
+
+	@Override
+	public int selectCountByOperator(Long operator) {
+		return operationMessageDao.selectCountByOperatorId(operator);
 	}
 }
