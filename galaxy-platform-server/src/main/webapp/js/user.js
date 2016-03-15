@@ -449,6 +449,7 @@ function useCompanyAddress() {
 	$("#address").val("北京市海淀区上地创新大厦三层");
 }
 
+
 // 操作链接
 function editor(index, row) {
 	var id = row.id;
