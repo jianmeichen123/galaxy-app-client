@@ -307,4 +307,22 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		map.put("result", result);
 		return map;
 	}
+	
+	/**
+	 * Ajax请求校验用户名是否重复
+	 */
+	@RequestMapping(value = "checkNickName")
+	@ResponseBody
+	public Map<String, Object>  checkLoginName(@RequestBody User query) {
+
+		User user = userService.queryByNickName(query);
+		Map<String, Object> map = new HashMap<String, Object>();
+		if (user == null) {
+			map.put("flag", false);
+		} else {
+			map.put("flag", true);
+		}
+		return map;
+	}
+
 }

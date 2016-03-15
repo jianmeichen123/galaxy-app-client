@@ -110,6 +110,13 @@
 		from t_user where id = #{id}
 	</select>
 	
+	<select id="selectByNickName" resultMap="BaseResultMap" parameterType="UserPO">
+		select
+		<include refid="Base_Column_List" />
+		from t_user 
+		where nick_name =#{nickName} and id !=#{id}
+	</select>
+	
   	<insert id="insert" parameterType="UserPO" >
 	    <![CDATA[
 	        insert into

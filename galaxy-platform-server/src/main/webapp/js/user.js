@@ -3,6 +3,7 @@ var deptList = {};
 var deptListByType = {};
 var userList = {};
 var TOKEN ;
+var flag = false;
 $(function() {
 	var deptSelect = $('#selectDept');
 	$('input:radio[name="status"]').change(
@@ -179,6 +180,7 @@ function setData(data) {
 
 
 function doSumbit() {
+	
 	$('#birth').datetimepicker({
 		format : 'yyyy-mm-dd', // 格式化日期
 		timepicker : true, // 关闭时间选项
@@ -325,12 +327,22 @@ function doSumbit() {
 						if (pop.find("input[name='nickName']").val() == "") {
 							layer.msg("请填写登录名");
 							return;
-						}
-						if (pop.find("input[name='mobile']").val() == "") {
-							layer.msg("请填写邮手机号");
-							return;
+						} else {
+							var value = pop.find("input[name='nickName']").val();
+							 var json ={"nickName":value,"id":$("#userId").val()};
+							 
+							sendPostRequestByJsonObj(platformUrl.checkNickName,json,callbackcheckName);
+
+							if(flag==true) {
+								layer.msg("登录名不能重复");
+								return;
+							}
 						}
 
+						if (pop.find("input[name='mobile']").val() == "") {
+							layer.msg("请填写手机号");
+							return;
+						} 
 						if (pop
 								.find(
 										'input:radio[name="departmentId"]:checked')
@@ -441,6 +453,10 @@ function callbackadd(data) {
 	}
 	
 }
+function callbackcheckName(data) {
+	flag = data.flag;
+}
+
 function callback(data){
 	TOKEN=data.TOKEN;
 	 return TOKEN;

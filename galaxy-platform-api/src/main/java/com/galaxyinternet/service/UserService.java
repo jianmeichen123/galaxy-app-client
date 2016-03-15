@@ -80,4 +80,12 @@ public interface UserService extends BaseService<User> {
 	 * @return
 	 */
 	Role getRoleByUserId(Long userId);
+	
+	/**
+	 * 查询用户昵称 重复校验用
+	 * @author zhaoying
+	 * @param user
+	 * @return
+	 */
+	User queryByNickName(User user);
 }
