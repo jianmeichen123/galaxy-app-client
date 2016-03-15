@@ -101,6 +101,15 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		if (user == null) {
 			responsebody.setResult(new Result(Status.ERROR, Constants.IS_UP_WRONG,"用户名或密码错误！"));
 		} else {
+			
+			//查询user相关字段
+			Department dept = getDepartmentByUserId(user.getId());
+			Role role = getRoleByUserId(user.getId());
+			if(dept !=null && role!=null){
+				user.setDepartmentName(dept.getName());
+				user.setRole(role.getName());
+			}
+			
 			String sessionId = SessionUtils.createWebSessionId(); // 封装
 			user.setSessionId(sessionId);
 			cache.set(sessionId, user); // 将sessionId存入cache
