@@ -67,6 +67,7 @@
 			</trim>
 		</where>
 		<if test="sorting != null"> ORDER BY ${sorting}</if>
+		<if test="sorting == null"> ORDER BY id desc </if>
 		<if test="offset != null and limit != null">
 			LIMIT #{offset}, #{limit}
 		</if>
