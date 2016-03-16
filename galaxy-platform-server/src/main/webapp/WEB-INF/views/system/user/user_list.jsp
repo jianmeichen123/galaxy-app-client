@@ -12,8 +12,8 @@
 <base href="<%=basePath%>">
 <!-- jsp文件头和头部 -->
 <%@ include file="/WEB-INF/views/common/taglib.jsp"%>
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"  type="text/css">
-    <!-- bootstrap-table -->
+<!-- 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"  type="text/css">
+ -->    <!-- bootstrap-table -->
 	<link rel="stylesheet" href="bootstrap/bootstrap-table/bootstrap-table.css"  type="text/css">
 	<link rel="stylesheet" href="bootstrap/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"  type="text/css">
     <link href="css/axure.css" type="text/css" rel="stylesheet" />
