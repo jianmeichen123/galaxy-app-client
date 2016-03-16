@@ -100,8 +100,7 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
-			<bean
-				class="com.galaxyinternet.framework.core.form.TokenHandlerInterceptor" />
+			<bean class="com.galaxyinternet.framework.core.form.TokenHandlerInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
 </beans>
