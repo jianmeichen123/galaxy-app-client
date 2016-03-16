@@ -119,6 +119,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 			header.setLoginName(user.getNickName());
 			header.setSessionId(sessionId);
 			header.setUserId(user.getId());
+			header.setAttachment(user);
 			responsebody.setHeader(header);
 			responsebody.setResult(new Result(Status.OK, Constants.OPTION_SUCCESS, "登录成功！"));
 		}
