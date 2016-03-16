@@ -11,4 +11,8 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Logger {
+	/**
+	 * @return 是否记录sop的操作日志，默认“否”
+	 */
+	boolean writeSopOperationLog() default false;
 }
