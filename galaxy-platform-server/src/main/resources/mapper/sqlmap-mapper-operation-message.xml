@@ -50,7 +50,6 @@
 				<if test="id != null"> AND id = #{id}</if>
 				<if test="type != null"> AND type = #{type}</if>
 				<if test="module != null"> AND module = #{module}</if>
-				<if test="operatorId != null"> AND operator_id = #{operatorId}</if>	
 				<if test="createdTimeStart != null"> AND created_time >= #{createdTimeStart}</if>
 				<if test="createdTimeEnd != null"> AND   #{createdTimeEnd} >= created_time </if>
 				<if test="projectIds != null"> 

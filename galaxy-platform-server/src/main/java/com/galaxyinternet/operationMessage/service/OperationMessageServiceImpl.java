@@ -59,7 +59,6 @@ public class OperationMessageServiceImpl extends BaseServiceImpl<OperationMessag
 	@Override
 	public Page<OperationMessage> queryPageList(OperationMessageBo query, Pageable pageable) {
 		isNull(OperationMessage.COMMENT,query);
-		isNull(OperationMessage.OPERATOR,query.getOperatorId());
 		if(query.getModule()!= null &&query.getModule() == 2){
 			query.setModule(null);
 			List<String> projectIds = operationMessageDao.selectProjecIdsByOperatorId(query.getOperatorId());
