@@ -107,6 +107,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 			Role role = getRoleByUserId(user.getId());
 			if(dept !=null && role!=null){
 				user.setDepartmentName(dept.getName());
+				user.setRoleId(role.getId());
 				user.setRole(role.getName());
 			}
 			
