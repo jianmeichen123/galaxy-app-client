@@ -3,19 +3,25 @@ package com.galaxyinternet.model.operationMessage;
 import com.galaxyinternet.platform.constant.PlatformConst;
 
 public enum OperationType {
-
+	
 	QUERY("/galaxy/project/sp", PlatformConst.PROJECT_TYPE, "查看"), 
 	CREATE("/galaxy/project/ap", PlatformConst.PROJECT_TYPE, "创建"), 
-	CLOSE("",PlatformConst.PROJECT_TYPE, "关闭"), 
-	CEO_REVIEW_SCHEDULE("", PlatformConst.PROJECT_TYPE,"CEO评审"), 
-	APPLY_PROJECT_SCHEDULE("/galaxy/project/ges/", PlatformConst.PROJECT_TYPE,"申请立项会排期"), 
+	PRO__ADD_PER("/galaxy/project/app", PlatformConst.PROJECT_TYPE, "添加团队成员"), 
+	PRO__EDIT_PER("/galaxy/project/upp", PlatformConst.PROJECT_TYPE, "修改团队成员"), 
+	PRO__DEL_PER("/galaxy/project/dpp", PlatformConst.PROJECT_TYPE, "修改团队成员"), 
+	PRO__INFO("/galaxy/project/getProjectInfo", PlatformConst.PROJECT_TYPE, "获取项目信息"),
+	PRO_FILE_UP("/galaxy/project/stageChange", PlatformConst.PROJECT_TYPE, "文档上传"),
+	PRO_START_REVIEW("/galaxy/project/startReview", PlatformConst.PROJECT_TYPE, "启动内部评审"),
+	APPLY_PROJECT_SCHEDULE("/galaxy/project/ges", PlatformConst.PROJECT_TYPE,"申请立项会排期"), 
 	APPLY_VOTE_SCHEDULE("/galaxy/project/smp/", PlatformConst.PROJECT_TYPE, "申请投决会排期"),
-	SIGNED_INVESTMENT_INTENT("/galaxy/tzyx", PlatformConst.PROJECT_TYPE, "签署投资意向书",PlatformConst.MODULE_BROADCAST_MESSAGE),
-	OPEN_DUE_DILIGENCE_INVESTIGATION("", PlatformConst.PROJECT_TYPE, "尽职调查开启"),
-	SIGNED_INVESTMENT_AGREEMENT("/galaxy/project/stageChange", PlatformConst.PROJECT_TYPE, "签署投资协议",PlatformConst.MODULE_BROADCAST_MESSAGE),
-	INTO_DELIVERY_STAGE("", PlatformConst.PROJECT_TYPE, "进入交割阶段"),
-	ADD_INTERVIEW_RECORD("/galaxy/project/stageChange", PlatformConst.PROJECT_TYPE, "添加访谈记录"),
-	ADD_MEETING_RECORD("/galaxy/project/stageChange", PlatformConst.PROJECT_TYPE, "添加会议纪要"),
+	
+	ADD_INTERVIEW_FILE_RECORD("/galaxy/project/progress/addFileInterview", PlatformConst.PROJECT_TYPE, "添加访谈记录"),
+	ADD_INTERVIEW_RECORD("//galaxy/project/progress/addInterview", PlatformConst.PROJECT_TYPE, "添加访谈记录"),
+	ADD_MEETING_FILE_RECORD("/galaxy/project/progress/addfilemeet", PlatformConst.PROJECT_TYPE, "添加会议纪要"),
+	ADD_MEETING_RECORD("/galaxy/project/progress/addmeet", PlatformConst.PROJECT_TYPE, "添加会议纪要"),
+	
+	CLOSE("",PlatformConst.PROJECT_TYPE, "关闭"), 
+	
 	CLAIM_TASK("galaxy/soptask/goClaimtcPage", PlatformConst.TASK_TYPE, "认领任务"),
 	COMPLETE_TASK("/galaxy/soptask/updateTaskStatus", PlatformConst.TASK_TYPE, "完成任务");
 	
