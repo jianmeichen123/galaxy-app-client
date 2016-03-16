@@ -28,5 +28,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/galaxy-common"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/galaxy-platform-api"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
