@@ -378,6 +378,7 @@ function doSumbit() {
 						if ($("#birth").val() != null) {
 							json['birthStr'] = $("#birth").val();
 						}
+						delete json['birth'];
 						/*
 						sendPostRequestByJsonObj(platformUrl.addUser,json,callbackadd);*/
 						$.ajax({

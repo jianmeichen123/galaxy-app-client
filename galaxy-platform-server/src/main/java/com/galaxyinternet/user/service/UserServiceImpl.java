@@ -107,6 +107,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 			Role role = getRoleByUserId(user.getId());
 			if(dept !=null && role!=null){
 				user.setDepartmentName(dept.getName());
+				user.setRoleId(role.getId());
 				user.setRole(role.getName());
 			}
 			
@@ -119,6 +120,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 			header.setLoginName(user.getNickName());
 			header.setSessionId(sessionId);
 			header.setUserId(user.getId());
+			header.setAttachment(user);
 			responsebody.setHeader(header);
 			responsebody.setResult(new Result(Status.OK, Constants.OPTION_SUCCESS, "登录成功！"));
 		}

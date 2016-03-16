@@ -47,7 +47,8 @@ public class OperationMessageServiceImpl extends BaseServiceImpl<OperationMessag
 		isMoreThan(OperationMessage.CONTENT, entity.getContent(), 500);
 		
 		Integer module = entity.getModule();
-		isNull(OperationMessage.MODULE,module);
+		//isNull(OperationMessage.MODULE,module);
+		module = module == null ? 0 : module;
 		if(!(module==1||module==2||module==3)){
 			throwPlatformException(MessageStatus.OPERATION_MESSAGE_MODULE_ERROR);
 		}
