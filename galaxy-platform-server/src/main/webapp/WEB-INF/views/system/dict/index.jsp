@@ -33,13 +33,13 @@
             	<dt class="clearfix" id="dcit_tab">
                 	<div class="tool clearfix" >
                     	<a href="javascript:;" class="ico i1 null" action="insert_row">加号</a>
-                        <a href="javascript:;" class="ico i2 null">上</a>
+ <!--                        <a href="javascript:;" class="ico i2 null">上</a>
                         <a href="javascript:;" class="ico i3 null">下</a>
                         <a href="javascript:;" class="ico i4 null">×</a>
                         <b class="ico i5 null">|</b>
                         <a href="javascript:;" class="ico i4 null">×</a>
                         <a href="javascript:;" class="btn" action="batchInsert">添加多个</a>
-                    </div>
+  -->                   </div>
                     <h2>档案类型</h2>
                 </dt>
 				<dd>
