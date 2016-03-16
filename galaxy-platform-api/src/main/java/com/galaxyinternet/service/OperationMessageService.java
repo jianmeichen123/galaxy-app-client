@@ -11,4 +11,6 @@ public interface OperationMessageService extends BaseService<OperationMessage> {
 
 	Page<OperationMessage> queryPageList(OperationMessageBo query, Pageable pageable);
 
+	
+	Long selectCount(OperationMessage query);
 }

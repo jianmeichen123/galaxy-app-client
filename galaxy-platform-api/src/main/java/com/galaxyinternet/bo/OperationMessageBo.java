@@ -10,6 +10,8 @@ public class OperationMessageBo extends OperationMessage  implements Pagable{
 	private static final long serialVersionUID = 1L;
 	private String extendFiled;// 业务对象中扩展的字段
 	private List<String> projectIds;
+	private Long createdTimeStart;
+	private Long count;
 	
 	public String getExtendFiled() {
 		return extendFiled;
@@ -50,6 +52,22 @@ public class OperationMessageBo extends OperationMessage  implements Pagable{
 
 	public void setProjectIds(List<String> projectIds) {
 		this.projectIds = projectIds;
+	}
+
+	public Long getCreatedTimeStart() {
+		return createdTimeStart;
+	}
+
+	public void setCreatedTimeStart(Long createdTimeStart) {
+		this.createdTimeStart = createdTimeStart;
+	}
+
+	public Long getCount() {
+		return count;
+	}
+
+	public void setCount(Long count) {
+		this.count = count;
 	}
 
 	

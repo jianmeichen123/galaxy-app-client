@@ -50,6 +50,9 @@
 				<if test="id != null"> AND id = #{id}</if>
 				<if test="type != null"> AND type = #{type}</if>
 				<if test="module != null"> AND module = #{module}</if>
+				<if test="operatorId != null"> AND operator_id = #{operatorId}</if>	
+				<if test="createdTimeStart != null"> AND created_time >= #{createdTimeStart}</if>
+				<if test="createdTimeEnd != null"> AND   #{createdTimeEnd} >= created_time </if>
 				<if test="projectIds != null"> 
 					AND project_id IN
 							<foreach collection="projectIds" index="item" item="item" open="(" separator="," close=")">
@@ -99,14 +102,4 @@
 			operator_id = #{operatorId}	
 	</select>	
 	
-	
-	<!-- 查询个人消息提醒总数 -->
-	<select id="selectCountByOperatorId" resultType="int" parameterType="java.lang.Long">
-		SELECT 
-			COUNT(id) 
-		FROM 
-			t_operation_message
-		WHERE
-			operator_id = #{operatorId}		
-	</select>
 </mapper>

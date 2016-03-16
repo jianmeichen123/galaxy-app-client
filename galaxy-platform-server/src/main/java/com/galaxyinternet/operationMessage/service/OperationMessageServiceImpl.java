@@ -70,4 +70,9 @@ public class OperationMessageServiceImpl extends BaseServiceImpl<OperationMessag
 		return operationMessageDao.selectPageList(query, pageable);
 	}
 
+	@Override
+	public Long selectCount(OperationMessage query) {
+		return operationMessageDao.selectCount(query);
+	}
+
 }
