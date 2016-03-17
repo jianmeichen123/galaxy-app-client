@@ -1,4 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<link rel="shortcut icon" href="img/favicon.ico" />
 <div class="header clearfix">
 	<a href="javascript:;" class="logo null">繁星</a>
     <!--头部中间-->
