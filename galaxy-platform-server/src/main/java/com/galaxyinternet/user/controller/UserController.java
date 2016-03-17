@@ -106,13 +106,13 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 				logger.error("resetPwd ", e);
 			}
 		}
-		
-		String toMail = user.getEmail(); // "sue_vip@126.com"; 收件人邮件地址
+		User nUser = userService.queryById(user.getId());
+		String toMail = nUser.getEmail() + Constants.MAIL_SUFFIX; // "sue_vip@126.com"; 收件人邮件地址
 		String content = "<html>" + "<head></head>" + "<body>"
 				+ "<div align=center>"
-				+ "	<a href=http://localhost:8000/controller/vcs/login/toLogin target=_blank>"
-				+ "您好，您密码已重置，请点击地址：http://localhost:8000/controller/vcs/login/toLogin  登陆 "
-				+ "	</a>" + "</div>" + "</body>" + "</html>";// 邮件内容
+				+ "您好，繁星系统已为您生成账户名：" + nUser.getNickName() +",密码:" + nUser.getPassword()
+				+ "您可以登陆繁星系统：" +"<a>"+"url" + "</a>"+" 管理您的项目了。"
+				+ "</div>" + "</body>" + "</html>";// 邮件内容
 		String subject = "重置密码通知";// 邮件主题
 		boolean bl = SimpleMailSender.sendHtmlMail(toMail, subject, content);
 		if (bl== false) {
