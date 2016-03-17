@@ -2,7 +2,6 @@ package com.galaxyinternet.operationMessage.service;
 
 import static com.galaxyinternet.utils.ValidationUtil.isMoreThan;
 import static com.galaxyinternet.utils.ValidationUtil.isNull;
-import static com.galaxyinternet.utils.ValidationUtil.throwPlatformException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +17,6 @@ import com.galaxyinternet.framework.core.model.Page;
 import com.galaxyinternet.framework.core.service.impl.BaseServiceImpl;
 import com.galaxyinternet.model.operationMessage.OperationMessage;
 import com.galaxyinternet.service.OperationMessageService;
-import com.galaxyinternet.utils.MessageStatus;
 @Service("com.galaxyinternet.service.OperationMessageService")
 public class OperationMessageServiceImpl extends BaseServiceImpl<OperationMessage>implements OperationMessageService {
 	//private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -50,9 +48,9 @@ public class OperationMessageServiceImpl extends BaseServiceImpl<OperationMessag
 		Integer module = entity.getModule();
 		//isNull(OperationMessage.MODULE,module);
 		module = module == null ? 0 : module;
-		if(!(module==1||module==2||module==3)){
-			throwPlatformException(MessageStatus.OPERATION_MESSAGE_MODULE_ERROR);
-		}
+		//if(!(module==1||module==2||module==3)){
+			//throwPlatformException(MessageStatus.OPERATION_MESSAGE_MODULE_ERROR);
+		//}
 		entity.setCreatedTime(System.currentTimeMillis());
 		return operationMessageDao.insert(entity);
 	}
