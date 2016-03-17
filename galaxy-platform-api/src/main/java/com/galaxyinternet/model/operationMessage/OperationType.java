@@ -6,10 +6,10 @@ public enum OperationType {
 	
 	QUERY("/galaxy/project/sp", PlatformConst.PROJECT_TYPE, "查看"), 
 	CREATE("/galaxy/project/ap", PlatformConst.PROJECT_TYPE, "创建"), 
-	PRO__ADD_PER("/galaxy/project/app", PlatformConst.PROJECT_TYPE, "添加团队成员"), 
-	PRO__EDIT_PER("/galaxy/project/upp", PlatformConst.PROJECT_TYPE, "修改团队成员"), 
-	PRO__DEL_PER("/galaxy/project/dpp", PlatformConst.PROJECT_TYPE, "修改团队成员"), 
-	PRO__INFO("/galaxy/project/getProjectInfo", PlatformConst.PROJECT_TYPE, "获取项目信息"),
+	PRO_ADD_PER("/galaxy/project/app", PlatformConst.PROJECT_TYPE, "添加团队成员"), 
+	PRO_EDIT_PER("/galaxy/project/upp", PlatformConst.PROJECT_TYPE, "修改团队成员"), 
+	PRO_DEL_PER("/galaxy/project/dpp", PlatformConst.PROJECT_TYPE, "删除团队成员"), 
+	PRO_INFO("/galaxy/project/getProjectInfo", PlatformConst.PROJECT_TYPE, "获取项目信息"),
 	PRO_FILE_UP("/galaxy/project/stageChange", PlatformConst.PROJECT_TYPE, "文档上传"),
 	PRO_START_REVIEW("/galaxy/project/startReview", PlatformConst.PROJECT_TYPE, "启动内部评审"),
 	APPLY_PROJECT_SCHEDULE("/galaxy/project/ges", PlatformConst.PROJECT_TYPE,"申请立项会排期"), 
@@ -20,7 +20,7 @@ public enum OperationType {
 	ADD_MEETING_FILE_RECORD("/galaxy/project/progress/addfilemeet", PlatformConst.PROJECT_TYPE, "添加会议纪要"),
 	ADD_MEETING_RECORD("/galaxy/project/progress/addmeet", PlatformConst.PROJECT_TYPE, "添加会议纪要"),
 	
-	CLOSE("",PlatformConst.PROJECT_TYPE, "关闭"), 
+	CLOSE("/galaxy/project/breakpro",PlatformConst.PROJECT_TYPE, "关闭"), 
 	
 	CLAIM_TASK("galaxy/soptask/goClaimtcPage", PlatformConst.TASK_TYPE, "认领任务"),
 	COMPLETE_TASK("/galaxy/soptask/updateTaskStatus", PlatformConst.TASK_TYPE, "完成任务");
