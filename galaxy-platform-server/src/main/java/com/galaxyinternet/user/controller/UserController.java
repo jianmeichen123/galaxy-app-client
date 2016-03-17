@@ -13,6 +13,7 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -64,6 +65,17 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	protected BaseService<User> getBaseService() {
 		return this.userService;
 	}
+	
+	private String loginUrl;
+	
+	@Value("${project.home.page.url}")
+	public void setLoginUrl(String loginUrl) {
+		this.loginUrl = loginUrl;
+	}
+	
+	public String getLoginUrl() {
+		return loginUrl;
+	}
 
 	/**
 	 * 默认页面
@@ -110,8 +122,8 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		String toMail = user.getEmail(); // "sue_vip@126.com"; 收件人邮件地址
 		String content = "<html>" + "<head></head>" + "<body>"
 				+ "<div align=center>"
-				+ "	<a href=http://localhost:8000/controller/vcs/login/toLogin target=_blank>"
-				+ "您好，您密码已重置，请点击地址：http://localhost:8000/controller/vcs/login/toLogin  登陆 "
+				+ "	<a href="+this.getLoginUrl()+" target=_blank>"
+				+ "您好，您密码已重置，请点击地址："+this.getLoginUrl()+"  登陆 "
 				+ "	</a>" + "</div>" + "</body>" + "</html>";// 邮件内容
 		String subject = "重置密码通知";// 邮件主题
 		boolean bl = SimpleMailSender.sendHtmlMail(toMail, subject, content);
