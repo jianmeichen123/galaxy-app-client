@@ -108,13 +108,12 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		
 		ResponseData<User> responseBody = new ResponseData<User>();
 		Result result = new Result();
+		int retValue = 0;
+		boolean bl = false;
 		try {
-			userService.resetPwd(user.getId());
-			responseBody.setResult(new Result(Status.OK, user));
+			retValue = userService.resetPwd(user.getId());
 
 		} catch (PlatformException e) {
-			responseBody
-					.setResult(new Result(Status.ERROR, "resetPwd faild"));
 
 			if (logger.isErrorEnabled()) {
 				logger.error("resetPwd ", e);
@@ -134,12 +133,15 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 				+ "</div>" + "</body>" + "</html>";// 邮件内容
         */
 		String subject = "重置密码通知";// 邮件主题
-		boolean bl = SimpleMailSender.sendHtmlMail(toMail, subject, content);
-		if (bl== false) {
+		bl = SimpleMailSender.sendHtmlMail(toMail, subject, content);
+		 if (retValue < 1) {
+			result.addError("密码重置失败");
+			responseBody.setResult(result);
+		} else if (retValue > 0 && bl== false ) {
 			result.addError("邮件发送失败");
 			responseBody.setResult(result);
 		} else {
-			responseBody.setResult(new Result(Status.OK, ""));
+			responseBody.setResult(new Result(Status.OK, nUser));
 		}
 		
 		return responseBody;

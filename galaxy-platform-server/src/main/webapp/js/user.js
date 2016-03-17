@@ -125,7 +125,8 @@ function disableUserCallBack(data) {
 
 function resetPwdCallBack(data) {
 	if (data.result.status!="OK")  {
-		layer.msg("密码重置失败");
+		
+		layer.msg(data.result.message);
 	} else {
 		layer.msg("密码已重置", {
 			time : 1000
