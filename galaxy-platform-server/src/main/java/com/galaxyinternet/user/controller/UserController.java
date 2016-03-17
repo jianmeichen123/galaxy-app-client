@@ -123,7 +123,7 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		String content = "<html>" + "<head></head>" + "<body>"
 				+ "<div align=center>"
 				+ "您好，繁星系统已为您生成账户名：" + nUser.getNickName() +",密码:" + nUser.getPassword()
-				+ "您可以登陆繁星系统：" +"<a>"+"url" + "</a>"+" 管理您的项目了。"
+				+ "您可以登陆繁星系统：" +"<a>"+ this.loginUrl + "</a>"+" 管理您的项目了。"
 				+ "</div>" + "</body>" + "</html>";// 邮件内容
 
 		String subject = "重置密码通知";// 邮件主题
