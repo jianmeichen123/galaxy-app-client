@@ -4,6 +4,7 @@ import static com.galaxyinternet.utils.ValidationUtil.isMoreThan;
 import static com.galaxyinternet.utils.ValidationUtil.isNull;
 import static com.galaxyinternet.utils.ValidationUtil.throwPlatformException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,9 +63,10 @@ public class OperationMessageServiceImpl extends BaseServiceImpl<OperationMessag
 		if(query.getModule()!= null &&query.getModule() == 2){
 			query.setModule(null);
 			List<String> projectIds = operationMessageDao.selectProjecIdsByOperatorId(query.getOperatorId());
-			if(projectIds.size() >0){
-				query.setProjectIds(projectIds);
+			if(projectIds.size() == 0){
+				return new Page<OperationMessage>(new ArrayList<OperationMessage>(), pageable,(long) 0);
 			}
+			query.setProjectIds(projectIds);
 		}
 		return operationMessageDao.selectPageList(query, pageable);
 	}
