@@ -13,6 +13,7 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -64,6 +65,17 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	protected BaseService<User> getBaseService() {
 		return this.userService;
 	}
+	
+	private String loginUrl;
+	
+	@Value("${project.home.page.url}")
+	public void setLoginUrl(String loginUrl) {
+		this.loginUrl = loginUrl;
+	}
+	
+	public String getLoginUrl() {
+		return loginUrl;
+	}
 
 	/**
 	 * 默认页面
@@ -113,6 +125,7 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 				+ "您好，繁星系统已为您生成账户名：" + nUser.getNickName() +",密码:" + nUser.getPassword()
 				+ "您可以登陆繁星系统：" +"<a>"+"url" + "</a>"+" 管理您的项目了。"
 				+ "</div>" + "</body>" + "</html>";// 邮件内容
+
 		String subject = "重置密码通知";// 邮件主题
 		boolean bl = SimpleMailSender.sendHtmlMail(toMail, subject, content);
 		if (bl== false) {
