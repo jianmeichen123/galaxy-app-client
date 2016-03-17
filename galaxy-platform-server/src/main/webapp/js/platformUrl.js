@@ -90,7 +90,11 @@ var platformUrl = {
 	/**
 	 * 获取token
 	 */
-	getToken:"galaxy/user/formtoken"
+	getToken:"galaxy/user/formtoken",
+	/**
+	 * 主页待办任务
+	 */
+	soptaskshouye: Constants.sopEndpointURL+"/galaxy/soptask/taskListByRole",
 }
 
 /**
