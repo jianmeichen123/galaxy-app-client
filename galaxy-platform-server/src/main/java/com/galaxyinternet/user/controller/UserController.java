@@ -120,11 +120,12 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		}
 		User nUser = userService.queryById(user.getId());
 		String toMail = nUser.getEmail() + Constants.MAIL_SUFFIX; // "sue_vip@126.com"; 收件人邮件地址
-		toMail = "yingzhao@galaxyinternet.com";
+		//toMail = "sue_vip@126.com";
 		String content = "<html>" + "<head></head>" + "<body>"
 				+ "<div align=center>"
-				+ "您好，繁星系统已为您生成账户名：" + nUser.getNickName() +",密码:" + nUser.getPassword()
-				+ "您可以登陆繁星系统：" +"<a>"+ this.getLoginUrl() + "</a>"+" 管理您的项目了。"
+				+ "您好，繁星系统已为您生成账户名：" + nUser.getNickName() +",密码:" + nUser.getOriginPassword()
+				+ "您可以登陆繁星系统：" +"<a href="+  this.getLoginUrl()+" target=_blank>" +this.getLoginUrl()+"</a>"
+				+" 管理您的项目了。"
 				+ "</div>" + "</body>" + "</html>";// 邮件内容
 
 		String subject = "重置密码通知";// 邮件主题
