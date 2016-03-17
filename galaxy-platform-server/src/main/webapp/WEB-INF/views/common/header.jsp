@@ -11,10 +11,15 @@
             <a href="javascript:;" class="work">消息提醒<em>0</em></a>
         </div>    	<!--当日信息-->
     	<div class="todaymsg clearfix">
-        	<span>北京</span>
-            <span class="weather1">小雨</span>
-            <span>7/-13度；</span>
-            <span>今日限行尾号为 5、0，明日为不限行！</span>            
+        	<span class="weather"><iframe allowtransparency="true" frameborder="0" width="130" height="36" scrolling="no" src="http://tianqi.2345.com/plugin/widget/index.htm?s=3&z=2&t=1&v=0&d=3&bd=0&k=000000&f=004080&q=1&e=1&a=1&c=54511&w=180&h=36&align=center"></iframe></span>
+            <span>
+                <em id="sday" style="display:none">
+                2014-01-08
+                </em>
+                <div id="xianhao" class="xianhao">
+                <em class="today" id="todayweek"></em>限行尾号为&nbsp;<em class="todaynum" id="todaynum"></em><em>，</em><em class="tomorrow" id="tomorrowweek"></em>限行尾号为&nbsp;<em class="tomorrownum" id="tomorrownum"></em><em>！</em>　
+                </div>            
+            </span>         
         </div>
     </div>
     <!-- 头部右边 -->
@@ -25,3 +30,4 @@
     </div>
 </div>
 <script src="js/login.js"></script>
+<script src="js/car_limit.js"></script>
