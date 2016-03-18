@@ -223,13 +223,30 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	@Override
 	@Transactional
 	public int updateUser(UserBo user) {
-		int result1 = userDao.updateById(user);
+		int result1 = 1;
+		UserRole userRole = new UserRole();
+		if (user.getId() != null) {
+			userRole.setUserId(user.getId());
+			result1 = userDao.updateById(user);
+			
+		} else {
+			String oriPwd = PWDUtils.genRandomNum(6);
+			user.setOriginPassword(oriPwd);
+			// 加密
+			user.setPassword(PWDUtils.genernateNewPassword(oriPwd));
+			long id = userDao.insert(user);
+			if (id >0) {
+				result1= 1;
+			}
+			userRole.setUserId(id);
+			result1= (int) id;
+		}
 
-		if (user.getId() == null || user.getRoleId() == null) {
+		if ( user.getRoleId() == null) {
 			throwPlatformException(MessageStatus.FIELD_NOT_ALLOWED_EMPTY, "不能新建用户,用户ID");
 		}
 
-		UserRole userRole = new UserRole();
+		
 		userRole.setRoleId(user.getRoleId());
 		userRole.setUserId(user.getId());
 		long result2 = userRoleService.insertUserRole(userRole);

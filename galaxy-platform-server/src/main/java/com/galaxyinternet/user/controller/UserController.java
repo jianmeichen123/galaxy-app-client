@@ -229,13 +229,8 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		}
 		Result jsonResult = new Result();
 		try {
-			int value = userService.updateUser(user);
-			if (value ==1) {
-				jsonResult.setStatus(Status.OK);
-			} else {
-				jsonResult.addError("系统暂不支持新增用户");
-			}
-			
+			userService.updateUser(user);
+			jsonResult.setStatus(Status.OK);
 		} catch (PlatformException e) {
 			jsonResult.addError(e.getMessage());
 		} catch (Exception e) {

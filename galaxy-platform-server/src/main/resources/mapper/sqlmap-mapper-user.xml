@@ -117,7 +117,7 @@
 		where nick_name =#{nickName} and id !=#{id}
 	</select>
 	
-  	<insert id="insert" parameterType="UserPO" >
+  	<insert id="insert" parameterType="UserPO" useGeneratedKeys="true" keyProperty="id">
 	    <![CDATA[
 	        insert into
 	        t_user (

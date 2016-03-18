@@ -330,7 +330,13 @@ function doSumbit() {
 							return;
 						} else {
 							var value = pop.find("input[name='nickName']").val();
-							 var json ={"nickName":value,"id":$("#userId").val()};
+							 var idValue = $("#userId").val();
+							 var json ={};
+							 if (idValue!="" ) {
+								 json ={"nickName":value,"id":$("#userId").val()};
+							 } else {
+								 json ={"nickName":value,"id":null};
+							 }
 							 
 							sendPostRequestByJsonObj(platformUrl.checkNickName,json,callbackcheckName);
 
@@ -343,7 +349,16 @@ function doSumbit() {
 						if (pop.find("input[name='mobile']").val() == "") {
 							layer.msg("请填写手机号");
 							return;
-						} 
+						}  else {
+							var pattern = /^1[34578]\d{9}$/;  
+							var value = pop.find("input[name='mobile']").val();
+							if (pattern.test(value)) {  
+							      return true;  
+							   }  
+							layer.msg("请填写正确手机号");
+							return false; 
+
+						}
 						if (pop
 								.find(
 										'input:radio[name="departmentId"]:checked')
@@ -363,7 +378,10 @@ function doSumbit() {
 						});
 						var options = $("#selectId option:selected");
 						var departId = options.val();
-
+						var valgender = $('input:radio[name="gender"]:checked').val();
+						if (valgender =1) {
+							json['gender'] = true;
+						}
 						var val = $('input:radio[name="roleId"]:checked').val();
 						json['roleId'] = val;
 						json['departmentId'] = departId;
@@ -380,6 +398,9 @@ function doSumbit() {
 							json['birthStr'] = $("#birth").val();
 						}
 						delete json['birth'];
+						if (json['id']=="") {
+							delete json['id'];
+						}
 						/*
 						sendPostRequestByJsonObj(platformUrl.addUser,json,callbackadd);*/
 						$.ajax({
