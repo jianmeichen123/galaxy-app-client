@@ -88,13 +88,6 @@ function checkform(){
 	} 
  
  $(function(){
-	    fillHeaderdata();
 		var source=$(".ritmin").attr("source");
 		var li =$(".lft li a[target='"+source+"']").parent().addClass("on");
-		 sendPostRequest(platformUrl.messageCount, remindcbf);
-		 function remindcbf(data){
-			if(data.result.status == "OK"){
-				 $(".work em[action='remind']").html(data.entity.count);
-			}
-		 }
 	});
