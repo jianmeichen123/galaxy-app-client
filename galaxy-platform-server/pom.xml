@@ -178,7 +178,17 @@
 
 		<!-- <dependency> <groupId>net.sourceforge.groboutils</groupId> <artifactId>groboutils-core</artifactId> 
 			<version>5</version> <scope>test</scope> </dependency> -->
-
+		<dependency>
+			<groupId>com.galaxyinternet</groupId>
+			<artifactId>galaxy-cache</artifactId>
+			<version>${project.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>spring-web</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 		<dependency>
 			<groupId>org.hamcrest</groupId>
 			<artifactId>hamcrest-all</artifactId>
