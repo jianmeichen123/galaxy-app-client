@@ -100,6 +100,14 @@ var platformUrl = {
 	 * 待办任务总数
 	 */
 	totalMission: Constants.sopEndpointURL+ "galaxy/soptask/totalMission",
+	/**
+	 * 消息提醒
+	 */
+	message:Constants.sopEndpointURL+"galaxy/operationMessage/index",
+	/**
+	 * 消息提醒数字
+	 */
+	messageCount:Constants.sopEndpointURL+"galaxy/operationMessage/remind"
 }
 
 /**
