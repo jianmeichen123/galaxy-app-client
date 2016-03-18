@@ -429,7 +429,7 @@ function doSumbit() {
 							success : function(data) {
 								
 								if (data.result.status!="OK")  {
-									layer.msg(data.result.message);
+									layer.msg("操作失败");
 								} else {
 									// 清除表单数据
 									$(pop).find("input").each(function() {

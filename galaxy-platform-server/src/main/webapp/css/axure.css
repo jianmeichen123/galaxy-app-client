@@ -843,7 +843,7 @@ right: 200px;}
 .loginpage .top .rit{ padding:0 0 0 26px; line-height:24px; height:24px; background-position:0 -268px; font-size:12px; color:#b3b8cb; margin:18px 0 0; font-family:"宋体"; float:right}
 .loginpage .min{ width:1280px; height:572px; padding:70px 0 0; margin:0 auto}
 .loginpage .pic{width: 759px;height: 448px;background: url(../img/loginbg.png) 0 0 no-repeat;float: left;-webkit-background-size: 93%;
-background-size: 93%;}
+background-size: 93%;position:relative;z-index:10;}
 .loginbox{ width:362px; float:right; margin:48px 100px 0 0;}
 .loginbox h2{ height:33px; background-position:0 0; margin:0 0 16px 17px}
 .loginbox .txt{ display:block; border:0; width:282px; height:46px; line-height:46px; font-size:14px; color:#666666; font-family:"宋体"; background-color:#edf0f4; border-radius:6px; padding:0 10px 0 36px; margin:0 0 10px 17px}
