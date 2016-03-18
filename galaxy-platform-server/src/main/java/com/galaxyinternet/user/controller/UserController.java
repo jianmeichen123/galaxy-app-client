@@ -37,6 +37,7 @@ import com.galaxyinternet.framework.core.model.ResponseData;
 import com.galaxyinternet.framework.core.model.Result;
 import com.galaxyinternet.framework.core.model.Result.Status;
 import com.galaxyinternet.framework.core.service.BaseService;
+import com.galaxyinternet.framework.core.utils.PWDUtils;
 import com.galaxyinternet.framework.core.utils.mail.MailTemplateUtils;
 import com.galaxyinternet.framework.core.utils.mail.SimpleMailSender;
 import com.galaxyinternet.framework.core.validator.ValidatorResultHandler;
@@ -221,7 +222,8 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	@RequestMapping(value = "/updateUser", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseData<UserBo> updateUser( @RequestBody @Valid UserBo user,BindingResult result) {
 		ResponseData<UserBo> responseBody = new ResponseData<UserBo>();
-		
+		boolean bl = false;
+		long retValue = 0;
 		Result validationResult = ValidatorResultHandler.handle(result);
 		if (validationResult.getStatus() == Status.ERROR) {
 			responseBody.setResult(validationResult);
@@ -229,14 +231,40 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		}
 		Result jsonResult = new Result();
 		try {
-			userService.updateUser(user);
-			jsonResult.setStatus(Status.OK);
+			if (user.getId() != null) {
+				retValue = userService.updateUser(user);
+				jsonResult.setStatus(Status.OK);
+			} else {
+				String oriPwd = PWDUtils.genRandomNum(6);
+				user.setOriginPassword(oriPwd);
+				// 加密
+				user.setPassword(PWDUtils.genernateNewPassword(oriPwd));
+				retValue = userService.insertUser(user);
+				String toMail = user.getEmail() + Constants.MAIL_SUFFIX; // "sue_vip@126.com"; 收件人邮件地址
+				//使用模板发送邮件
+				String str = MailTemplateUtils.getContentByTemplate(Constants.MAIL_INITIALPWD_CONTENT);
+				String content = PlaceholderConfigurer.formatText(str, user.getRealName(),user.getNickName(),oriPwd,this.getLoginUrl(),this.getLoginUrl());
+			
+				String subject = "新用户注册通知";// 邮件主题
+				bl = SimpleMailSender.sendHtmlMail(toMail, subject, content);
+			}
+			
 		} catch (PlatformException e) {
-			jsonResult.addError(e.getMessage());
-		} catch (Exception e) {
-			jsonResult.addError("系统错误");
-			logger.error("更新错误", e);
-		}
+
+			if (logger.isErrorEnabled()) {
+				logger.error("resetPwd ", e);
+			}
+		} 
+		
+		 if (retValue < 1) {
+			 jsonResult.addError("新增用户失败");
+				responseBody.setResult(jsonResult);
+			} else if (retValue > 0 && bl== false ) {
+				jsonResult.addError("邮件发送失败");
+				responseBody.setResult(jsonResult);
+			} else {
+				responseBody.setResult(new Result(Status.OK, user));
+			}
 		responseBody.setResult(jsonResult);
 		return responseBody;
 	}

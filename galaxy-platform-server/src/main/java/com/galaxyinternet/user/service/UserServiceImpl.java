@@ -63,7 +63,18 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		user.setOriginPassword(oriPwd);
 		// 加密
 		user.setPassword(PWDUtils.genernateNewPassword(oriPwd));
-		return super.insert(user);
+		long result1 =  userDao.insert(user);
+		UserRole userRole = new UserRole();
+
+		if ( user.getRoleId() == null) {
+			throwPlatformException(MessageStatus.FIELD_NOT_ALLOWED_EMPTY, "roleId,不能为空");
+		}
+		
+		userRole.setRoleId(user.getRoleId());
+		userRole.setUserId(user.getId());
+		long result2 = userRoleService.insertUserRole(userRole);
+		return (result1 & result2);
+		
 	}
 
 	@Override
@@ -229,23 +240,11 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 			userRole.setUserId(user.getId());
 			result1 = userDao.updateById(user);
 			
-		} else {
-			String oriPwd = PWDUtils.genRandomNum(6);
-			user.setOriginPassword(oriPwd);
-			// 加密
-			user.setPassword(PWDUtils.genernateNewPassword(oriPwd));
-			long id = userDao.insert(user);
-			if (id >0) {
-				result1= 1;
-			}
-			userRole.setUserId(id);
-			result1= (int) id;
-		}
+		} 
 
 		if ( user.getRoleId() == null) {
-			throwPlatformException(MessageStatus.FIELD_NOT_ALLOWED_EMPTY, "不能新建用户,用户ID");
+			throwPlatformException(MessageStatus.FIELD_NOT_ALLOWED_EMPTY, "roleId,不能为空");
 		}
-
 		
 		userRole.setRoleId(user.getRoleId());
 		userRole.setUserId(user.getId());
