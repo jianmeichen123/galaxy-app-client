@@ -33,11 +33,11 @@
 	        	INTO
 	       	 t_operation_message (
 				department,role,type,project_name,module,
-				operator,content,project_id，created_time,
+				operator,content,project_id,created_time,
 				operator_id
 	        ) VALUES (
 	        	#{department},#{role},#{type},#{projectName},#{module},
-	        	#{operator},#{content},#{projectId}，#{createdTime},
+	        	#{operator},#{content},#{projectId},#{createdTime},
 	        	#{operatorId}
 	        )
     </insert>
