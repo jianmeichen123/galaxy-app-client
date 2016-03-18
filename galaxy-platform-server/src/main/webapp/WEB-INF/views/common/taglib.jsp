@@ -11,11 +11,13 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <%User user = (User)request.getSession().getAttribute(Constants.SESSION_USER_KEY);
 String sessionId = "";
-String nick_name = "";
+String realName = "";
 Long userId=null;
 if(null != user) {
 	sessionId = user.getSessionId();
-	nick_name = user.getNickName();
+	if(null != user.getRealName()){
+		realName = user.getRealName();
+	}
 	userId = user.getId();
 }
 String endpoint = (String)application.getAttribute(OSSConstant.GALAXYINTERNET_FX_ENDPOINT);
@@ -25,7 +27,7 @@ String endpoint = (String)application.getAttribute(OSSConstant.GALAXYINTERNET_FX
 <script type="text/javascript">
 	var contextEndPoint = '<%=endpoint%>';
 	endpointObj = JSON.parse(contextEndPoint);
-	sessionId = '<%=sessionId%>',nick_name = '<%=nick_name%>',userId = '<%=userId%>';
+	sessionId = '<%=sessionId%>',realName = '<%=realName%>',userId = '<%=userId%>';
 </script>
 <script src="<%=request.getContextPath() %>/js/common.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath() %>/js/axure.js" type="text/javascript"></script>
