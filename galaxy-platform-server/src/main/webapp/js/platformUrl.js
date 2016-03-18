@@ -94,7 +94,7 @@ var platformUrl = {
 	/**
 	 * 主页待办任务
 	 */
-	soptaskshouye: Constants.sopEndpointURL+"/galaxy/soptask/taskListByRole",
+	soptaskshouye: Constants.sopEndpointURL+"galaxy/soptask",
 }
 
 /**
