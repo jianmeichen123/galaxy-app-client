@@ -495,9 +495,9 @@ function editor(index, row) {
 	var id = row.id;
 	var status = row.status;
 	var text = status == 1 ? '启用' : '禁用';
-	var disableUrl = "<a class='' href='javascript:disableUser(" + id + ","
+	var disableUrl = "<a class='blue' href='javascript:disableUser(" + id + ","
 			+ status + ")'>" + text + "</a>";
-	var resetUrl = "<a class='' href='javascript:resetPwd(" + id
+	var resetUrl = "<a class='blue' href='javascript:resetPwd(" + id
 			+ ")'>重置密码</a>";
 	return disableUrl + "  " + resetUrl;
 }

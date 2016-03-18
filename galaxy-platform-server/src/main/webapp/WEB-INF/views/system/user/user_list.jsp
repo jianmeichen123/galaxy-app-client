@@ -34,8 +34,8 @@
 			<div class="top clearfix">
 				<!--按钮-->
 				<div class="btnbox_f btnbox_f1 clearfix">
-					<button href="html/userinfrotc.html" data-btn="userinfro"
-						class="pubbtn bluebtn ico c4">添加人员</button>
+					<a href="html/userinfrotc.html" data-btn="userinfro"
+						class="pubbtn bluebtn ico c4">添加人员</a>
 				</div>
 			</div>
 

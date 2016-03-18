@@ -15,7 +15,7 @@ $(function(){
 	});
 	
 	//用户信息弹窗
-	$(".btnbox_f").on("click","button[data-btn='userinfro']",function(event){
+	$(".btnbox_f").on("click","a[data-btn='userinfro']",function(event){
 		var $self = $(this);
 		var _url = $self.attr("href");
 		$.getHtml({
