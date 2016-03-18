@@ -345,6 +345,7 @@ function doSumbit() {
 								return;
 							}
 						}
+						
 
 						if (pop.find("input[name='mobile']").val() == "") {
 							layer.msg("请填写手机号");
@@ -352,11 +353,11 @@ function doSumbit() {
 						}  else {
 							var pattern = /^1[34578]\d{9}$/;  
 							var value = pop.find("input[name='mobile']").val();
-							if (pattern.test(value)) {  
-							      return true;  
+							if (!pattern.test(value)) {  
+							      layer.msg("请填写正确手机号");
+							      return;
 							   }  
-							layer.msg("请填写正确手机号");
-							return false; 
+							
 
 						}
 						if (pop
