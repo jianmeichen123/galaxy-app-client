@@ -95,6 +95,11 @@ var platformUrl = {
 	 * 主页待办任务
 	 */
 	soptaskshouye: Constants.sopEndpointURL+"galaxy/soptask",
+	
+	/**
+	 * 待办任务总数
+	 */
+	totalMission: Constants.sopEndpointURL+ "galaxy/soptask/totalMission",
 }
 
 /**
