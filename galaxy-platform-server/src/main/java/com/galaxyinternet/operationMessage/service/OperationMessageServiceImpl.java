@@ -51,6 +51,7 @@ public class OperationMessageServiceImpl extends BaseServiceImpl<OperationMessag
 		//if(!(module==1||module==2||module==3)){
 			//throwPlatformException(MessageStatus.OPERATION_MESSAGE_MODULE_ERROR);
 		//}
+		entity.setModule(module);
 		entity.setCreatedTime(System.currentTimeMillis());
 		return operationMessageDao.insert(entity);
 	}
