@@ -85,6 +85,10 @@ public class OperationMessage extends BaseEntity{
 	public void setProjectId(Long projectId) {
 		this.projectId = projectId;
 	}
-
-	
+	@Override
+	public String toString() {
+		return "OperationMessage [department=" + department + ", role=" + role + ", type=" + type + ", projectName="
+				+ projectName + ", operator=" + operator + ", content=" + content + ", module=" + module
+				+ ", projectId=" + projectId + ", operatorId=" + operatorId + "]";
+	}
 }
