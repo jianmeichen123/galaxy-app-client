@@ -67,14 +67,13 @@
 				<if test="updatedTime != null"> and updated_time =#{updatedTime}</if>
 				<!-- 模糊查询 -->
 				<!-- <if test="nameLike != null">and name like CONCAT("%",#{nameLike},"%")</if> -->
-				
 				 <if test="keyword != null">    
 				   and (
-					 real_name  LIKE '%${keyword}%'  
+					 real_name  LIKE replace('%${keyword}%',' ','') 
 					 	<if test="escapeChar ">
 					 		  escape '/' 
 					 	</if>
-					 or mobile LIKE '%${keyword}%'  
+					 or mobile LIKE replace('%${keyword}%',' ','') 
 					 <if test="escapeChar ">
 					 		  escape '/' 
 					 	</if>
@@ -116,6 +115,19 @@
 		from t_user 
 		where nick_name =#{nickName} and id !=#{id}
 	</select>
+    <select id="selectByEmail" resultMap="BaseResultMap" parameterType="UserPO">
+		select
+		<include refid="Base_Column_List" />
+		from t_user 
+		
+		<where>
+			<trim prefixOverrides="and">
+				<if test="id != null"> and id =#{id}</if>
+				<if test="email != null"> and email =#{email}</if>
+			</trim>
+		</where>
+	</select>
+	
 	
   	<insert id="insert" parameterType="UserPO" useGeneratedKeys="true" keyProperty="id">
 	    <![CDATA[

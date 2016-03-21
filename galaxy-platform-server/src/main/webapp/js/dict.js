@@ -15,6 +15,7 @@ $(function() {
 				parent_dict_div.append(li);
 			}
 		});
+		$($("#dict_parent").find("li[data-tab='nav']")[0]).addClass("on");
 		showSonDict(dicts[0].code, dicts[0].name);
 	}
 	/**
@@ -56,8 +57,8 @@ $(function() {
 					return;
 				}
 			}
+			save(tr);
 		}
-		save(tr);
 	});
 	// 取消
 	$(".btnbox").on("click", "a[action='cancel']", function() {
@@ -103,10 +104,14 @@ function save(tr) {
 		var input = $(this);
 		var val  = input.val();
 		var old_val  = input.attr("old_val");
-		if(val!=""&&val!=old_val){
+		if(val!=old_val){
 			json[input.attr("name")] = val;
 		}
 	});
+	if(json["name"]==""){
+		layer.msg("请填写数据字典名");
+		return;
+	}
 	var url = '';
 	if (action == "insert") {
 		// input.parent().parent().remove();
@@ -140,7 +145,7 @@ function saveCallBack(data){
 			name = select_tr.find("input[name='name']").attr("old_val");
 		}
 		var text = select_tr.find("input[name='text']").val();
-		if (text == 'undefined' || text == undefined || text == "") {
+		if (text == 'undefined' || text == undefined ) {
 			text = select_tr.find("input[name='text']").attr("old_val");
 		}
 		select_tr.find("td").eq(0).html(name);

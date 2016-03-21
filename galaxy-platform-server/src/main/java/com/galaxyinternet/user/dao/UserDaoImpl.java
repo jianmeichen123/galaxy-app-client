@@ -14,4 +14,9 @@ public class UserDaoImpl extends BaseDaoImpl<User, Long>implements UserDao {
 		return sqlSessionTemplate.selectOne(getSqlName("selectByNickName"),
 				user);
 	}
+
+	@Override
+	public User selectByEmail(User user) {
+		return sqlSessionTemplate.selectOne(getSqlName("selectByEmail"), user);
+	}
 }

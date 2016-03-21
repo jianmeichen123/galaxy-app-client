@@ -6,9 +6,9 @@
     <div class="min clearfix">
         <!--用户信息-->
         <div class="usermsg clearfix">
-            <span class="light_blue">当前您有：</span>
+<!--             <span class="light_blue">当前您有：</span>
             <a href="javascript:forwardWithHeader(platformUrl.soptaskshouye)" class="work">待办任务<em class="totalUrgent"></em></a>
-            <a href="javascript:forwardWithHeader(platformUrl.message)" class="work">消息提醒<em action="remind">4</em></a>
+            <a href="javascript:forwardWithHeader(platformUrl.message)" class="work">消息提醒<em action="remind">4</em></a> -->
         </div>    	<!--当日信息-->
     	<div class="todaymsg clearfix">
         	<span class="weather"><iframe allowtransparency="true" frameborder="0" width="130" height="36" scrolling="no" src="http://tianqi.2345.com/plugin/widget/index.htm?s=3&z=2&t=1&v=0&d=3&bd=0&k=000000&f=004080&q=1&e=1&a=1&c=54511&w=180&h=36&align=center"></iframe></span>
@@ -31,7 +31,7 @@
 </div>
 <script src="js/login.js"></script>
 <script src="js/car_limit.js"></script>
-<script type = "text/javascript">
+<!-- <script type = "text/javascript">
 	fillHeaderdata();
 	sendPostRequest(platformUrl.messageCount, remindcbf);
 	function remindcbf(data){
@@ -41,3 +41,4 @@
 	}
 </script>
 
+ -->

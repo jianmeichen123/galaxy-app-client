@@ -2,20 +2,20 @@
 /*$(document).ready(function(){ 
 		var logincookie = $.cookie("autologin");
 		if(logincookie != null && logincookie !=""){
-			var nickName = logincookie.split(":")[0];
+			var email = logincookie.split(":")[0];
 			var password = logincookie.split(":")[2];
-			var jsonData={"nickName":nickName,"password":password};
+			var jsonData={"email":email,"password":password};
 			sendPostRequestByJsonObj(platformUrl.toLogin,jsonData,callbackFun);
 		}
 })
 */
 function checkform(){
-    var username =$("#nickName").val();
+    var email =$("#email").val();
     var password =$("#password").val();
     
-    if(username==""){
-		$("#nickName").focus();
-        layer.tips('请输入用户名', '#nickName');
+    if(email==""){
+		$("#email").focus();
+        layer.tips('请输入用户名', '#email');
         return false;
     }
     if(password==""){
@@ -32,19 +32,19 @@ function checkform(){
 		 //判断是否勾选了自动登录
 		 var autologin = $("input[type='checkbox']").is(':checked');
 		 var b = new Base64();  
-	     var nickName = b.encode($("#nickName").val());  
+	     var email = b.encode($("#email").val());  
 	     var password = b.encode($("#password").val());  
-	     var jsonData={"nickName":nickName,"password":password};
-		 if(autologin){
-			 saveCookie(nickName,password);
-		 }
+	     var jsonData={"email":email,"password":password};
+		 /*if(autologin){
+			 saveCookie(email,password);
+		 }*/
 		 sendPostRequestByJsonObj(platformUrl.toLogin,jsonData,logincallback);
 		} 
   }
  
-/* function saveCookie(nickName,password){
+/* function saveCookie(email,password){
 	 var cookietime = new Date(); 
-	 var cookievalue= nickName+":"+cookietime.getMilliseconds()+":"+password;
+	 var cookievalue= email+":"+cookietime.getMilliseconds()+":"+password;
 	 $.cookie('autologin', cookievalue,{expires: 30*24});
  }*/
  

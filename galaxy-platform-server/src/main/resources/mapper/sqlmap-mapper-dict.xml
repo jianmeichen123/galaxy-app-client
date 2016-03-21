@@ -180,7 +180,7 @@
 		update dict
 		<set>
 			<if test="name != null and name !='' ">  name = #{name},</if>
-			<if test="text != null and text !='' ">  text = #{text},</if>
+			<if test="text != null ">  text = #{text},</if>
 			<if test="sort != null ">  dict_sort = #{sort},</if>
 			updated_time = #{updatedTime} 
 		</set>
