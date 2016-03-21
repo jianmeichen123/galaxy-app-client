@@ -424,12 +424,21 @@ function doSumbit() {
 								}
 							},
 							error : function() {
-								layer.msg("添加失败");
+								layer.msg("操作失败");
 							},
 							success : function(data) {
 								
 								if (data.result.status!="OK")  {
-									layer.msg("操作失败");
+									
+									if (data.result.message=="邮件发送失败") {
+										layer.msg("邮件发送失败", {
+											time : 1000
+										}, function() {
+											history.go(0);
+										});
+									} else {
+										layer.msg("添加失败");
+									}
 								} else {
 									// 清除表单数据
 									$(pop).find("input").each(function() {
@@ -493,13 +502,19 @@ function useCompanyAddress() {
 // 操作链接
 function editor(index, row) {
 	var id = row.id;
-	var status = row.status;
-	var text = status == 1 ? '启用' : '禁用';
-	var disableUrl = "<a class='blue' href='javascript:disableUser(" + id + ","
-			+ status + ")'>" + text + "</a>";
-	var resetUrl = "<a class='blue' href='javascript:resetPwd(" + id
-			+ ")'>重置密码</a>";
-	return disableUrl + "  " + resetUrl;
+	if (id==userId) {
+		var resetUrl = "<a class='blue' href='javascript:resetPwd(" + id
+		+ ")'>重置密码</a>";
+		return resetUrl;
+	} else {
+		var status = row.status;
+		var text = status == 1 ? '启用' : '禁用';
+		var disableUrl = "<a class='blue' href='javascript:disableUser(" + id + ","
+				+ status + ")'>" + text + "</a>";
+		var resetUrl = "<a class='blue' href='javascript:resetPwd(" + id
+				+ ")'>重置密码</a>";
+		return disableUrl + "  " + resetUrl;
+	}
 }
 
 function formatGender(index, row) {
