@@ -137,7 +137,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 			header.setSessionId(sessionId);
 			header.setUserId(user.getId());
 
-			if (StringUtils.isNotBlank(role.getRoleCode())) {
+			if (null != role && StringUtils.isNotBlank(role.getRoleCode())) {
 				header.setAttachment(role.getRoleCode());
 			} else {
 				header.setAttachment("");
