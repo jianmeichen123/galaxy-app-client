@@ -15,6 +15,7 @@ $(function() {
 				parent_dict_div.append(li);
 			}
 		});
+		$($("#dict_parent").find("li[data-tab='nav']")[0]).addClass("on");
 		showSonDict(dicts[0].code, dicts[0].name);
 	}
 	/**
@@ -56,8 +57,8 @@ $(function() {
 					return;
 				}
 			}
+			save(tr);
 		}
-		save(tr);
 	});
 	// 取消
 	$(".btnbox").on("click", "a[action='cancel']", function() {
