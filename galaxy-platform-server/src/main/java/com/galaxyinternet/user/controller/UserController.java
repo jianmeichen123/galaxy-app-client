@@ -264,9 +264,9 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 				jsonResult.addError("邮件发送失败");
 				responseBody.setResult(jsonResult);
 			} else {
-				responseBody.setResult(new Result(Status.OK, user));
+				jsonResult.addOK(user);
+				responseBody.setResult(jsonResult);
 			}
-		responseBody.setResult(jsonResult);
 		return responseBody;
 	}
 
