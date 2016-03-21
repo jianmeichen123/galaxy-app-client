@@ -27,7 +27,7 @@
 			<div class="loginbox">
 				<h2 class="ico null">繁星</h2>
 				<form id="defaultForm" method="post" class="form-horizontal" onkeydown="keylogin();">
-					<input id="nickName" name="nickName" type="text"
+					<input id="email" name="email" type="text"
 						class="txt ico uname" placeholder="用户名" /> <input id="password"
 						name="password" type="password" class="txt ico uword"
 						placeholder="密码" /> <!-- <label><input type="checkbox">自动登录</label> -->
