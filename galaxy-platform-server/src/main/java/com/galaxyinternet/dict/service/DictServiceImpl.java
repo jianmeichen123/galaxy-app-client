@@ -42,9 +42,6 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 		isNull(Dict.ID,entity.getId());
 		isMoreThan(Dict.TEXT, entity.getText(), 256);
 		//
-		if((entity.getName()==null||entity.getName().equals(""))&&(entity.getText()==null||entity.getText().equals(""))&&entity.getSort()==null){
-			throwPlatformException(MessageStatus.FIELD_NOT_ALLOWED_EMPTY, "修改参数");
-		}
 		Dict dict = dictDao.selectById(entity.getId());
 		if(dict == null){
 			throwPlatformException(MessageStatus.DATA_NOT_EXISTS, "该数据字典不存在");
@@ -68,9 +65,6 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 		isNull(Dict.CODE,entity.getCode());
 		isMoreThan(Dict.TEXT, entity.getText(), 256);
 		//
-		if((entity.getName()==null||entity.getName().equals(""))&&(entity.getText()==null||entity.getText().equals(""))&&entity.getSort()==null){
-			throwPlatformException(MessageStatus.FIELD_NOT_ALLOWED_EMPTY, "修改参数");
-		}
 		//判断待更新的字典是否存在
 		Dict dict = dictDao.selectByCode(entity.getCode());
 		if(dict == null){
