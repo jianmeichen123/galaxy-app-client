@@ -125,7 +125,7 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		//toMail = "sue_vip@126.com";
 		//使用模板发送邮件
 		String str = MailTemplateUtils.getContentByTemplate(Constants.MAIL_RESTPWD_CONTENT);
-		String content = PlaceholderConfigurer.formatText(str, nUser.getRealName(),nUser.getNickName(),nUser.getOriginPassword(),this.getLoginUrl(),this.getLoginUrl());
+		String content = PlaceholderConfigurer.formatText(str, nUser.getRealName(),nUser.getEmail(),nUser.getOriginPassword(),this.getLoginUrl(),this.getLoginUrl());
 		/*String content = "<html>" + "<head></head>" + "<body>"
 				+ "<div align=center>"
 				+ nUser.getRealName()+"您好，繁星系统已为您生成账户名：" + nUser.getNickName() +",密码:" + nUser.getOriginPassword()
@@ -244,7 +244,7 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 				String toMail = user.getEmail() + Constants.MAIL_SUFFIX; // "sue_vip@126.com"; 收件人邮件地址
 				//使用模板发送邮件
 				String str = MailTemplateUtils.getContentByTemplate(Constants.MAIL_INITIALPWD_CONTENT);
-				String content = PlaceholderConfigurer.formatText(str, user.getRealName(),user.getNickName(),oriPwd,this.getLoginUrl(),this.getLoginUrl());
+				String content = PlaceholderConfigurer.formatText(str, user.getRealName(),user.getEmail(),oriPwd,this.getLoginUrl(),this.getLoginUrl());
 			
 				String subject = "新用户注册通知";// 邮件主题
 				bl = SimpleMailSender.sendHtmlMail(toMail, subject, content);
@@ -370,5 +370,22 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		}
 		return map;
 	}
+	
+	/**
+	 * Ajax请求校验邮箱是否重复
+	 */
+	@RequestMapping(value = "checkEmail")
+	@ResponseBody
+	public Map<String, Object>  checkEmail(@RequestBody User query) {
 
+		User user = userService.queryByEmail(query);
+		Map<String, Object> map = new HashMap<String, Object>();
+		if (user == null) {
+			map.put("flag", false);
+		} else {
+			map.put("flag", true);
+		}
+		return map;
+	}
+	
 }

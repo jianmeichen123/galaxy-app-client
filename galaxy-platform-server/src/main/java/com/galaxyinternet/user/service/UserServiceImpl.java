@@ -281,4 +281,9 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	public User queryByNickName(User user) {
 		return userDao.selectByNickName(user);
 	}
+
+	@Override
+	public User queryByEmail(User user) {
+		return userDao.selectByEmail(user);
+	}
 }

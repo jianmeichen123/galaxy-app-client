@@ -54,6 +54,10 @@ var platformUrl = {
 	checkNickName:"galaxy/user/checkNickName",
 
 	/**
+	 * 检测邮箱是否重复
+	 */
+	checkEmail:"galaxy/user/checkEmail",
+	/**
 	 * 数据字典首页
 	 */
 	dictIndex : "galaxy/dict/index",
