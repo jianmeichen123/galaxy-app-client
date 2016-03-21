@@ -115,6 +115,19 @@
 		from t_user 
 		where nick_name =#{nickName} and id !=#{id}
 	</select>
+    <select id="selectByEmail" resultMap="BaseResultMap" parameterType="UserPO">
+		select
+		<include refid="Base_Column_List" />
+		from t_user 
+		
+		<where>
+			<trim prefixOverrides="and">
+				<if test="id != null"> and id =#{id}</if>
+				<if test="email != null"> and email =#{email}</if>
+			</trim>
+		</where>
+	</select>
+	
 	
   	<insert id="insert" parameterType="UserPO" useGeneratedKeys="true" keyProperty="id">
 	    <![CDATA[

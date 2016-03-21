@@ -324,8 +324,24 @@ function doSumbit() {
 						if (pop.find("input[name='email']").val() == "") {
 							layer.msg("请填写邮箱");
 							return;
+						} else {
+							var value = pop.find("input[name='email']").val();
+							 var idValue = $("#userId").val();
+							 var json ={};
+							 if (idValue!="" ) {
+								 json ={"email":value,"id":$("#userId").val()};
+							 } else {
+								 json ={"email":value,"id":null};
+							 }
+							 
+							sendPostRequestByJsonObj(platformUrl.checkEmail,json,callbackcheckEmail);
+
+							if(flag==true) {
+								layer.msg("邮箱不能重复");
+								return;
+							}
 						}
-						if (pop.find("input[name='nickName']").val() == "") {
+						/*if (pop.find("input[name='nickName']").val() == "") {
 							layer.msg("请填写登录名");
 							return;
 						} else {
@@ -344,7 +360,7 @@ function doSumbit() {
 								layer.msg("登录名不能重复");
 								return;
 							}
-						}
+						}*/
 						
 
 						if (pop.find("input[name='mobile']").val() == "") {
@@ -489,7 +505,9 @@ function callbackadd(data) {
 function callbackcheckName(data) {
 	flag = data.flag;
 }
-
+function callbackcheckEmail(data) {
+	flag = data.flag;
+}
 function callback(data){
 	TOKEN=data.TOKEN;
 	 return TOKEN;

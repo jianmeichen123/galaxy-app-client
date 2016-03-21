@@ -88,4 +88,12 @@ public interface UserService extends BaseService<User> {
 	 * @return
 	 */
 	User queryByNickName(User user);
+	
+	/**
+	 * 查询用户昵称 重复校验用
+	 * @author zhaoying
+	 * @param user
+	 * @return
+	 */
+	User queryByEmail(User user);
 }
