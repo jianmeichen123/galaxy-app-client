@@ -239,6 +239,7 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 				user.setOriginPassword(oriPwd);
 				// 加密
 				user.setPassword(PWDUtils.genernateNewPassword(oriPwd));
+				user.setStatus("0");
 				retValue = userService.insertUser(user);
 				String toMail = user.getEmail() + Constants.MAIL_SUFFIX; // "sue_vip@126.com"; 收件人邮件地址
 				//使用模板发送邮件

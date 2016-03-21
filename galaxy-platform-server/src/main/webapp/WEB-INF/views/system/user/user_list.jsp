@@ -9,6 +9,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="utf-8">
+<title>繁星</title>
 <base href="<%=basePath%>">
 <!-- jsp文件头和头部 -->
 <%@ include file="/WEB-INF/views/common/taglib.jsp"%>
