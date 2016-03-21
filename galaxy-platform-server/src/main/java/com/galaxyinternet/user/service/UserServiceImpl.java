@@ -92,19 +92,19 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	public ResponseData<User> login(User user, HttpServletRequest request) {
 
 		ResponseData<User> responsebody = new ResponseData<User>();
-		String nickName = user.getNickName();
+		String email = user.getEmail();
 		String password = user.getPassword();
 
-		if (StringUtils.isBlank(nickName) || StringUtils.isBlank(password)) {
+		if (StringUtils.isBlank(email) || StringUtils.isBlank(password)) {
 			responsebody.setResult(new Result(Status.ERROR, Constants.IS_UP_EMPTY, "用户名或密码不能为空！"));
 			return responsebody;
 		}
-		// 获取解密后的nickName和password
-		nickName = PWDUtils.decodePasswordByBase64(nickName);
+		// 获取解密后的email和password
+		email = PWDUtils.decodePasswordByBase64(email);
 		password = PWDUtils.decodePasswordByBase64(password);
 
 		password = PWDUtils.genernateNewPassword(password); // 重新加密password
-		user.setNickName(nickName);
+		user.setEmail(email);
 		user.setPassword(password);
 
 		user = userDao.selectOne(user); // 根据表单输入字段查询用户
@@ -131,7 +131,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 			request.getSession().setAttribute(Constants.SESSION_USER_KEY, user);
 
 			Header header = new Header();
-			header.setLoginName(user.getNickName());
+			header.setLoginName(user.getEmail());
 			header.setSessionId(sessionId);
 			header.setUserId(user.getId());
 
