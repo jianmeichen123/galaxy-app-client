@@ -120,12 +120,13 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 			// 查询user相关字段
 			Department dept = getDepartmentByUserId(user.getId());
 			Role role = getRoleByUserId(user.getId());
-			if (dept != null && role != null) {
-				user.setDepartmentName(dept.getName());
+			if (role != null) {
 				user.setRole(role.getName());
 				user.setRoleId(role.getId());
 			}
-
+			if(dept != null){
+				user.setDepartmentName(dept.getName());
+			}
 			String sessionId = SessionUtils.createWebSessionId(); // 封装
 			user.setSessionId(sessionId);
 			cache.set(sessionId, user); // 将sessionId存入cache
