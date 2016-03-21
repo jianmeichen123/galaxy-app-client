@@ -158,28 +158,7 @@ function forwardIndexWithHeader(url, sessionId, userId) {
 	}
 }
 
-function totalMissionCallback(data) {
-	var total = 0 ;
-	if (data.total != null) {
-		total =data.total;
-	}
-	$('.totalUrgent').html(total)
-}
 
-function fillHeaderdata() {
-	//totalUrgent();
-	    totalMission();
-	/*setInterval(function() {
-		totalUrgent();
-	    totalMission();
-
-	}, 300000);*/
-}
-
-//待办任务
-function totalMission() {
-	sendGetRequest(platformUrl.totalMission, null, totalMissionCallback);
-}
 
 /**
  * 使用localstage存储数据 <br/>
