@@ -123,6 +123,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 			if (dept != null && role != null) {
 				user.setDepartmentName(dept.getName());
 				user.setRole(role.getName());
+				user.setRoleId(role.getId());
 			}
 
 			String sessionId = SessionUtils.createWebSessionId(); // 封装
