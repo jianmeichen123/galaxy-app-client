@@ -60,10 +60,8 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 
 	@Override
 	public Long insertUser(User user) {
-		String oriPwd = PWDUtils.genRandomNum(6);
-		user.setOriginPassword(oriPwd);
-		// 加密
-		user.setPassword(PWDUtils.genernateNewPassword(oriPwd));
+		
+	
 		long result1 = userDao.insert(user);
 		UserRole userRole = new UserRole();
 
