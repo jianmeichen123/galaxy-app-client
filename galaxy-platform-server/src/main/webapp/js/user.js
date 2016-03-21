@@ -251,6 +251,10 @@ function doSumbit() {
 				minLength : 1,
 				select : function(event, ui) {
 					$("#userId").val(ui.item.id);
+					
+					if (ui.item.id!="") {
+						$('#email').attr('disabled',true);
+					}
 					$("#nickName").val(ui.item.nickName);
 					if (ui.item.birth!= null) {
 						 $("#birth").val(formatDate(ui.item.birth));
@@ -443,9 +447,7 @@ function doSumbit() {
 								layer.msg("操作失败");
 							},
 							success : function(data) {
-								
 								if (data.result.status!="OK")  {
-									
 									if (data.result.message=="邮件发送失败") {
 										layer.msg("邮件发送失败", {
 											time : 1000
