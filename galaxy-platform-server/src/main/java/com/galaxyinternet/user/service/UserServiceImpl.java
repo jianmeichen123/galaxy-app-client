@@ -256,7 +256,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	@Override
 	public Department getDepartmentByUserId(Long userId) {
 		User user = userDao.selectById(userId);
-		if (user.getDepartmentId() != null) {
+		if (user != null && user.getDepartmentId() != null) {
 			Long deptId = user.getDepartmentId();
 			return departmentService.queryById(deptId);
 		} else {
@@ -270,7 +270,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		UserRole userRole = new UserRole();
 		userRole.setUserId(userId);
 		userRole = userRoleService.queryOne(userRole);
-		if (userRole.getRoleId() != null) {
+		if (userRole != null && userRole.getRoleId() != null) {
 			Role role = roleService.queryById(userRole.getRoleId());
 			return role;
 		} else {
