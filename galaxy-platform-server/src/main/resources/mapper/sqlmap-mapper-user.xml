@@ -122,7 +122,7 @@
 		
 		<where>
 			<trim prefixOverrides="and">
-				<if test="id != null"> and id =#{id}</if>
+				<if test="id != null"> and id !=#{id}</if>
 				<if test="email != null"> and email =#{email}</if>
 			</trim>
 		</where>
