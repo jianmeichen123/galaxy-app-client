@@ -67,6 +67,9 @@ $(function() {
 	// 双击更新
 	$("#dict_son tbody").on("dblclick","tr",function() {
 		var tr = $(this);
+		if(tr.attr("action")=="update"||tr.attr("action")=="insert"){
+			return;
+		}
 		cancel();
 		tr.find("td").eq(0).html("<input old_val='" + tr.find("td").eq(0).html()+ "' name='name' value='" + tr.find("td").eq(0).html() + "'>");
 		tr.find("td").eq(1).html("<input old_val='" + tr.find("td").eq(1).html()+ "' name='text'  value='" + tr.find("td").eq(1).html() + "'>");
@@ -112,6 +115,11 @@ function save(tr) {
 		layer.msg("请填写数据字典名");
 		return;
 	}
+    if (!/^[\u4e00-\u9fa5a-zA-Z]{1,50}$/.test(json["name"])) {
+		layer.msg("数据字典名只能为中英文 长度50");
+		return;
+    }
+	
 	var url = '';
 	if (action == "insert") {
 		// input.parent().parent().remove();
