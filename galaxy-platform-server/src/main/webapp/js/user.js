@@ -352,7 +352,7 @@ function doSumbit() {
 							 var emailValue = pop.find("input[name='email']").val();
 							 var nameValue = pop.find("input[name='nickName']").val();
 							 if (emailValue != nameValue) {
-								 ayer.msg("登录名和邮箱名要一致");
+								 layer.msg("登录名和邮箱名要一致");
 								 return;
 							 }
 
