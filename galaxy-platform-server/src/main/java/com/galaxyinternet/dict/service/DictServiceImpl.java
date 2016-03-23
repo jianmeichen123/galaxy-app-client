@@ -40,7 +40,7 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 		isNull(Dict.COMMENT,entity);
 		isMoreThan(Dict.NAME, entity.getName(), 32);
 		isNull(Dict.ID,entity.getId());
-		isMoreThan(Dict.TEXT, entity.getText(), 256);
+		isMoreThan(Dict.TEXT, entity.getText(), 140);
 		//
 		Dict dict = dictDao.selectById(entity.getId());
 		if(dict == null){

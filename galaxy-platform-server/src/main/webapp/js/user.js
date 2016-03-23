@@ -345,26 +345,19 @@ function doSumbit() {
 								return;
 							}
 						}
-						/*if (pop.find("input[name='nickName']").val() == "") {
+						if (pop.find("input[name='nickName']").val() == "") {
 							layer.msg("请填写登录名");
 							return;
 						} else {
-							var value = pop.find("input[name='nickName']").val();
-							 var idValue = $("#userId").val();
-							 var json ={};
-							 if (idValue!="" ) {
-								 json ={"nickName":value,"id":$("#userId").val()};
-							 } else {
-								 json ={"nickName":value,"id":null};
+							 var emailValue = pop.find("input[name='email']").val();
+							 var nameValue = pop.find("input[name='nickName']").val();
+							 if (emailValue != nameValue) {
+								 layer.msg("登录名和邮箱名要一致");
+								 return;
 							 }
-							 
-							sendPostRequestByJsonObj(platformUrl.checkNickName,json,callbackcheckName);
 
-							if(flag==true) {
-								layer.msg("登录名不能重复");
-								return;
-							}
-						}*/
+							
+						}
 						
 
 						if (pop.find("input[name='mobile']").val() == "") {

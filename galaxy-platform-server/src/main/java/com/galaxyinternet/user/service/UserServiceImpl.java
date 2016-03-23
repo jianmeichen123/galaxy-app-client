@@ -256,7 +256,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	@Override
 	public Department getDepartmentByUserId(Long userId) {
 		User user = userDao.selectById(userId);
-		if (user.getDepartmentId() != null) {
+		if (user != null && user.getDepartmentId() != null) {
 			Long deptId = user.getDepartmentId();
 			return departmentService.queryById(deptId);
 		} else {
