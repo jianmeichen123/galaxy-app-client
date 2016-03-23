@@ -38,7 +38,7 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 		
 		//验证
 		isNull(Dict.COMMENT,entity);
-		isMoreThan(Dict.NAME, entity.getName(), 32);
+		isMoreThan(Dict.NAME, entity.getName(), 50);
 		isNull(Dict.ID,entity.getId());
 		isMoreThan(Dict.TEXT, entity.getText(), 140);
 		//
