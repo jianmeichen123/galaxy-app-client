@@ -70,5 +70,41 @@ public class OperationMessageBo extends OperationMessage  implements Pagable{
 		this.count = count;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.galaxyinternet.framework.core.model.Pagable#setDirection(java.lang.String)
+	 */
+	@Override
+	public void setDirection(String direction) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see com.galaxyinternet.framework.core.model.Pagable#getDirection()
+	 */
+	@Override
+	public String getDirection() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.galaxyinternet.framework.core.model.Pagable#setProperty(java.lang.String)
+	 */
+	@Override
+	public void setProperty(String property) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see com.galaxyinternet.framework.core.model.Pagable#getProperty()
+	 */
+	@Override
+	public String getProperty() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }
