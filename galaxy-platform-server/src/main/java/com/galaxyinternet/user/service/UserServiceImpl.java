@@ -270,7 +270,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		UserRole userRole = new UserRole();
 		userRole.setUserId(userId);
 		userRole = userRoleService.queryOne(userRole);
-		if (null != userRole && userRole.getRoleId() != null) {
+		if (userRole != null && userRole.getRoleId() != null) {
 			Role role = roleService.queryById(userRole.getRoleId());
 			return role;
 		} else {

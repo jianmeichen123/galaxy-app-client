@@ -38,7 +38,7 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 		
 		//验证
 		isNull(Dict.COMMENT,entity);
-		isMoreThan(Dict.NAME, entity.getName(), 32);
+		isMoreThan(Dict.NAME, entity.getName(), 50);
 		isNull(Dict.ID,entity.getId());
 		isMoreThan(Dict.TEXT, entity.getText(), 140);
 		//
@@ -61,9 +61,9 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 		
 		//验证
 		isNull(Dict.COMMENT,entity);
-		isMoreThan(Dict.NAME, entity.getName(), 32);
+		isMoreThan(Dict.NAME, entity.getName(), 50);
 		isNull(Dict.CODE,entity.getCode());
-		isMoreThan(Dict.TEXT, entity.getText(), 256);
+		isMoreThan(Dict.TEXT, entity.getText(), 140);
 		//
 		//判断待更新的字典是否存在
 		Dict dict = dictDao.selectByCode(entity.getCode());
@@ -94,8 +94,8 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 		//验证
 		isNull(Dict.COMMENT,dict);
 		isNull(Dict.NAME,dict.getName());
-		isEmptyOrMoreThan(Dict.NAME, dict.getName(), 32);
-		isMoreThan(Dict.TEXT, dict.getText(), 256);
+		isEmptyOrMoreThan(Dict.NAME, dict.getName(), 50);
+		isMoreThan(Dict.TEXT, dict.getText(), 140);
 	}
 	
 	@Override
@@ -188,7 +188,7 @@ public class DictServiceImpl extends BaseServiceImpl<Dict>implements DictService
 
 	@Override
 	public Dict selectByCode(String code) {
-		isEmptyOrMoreThan(Dict.CODE, code, 32);
+		isEmptyOrMoreThan(Dict.CODE, code, 50);
 		return dictDao.selectByCode(code);
 	}
 

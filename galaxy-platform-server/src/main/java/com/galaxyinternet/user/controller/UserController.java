@@ -14,6 +14,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -37,6 +39,8 @@ import com.galaxyinternet.framework.core.model.ResponseData;
 import com.galaxyinternet.framework.core.model.Result;
 import com.galaxyinternet.framework.core.model.Result.Status;
 import com.galaxyinternet.framework.core.service.BaseService;
+import com.galaxyinternet.framework.core.utils.GSONUtil;
+import com.galaxyinternet.framework.core.utils.JSONUtils;
 import com.galaxyinternet.framework.core.utils.PWDUtils;
 import com.galaxyinternet.framework.core.utils.mail.MailTemplateUtils;
 import com.galaxyinternet.framework.core.utils.mail.SimpleMailSender;
@@ -278,7 +282,7 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	@ResponseBody
 	@RequestMapping(value = "/departmentList", method = RequestMethod.GET)
 	public ResponseData<Department> departmentList(Integer type) {
-
+		
 		ResponseData<Department> responseBody = new ResponseData<Department>();
 		try {
 			// 部门列表
@@ -378,6 +382,22 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	@ResponseBody
 	public Map<String, Object>  checkEmail(@RequestBody User query) {
 
+		User user = userService.queryByEmail(query);
+		Map<String, Object> map = new HashMap<String, Object>();
+		if (user == null) {
+			map.put("flag", false);
+		} else {
+			map.put("flag", true);
+		}
+		return map;
+	}
+	
+	@RequestMapping(value = "test")
+	@ResponseBody
+	public Map<String, Object>  test(HttpServletRequest request) {
+
+		String json = JSONUtils.getBodyString(request);
+		User query = GSONUtil.fromJson(json, User.class);
 		User user = userService.queryByEmail(query);
 		Map<String, Object> map = new HashMap<String, Object>();
 		if (user == null) {
