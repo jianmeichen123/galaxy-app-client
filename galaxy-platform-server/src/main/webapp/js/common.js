@@ -169,8 +169,10 @@ function sendPostRequest(reqUrl, callbackFun) {
 function forwardWithHeader(url){
 	if(url.indexOf("?")==-1){
 		window.location.href = url+"?sid="+sessionId+"&guid="+userId;
+		return false;
 	}else{
 		window.location.href = url+"&sid="+sessionId+"&guid="+userId;
+		return false;
 	}
 }
 
