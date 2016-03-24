@@ -406,7 +406,6 @@ function doSumbit() {
 						if (json['departmentId']==100) {
 							//人事
 							if (json['roleId']==7||json['roleId']==8){
-								alert("ok")
 								json['departmentId'] = 23;
 							}
 							//法务
