@@ -127,7 +127,7 @@
 	</servlet-mapping>
 
 	<session-config>
-		<!-- 设置会话过期时间为1小时 -->
-		<session-timeout>60</session-timeout>
+		<!-- 设置会话过期时间为2小时 -->
+		<session-timeout>120</session-timeout>
 	</session-config>
 </web-app>
