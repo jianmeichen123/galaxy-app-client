@@ -402,6 +402,22 @@ function doSumbit() {
 						var value = $("input[name='departmentId']:checked")
 								.val();
 						json['departmentId'] = value;
+						
+						if (json['departmentId']==100) {
+							//人事
+							if (json['roleId']==7||json['roleId']==8){
+								alert("ok")
+								json['departmentId'] = 23;
+							}
+							//法务
+							if (json['roleId']==10||json['roleId']==9){
+								json['departmentId'] = 20;
+							}
+							//财务
+							if (json['roleId']==12||json['roleId']==11){
+								json['departmentId'] = 21;
+							}
+						}
 
 						if ((json['departmentId'] == '10000' || json['departmentId'] == 'on')
 								&& departId != '') {
