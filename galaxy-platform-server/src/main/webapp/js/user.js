@@ -21,10 +21,13 @@ $(function() {
 	$(deptList).each(
 			function() {
 				var item = $(this)[0];
+				if (item.id!=100) {
+					var option = "<option value='" + item.id + "'>" + item.name
+					+ "</option>"
+			        deptSelect.append(option);
+				}
 				// console.log(item);
-				var option = "<option value='" + item.id + "'>" + item.name
-						+ "</option>"
-				deptSelect.append(option);
+				
 			});
 
 });
