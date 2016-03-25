@@ -103,8 +103,7 @@ public class DictDaoImpl extends BaseDaoImpl<Dict, Long> implements DictDao {
 		try {
 			return sqlSessionTemplate.selectOne(getSqlName("selectMaxValueByParentCode"), parentCode);
 		} catch (Exception e) {
-			throw new DaoException(String.format("查询同一parentCode下value最大值", getSqlName("selectMaxValueByParentCode")),
-					e);
+			throw new DaoException(String.format("查询同一parentCode下value最大值：%s", getSqlName("selectMaxValueByParentCode")),e);
 		}
 	}
 
