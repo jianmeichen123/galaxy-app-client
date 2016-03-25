@@ -58,9 +58,9 @@
 	<!-- 查询 -->
 	<select id="select" resultMap="BaseResultMap" parameterType="java.util.Map">
 		select
-		<include refid="Base_Column_List" />
+		<include refid="Base_Column_List" /> 
 		from t_department
-		<include refid="Base_Where_Clause" />
+		<include refid="Base_Where_Clause" /> 
 	</select>
 	
 	<select id="queryListByType" resultMap="BaseResultMap" parameterType="java.lang.Integer">

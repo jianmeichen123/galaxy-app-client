@@ -21,10 +21,13 @@ $(function() {
 	$(deptList).each(
 			function() {
 				var item = $(this)[0];
+				if (item.id!=100) {
+					var option = "<option value='" + item.id + "'>" + item.name
+					+ "</option>"
+			        deptSelect.append(option);
+				}
 				// console.log(item);
-				var option = "<option value='" + item.id + "'>" + item.name
-						+ "</option>"
-				deptSelect.append(option);
+				
 			});
 
 });
@@ -415,6 +418,12 @@ function doSumbit() {
 							//财务
 							if (json['roleId']==12||json['roleId']==11){
 								json['departmentId'] = 21;
+							}
+							if (json['roleId']==1){
+								json['departmentId'] = 1;
+							}
+							if (json['roleId']==2){
+								json['departmentId'] = 2;
 							}
 						}
 
