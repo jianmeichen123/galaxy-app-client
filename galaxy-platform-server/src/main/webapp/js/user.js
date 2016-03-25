@@ -416,6 +416,12 @@ function doSumbit() {
 							if (json['roleId']==12||json['roleId']==11){
 								json['departmentId'] = 21;
 							}
+							if (json['roleId']==1){
+								json['departmentId'] = 1;
+							}
+							if (json['roleId']==2){
+								json['departmentId'] = 2;
+							}
 						}
 
 						if ((json['departmentId'] == '10000' || json['departmentId'] == 'on')

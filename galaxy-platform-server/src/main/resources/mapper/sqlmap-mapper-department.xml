@@ -58,7 +58,7 @@
 	<!-- 查询 -->
 	<select id="select" resultMap="BaseResultMap" parameterType="java.util.Map">
 		select
-		<include refid="Base_Column_List" />
+		<include refid="Base_Column_List" /> and id !=100
 		from t_department
 		<include refid="Base_Where_Clause" />
 	</select>
