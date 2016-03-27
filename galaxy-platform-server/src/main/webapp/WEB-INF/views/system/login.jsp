@@ -49,28 +49,5 @@
 	<script type="text/javascript" src="js/jquery.cookie.js"></script>
 	<script type="text/javascript" src="js/login.js"></script>
 	
-	<script>
-	var Sys = {};
-        var ua = navigator.userAgent.toLowerCase();
-        var s;
-        (s = ua.match(/msie ([\d.]+)/)) ? Sys.ie = s[1] :
-        (s = ua.match(/firefox\/([\d.]+)/)) ? Sys.firefox = s[1] :
-        (s = ua.match(/chrome\/([\d.]+)/)) ? Sys.chrome = s[1] :
-        (s = ua.match(/opera.([\d.]+)/)) ? Sys.opera = s[1] :
-        (s = ua.match(/version\/([\d.]+).*safari/)) ? Sys.safari = s[1] : 0;
-       var ie=Sys.ie;
-        if (ie=='9.0'||ie=='8.0'||ie=='7.0'||ie=='6.0'){
-            window.location.href="http://windows.microsoft.com/zh-cn/internet-explorer/download-ie"; 
-        };
-        if (Sys.opera){
-            alert("为带来更好的用户体验，请使用谷歌、safari及IE10以上浏览器登陆！")
-        }
-    /*      if (Sys.chrome) document.write('Chrome: ' + Sys.chrome);
-      if (Sys.firefox) document.write('Firefox: ' + Sys.firefox);
-        if (Sys.chrome) document.write('Chrome: ' + Sys.chrome);
-        if (Sys.opera) document.write('Opera: ' + Sys.opera);
-        if (Sys.safari) document.write('Safari: ' + Sys.safari);
-*/
-</script>
 </body>
 </html>
