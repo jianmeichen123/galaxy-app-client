@@ -23,7 +23,7 @@
 			<a href="javascript:;" class="logo null">星河互联</a>
 		</div>
 		<div class="min clearfix">
-		 	<div class="pic"><a href="install.html">安装说明</a></div>
+		 	<div class="pic"><a href="<%=basePath %>/html/installReadme.html">安装说明</a></div>
 			<div class="loginbox">
 				<h2 class="ico null">繁星</h2>
 				<form id="defaultForm" method="post" class="form-horizontal" onkeydown="keylogin();">
