@@ -3,18 +3,19 @@ package com.galaxyinternet.test.user;
 import java.util.List;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.galaxyinternet.model.user.User;
 import com.galaxyinternet.service.DepartmentService;
 import com.galaxyinternet.service.RoleService;
 import com.galaxyinternet.service.UserRoleService;
 import com.galaxyinternet.service.UserService;
-
-@ContextConfiguration(locations = { "classpath:spring/server_ctx.xml" })
-public class UserServiceTest extends AbstractJUnit4SpringContextTests  {
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = { "classpath*:spring/server_ctx.xml" })
+public class UserServiceTest   {
 	@Autowired
 	private UserService userService;
 	@Autowired
@@ -25,6 +26,7 @@ public class UserServiceTest extends AbstractJUnit4SpringContextTests  {
 	@Autowired
 	private DepartmentService departmentService;
 
+	
 	@Test
 	public void testQuery() throws Exception {
 		List<User> userList = userService.queryAll();
@@ -78,6 +80,9 @@ public class UserServiceTest extends AbstractJUnit4SpringContextTests  {
 		departmentService.queryListByType(type);
 	}
 	
-	
+	@Test
+	public void test() throws Exception {
+		System.out.println("oo");
+	}
 	
 }
