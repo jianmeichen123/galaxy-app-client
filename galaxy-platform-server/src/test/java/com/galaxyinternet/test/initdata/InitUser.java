@@ -24,6 +24,7 @@ public class InitUser extends AbstractJUnit4SpringContextTests  {
 	
 	@Autowired
 	private BaseService<Department> service;
+	
 	@Autowired
 	private UserDao userDao;
 	private String oriPass = "123456";
@@ -53,6 +54,8 @@ public class InitUser extends AbstractJUnit4SpringContextTests  {
 			user.setPassword(PWDUtils.genernateNewPassword(oriPass));
 			//设置地址
 			user.setAddress(address);
+			//设置昵称
+			user.setNickName(address);
 			//设置departmentId
 			Long departmentCode = user.getDepartmentCode();
 			if(null==departmentCode){
