@@ -55,7 +55,7 @@ public class InitUser extends AbstractJUnit4SpringContextTests  {
 			//设置地址
 			user.setAddress(address);
 			//设置昵称
-			user.setNickName(address);
+			user.setNickName(user.getEmail());
 			//设置departmentId
 			Long departmentCode = user.getDepartmentCode();
 			if(null==departmentCode){
