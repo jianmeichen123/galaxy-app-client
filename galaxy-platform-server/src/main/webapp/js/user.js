@@ -279,8 +279,8 @@ function doSumbit() {
 					$("#roleId").val(ui.item.roleId);
 					$("input[name='roleId'][value='" + ui.item.roleId + "']")
 							.attr("checked", true);
-
-					if (ui.item.departmentId == 100) {
+					var departmentId = ui.item.departmentId;
+					if (departmentId == 100 ||departmentId == 1 ||departmentId == 2 ||departmentId == 4||departmentId == 20 ||departmentId == 21 ||departmentId == 23) {
 						$("input[name='departmentId'][value=100]").attr(
 								"checked", true);
 					} else {
@@ -396,7 +396,7 @@ function doSumbit() {
 						var options = $("#selectId option:selected");
 						var departId = options.val();
 						var valgender = $('input:radio[name="gender"]:checked').val();
-						if (valgender =1) {
+						if (valgender ==1) {
 							json['gender'] = true;
 						}
 						var val = $('input:radio[name="roleId"]:checked').val();
