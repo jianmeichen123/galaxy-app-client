@@ -226,7 +226,7 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	@RequestMapping(value = "/updateUser", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseData<UserBo> updateUser( @RequestBody @Valid UserBo user,BindingResult result) {
 		ResponseData<UserBo> responseBody = new ResponseData<UserBo>();
-		boolean bl = false;
+		boolean bl = true;
 		long retValue = 0;
 		Result validationResult = ValidatorResultHandler.handle(result);
 		if (validationResult.getStatus() == Status.ERROR) {
@@ -238,6 +238,7 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 			if (user.getId() != null) {
 				retValue = userService.updateUser(user);
 				jsonResult.setStatus(Status.OK);
+				
 			} else {
 				String oriPwd = PWDUtils.genRandomNum(6);
 				user.setOriginPassword(oriPwd);

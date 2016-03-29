@@ -195,6 +195,11 @@
 		</dependency>
 		<dependency>
 			<groupId>com.galaxyinternet</groupId>
+			<artifactId>galaxy-jexcel</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.galaxyinternet</groupId>
 			<artifactId>galaxy-platform-api</artifactId>
 			<version>${project.version}</version>
 			<!-- <exclusions> <exclusion> <artifactId>commons-collections</artifactId> 

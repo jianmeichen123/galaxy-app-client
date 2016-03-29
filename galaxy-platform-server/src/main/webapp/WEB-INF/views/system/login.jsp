@@ -9,8 +9,8 @@
 <head>
 <meta charset="utf-8">
 <title>繁星</title>
-
 <base href="<%=basePath%>">
+<link rel="shortcut icon" href="<%=basePath %>/img/favicon.ico" />
 <!-- jsp文件头和头部 -->
 <%@ include file="/WEB-INF/views/common/taglib.jsp"%>
 <link href="css/axure.css" type="text/css" rel="stylesheet" />
@@ -23,7 +23,7 @@
 			<a href="javascript:;" class="logo null">星河互联</a>
 		</div>
 		<div class="min clearfix">
-		 <div class="pic"></div>
+		 	<div class="pic"></div>
 			<div class="loginbox">
 				<h2 class="ico null">繁星</h2>
 				<form id="defaultForm" method="post" class="form-horizontal" onkeydown="keylogin();">
