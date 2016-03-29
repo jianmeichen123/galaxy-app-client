@@ -450,7 +450,7 @@ function doSumbit() {
 							dataType : "json",
 							cache : false,
 							beforeSend : function(xhr) {
-								if (TOKEN) {
+								if (!json['id'] && TOKEN) {
 									xhr.setRequestHeader("TOKEN", TOKEN);
 								}
 								if (sessionId) {
