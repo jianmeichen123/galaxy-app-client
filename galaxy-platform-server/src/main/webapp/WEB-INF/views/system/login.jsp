@@ -48,6 +48,35 @@
 	<script type="text/javascript" src="js/layer/layer.js"></script>
 	<script type="text/javascript" src="js/jquery.cookie.js"></script>
 	<script type="text/javascript" src="js/login.js"></script>
+	<script type="text/javascript">
+		getBrowserVersion();
+		function getBrowserVersion(){      
+		  var userAgent = navigator.userAgent.toLowerCase();   
+		  if(userAgent.match(/msie ([\d.]+)/)!=null){//ie6--ie9                
+		    uaMatch = userAgent.match(/msie ([\d.]+)/);                
+		    return 'IE'+uaMatch[1];        
+		  }else if(userAgent.match(/(trident)\/([\w.]+)/)){
+		    uaMatch = userAgent.match(/trident\/([\w.]+)/);    
+		    switch (uaMatch[1]){                                
+		      case "4.0": 
+		        return "IE8" ;
+		        break;                                
+		      case "5.0": 
+		        return "IE9" ;
+		        break;                                
+		      case "6.0": 
+		        $('.tips').hide();
+		        break;                                
+		      case "7.0": 
+		        $('.tips').hide();
+		        return "IE11";
+		        break;                                
+		      default:return "undefined" ;            
+		    }  
+		  }       
+		  $('.tips').hide();  
+		}
+</script>
 	
 </body>
 </html>
