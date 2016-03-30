@@ -198,15 +198,15 @@ function doSumbit() {
 	sendPostRequest(platformUrl.getToken,callback);
 	var deptSelect1 = $('#selectId');
 
-	$("#realName").autocomplete(
+	/*$("#realName").autocomplete(
 			{
-				/*
+				
 				 * source: function( request, response ) { var matcher = new
 				 * RegExp( $.ui.autocomplete.escapeRegex( request.term ), "i" );
 				 * response( $.grep( names, function( value ) { value =
 				 * value.label || value.value || value; return matcher.test(
 				 * value ) || matcher.test( normalize( value ) ); }) ); },
-				 */
+				 
 				source : function(request, response) {
 					$.ajax({
 						url : platformUrl.getUserList,
@@ -224,9 +224,9 @@ function doSumbit() {
 							}
 						},
 						type : 'GET',
-						/*
+						
 						 * data:{ searchDbInforItem: request.term },
-						 */
+						 
 						success : function(data) {
 							response($.map(data.pageList.content,
 									function(item) {
@@ -290,7 +290,7 @@ function doSumbit() {
 					}
 				}
 			});
-
+*/
 	var json = {
 		"type" : 1
 	};

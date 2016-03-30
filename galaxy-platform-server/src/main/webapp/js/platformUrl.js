@@ -9,9 +9,9 @@ var platformUrl = {
 	/**
 	 * 跳转登录页
 	 */
-	toLoginPage :"galaxy/userlogin/toLogin",
+	toLoginPage :Constants.platformContentURL+ "galaxy/userlogin/toLogin",
 	
-	logout:"galaxy/userlogin/logout",
+	logout:Constants.platformContentURL+ "galaxy/userlogin/logout",
 	/**
 	 * 验证登录
 	 */
