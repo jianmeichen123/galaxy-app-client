@@ -11,7 +11,7 @@ var platformUrl = {
 	 */
 	toLoginPage :"galaxy/userlogin/toLogin",
 	
-	logout:"galaxy/userlogin/logout",
+	logout:Constants.platformContentURL+ "galaxy/userlogin/logout",
 	/**
 	 * 验证登录
 	 */
