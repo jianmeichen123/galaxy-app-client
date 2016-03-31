@@ -34,14 +34,18 @@
 </div>
 <script src="js/login.js"></script>
 <script src="js/car_limit.js"></script>
-<!-- <script type = "text/javascript">
-	fillHeaderdata();
+ <script type = "text/javascript">
+ <!--fillHeaderdata();
 	sendPostRequest(platformUrl.messageCount, remindcbf);
 	function remindcbf(data){
 		if(data.result.status == "OK"){
 			 $(".work em[action='remind']").html(data.entity.count);
 		}
 	}
+	 -->
+	/*关闭二维码*/
+		$("[data-btn='close_erwm']").on("click",function(){
+            $('.erwm').hide();
+        })
 </script>
 
- -->
