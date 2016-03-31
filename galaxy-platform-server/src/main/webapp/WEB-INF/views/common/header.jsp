@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <div class="erwm">
     <span data-btn="close_erwm">关闭</span>
-    <a href="./installReadme.html" target="_blank">点击查看安装说明</a>
+    <a href="installReadme.html" target="_blank">点击查看安装说明</a>
 </div>
 <div class="header clearfix">
 	<a href="javascript:;" class="logo null">繁星</a>
