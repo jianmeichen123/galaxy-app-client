@@ -63,15 +63,22 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		
 	
 		long result1 = userDao.insert(user);
+		long result2 = 0l;
 		UserRole userRole = new UserRole();
 
 		if (user.getRoleId() == null) {
 			throwPlatformException(MessageStatus.FIELD_NOT_ALLOWED_EMPTY, "roleId,不能为空");
 		}
-
+		//合伙人角色
+		if (user.getDepartmentId() != null && user.getRoleId().equals(3l)) {
+			Department entity = new Department();
+			entity.setId(user.getDepartmentId());
+			entity.setManagerId(user.getId());
+			departmentService.updateById(entity);
+		}
 		userRole.setRoleId(user.getRoleId());
 		userRole.setUserId(user.getId());
-		long result2 = userRoleService.insertUserRole(userRole);
+		result2 = userRoleService.insertUserRole(userRole);
 		return (result1 & result2);
 
 	}
