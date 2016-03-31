@@ -1,4 +1,8 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<div class="erwm">
+    <span data-btn="close_erwm">关闭</span>
+    <a href="html/installReadme.html" target="_blank">点击查看安装说明</a>
+</div>
 <div class="header clearfix">
 	<a href="javascript:;" class="logo null">繁星</a>
     <!--头部中间-->
@@ -30,14 +34,18 @@
 </div>
 <script src="js/login.js"></script>
 <script src="js/car_limit.js"></script>
-<!-- <script type = "text/javascript">
-	fillHeaderdata();
+ <script type = "text/javascript">
+ <!--fillHeaderdata();
 	sendPostRequest(platformUrl.messageCount, remindcbf);
 	function remindcbf(data){
 		if(data.result.status == "OK"){
 			 $(".work em[action='remind']").html(data.entity.count);
 		}
 	}
+	 -->
+	/*关闭二维码*/
+		$("[data-btn='close_erwm']").on("click",function(){
+            $('.erwm').hide();
+        })
 </script>
 
- -->
