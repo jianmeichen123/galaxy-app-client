@@ -53,7 +53,13 @@
 	<sql id="Base_Where_Clause">
 		<where>
 			<trim prefixOverrides="and">
-				<if test="id != null"> and id =#{id}</if>
+				<if test="id != null"> and id =#{id} </if>
+				<if test="ids != null"> 
+					and id in
+					<foreach collection="ids" item="iditem" index="index" open="(" close=")" separator=",">
+			            #{iditem}
+			        </foreach>
+				</if>
 				<if test="employNo != null"> and employ_no =#{employNo}</if>
 				<if test="realName != null"> and real_name like CONCAT("%",#{realName},"%")</if>
 				

@@ -42,22 +42,7 @@ public interface UserService extends BaseService<User> {
 	 */
 	int resetPwd(Long userId);
 
-	/**
-	 * 用户登录
-	 * 
-	 * @author zcy
-	 * @param user
-	 * @return
-	 */
-	ResponseData<User> login(User user, HttpServletRequest request);
 
-	/**
-	 * 用户注销
-	 * 
-	 * @param user
-	 * @return
-	 */
-	ResponseData<User> logout(HttpServletRequest request);
 	
 	/**
 	 * 分页查询用户
@@ -96,4 +81,19 @@ public interface UserService extends BaseService<User> {
 	 * @return
 	 */
 	User queryByEmail(User user);
+	
+	/**
+	 * 查询登录用户
+	 * @author zcy
+	 * @param user
+	 * @return
+	 */
+	User queryUserByUP(User user);
+
+	/**
+	 * @author zcy
+	 * @param user
+	 * @return
+	 */
+	boolean isUserNormal(User user);
 }

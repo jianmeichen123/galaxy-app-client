@@ -60,8 +60,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 
 	@Override
 	public Long insertUser(User user) {
-		
-	
+
 		long result1 = userDao.insert(user);
 		long result2 = 0l;
 		UserRole userRole = new UserRole();
@@ -69,7 +68,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		if (user.getRoleId() == null) {
 			throwPlatformException(MessageStatus.FIELD_NOT_ALLOWED_EMPTY, "roleId,不能为空");
 		}
-		//合伙人角色
+		// 合伙人角色
 		if (user.getDepartmentId() != null && user.getRoleId().equals(3l)) {
 			Department entity = new Department();
 			entity.setId(user.getDepartmentId());
@@ -95,88 +94,46 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		return super.updateById(user);
 	}
 
-	@Override
-	public ResponseData<User> login(User user, HttpServletRequest request) {
-
-		ResponseData<User> responsebody = new ResponseData<User>();
-		String email = user.getEmail();
-		String password = user.getPassword();
-
-		if (StringUtils.isBlank(email) || StringUtils.isBlank(password)) {
-			responsebody.setResult(new Result(Status.ERROR, Constants.IS_UP_EMPTY, "用户名或密码不能为空！"));
-			return responsebody;
-		}
-		// 获取解密后的email和password
-		email = PWDUtils.decodePasswordByBase64(email);
-		password = PWDUtils.decodePasswordByBase64(password);
-
-		password = PWDUtils.genernateNewPassword(password); // 重新加密password
-		user.setEmail(email);
-		user.setPassword(password);
-
-		user = userDao.selectOne(user); // 根据表单输入字段查询用户
-		if (user == null) {
-			responsebody.setResult(new Result(Status.ERROR, Constants.IS_UP_WRONG, "用户名或密码错误！"));
-		} else {
-
-			// 判断是否用户禁用
-			if (!isUserNormal(user)) {
-				responsebody.setResult(new Result(Status.ERROR, Constants.USER_DISABLE, "用户已被禁用！"));
-				return responsebody;
-			}
-			// 查询user相关字段
-			Department dept = getDepartmentByUserId(user.getId());
-			Role role = getRoleByUserId(user.getId());
-			if (role != null) {
-				user.setRole(role.getName());
-				user.setRoleId(role.getId());
-			}
-			if(dept != null){
-				user.setDepartmentName(dept.getName());
-				user.setDepartmentId(dept.getId());
-			}
-			String sessionId = SessionUtils.createWebSessionId(); // 封装
-			user.setSessionId(sessionId);
-			cache.set(sessionId, user); // 将sessionId存入cache
-			request.getSession().setAttribute(Constants.SESSION_USER_KEY, user);
-
-			Header header = new Header();
-			header.setLoginName(user.getEmail());
-			header.setSessionId(sessionId);
-			header.setUserId(user.getId());
-
-			if (null != role && StringUtils.isNotBlank(role.getRoleCode())) {
-				header.setAttachment(role.getRoleCode());
-			} else {
-				header.setAttachment("");
-			}
-
-			responsebody.setHeader(header);
-			responsebody.setResult(new Result(Status.OK, Constants.OPTION_SUCCESS, "登录成功！"));
-		}
-		return responsebody;
-	}
-
-	private boolean isUserNormal(User user) {
-		if (user.getStatus().equals(UserConstant.NORMAL)) {
-			return true;
-		}
-		return false;
-	}
-
-	@Override
-	public ResponseData<User> logout(HttpServletRequest request) {
-		ResponseData<User> responsebody = new ResponseData<User>();
-		String sessionId = request.getHeader(Constants.SESSION_ID_KEY);
-		if (StringUtils.isBlank(sessionId)) {
-			responsebody.setResult(new Result(Status.ERROR, Constants.IS_SESSIONID_EMPTY, "sessionId为空！"));
-			return responsebody;
-		}
-		request.getSession().removeAttribute(Constants.SESSION_USER_KEY); // 从本地session删除user
-		cache.remove(sessionId); // 从redis中删除sessionId
-		responsebody.setResult(new Result(Status.OK, Constants.OPTION_SUCCESS, "退出登录"));
-		return responsebody;
-	}
+	/*
+	 * @Override public ResponseData<User> login(User user, HttpServletRequest
+	 * request) {
+	 * 
+	 * ResponseData<User> responsebody = new ResponseData<User>(); String email
+	 * = user.getEmail(); String password = user.getPassword();
+	 * 
+	 * if (StringUtils.isBlank(email) || StringUtils.isBlank(password)) {
+	 * responsebody.setResult(new Result(Status.ERROR, Constants.IS_UP_EMPTY,
+	 * "用户名或密码不能为空！")); return responsebody; } // 获取解密后的email和password
+	 * 
+	 * user.setPassword(password);
+	 * 
+	 * user = userDao.selectOne(user); // 根据表单输入字段查询用户 if (user == null) {
+	 * responsebody.setResult(new Result(Status.ERROR, Constants.IS_UP_WRONG,
+	 * "用户名或密码错误！")); } else {
+	 * 
+	 * // 判断是否用户禁用 if (!isUserNormal(user)) { responsebody.setResult(new
+	 * Result(Status.ERROR, Constants.USER_DISABLE, "用户已被禁用！")); return
+	 * responsebody; } // 查询user相关字段 Department dept =
+	 * getDepartmentByUserId(user.getId()); Role role =
+	 * getRoleByUserId(user.getId()); if (role != null) {
+	 * user.setRole(role.getName()); user.setRoleId(role.getId()); } if(dept !=
+	 * null){ user.setDepartmentName(dept.getName());
+	 * user.setDepartmentId(dept.getId()); } String sessionId =
+	 * SessionUtils.createWebSessionId(); // 封装 user.setSessionId(sessionId);
+	 * cache.set(sessionId, user); // 将sessionId存入cache
+	 * request.getSession().setAttribute(Constants.SESSION_USER_KEY, user);
+	 * 
+	 * Header header = new Header(); header.setLoginName(user.getEmail());
+	 * header.setSessionId(sessionId); header.setUserId(user.getId());
+	 * 
+	 * if (StringUtils.isNotBlank(role.getRoleCode())) {
+	 * header.setAttachment(role.getRoleCode()); } else {
+	 * header.setAttachment(""); }
+	 * 
+	 * responsebody.setHeader(header); responsebody.setResult(new
+	 * Result(Status.OK, Constants.OPTION_SUCCESS, "登录成功！")); } return
+	 * responsebody; }
+	 */
 
 	/*
 	 * @Override public Page<User> queryPageList(Query query) { Page<User> page
@@ -293,7 +250,46 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	}
 
 	@Override
+	public User queryUserByUP(User user) {
+		String email = PWDUtils.decodePasswordByBase64(user.getEmail());
+		String password = PWDUtils.decodePasswordByBase64(user.getPassword());
+		password = PWDUtils.genernateNewPassword(password); // 重新加密password
+		user.setEmail(email);
+		user.setPassword(password);
+		user = userDao.selectOne(user);
+		if (isUserNormal(user)) {
+
+			Department dept = getDepartmentByUserId(user.getId()); // 查询user的角色和部门
+			Role role = getRoleByUserId(user.getId());
+			if (role != null) {
+				user.setRole(role.getName());
+				user.setRoleId(role.getId());
+			}
+			if (dept != null) {
+				user.setDepartmentName(dept.getName());
+				user.setDepartmentId(dept.getId());
+			}
+		}
+		return user;
+	}
+
+	@Override
 	public User queryByEmail(User user) {
 		return userDao.selectByEmail(user);
+	}
+
+	/**
+	 * 判断用户是否被禁用
+	 * 
+	 * @author zcy
+	 * @param user
+	 * @return
+	 */
+	@Override
+	public boolean isUserNormal(User user) {
+		if (user.getStatus().equals(UserConstant.NORMAL)) {
+			return true;
+		}
+		return false;
 	}
 }
