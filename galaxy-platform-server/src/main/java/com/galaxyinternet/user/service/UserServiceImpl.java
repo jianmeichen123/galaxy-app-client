@@ -287,7 +287,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	 */
 	@Override
 	public boolean isUserNormal(User user) {
-		if (user.getStatus().equals(UserConstant.NORMAL)) {
+		if (user!=null && UserConstant.NORMAL.equals(user.getStatus())) {
 			return true;
 		}
 		return false;
