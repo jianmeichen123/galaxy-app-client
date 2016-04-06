@@ -4,9 +4,7 @@ import static com.galaxyinternet.utils.ValidationUtil.throwPlatformException;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -18,14 +16,11 @@ import com.galaxyinternet.framework.cache.Cache;
 import com.galaxyinternet.framework.core.constants.Constants;
 import com.galaxyinternet.framework.core.constants.UserConstant;
 import com.galaxyinternet.framework.core.dao.BaseDao;
-import com.galaxyinternet.framework.core.model.Header;
 import com.galaxyinternet.framework.core.model.Page;
-import com.galaxyinternet.framework.core.model.ResponseData;
 import com.galaxyinternet.framework.core.model.Result;
 import com.galaxyinternet.framework.core.model.Result.Status;
 import com.galaxyinternet.framework.core.service.impl.BaseServiceImpl;
 import com.galaxyinternet.framework.core.utils.PWDUtils;
-import com.galaxyinternet.framework.core.utils.SessionUtils;
 import com.galaxyinternet.model.department.Department;
 import com.galaxyinternet.model.role.Role;
 import com.galaxyinternet.model.user.User;
@@ -50,8 +45,6 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	@Autowired
 	private DepartmentService departmentService;
 
-	@Autowired
-	private Cache cache;
 
 	@Override
 	protected BaseDao<User, Long> getBaseDao() {
@@ -257,6 +250,9 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		user.setEmail(email);
 		user.setPassword(password);
 		user = userDao.selectOne(user);
+		if (user == null) {
+			return null;
+		}
 		if (isUserNormal(user)) {
 
 			Department dept = getDepartmentByUserId(user.getId()); // 查询user的角色和部门
@@ -287,7 +283,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	 */
 	@Override
 	public boolean isUserNormal(User user) {
-		if (user!=null && UserConstant.NORMAL.equals(user.getStatus())) {
+		if (UserConstant.NORMAL.equals(user.getStatus())) {
 			return true;
 		}
 		return false;

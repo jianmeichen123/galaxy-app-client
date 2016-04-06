@@ -1,12 +1,9 @@
 package com.galaxyinternet.service;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.data.domain.Pageable;
 
 import com.galaxyinternet.bo.UserBo;
 import com.galaxyinternet.framework.core.model.Page;
-import com.galaxyinternet.framework.core.model.ResponseData;
 import com.galaxyinternet.framework.core.service.BaseService;
 import com.galaxyinternet.model.department.Department;
 import com.galaxyinternet.model.role.Role;
