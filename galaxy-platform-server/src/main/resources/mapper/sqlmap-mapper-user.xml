@@ -88,7 +88,7 @@
 					 		)
 				 		</when>
 				 		<when test="flagkeyword=='onlyName'">
-				 			and (
+				 			and 
 					 			real_name  LIKE replace('%${keyword}%',' ','') 
 					 		<if test="escapeChar ">
 					 		  	escape '/' 
