@@ -4,7 +4,6 @@ import static com.galaxyinternet.utils.ValidationUtil.throwPlatformException;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -12,13 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.galaxyinternet.bo.UserBo;
 import com.galaxyinternet.dao.user.UserDao;
-import com.galaxyinternet.framework.cache.Cache;
-import com.galaxyinternet.framework.core.constants.Constants;
 import com.galaxyinternet.framework.core.constants.UserConstant;
 import com.galaxyinternet.framework.core.dao.BaseDao;
 import com.galaxyinternet.framework.core.model.Page;
-import com.galaxyinternet.framework.core.model.Result;
-import com.galaxyinternet.framework.core.model.Result.Status;
 import com.galaxyinternet.framework.core.service.impl.BaseServiceImpl;
 import com.galaxyinternet.framework.core.utils.PWDUtils;
 import com.galaxyinternet.model.department.Department;
