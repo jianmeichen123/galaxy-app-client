@@ -86,16 +86,8 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	 * 默认页面
 	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public String list(HttpServletRequest request,
-			HttpServletResponse response) {
-	/*	// 部门列表
-		List<Department> deptList = departmentService.queryAll();
-		// 默认取一页数据
-		PageRequest pageable = new PageRequest();
-		Page<User> page = userService.queryUserList(new User(), pageable);
-		request.setAttribute("deptList", deptList);
-		request.setAttribute("content", page.getContent());
-		*/ 
+	public String list(HttpServletRequest request,HttpServletResponse response) {
+		
 		return"system/user/user_list";
 	}
 
@@ -124,17 +116,10 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		}
 		User nUser = userService.queryById(user.getId());
 		String toMail = nUser.getEmail() + Constants.MAIL_SUFFIX; // "sue_vip@126.com"; 收件人邮件地址
-		//toMail = "sue_vip@126.com";
 		//使用模板发送邮件
 		String str = MailTemplateUtils.getContentByTemplate(Constants.MAIL_RESTPWD_CONTENT);
 		String content = PlaceholderConfigurer.formatText(str, nUser.getRealName(),nUser.getEmail(),nUser.getOriginPassword(),this.getLoginUrl(),this.getLoginUrl());
-		/*String content = "<html>" + "<head></head>" + "<body>"
-				+ "<div align=center>"
-				+ nUser.getRealName()+"您好，繁星系统已为您生成账户名：" + nUser.getNickName() +",密码:" + nUser.getOriginPassword()
-				+ "您可以登陆繁星系统：" +"<a href="+  this.getLoginUrl()+" target=_blank>" +this.getLoginUrl()+"</a>"
-				+" 管理您的项目了。"
-				+ "</div>" + "</body>" + "</html>";// 邮件内容
-        */
+		
 		String subject = "重置密码通知";// 邮件主题
 		bl = SimpleMailSender.sendHtmlMail(toMail, subject, content);
 		 if (retValue < 1) {
