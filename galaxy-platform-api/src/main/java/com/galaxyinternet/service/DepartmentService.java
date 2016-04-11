@@ -19,6 +19,13 @@ public interface DepartmentService extends BaseService<Department> {
 	 * @return
 	 */
 	List<Department> queryListByType(Integer type);
+	/**
+	 * 根据ids查询部门集合
+	 * @author zhaoying
+	 * @param type
+	 * @return
+	 */
+	public List<Department> queryListById(List<String> idList);
 	
 	
 }

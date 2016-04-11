@@ -296,4 +296,12 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
         }
 		
 	}
+	
+	
+	@Override
+	public List<User> queryListById(List<String> idList) {
+		// TODO Auto-generated method stub
+		return userDao.selectListById(idList);
+	}
+
 }
