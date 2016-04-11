@@ -283,4 +283,16 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		}
 		return false;
 	}
+
+	@Override
+	public int updatePwd(User query) {
+        if (query!=null && query.getId()!= null && query.getPassword()!=null) {
+        	// 加密
+    		query.setPassword(PWDUtils.genernateNewPassword(query.getPassword()));
+    		return super.updateById(query);
+        } else {
+        	return 0;
+        }
+		
+	}
 }

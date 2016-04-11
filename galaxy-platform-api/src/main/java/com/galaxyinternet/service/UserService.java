@@ -39,7 +39,12 @@ public interface UserService extends BaseService<User> {
 	 */
 	int resetPwd(Long userId);
 
-
+	/**
+	 * 用户更改密码
+	 * @param query
+	 * @return
+	 */
+    int updatePwd(User query);
 	
 	/**
 	 * 分页查询用户
