@@ -2,6 +2,7 @@ package com.galaxyinternet.model.user;
 
 import java.text.ParseException;
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
@@ -40,10 +41,19 @@ public class User extends BaseUser {
 	
 	private String address;// 地址
 	private Boolean isAdmin;// 是否管理员
+	
+	public List<Long> getIds() {
+		return ids;
+	}
+
+	public void setIds(List<Long> ids) {
+		this.ids = ids;
+	}
+
 	@NotNull(message="角色不能为空")
 	private Long roleId;// 角色Id
 
-	
+	private List<Long> ids;
 	private String nameMbLike;
 	
 	

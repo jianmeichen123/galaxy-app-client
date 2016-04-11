@@ -53,7 +53,13 @@
 	<sql id="Base_Where_Clause">
 		<where>
 			<trim prefixOverrides="and">
-				<if test="id != null"> and id =#{id}</if>
+				<if test="id != null"> and id =#{id} </if>
+				<if test="ids != null"> 
+					and id in
+					<foreach collection="ids" item="iditem" index="index" open="(" close=")" separator=",">
+			            #{iditem}
+			        </foreach>
+				</if>
 				<if test="employNo != null"> and employ_no =#{employNo}</if>
 				<if test="realName != null"> and real_name like CONCAT("%",#{realName},"%")</if>
 				
@@ -67,17 +73,28 @@
 				<if test="updatedTime != null"> and updated_time =#{updatedTime}</if>
 				<!-- 模糊查询 -->
 				<!-- <if test="nameLike != null">and name like CONCAT("%",#{nameLike},"%")</if> -->
-				 <if test="keyword != null">    
-				   and (
-					 real_name  LIKE replace('%${keyword}%',' ','') 
-					 	<if test="escapeChar ">
-					 		  escape '/' 
-					 	</if>
-					 or mobile LIKE replace('%${keyword}%',' ','') 
-					 <if test="escapeChar ">
-					 		  escape '/' 
-					 	</if>
-					 	)
+				 <if test="keyword != null">
+				 	<choose>
+				 		<when test="flagkeyword==null">
+				 			and (
+					 			real_name  LIKE replace('%${keyword}%',' ','') 
+					 		<if test="escapeChar ">
+					 		  	escape '/' 
+					 		</if>
+					 		or mobile LIKE replace('%${keyword}%',' ','') 
+					 		<if test="escapeChar ">
+					 		  	escape '/' 
+					 		</if>
+					 		)
+				 		</when>
+				 		<when test="flagkeyword=='onlyName'">
+				 			and 
+					 			real_name  LIKE replace('%${keyword}%',' ','') 
+					 		<if test="escapeChar ">
+					 		  	escape '/' 
+					 		</if>
+				 		</when>
+				 	</choose>
 				 </if>
 			</trim>
 		</where>

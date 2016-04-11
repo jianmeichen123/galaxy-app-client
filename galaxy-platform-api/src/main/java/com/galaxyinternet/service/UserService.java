@@ -1,12 +1,9 @@
 package com.galaxyinternet.service;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.data.domain.Pageable;
 
 import com.galaxyinternet.bo.UserBo;
 import com.galaxyinternet.framework.core.model.Page;
-import com.galaxyinternet.framework.core.model.ResponseData;
 import com.galaxyinternet.framework.core.service.BaseService;
 import com.galaxyinternet.model.department.Department;
 import com.galaxyinternet.model.role.Role;
@@ -43,21 +40,11 @@ public interface UserService extends BaseService<User> {
 	int resetPwd(Long userId);
 
 	/**
-	 * 用户登录
-	 * 
-	 * @author zcy
-	 * @param user
+	 * 用户更改密码
+	 * @param query
 	 * @return
 	 */
-	ResponseData<User> login(User user, HttpServletRequest request);
-
-	/**
-	 * 用户注销
-	 * 
-	 * @param user
-	 * @return
-	 */
-	ResponseData<User> logout(HttpServletRequest request);
+    int updatePwd(User query);
 	
 	/**
 	 * 分页查询用户
@@ -96,4 +83,19 @@ public interface UserService extends BaseService<User> {
 	 * @return
 	 */
 	User queryByEmail(User user);
+	
+	/**
+	 * 查询登录用户
+	 * @author zcy
+	 * @param user
+	 * @return
+	 */
+	User queryUserByUP(User user);
+
+	/**
+	 * @author zcy
+	 * @param user
+	 * @return
+	 */
+	boolean isUserNormal(User user);
 }
