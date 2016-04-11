@@ -285,6 +285,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	}
 
 	@Override
+	@Transactional
 	public int updatePwd(User query) {
         if (query!=null && query.getId()!= null && query.getPassword()!=null) {
         	// 加密
