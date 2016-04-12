@@ -27,4 +27,14 @@ public class DepartmentServiceImpl extends BaseServiceImpl<Department>implements
 	public List<Department> queryListByType(Integer type) {
 		return departmentDao.queryListByType(type);
 	}
+
+	@Override
+	public List<Department> queryListById(List<String> idList) {
+		// TODO Auto-generated method stub
+		return departmentDao.selectListById(idList);
+	}
+	
+	
+	
+	
 }

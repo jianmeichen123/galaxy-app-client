@@ -75,6 +75,17 @@
 		<include refid="Base_Column_List" />
 		from t_department where id = #{id}
 	</select>
+	<!-- 根据idslist查询部门集合 -->
+	<select id="selectListById" resultMap="BaseResultMap" >
+	   select
+		<include refid="Base_Column_List" />
+		 from t_department
+		    where id in
+					<foreach collection="list" index="item" item="item" open="("
+						separator="," close=")">
+						#{item}
+					</foreach>
+	</select>
 	
   	<insert id="insert" parameterType="Department" >
 	    <![CDATA[

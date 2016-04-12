@@ -1,5 +1,7 @@
 package com.galaxyinternet.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Pageable;
 
 import com.galaxyinternet.bo.UserBo;
@@ -98,4 +100,6 @@ public interface UserService extends BaseService<User> {
 	 * @return
 	 */
 	boolean isUserNormal(User user);
+	
+	public List<User> queryListById(List<String> idList);
 }
