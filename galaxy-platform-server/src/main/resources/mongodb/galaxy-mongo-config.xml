@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:int-redis="http://www.springframework.org/schema/integration/redis"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/data/mongo
+    http://www.springframework.org/schema/data/mongo/spring-mongo.xsd ">
+
+	<!-- <mongo:mongo id="galaxyMongo" replica-set="${galaxy.fx.mongodb.address}">
+		一些连接属性的设置
+		 <mongo:options connections-per-host="1000"/>  
+	</mongo:mongo> -->
+	
+	<mongo:mongo-client id="galaxyMongo"  replica-set="127.0.0.1:27017">
+    	<mongo:client-options write-concern="NORMAL" />
+  	</mongo:mongo-client>
+	
+	<!-- mongo的工厂，通过它来取得mongo实例,dbname为mongodb的数据库名，没有的话会自动创建 -->
+	<mongo:db-factory id="galaxyMongoDbFactory" dbname="local" mongo-ref="galaxyMongo" />
+	
+	<!-- mongodb的主要操作对象，所有对mongodb的增删改查的操作都是通过它完成 -->
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg name="mongoDbFactory" ref="galaxyMongoDbFactory" />
+	</bean>
+	
+	<mongo:repositories base-package="com.galaxyinternet.*.repositories" />
+	
+</beans>
