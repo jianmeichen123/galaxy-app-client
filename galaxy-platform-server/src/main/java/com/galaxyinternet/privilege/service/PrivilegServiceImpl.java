@@ -13,10 +13,12 @@ import com.galaxyinternet.model.privilege.bo.PrivilegeBo;
 import com.galaxyinternet.platform.repositories.PrivilegeRepository;
 import com.galaxyinternet.service.PrivilegeService;
 
-@Service
+//@Service
 public class PrivilegServiceImpl implements PrivilegeService {
 
 	private final PrivilegeRepository repository;
+	
+	
 
 	@Autowired
 	public PrivilegServiceImpl(PrivilegeRepository repository) {
@@ -57,6 +59,7 @@ public class PrivilegServiceImpl implements PrivilegeService {
 	@Override
 	public MongoRespData<PrivilegeBo> getAllPrivileges(List<Long> roleIds) {
 		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
