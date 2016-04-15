@@ -132,6 +132,14 @@
 		from t_user 
 		where nick_name =#{nickName} and id !=#{id}
 	</select>
+	
+	<select id="selectByRealName" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from t_user 
+		where real_name =#{realName}
+	</select>
+	
     <select id="selectByEmail" resultMap="BaseResultMap" parameterType="UserPO">
 		select
 		<include refid="Base_Column_List" />

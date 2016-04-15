@@ -304,4 +304,12 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		return userDao.selectListById(idList);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.galaxyinternet.service.UserService#queryUserByRealName(com.galaxyinternet.model.user.User)
+	 */
+	@Override
+	public User queryUserByRealName(String realName) {
+		return userDao.selectByRealName(realName);
+	}
+
 }
