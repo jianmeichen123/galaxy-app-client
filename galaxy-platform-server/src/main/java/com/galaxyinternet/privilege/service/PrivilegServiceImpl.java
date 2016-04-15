@@ -3,8 +3,9 @@ package com.galaxyinternet.privilege.service;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.galaxyinternet.framework.core.id.IdGenerator;
 import com.galaxyinternet.framework.core.model.MongoRespData;
@@ -16,9 +17,9 @@ import com.galaxyinternet.service.PrivilegeService;
 //@Service
 public class PrivilegServiceImpl implements PrivilegeService {
 
+	private final Logger logger = LoggerFactory.getLogger(getClass());
+
 	private final PrivilegeRepository repository;
-	
-	
 
 	@Autowired
 	public PrivilegServiceImpl(PrivilegeRepository repository) {
@@ -59,7 +60,7 @@ public class PrivilegServiceImpl implements PrivilegeService {
 	@Override
 	public MongoRespData<PrivilegeBo> getAllPrivileges(List<Long> roleIds) {
 		// TODO Auto-generated method stub
-		
+
 		return null;
 	}
 
@@ -72,6 +73,7 @@ public class PrivilegServiceImpl implements PrivilegeService {
 			resultBo = repository.save(resultBo);
 			result.setEntity(resultBo);
 		} else {
+			logger.error("Request params ware invalid. Request json ==>> " + privilegeJson);
 			throw new IllegalArgumentException("Request params ware invalid. Request json ==>> " + privilegeJson);
 		}
 		return result;
@@ -85,6 +87,9 @@ public class PrivilegServiceImpl implements PrivilegeService {
 			if (StringUtils.isBlank(resultBo.get_id())) {
 				Long userId = resultBo.getUserId();
 				if (null == userId || userId < 0L) {
+					logger.error(
+							"Request params not completed, _id or userId field must exist one of both. Request json ==>> "
+									+ privilegeJson);
 					throw new IllegalArgumentException(
 							"Request params not completed, _id or userId field must exist one of both. Request json ==>> "
 									+ privilegeJson);
@@ -98,6 +103,7 @@ public class PrivilegServiceImpl implements PrivilegeService {
 			}
 			result.setEntity(resultBo);
 		} else {
+			logger.error("Request params ware invalid. Request json ==>> " + privilegeJson);
 			throw new IllegalArgumentException("Request params ware invalid. Request json ==>> " + privilegeJson);
 		}
 		return result;

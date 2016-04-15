@@ -82,7 +82,21 @@ public interface PrivilegeService {
 	 */
 	MongoRespData<PrivilegeBo> updatePrivilege(String privilegeJson);
 
+	/**
+	 * 
+	 * @Description:根据mongo主键删除记录
+	 * @param id
+	 *            mongo主键
+	 *
+	 */
 	MongoRespData<PrivilegeBo> deletePrivilegeById(String id);
 
+	/**
+	 * 
+	 * @Description:根据用户id删除权限记录
+	 * @param userId
+	 *            用户id
+	 *
+	 */
 	MongoRespData<PrivilegeBo> deletePrivilegeByUserId(Long userId);
 }
