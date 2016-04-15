@@ -9,7 +9,7 @@ public interface UserDao extends BaseDao<User, Long> {
 	
 	User selectByNickName(User user);
 	User selectByEmail(User user);
-	
+	User selectByRealName(String realName);
 	public List<User> selectListById(List<String> idList);
 	
 }

@@ -27,4 +27,13 @@ public class UserDaoImpl extends BaseDaoImpl<User, Long>implements UserDao {
 	public List<User> selectListById(List<String> idList) {
 		return sqlSessionTemplate.selectList(getSqlName("selectListById"),idList);
 	}
+
+	/* (non-Javadoc)
+	 * @see com.galaxyinternet.dao.user.UserDao#selectByRealName(com.galaxyinternet.model.user.User)
+	 */
+	@Override
+	public User selectByRealName(String realName) {
+		return sqlSessionTemplate.selectOne(getSqlName("selectByRealName"),
+				realName);
+	}
 }

@@ -102,4 +102,7 @@ public interface UserService extends BaseService<User> {
 	boolean isUserNormal(User user);
 	
 	public List<User> queryListById(List<String> idList);
+	
+	//导入数据用
+	public User queryUserByRealName(String realName);
 }

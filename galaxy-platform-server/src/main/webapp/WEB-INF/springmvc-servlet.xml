@@ -20,6 +20,7 @@
 			<list>
 				<value>classpath:db/database.properties</value>
 				<value>classpath:dubbo/dubbo.properties</value>
+				<!-- <value>classpath:mongodb/mongodb.properties</value> -->
 				<!-- <value>classpath:redis/redis.properties</value> -->
 			</list>
 		</property>
