@@ -32,7 +32,7 @@ public class Menu extends BaseEntity {
 	private Long parentId;
 
 	/**
-	 * 菜单的层次结构，默认以s-1开始
+	 * 菜单的层次结构，默认以s-开头，s-1开始
 	 */
 	private String structure;
 
@@ -42,9 +42,9 @@ public class Menu extends BaseEntity {
 	private Integer sortNo;
 
 	/**
-	 * 所属模块的主键id
+	 * 系统模块标记(对应后台服务器endpoint.properties配置文件的key或是唯一标示即可)
 	 */
-	private Long moduleId;
+	private String moduleFlag;
 
 	/**
 	 * 创建者
@@ -111,12 +111,12 @@ public class Menu extends BaseEntity {
 		this.sortNo = sortNo;
 	}
 
-	public Long getModuleId() {
-		return moduleId;
+	public String getModuleFlag() {
+		return moduleFlag;
 	}
 
-	public void setModuleId(Long moduleId) {
-		this.moduleId = moduleId;
+	public void setModuleFlag(String moduleFlag) {
+		this.moduleFlag = moduleFlag;
 	}
 
 	public String getCreator() {
