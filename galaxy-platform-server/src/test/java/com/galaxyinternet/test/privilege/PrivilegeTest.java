@@ -27,6 +27,11 @@ public class PrivilegeTest extends AbstractJUnit4SpringContextTests {
 		bo.set_id("3964190666784769");
 		service.insertPrivilege(GSONUtil.toJson(bo));
 
+	/*	PrivilegeBo pb = new PrivilegeBo();
+		pb.set_id("ddddddd");
+		pb.setUserId(4444444L);
+		service.getRepository().save(pb);*/
+		
 	}
 
 	@Test

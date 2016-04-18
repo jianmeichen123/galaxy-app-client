@@ -26,7 +26,12 @@ public class PrivilegServiceImpl implements PrivilegeService {
 	public PrivilegServiceImpl(PrivilegeRepository repository) {
 		this.repository = repository;
 	}
-
+	
+	@Override
+	public PrivilegeRepository getRepository(){
+		return this.repository;
+	}
+	
 	@Override
 	public MongoRespData<PrivilegeBo> getPrivilegeById(String id) {
 		MongoRespData<PrivilegeBo> result = new MongoRespData<PrivilegeBo>();
