@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.galaxyinternet.framework.core.id.IdGenerator;
 import com.galaxyinternet.framework.core.model.MongoRespData;
@@ -14,7 +15,7 @@ import com.galaxyinternet.model.privilege.bo.PrivilegeBo;
 import com.galaxyinternet.platform.repositories.PrivilegeRepository;
 import com.galaxyinternet.service.PrivilegeService;
 
-//@Service
+@Service
 public class PrivilegServiceImpl implements PrivilegeService {
 
 	private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -73,8 +74,8 @@ public class PrivilegServiceImpl implements PrivilegeService {
 			resultBo = repository.save(resultBo);
 			result.setEntity(resultBo);
 		} else {
-			logger.error("Request params ware invalid. Request json ==>> " + privilegeJson);
-			throw new IllegalArgumentException("Request params ware invalid. Request json ==>> " + privilegeJson);
+			logger.error("Request params were invalid. Request json ==>> " + privilegeJson);
+			throw new IllegalArgumentException("Request params were invalid. Request json ==>> " + privilegeJson);
 		}
 		return result;
 	}
@@ -103,8 +104,8 @@ public class PrivilegServiceImpl implements PrivilegeService {
 			}
 			result.setEntity(resultBo);
 		} else {
-			logger.error("Request params ware invalid. Request json ==>> " + privilegeJson);
-			throw new IllegalArgumentException("Request params ware invalid. Request json ==>> " + privilegeJson);
+			logger.error("Request params were invalid. Request json ==>> " + privilegeJson);
+			throw new IllegalArgumentException("Request params were invalid. Request json ==>> " + privilegeJson);
 		}
 		return result;
 	}
