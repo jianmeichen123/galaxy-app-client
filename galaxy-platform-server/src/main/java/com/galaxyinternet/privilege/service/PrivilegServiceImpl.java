@@ -9,13 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.galaxyinternet.framework.core.id.IdGenerator;
-import com.galaxyinternet.framework.core.model.MongoRespData;
+import com.galaxyinternet.framework.core.mongodb.MongoRespData;
 import com.galaxyinternet.framework.core.utils.GSONUtil;
 import com.galaxyinternet.model.privilege.bo.PrivilegeBo;
 import com.galaxyinternet.platform.repositories.PrivilegeRepository;
 import com.galaxyinternet.service.PrivilegeService;
 
-@Service
+//@Service
 public class PrivilegServiceImpl implements PrivilegeService {
 
 	private final Logger logger = LoggerFactory.getLogger(getClass());
