@@ -29,7 +29,7 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	<!-- 登录拦截 -->
-	
+
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -46,6 +46,27 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+
+<!-- 	<filter>
+		<filter-name>DecrypEncryptionFilter</filter-name>
+		<filter-class>com.galaxyinternet.framework.core.filter.DecrypEncryptionFilter</filter-class>
+		<init-param>
+			<param-name>excludedUrl</param-name>
+			<param-value>/login.jsp</param-value>
+		</init-param>
+		<init-param>
+			<param-name>decrypEncryption</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>incluedUrl</param-name>
+			<param-value>galaxy/user/disableUser,galaxy/user/resetPwd</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>DecrypEncryptionFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping> -->
 
 	<error-page>
 		<error-code>400</error-code>
@@ -90,18 +111,13 @@
 	<listener>
 		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
 	</listener>
-	
-	
+
+
 	<!-- jetty测试，配置该fitler 支持spring session -->
-	<!-- <filter>
-		<filter-name>springSessionRepositoryFilter</filter-name>
-		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>springSessionRepositoryFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping> -->
-	
+	<!-- <filter> <filter-name>springSessionRepositoryFilter</filter-name> <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class> 
+		</filter> <filter-mapping> <filter-name>springSessionRepositoryFilter</filter-name> 
+		<url-pattern>/*</url-pattern> </filter-mapping> -->
+
 
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
