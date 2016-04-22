@@ -8,8 +8,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.galaxyinternet.framework.core.model.MongoRespData;
 import com.galaxyinternet.framework.core.model.Result.Status;
+import com.galaxyinternet.framework.core.mongodb.MongoRespData;
 import com.galaxyinternet.framework.core.utils.GSONUtil;
 import com.galaxyinternet.model.privilege.bo.PrivilegeBo;
 import com.galaxyinternet.privilege.service.PrivilegServiceImpl;

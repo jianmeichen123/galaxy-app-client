@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.galaxyinternet.framework.core.id.IdGenerator;
-import com.galaxyinternet.framework.core.model.MongoRespData;
+import com.galaxyinternet.framework.core.mongodb.MongoRespData;
 import com.galaxyinternet.framework.core.utils.GSONUtil;
 import com.galaxyinternet.model.privilege.bo.PrivilegeBo;
 import com.galaxyinternet.platform.repositories.PrivilegeRepository;

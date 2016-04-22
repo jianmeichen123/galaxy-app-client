@@ -2,7 +2,7 @@ package com.galaxyinternet.service;
 
 import java.util.List;
 
-import com.galaxyinternet.framework.core.model.MongoRespData;
+import com.galaxyinternet.framework.core.mongodb.MongoRespData;
 import com.galaxyinternet.model.privilege.bo.PrivilegeBo;
 
 /**
