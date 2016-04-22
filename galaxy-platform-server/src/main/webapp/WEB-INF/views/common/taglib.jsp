@@ -22,7 +22,7 @@ if(null != user) {
 }
 String endpoint = (String)application.getAttribute(OSSConstant.GALAXYINTERNET_FX_ENDPOINT);
 %>
-<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath() %>/js/jquery/1.11.1/jquery.min.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath() %>/js/json2.js" type="text/javascript"></script>
 <script type="text/javascript">
 	var contextEndPoint = '<%=endpoint%>';
