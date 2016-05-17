@@ -17,15 +17,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body
 	style="background-image: url('img/404.jpg'); background-repeat: no-repeat;">
-	<div class="noPageBg">
-		<div class="noPageBtnContainer">
-			<table>
-				<tr>
-					<td><a class="noPageBtn"
-						onclick="location.href='<%=basePath%>sop/galaxy/index'">返回首页</a></td>
-				</tr>
-			</table>
-		</div>
-	</div>
 </body>
 </html>
