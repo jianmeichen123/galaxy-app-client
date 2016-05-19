@@ -89,6 +89,8 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 			user.setBirthStr(null);
 			user.setOriginPassword(null);
 			user.setTelephone(null);
+			user.setStatus(null);
+			user.setGender(null);
 			responsebody.setEntity(user);
 			responsebody.setResult(new Result(Status.OK, Constants.OPTION_SUCCESS, "登录成功！"));
 		}
