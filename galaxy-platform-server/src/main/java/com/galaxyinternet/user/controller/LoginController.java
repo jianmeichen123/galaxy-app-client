@@ -78,11 +78,18 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 				responsebody.setResult(new Result(Status.ERROR, Constants.USER_DISABLE, "用户已被禁用！"));
 				return responsebody;
 			}
-
 			String sessionId = SessionUtils.createWebSessionId(); // 生成sessionId
 			setCacheSessionId(request, user, sessionId);
 			Header header = getHeader(user, sessionId);
 			responsebody.setHeader(header);
+			user.setPassword(null);
+			user.setCreatedTime(null);
+			user.setUpdatedTime(null);
+			user.setBirth(null);
+			user.setBirthStr(null);
+			user.setOriginPassword(null);
+			user.setTelephone(null);
+			responsebody.setEntity(user);
 			responsebody.setResult(new Result(Status.OK, Constants.OPTION_SUCCESS, "登录成功！"));
 		}
 		return responsebody;
