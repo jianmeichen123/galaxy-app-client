@@ -86,7 +86,7 @@
 			</properties>
 		</profile>
 		<profile>
-			<id>dev</id>
+			<id>tomcat</id>
 			<activation>
 				<activeByDefault>false</activeByDefault>
 			</activation>
