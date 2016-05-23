@@ -8,20 +8,19 @@
 		 <result 	column="role" 			property="role"  		jdbcType="VARCHAR"/>
 		 <result 	column="type" 			property="type"  		jdbcType="VARCHAR"/>
 		 <result 	column="project_name" 	property="projectName"  jdbcType="VARCHAR"/>
-		 
 		 <result 	column="project_id" 	property="projectId"  	jdbcType="BIGINT"/>
 		 <result 	column="operator" 		property="operator"  	jdbcType="VARCHAR"/>
 		 <result 	column="content" 		property="content"  	jdbcType="VARCHAR"/>
 		 <result 	column="module" 		property="module"  		jdbcType="INTEGER" />
-		 <result 	column="operator_id" 	property="operatorId"  	jdbcType="BIGINT" />
-		 
+		 <result 	column="belong_uid" 	property="belongUid"  	jdbcType="BIGINT" />
+		 <result 	column="belong_uname" 	property="belongUname"  	jdbcType="VARCHAR" />
 		 <result 	column="created_time" 	property="createdTime" 	jdbcType="BIGINT" />
 
 	</resultMap>
 	
 	<sql id="Base_Column_List">
 		id,department,role,type,project_name,
-		operator,content,created_time,module,project_id,
+		operator,content,created_time,module,belong_uid,belong_uname,project_id,
 		operator_id
 	</sql>
 
@@ -32,11 +31,11 @@
 	        INSERT 
 	        	INTO
 	       	 t_operation_message (
-				department,role,type,project_name,module,
+				department,role,type,project_name,module,belong_uid,belong_uname,
 				operator,content,project_id,created_time,
 				operator_id
 	        ) VALUES (
-	        	#{department},#{role},#{type},#{projectName},#{module},
+	        	#{department},#{role},#{type},#{projectName},#{module},#{belongUid},#{belongUname},
 	        	#{operator},#{content},#{projectId},#{createdTime},
 	        	#{operatorId}
 	        )

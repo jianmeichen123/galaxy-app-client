@@ -2,6 +2,11 @@ package com.galaxyinternet.model.operationMessage;
 
 import com.galaxyinternet.platform.constant.PlatformConst;
 
+/**
+ * 
+ * @Description: 消息提醒规范类型
+ *
+ */
 public enum OperationType {
 	
 	QUERY("/galaxy/project/sp", PlatformConst.PROJECT_TYPE, "查阅过项目"), 
@@ -23,9 +28,12 @@ public enum OperationType {
 	CLOSE("/galaxy/project/breakpro",PlatformConst.PROJECT_TYPE, "关闭"), 
 	
 	CLAIM_TASK("galaxy/soptask/goClaimtcPage", PlatformConst.TASK_TYPE, "认领任务"),
-	COMPLETE_TASK("/galaxy/soptask/updateTaskStatus", PlatformConst.TASK_TYPE, "完成任务");
+	COMPLETE_TASK("/galaxy/soptask/updateTaskStatus", PlatformConst.TASK_TYPE, "完成任务"),
 	
 	
+	ADD_SCHEDULING("/galaxy/project/updateReserveTime/" + UrlNumber.one, PlatformConst.SCHEDULING_TYPE, "创建会议排期"),
+	UPDATE_SCHEDULING("/galaxy/project/updateReserveTime/"+ UrlNumber.two, PlatformConst.SCHEDULING_TYPE, "更新会议排期"),
+	DELETE_SCHEDULING("/galaxy/project/updateReserveTime/"+ UrlNumber.three, PlatformConst.SCHEDULING_TYPE, "删除会议排期");
 
 	private OperationType(String uniqueKey, String type, String content, Integer module) {
 		this.uniqueKey = uniqueKey;

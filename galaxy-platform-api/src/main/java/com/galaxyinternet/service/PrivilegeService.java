@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.galaxyinternet.framework.core.mongodb.MongoRespData;
 import com.galaxyinternet.model.privilege.bo.PrivilegeBo;
+import com.galaxyinternet.platform.repositories.PrivilegeRepository;
 
 /**
  * @description 权限服务类
@@ -11,6 +12,8 @@ import com.galaxyinternet.model.privilege.bo.PrivilegeBo;
  */
 public interface PrivilegeService {
 
+	public PrivilegeRepository getRepository();
+	
 	/**
 	 * 根据记录主键获取权限
 	 * 
