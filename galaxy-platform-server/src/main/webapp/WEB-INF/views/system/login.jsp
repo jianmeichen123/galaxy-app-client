@@ -26,7 +26,7 @@
 			<div class="loginbox">
 				 <div class="loginbox_top">
 	                <h2>快速登录</h2>
-	                <p class="rit ico">如遇问题请联系010-59065511</p>
+	                <!--  <p class="rit ico">如遇问题请联系010-59065511</p> -->
             </div>
 				<form id="defaultForm" method="post" class="form-horizontal" onkeydown="keylogin();">
 					<input id="email" name="email" type="text"
