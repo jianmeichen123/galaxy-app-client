@@ -40,6 +40,10 @@ var platformUrl = {
 	 * 重置密码
 	 */
 	resetPwd :"galaxy/user/resetPwd",
+	/**
+	 * 修改密码
+	 */
+	updatePwd : Constants.sopEndpointURL + "/galaxy/home/updatePwd",
 
 	/**
 	 * 查询部门
