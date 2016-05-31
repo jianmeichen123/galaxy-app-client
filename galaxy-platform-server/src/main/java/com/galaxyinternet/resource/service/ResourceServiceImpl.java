@@ -8,7 +8,7 @@ import com.galaxyinternet.framework.core.dao.BaseDao;
 import com.galaxyinternet.framework.core.service.impl.BaseServiceImpl;
 import com.galaxyinternet.model.resource.PlatformResource;
 import com.galaxyinternet.service.ResourceService;
-@Service
+@Service("com.galaxyinternet.service.ResourceService")
 public class ResourceServiceImpl extends BaseServiceImpl<PlatformResource> implements ResourceService
 {
 	@Autowired
