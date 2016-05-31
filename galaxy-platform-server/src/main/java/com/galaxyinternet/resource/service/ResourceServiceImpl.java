@@ -3,7 +3,7 @@ package com.galaxyinternet.resource.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.galaxyinternet.dao.ResourceDao;
+import com.galaxyinternet.dao.resource.ResourceDao;
 import com.galaxyinternet.framework.core.dao.BaseDao;
 import com.galaxyinternet.framework.core.service.impl.BaseServiceImpl;
 import com.galaxyinternet.model.resource.PlatformResource;
