@@ -227,6 +227,7 @@
   <sql id="Base_Where_Clause">
 		<where>
 			<trim prefixOverrides="and">
+			  <if test="id != null"> and id = #{id,jdbcType=BIGINT}</if>
 			  <if test="parentId != null" > and parent_id = #{parentId,jdbcType=BIGINT}</if>
 		      <if test="resourceMark != null" > and resource_mark = #{resourceMark,jdbcType=VARCHAR}</if>
 		      <if test="resourceName != null" > and resource_name = #{resourceName,jdbcType=VARCHAR}</if>
