@@ -32,7 +32,7 @@
     delete from platform_resource
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.galaxyinternet.model.resource.PlatformResource" >
+  <insert id="insert" parameterType="com.galaxyinternet.model.resource.PlatformResource"  useGeneratedKeys="true" keyProperty="id">
     insert into platform_resource (id, parent_id, resource_mark, 
       resource_name, resource_url, resource_type, 
       resource_order, resource_status, product_mark, 
@@ -193,7 +193,7 @@
       resource_status = #{resourceStatus,jdbcType=VARCHAR},
       product_mark = #{productMark,jdbcType=VARCHAR},
       created_uid = #{createdUid,jdbcType=BIGINT},
-      created_time = #{createdTime,jdbcType=BIGINT},
+      resource_desc = #{resourceDesc,jdbcType=VARCHAR},
       updated_uid = #{updatedUid,jdbcType=BIGINT},
       updated_time = #{updatedTime,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
@@ -202,7 +202,7 @@
   
   <!-- 删除 -->
 	<delete id="delete" parameterType="java.util.Map">
-		delete from sop_interview_record
+		delete from platform_resource
 		<include refid="Base_Where_Clause" />
 	</delete>
 	
@@ -211,14 +211,14 @@
 	<select id="select" resultMap="BaseResultMap" parameterType="java.util.Map">
 		select
 		<include refid="Base_Column_List" />
-		from sop_interview_record
+		from platform_resource
 		<include refid="Base_Where_Clause" />
 	</select>
 	
 	
 	<!-- 查询总数 -->
 	<select id="selectCount" resultType="java.lang.Long" parameterType="java.util.Map">
-		select count(id) from sop_interview_record
+		select count(id) from platform_resource
 		<include refid="Base_Where_Clause" />
 	</select>
   
