@@ -1,8 +1,8 @@
 package com.galaxyinternet.model.resource;
 
-import com.galaxyinternet.framework.core.model.BaseEntity;
+import com.galaxyinternet.framework.core.model.PagableEntity;
 
-public class PlatformResource extends BaseEntity {
+public class PlatformResource extends PagableEntity {
 
     /**
 	 * 
