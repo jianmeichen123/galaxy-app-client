@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.galaxyinternet.common.controller.BaseControllerImpl;
 import com.galaxyinternet.framework.core.service.BaseService;
-import com.galaxyinternet.model.department.Department;
 import com.galaxyinternet.model.resource.PlatformResource;
-import com.galaxyinternet.service.DepartmentService;
 import com.galaxyinternet.service.ResourceService;
 
 /**
