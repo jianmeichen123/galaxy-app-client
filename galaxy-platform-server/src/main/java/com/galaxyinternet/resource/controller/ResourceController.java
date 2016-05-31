@@ -1,5 +1,7 @@
 package com.galaxyinternet.resource.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -133,19 +135,12 @@ public class ResourceController extends BaseControllerImpl<PlatformResource, Pla
 	
 	
 	
-	
-	
-	
 	/**
 	 * 资源列表
-	 * @param   ideafile <br/>
-	 * 				projectId : 创意id 
-	 * 				
-	 * @return
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/queryresource", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseData<PlatformResource> queryresource(HttpServletRequest request,@RequestBody PlatformResource query ) {
+	public ResponseData<PlatformResource> queryResource(HttpServletRequest request,@RequestBody PlatformResource query ) {
 		
 		ResponseData<PlatformResource> responseBody = new ResponseData<PlatformResource>();
 		User user = (User) request.getSession().getAttribute(Constants.SESSION_USER_KEY);
@@ -163,7 +158,7 @@ public class ResourceController extends BaseControllerImpl<PlatformResource, Pla
 		} catch (Exception e) {
 			responseBody.setResult(new Result(Status.ERROR, null,"查询失败"));
 			
-			logger.error("queryIdeaDyList 查询失败",e);
+			logger.error("queryResource 查询失败",e);
 		}
 		
 		return responseBody;
@@ -173,10 +168,6 @@ public class ResourceController extends BaseControllerImpl<PlatformResource, Pla
 	
 	/**
 	 * 资源详情
-	 * @param   ideafile <br/>
-	 * 				projectId : 创意id 
-	 * 				
-	 * @return
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/resourceinfo/{resourceId}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -195,5 +186,42 @@ public class ResourceController extends BaseControllerImpl<PlatformResource, Pla
 		
 		return responseBody;
 	}
+	
+	
+	
+	/**
+	 * 资源 -- 树形加载
+	 * @param resourceid   加载出该节点和其下的所有节点
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/queryresourcetree/{resourceId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseData<PlatformResource> queryResourceTree(HttpServletRequest request,@PathVariable("resourceId") Long resourceId ) {
+		
+		ResponseData<PlatformResource> responseBody = new ResponseData<PlatformResource>();
+		User user = (User) request.getSession().getAttribute(Constants.SESSION_USER_KEY);
+		try {
+			List<PlatformResource> resourceList = null;
+			
+			
+			responseBody.setEntityList(resourceList);
+			responseBody.setResult(new Result(Status.OK, ""));
+			return responseBody;
+		} catch (Exception e) {
+			responseBody.setResult(new Result(Status.ERROR, null,"查询失败"));
+			
+			logger.error("queryResourceTree 查询失败",e);
+		}
+		
+		return responseBody;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
