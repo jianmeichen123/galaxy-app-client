@@ -136,7 +136,7 @@ public class ResourceController extends BaseControllerImpl<PlatformResource, Pla
 	
 	
 	/**
-	 * 资源列表
+	 * 资源列表    分页返回
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/queryresource", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -147,7 +147,7 @@ public class ResourceController extends BaseControllerImpl<PlatformResource, Pla
 		try {
 			PageRequest pageable = new PageRequest();
 			Integer pageNum = query.getPageNum() != null ? query.getPageNum() : 0;
-			Integer pageSize = query.getPageSize() != null ? query.getPageSize() : 3;
+			Integer pageSize = query.getPageSize() != null ? query.getPageSize() : 10;
 			pageable = new PageRequest(pageNum, pageSize);
 				
 			Page<PlatformResource> pageList = resourceService.queryPageList(query, pageable);
@@ -190,19 +190,24 @@ public class ResourceController extends BaseControllerImpl<PlatformResource, Pla
 	
 	
 	/**
-	 * 资源 -- 树形加载
-	 * @param resourceid   加载出该节点和其下的所有节点
+	 * 资源 list返回所有 -- 树形加载
+	 * @param resourceid   加载出该id的节点和其下的所有节点
+	 * 					   为null  list返回全部
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/queryresourcetree/{resourceId}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseData<PlatformResource> queryResourceTree(HttpServletRequest request,@PathVariable("resourceId") Long resourceId ) {
+	@RequestMapping(value = "/queryresourcetree", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseData<PlatformResource> queryResourceTree(HttpServletRequest request,@RequestBody Long resourceId ) {
 		
 		ResponseData<PlatformResource> responseBody = new ResponseData<PlatformResource>();
 		User user = (User) request.getSession().getAttribute(Constants.SESSION_USER_KEY);
 		try {
 			List<PlatformResource> resourceList = null;
 			
-			
+			if(resourceId == null){
+				resourceList = resourceService.queryAll();
+			}else{
+				resourceList = resourceService.queryResourceTree(resourceId);
+			}
 			responseBody.setEntityList(resourceList);
 			responseBody.setResult(new Result(Status.OK, ""));
 			return responseBody;
