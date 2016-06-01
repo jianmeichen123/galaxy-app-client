@@ -18,6 +18,8 @@
  -->    <!-- bootstrap-table -->
 	<link rel="stylesheet" href="bootstrap/bootstrap-table/bootstrap-table.css"  type="text/css">
 	<link rel="stylesheet" href="bootstrap/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"  type="text/css">
+    <link rel="stylesheet" href="css/common.css"  type="text/css">
+    <link rel="stylesheet" href="css/style.css"  type="text/css">
     <link href="css/axure.css" type="text/css" rel="stylesheet" />
     <link href="css/jquery-ui.min.css" type="text/css" rel="stylesheet" />
 </head>
@@ -114,6 +116,9 @@
 	<script src="js/init.js"></script>	
 	<script src="js/login.js"></script>
 	<script src="<%=request.getContextPath() %>/js/axure_ext.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		createMenus(5);
+	</script>
 </body>
 </html>
 

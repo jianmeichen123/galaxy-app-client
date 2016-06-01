@@ -20,6 +20,10 @@ var platformUrl = {
 	 * 跳转到首页
 	 */
     toIndex :Constants.sopEndpointURL+  "/galaxy/redirect",
+    /**
+	 * 生成左侧菜单
+	 */
+	createMenus : Constants.sopEndpointURL + "/galaxy/common/menu/",
 	/**
 	 * 用户管理首页
 	 */

@@ -1,18 +1,44 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <!--左侧导航-->
-		<ul class="lft">
-			<li>
-        	<a href="javascript:void(-1);" target-url="userIndex" target="user">用户管理</a>
-        </li>
-        <li >
-        	<a href="javascript:void(-1);" target-url="dictIndex" target="dict">数据字典</a>
-        </li>	
-		</ul>
+<ul class="lft" id="menus"></ul>
  <script type = "text/javascript">
- 	$(".lft").on("click",'a',function(){
- 		var a = $(this);
- 		var url = platformUrl[a.attr("target-url")];
- 		return forwardWithHeader(url);
- 	});
+ function createMenus(current){
+		sendGetRequest(platformUrl.createMenus + current, {}, function(data){
+			 var selected = data.header.attachment;
+		   	 var html = "";
+		   	 $.each(data.entityList, function(i,o){
+		   		 if(typeof(o.nodes) == "undefined"){
+		   			if(selected == o.id){
+			   			html += '<li class="on"><a href="' + o.url + '" data-menueid="' + o.id + '" >' + o.menuName + '</a></li>';
+			   		}else{
+			   			html += '<li><a href="' + o.url + '"  data-menueid="' + o.id + '">' + o.menuName + '</a></li>';
+			   		}
+		   		 }else{
+		   			var innerHtml ="";
+		   			var isExend = false;
+		   			 $.each(o.nodes, function(i,obj){
+		   				 if(selected == obj.id){
+		   					isExend = true;
+		   					innerHtml += '<li class="on"><a href="' + obj.url + '" data-menueid="' + o.id + '">' + obj.menuName + '</a></li>';
+				   		 }else{
+				   			innerHtml += '<li><a href="' + obj.url + '" data-menueid="' + o.id + '">' + obj.menuName + '</a></li>';
+				   		 }
+		   			 });
+		   			 
+		   			 if(isExend){
+		   				html += '<li><div><i class="hide"></i>'+o.menuName+'</div><ul style="display:block;">';
+		   			 }else{
+		   				html += '<li><div><i></i>'+o.menuName+'</div><ul>';
+		   			 }
+		   			 html += innerHtml;
+		   			 html += '</ul></li>';
+		   		 }
+		   	 });
+		   	 $("#menus").html(html);
+		   	 $(".pagebox .lft div").click(function(event) {
+		   		 $(this).siblings().stop().slideToggle();
+		   		 $(this).children('i').toggleClass('hide');
+		   	 });
+		});
+	}
 </script>
-<script src="<%=request.getContextPath() %>/js/platformUrl.js" type="text/javascript"></script>
