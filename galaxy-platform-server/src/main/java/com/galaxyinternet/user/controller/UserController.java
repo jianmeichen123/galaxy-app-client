@@ -81,31 +81,15 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	public String getLoginUrl() {
 		return loginUrl;
 	}
-	
-	
 
 	/**
 	 * 默认页面
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public String list(HttpServletRequest request,HttpServletResponse response) {
+		
 		return"system/user/user_list";
 	}
-	
-	
-	
-	/**
-	 * 用户管理
-	 * @author shuhuayang
-	 */
-	@RequestMapping(value = "/userManager", method = RequestMethod.GET)
-	public String userManager(HttpServletRequest request,HttpServletResponse response) {
-		return"system/user/user_manager";
-	}
-	
-	
-	
-	
 
 	/**
 	 * 重置密码 邮件通知
@@ -180,13 +164,22 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 
 	/**
 	 * 获取用户列表数据 重新组装关联数据
-	 * @see 2016/6/1
+	 * 
+	 * @param
+	 * @return
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/queryUserList", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseData<User> queryUserList(HttpServletRequest request,
 			@RequestBody User user) {
 		ResponseData<User> responseBody = new ResponseData<User>();
+/*		Object obj = request.getSession().getAttribute(Constants.SESSION_USER_KEY);
+		if (obj == null) {
+			responseBody.setResult(
+					new Result(Status.ERROR, "validate loging session failed"));
+			return responseBody;
+		}
+*/
 		try { 
 			Page<User> pageUser = userService.queryUserPageList(user,new PageRequest(user.getPageNum(), user.getPageSize()));
 			responseBody.setPageList(pageUser);
@@ -194,7 +187,9 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 			return responseBody;
 
 		} catch (PlatformException e) {
-			responseBody.setResult(new Result(Status.ERROR, "queryUserList faild"));
+			responseBody
+					.setResult(new Result(Status.ERROR, "queryUserList faild"));
+
 			if (logger.isErrorEnabled()) {
 				logger.error("queryUserList ", e);
 			}
