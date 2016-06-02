@@ -206,7 +206,7 @@ public class ResourceController extends BaseControllerImpl<PlatformResource, Pla
 			if(resourceId == null){
 				resourceList = resourceService.queryAll();
 			}else{
-			//	resourceList = resourceService.queryResourceTree(resourceId);
+				resourceList = resourceService.queryResourceTree(resourceId);
 			}
 			responseBody.setEntityList(resourceList);
 			responseBody.setResult(new Result(Status.OK, ""));
