@@ -368,7 +368,7 @@ function doSumbit() {
 							return;
 						}  else {
 							//var pattern = /^1[34578]\d{9}$/;  
-							var pattern = /^1[0-9]{10}/;
+							var pattern = /^1[0-9]{10}$/;
 							var value = pop.find("input[name='mobile']").val();
 							if (!pattern.test(value)) {  
 							      layer.msg("请填写正确手机号");
