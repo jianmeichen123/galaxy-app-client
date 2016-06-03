@@ -44,6 +44,19 @@
 					<showWarnings>true</showWarnings>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>maven-jetty-plugin</artifactId>
+				<version>6.1.5</version>
+				<configuration>
+					<connectors>
+						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+							<port>9999</port>
+						</connector>
+					</connectors>
+					<contextPath>/platform</contextPath>
+				</configuration>
+			</plugin>
 		</plugins>
 		<resources>
 			<resource>
@@ -79,10 +92,51 @@
 				<dubbo.registry.address>zookeeper://127.0.0.1:2181?client=zkclient</dubbo.registry.address>
 				<dubbo.protocol.port>8081</dubbo.protocol.port>
 
-				<project.home.page.url>http://127.0.0.1:9999/platform/</project.home.page.url>
-				<galaxy.project.sop.endpoint>http://127.0.0.1:8888/sop/</galaxy.project.sop.endpoint>
-				<galaxy.project.report.endpoint>http://fx.dev.galaxyinternet.com/report/</galaxy.project.report.endpoint>
-				<galaxy.project.platform.endpoint>http://127.0.0.1:9999/platform/</galaxy.project.platform.endpoint>
+				<project.home.page.url>http://zfeng.local.com/</project.home.page.url>
+				<galaxy.project.sop.endpoint>http://zfeng.local.com/sop/</galaxy.project.sop.endpoint>
+				<galaxy.project.report.endpoint>http://zfeng.local.com/report/</galaxy.project.report.endpoint>
+				<galaxy.project.platform.endpoint>http://zfeng.local.com/platform/</galaxy.project.platform.endpoint>
+			</properties>
+		</profile>
+		
+		<profile>
+			<id>nginx</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<!-- 数据库连接地址和数据库名 -->
+				<jdbc.url>
+					jdbc:mysql://10.9.11.232:3306/fx_db?createDatabaseIfNotExist=true&amp;amp;useUnicode=true&amp;amp;characterEncoding=utf8
+				</jdbc.url>
+				<!-- <jdbc.user.url> jdbc:mysql://127.0.0.1:3306/galaxy_user?createDatabaseIfNotExist=true&amp;amp;useUnicode=true&amp;amp;characterEncoding=utf8 
+					</jdbc.user.url> -->
+				<jdbc.username>fxuser</jdbc.username>
+				<jdbc.password>fxdb_Fp9EPkG2</jdbc.password>
+				<!-- 本地项目地址 -->
+				<log4j.path>${catalina.base}/logs/</log4j.path>
+
+				<!-- dubbo -->
+				<dubbo.application.name>galaxyPlatformDubboProvider</dubbo.application.name>
+				<dubbo.protocol.name>dubbo</dubbo.protocol.name>
+				<dubbo.registry.address>zookeeper://127.0.0.1:2181?client=zkclient</dubbo.registry.address>
+				<dubbo.protocol.port>8081</dubbo.protocol.port>
+
+				<project.home.page.url>http://fx.local.galaxyinternet.com/</project.home.page.url>
+				<galaxy.project.sop.endpoint>http://fx.local.galaxyinternet.com/sop/</galaxy.project.sop.endpoint>
+				<galaxy.project.report.endpoint>http://fx.local.galaxyinternet.com/report/</galaxy.project.report.endpoint>
+				<galaxy.project.platform.endpoint>http://fx.local.galaxyinternet.com/platform/</galaxy.project.platform.endpoint>
+				<!-- memcached <memcached.list_1.ip>192.168.101.22</memcached.list_1.ip> 
+					<memcached.list_1.port>11211</memcached.list_1.port> <memcached.object_1.ip>192.168.101.22</memcached.object_1.ip> 
+					<memcached.object_1.port>11211</memcached.object_1.port> <mongodb.dbname>community</mongodb.dbname> 
+					<mongodb.address>192.168.101.131:27017</mongodb.address> -->
+
+				<!-- redis集群配置 -->
+				<!-- <redis1.url>101.200.78.14:6379</redis1.url> <redis2.url>101.200.78.14:6379</redis2.url> 
+					<redis.master>galaxymaster</redis.master> -->
+
+				<!-- <redis.url>101.200.78.14</redis.url> <redis.port>6379</redis.port> -->
+
 			</properties>
 		</profile>
 		<profile>
@@ -177,11 +231,8 @@
 	</profiles>
 
 	<dependencies>
-		<!-- <dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-redis</artifactId>
-			<version>1.6.2.RELEASE</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>org.springframework.data</groupId> <artifactId>spring-data-redis</artifactId> 
+			<version>1.6.2.RELEASE</version> </dependency> -->
 		<dependency>
 			<groupId>redis.clients</groupId>
 			<artifactId>jedis</artifactId>
@@ -202,12 +253,10 @@
 			<groupId>com.galaxyinternet</groupId>
 			<artifactId>galaxy-platform-api</artifactId>
 			<version>${project.version}</version>
-			<!-- <exclusions> <exclusion> <artifactId>commons-collections</artifactId> 
-				<groupId>commons-collections</groupId> </exclusion> </exclusions> -->
 			<exclusions>
 				<exclusion>
-					<artifactId>spring-data-commons</artifactId>
-					<groupId>org.springframework.data</groupId>
+					<artifactId>mongo-java-driver</artifactId>
+					<groupId>org.mongodb</groupId>
 				</exclusion>
 			</exclusions>
 		</dependency>
@@ -363,24 +412,8 @@
 			<version>4.11</version>
 		</dependency>
 		<!-- mongodb -->
-		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-mongodb</artifactId>
-			<version>1.9.1.RELEASE</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.springframework</groupId>
-					<artifactId>spring-expression</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.mongodb</groupId>
-			<artifactId>mongo-java-driver</artifactId>
-			<version>3.2.2</version>
-		</dependency>
 		<!-- mongodb end -->
-		
+
 		<!-- dubbo 服务注册方式 start -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
@@ -414,5 +447,12 @@
 			<version>0.1</version>
 		</dependency>
 		<!-- dubbo 服务注册方式 end -->
+
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+			<version>3.2.2</version>
+		</dependency>
+
 	</dependencies>
 </project>

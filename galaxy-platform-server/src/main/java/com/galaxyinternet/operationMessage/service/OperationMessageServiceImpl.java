@@ -61,7 +61,7 @@ public class OperationMessageServiceImpl extends BaseServiceImpl<OperationMessag
 		isNull(OperationMessage.COMMENT,query);
 		if(query.getModule()!= null &&query.getModule() == 2){
 			query.setModule(null);
-			List<String> projectIds = operationMessageDao.selectProjecIdsByOperatorId(query.getOperatorId());
+			List<String> projectIds = operationMessageDao.selectProjecIdsByOperatorId(query.getBelongUid());
 			if(projectIds.size() == 0){
 				return new Page<OperationMessage>(new ArrayList<OperationMessage>(), pageable,(long) 0);
 			}

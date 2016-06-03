@@ -30,6 +30,8 @@ public class OperationMessage extends BaseEntity{
 	private Integer module;
 	private Long projectId;
 	private Long operatorId;
+	private Long belongUid;
+	private String belongUname;
 	
 	public String getDepartment() {
 		return department;
@@ -84,6 +86,18 @@ public class OperationMessage extends BaseEntity{
 	}
 	public void setProjectId(Long projectId) {
 		this.projectId = projectId;
+	}
+	public Long getBelongUid() {
+		return belongUid;
+	}
+	public void setBelongUid(Long belongUid) {
+		this.belongUid = belongUid;
+	}
+	public String getBelongUname() {
+		return belongUname;
+	}
+	public void setBelongUname(String belongUname) {
+		this.belongUname = belongUname;
 	}
 	@Override
 	public String toString() {

@@ -27,7 +27,7 @@
     </div>
     <!-- 头部右边 -->
     <div class="usermsg rit clearfix">
-        <span class="ico name">您好，<%=realName%></span>
+    	 <span class="ico name"  href="<%=path%>/html/register.html?&realName=<%=realName%>&deptName=<%=deptName%>&roleName=<%=roleName%>" data-btn="login_infor">您好，<%=realName%></span>
         <b class="line null">分割线</b>
         <a href="javascript:logout()" class="loginout">退出</a>
     </div>

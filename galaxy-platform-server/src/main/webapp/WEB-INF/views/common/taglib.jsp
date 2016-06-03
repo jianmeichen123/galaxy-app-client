@@ -9,16 +9,31 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
-<%User user = (User)request.getSession().getAttribute(Constants.SESSION_USER_KEY);
+<%
+User user = (User)request.getSession().getAttribute(Constants.SESSION_USER_KEY);
 String sessionId = "";
 String realName = "";
 Long userId=null;
+String deptName = "";
+String roleName = "";
+Long roleId=null;
 if(null != user) {
 	sessionId = user.getSessionId();
 	if(null != user.getRealName()){
 		realName = user.getRealName();
 	}
 	userId = user.getId();
+    if(null != user.getRoleId()){
+	   roleId = user.getRoleId();
+    }
+    
+    if(null != user && null != user.getDepartmentName()){
+    	deptName = user.getDepartmentName();
+     }
+    if(null != user && null != user.getRole()){
+    	roleName = user.getRole();
+     }
+
 }
 String endpoint = (String)application.getAttribute(OSSConstant.GALAXYINTERNET_FX_ENDPOINT);
 %>

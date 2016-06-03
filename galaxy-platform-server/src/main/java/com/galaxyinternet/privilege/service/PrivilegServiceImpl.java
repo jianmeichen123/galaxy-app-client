@@ -6,9 +6,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.galaxyinternet.framework.core.id.IdGenerator;
-import com.galaxyinternet.framework.core.model.MongoRespData;
+import com.galaxyinternet.framework.core.mongodb.MongoRespData;
 import com.galaxyinternet.framework.core.utils.GSONUtil;
 import com.galaxyinternet.model.privilege.bo.PrivilegeBo;
 import com.galaxyinternet.platform.repositories.PrivilegeRepository;
@@ -25,7 +26,12 @@ public class PrivilegServiceImpl implements PrivilegeService {
 	public PrivilegServiceImpl(PrivilegeRepository repository) {
 		this.repository = repository;
 	}
-
+	
+	@Override
+	public PrivilegeRepository getRepository(){
+		return this.repository;
+	}
+	
 	@Override
 	public MongoRespData<PrivilegeBo> getPrivilegeById(String id) {
 		MongoRespData<PrivilegeBo> result = new MongoRespData<PrivilegeBo>();
@@ -73,8 +79,8 @@ public class PrivilegServiceImpl implements PrivilegeService {
 			resultBo = repository.save(resultBo);
 			result.setEntity(resultBo);
 		} else {
-			logger.error("Request params ware invalid. Request json ==>> " + privilegeJson);
-			throw new IllegalArgumentException("Request params ware invalid. Request json ==>> " + privilegeJson);
+			logger.error("Request params were invalid. Request json ==>> " + privilegeJson);
+			throw new IllegalArgumentException("Request params were invalid. Request json ==>> " + privilegeJson);
 		}
 		return result;
 	}
@@ -103,8 +109,8 @@ public class PrivilegServiceImpl implements PrivilegeService {
 			}
 			result.setEntity(resultBo);
 		} else {
-			logger.error("Request params ware invalid. Request json ==>> " + privilegeJson);
-			throw new IllegalArgumentException("Request params ware invalid. Request json ==>> " + privilegeJson);
+			logger.error("Request params were invalid. Request json ==>> " + privilegeJson);
+			throw new IllegalArgumentException("Request params were invalid. Request json ==>> " + privilegeJson);
 		}
 		return result;
 	}

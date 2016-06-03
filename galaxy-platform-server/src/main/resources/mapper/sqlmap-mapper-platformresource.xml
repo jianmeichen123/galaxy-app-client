@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.galaxyinternet.model.resource.PlatformResource" >
+  <resultMap id="BaseResultMap" type="com.galaxyinternet.model.resource.PlatformResource" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="resource_mark" property="resourceMark" jdbcType="VARCHAR" />
+    <result column="resource_name" property="resourceName" jdbcType="VARCHAR" />
+    <result column="resource_url" property="resourceUrl" jdbcType="VARCHAR" />
+    <result column="resource_type" property="resourceType" jdbcType="VARCHAR" />
+    <result column="resource_order" property="resourceOrder" jdbcType="BIGINT" />
+    <result column="resource_status" property="resourceStatus" jdbcType="VARCHAR" />
+    <result column="product_mark" property="productMark" jdbcType="VARCHAR" />
+    <result column="created_uid" property="createdUid" jdbcType="BIGINT" />
+    <result column="created_time" property="createdTime" jdbcType="BIGINT" />
+    <result column="updated_uid" property="updatedUid" jdbcType="BIGINT" />
+    <result column="updated_time" property="updatedTime" jdbcType="BIGINT" />
+    <result column="resource_desc" property="resourceDesc" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, parent_id, resource_mark, resource_name, resource_url, resource_type, resource_order, 
+    resource_status, product_mark, created_uid, created_time, updated_uid, updated_time,resource_desc
+  </sql>
+  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from platform_resource
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteById" parameterType="java.lang.Long" >
+    delete from platform_resource
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.galaxyinternet.model.resource.PlatformResource"  useGeneratedKeys="true" keyProperty="id">
+    insert into platform_resource (id, parent_id, resource_mark, 
+      resource_name, resource_url, resource_type, 
+      resource_order, resource_status, product_mark, 
+      created_uid, created_time, updated_uid, 
+      updated_time, resource_desc)
+    values (#{id,jdbcType=BIGINT}, #{parentId,jdbcType=BIGINT}, #{resourceMark,jdbcType=VARCHAR}, 
+      #{resourceName,jdbcType=VARCHAR}, #{resourceUrl,jdbcType=VARCHAR}, #{resourceType,jdbcType=VARCHAR}, 
+      #{resourceOrder,jdbcType=BIGINT}, #{resourceStatus,jdbcType=VARCHAR}, #{productMark,jdbcType=VARCHAR}, 
+      #{createdUid,jdbcType=BIGINT}, #{createdTime,jdbcType=BIGINT}, #{updatedUid,jdbcType=BIGINT}, 
+      #{updatedTime,jdbcType=BIGINT}, #{resourceDesc,jdbcType=VARCHAR})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.galaxyinternet.model.resource.PlatformResource" >
+    insert into platform_resource
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="resourceMark != null" >
+        resource_mark,
+      </if>
+      <if test="resourceName != null" >
+        resource_name,
+      </if>
+      <if test="resourceUrl != null" >
+        resource_url,
+      </if>
+      <if test="resourceType != null" >
+        resource_type,
+      </if>
+      <if test="resourceOrder != null" >
+        resource_order,
+      </if>
+      <if test="resourceStatus != null" >
+        resource_status,
+      </if>
+      <if test="productMark != null" >
+        product_mark,
+      </if>
+      <if test="createdUid != null" >
+        created_uid,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="updatedUid != null" >
+        updated_uid,
+      </if>
+      <if test="updatedTime != null" >
+        updated_time,
+      </if>
+      <if test="resourceDesc != null" >
+        resource_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="resourceMark != null" >
+        #{resourceMark,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceName != null" >
+        #{resourceName,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceUrl != null" >
+        #{resourceUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceType != null" >
+        #{resourceType,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceOrder != null" >
+        #{resourceOrder,jdbcType=BIGINT},
+      </if>
+      <if test="resourceStatus != null" >
+        #{resourceStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="productMark != null" >
+        #{productMark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdUid != null" >
+        #{createdUid,jdbcType=BIGINT},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=BIGINT},
+      </if>
+      <if test="updatedUid != null" >
+        #{updatedUid,jdbcType=BIGINT},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=BIGINT},
+      </if>
+      <if test="resourceDesc != null" >
+        #{resourceDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByIdSelective" parameterType="com.galaxyinternet.model.resource.PlatformResource" >
+    update platform_resource
+    <set >
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="resourceMark != null" >
+        resource_mark = #{resourceMark,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceName != null" >
+        resource_name = #{resourceName,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceUrl != null" >
+        resource_url = #{resourceUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceType != null" >
+        resource_type = #{resourceType,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceOrder != null" >
+        resource_order = #{resourceOrder,jdbcType=BIGINT},
+      </if>
+      <if test="resourceStatus != null" >
+        resource_status = #{resourceStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="productMark != null" >
+        product_mark = #{productMark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdUid != null" >
+        created_uid = #{createdUid,jdbcType=BIGINT},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=BIGINT},
+      </if>
+      <if test="updatedUid != null" >
+        updated_uid = #{updatedUid,jdbcType=BIGINT},
+      </if>
+      <if test="updatedTime != null" >
+        updated_time = #{updatedTime,jdbcType=BIGINT},
+      </if>
+      <if test="resourceDesc != null" >
+        resource_desc = #{resourceDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <update id="updateById" parameterType="com.galaxyinternet.model.resource.PlatformResource" >
+    update platform_resource
+    set parent_id = #{parentId,jdbcType=BIGINT},
+      resource_mark = #{resourceMark,jdbcType=VARCHAR},
+      resource_name = #{resourceName,jdbcType=VARCHAR},
+      resource_url = #{resourceUrl,jdbcType=VARCHAR},
+      resource_type = #{resourceType,jdbcType=VARCHAR},
+      resource_order = #{resourceOrder,jdbcType=BIGINT},
+      resource_status = #{resourceStatus,jdbcType=VARCHAR},
+      product_mark = #{productMark,jdbcType=VARCHAR},
+      created_uid = #{createdUid,jdbcType=BIGINT},
+      resource_desc = #{resourceDesc,jdbcType=VARCHAR},
+      updated_uid = #{updatedUid,jdbcType=BIGINT},
+      updated_time = #{updatedTime,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  
+  <!-- 删除 -->
+	<delete id="delete" parameterType="java.util.Map">
+		delete from platform_resource
+		<include refid="Base_Where_Clause" />
+	</delete>
+	
+	
+	<!-- 查询 -->
+	<select id="select" resultMap="BaseResultMap" parameterType="java.util.Map">
+		select
+		<include refid="Base_Column_List" />
+		from platform_resource
+		<include refid="Base_Where_Clause" />
+	</select>
+	
+	
+	<!-- 查询总数 -->
+	<select id="selectCount" resultType="java.lang.Long" parameterType="java.util.Map">
+		select count(id) from platform_resource
+		<include refid="Base_Where_Clause" />
+	</select>
+  
+  
+  
+  <sql id="Base_Where_Clause">
+		<where>
+			<trim prefixOverrides="and">
+			  <if test="id != null"> and id = #{id,jdbcType=BIGINT}</if>
+			  <if test="parentId != null" > and parent_id = #{parentId,jdbcType=BIGINT}</if>
+		      <if test="resourceMark != null" > and resource_mark = #{resourceMark,jdbcType=VARCHAR}</if>
+		      <if test="resourceName != null" > and resource_name = #{resourceName,jdbcType=VARCHAR}</if>
+		      <if test="resourceUrl != null" > and resource_url = #{resourceUrl,jdbcType=VARCHAR}</if>
+		      <if test="resourceType != null" > and resource_type = #{resourceType,jdbcType=VARCHAR}</if>
+		      <if test="resourceOrder != null" > and resource_order = #{resourceOrder,jdbcType=BIGINT}</if>
+		      <if test="resourceStatus != null" > and resource_status = #{resourceStatus,jdbcType=VARCHAR}</if>
+		      <if test="productMark != null" > and product_mark = #{productMark,jdbcType=VARCHAR}</if>
+		      <if test="createdUid != null" > and created_uid = #{createdUid,jdbcType=BIGINT}</if>
+		      <if test="createdTime != null" > and created_time = #{createdTime,jdbcType=BIGINT}</if>
+		      <if test="updatedUid != null" > and updated_uid = #{updatedUid,jdbcType=BIGINT}</if>
+		      <if test="updatedTime != null" > and updated_time = #{updatedTime,jdbcType=BIGINT}</if>
+		      <if test="resourceDesc != null" > and resource_desc = #{resourceDesc,jdbcType=VARCHAR}</if>
+			</trim>
+		</where>
+		<if test="sorting != null">order by ${sorting}</if>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</sql>
+  
+</mapper>
