@@ -19,7 +19,18 @@ public class Department extends BaseEntity {
     //部门负责人ID关联 
     private Long managerId;
     
+    //当前登录用户是否是该部门
+    private boolean isCurrentUser;
     
+    
+	public boolean isCurrentUser() {
+		return isCurrentUser;
+	}
+
+	public void setCurrentUser(boolean isCurrentUser) {
+		this.isCurrentUser = isCurrentUser;
+	}
+
 	public Long getManagerId() {
 		return managerId;
 	}
