@@ -49,6 +49,11 @@
 		from t_user_role
 		<include refid="Base_Where_Clause" />
 	</select>
+	
+	<!-- 查询投资经理的用户Id -->
+	<select id="selectUserIdByRoleId" resultType="java.lang.Long" parameterType="java.lang.Long">
+		select user_id from t_user_role where role_id = #{roleId}
+	</select>
 
 	<!-- 根据ID查询 -->
 	<select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">

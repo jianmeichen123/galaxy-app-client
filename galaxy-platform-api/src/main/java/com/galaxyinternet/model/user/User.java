@@ -56,11 +56,15 @@ public class User extends BaseUser {
 	private List<Long> ids;
 	private String nameMbLike;
 	
+	//部门Ids
+	private List<Long> departmentIds;
 	
-	
-	/*
-	 * private String salt; private String originSalt;
-	 */
+	public List<Long> getDepartmentIds() {
+		return departmentIds;
+	}
+	public void setDepartmentIds(List<Long> departmentIds) {
+		this.departmentIds = departmentIds;
+	}
 
 	public String getBirthStr() {
 		return birthStr;
