@@ -42,6 +42,17 @@ public class User extends BaseUser {
 	private String address;// 地址
 	private Boolean isAdmin;// 是否管理员
 	
+	private boolean isCurrentUser;
+	
+	
+	public boolean isCurrentUser() {
+		return isCurrentUser;
+	}
+
+	public void setCurrentUser(boolean isCurrentUser) {
+		this.isCurrentUser = isCurrentUser;
+	}
+
 	public List<Long> getIds() {
 		return ids;
 	}
