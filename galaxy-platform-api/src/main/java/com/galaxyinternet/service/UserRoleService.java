@@ -20,5 +20,10 @@ public interface UserRoleService extends BaseService<UserRole> {
 	List<Long> selectRoleIdByUserId(Long userID);
 
 	long insertUserRole(UserRole userRole);
+	
+	/**
+	 * 根据角色ID查询相关所有用户ID
+	 */
+	List<Long> selectUserIdByRoleId(Long roleId);
 }
 
