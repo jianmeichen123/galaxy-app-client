@@ -2,10 +2,10 @@
 <!--左侧导航-->
 		<ul class="lft">
 			<li>
-        	<a href="javascript:void(-1);" target-url="userIndex" target="user">用户管理</a>
+        	<a href="javascript:void(-1);" target-url="userIndex" target="user"><span class="navbar nav6"></span>用户管理</a>
         </li>
         <li >
-        	<a href="javascript:void(-1);" target-url="dictIndex" target="dict">数据字典</a>
+        	<a href="javascript:void(-1);" target-url="dictIndex" target="dict"><span class="navbar nav7"></span>数据字典</a>
         </li>	
 		</ul>
  <script type = "text/javascript">
