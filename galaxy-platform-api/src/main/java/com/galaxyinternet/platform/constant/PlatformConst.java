@@ -17,4 +17,5 @@ public class PlatformConst {
 	public static final String REQUEST_SCOPE_IDEA_ID = "galaxy_idea_id";
 	public static final String REQUEST_SCOPE_IDEA_NAME = "galaxy_idea_name";
 	public static final String REQUEST_SCOPE_IDEA_CONTENT = "galaxy_idea_content";
+	public static final String REQUEST_DEPARTMENT = "galax_department";
 }

@@ -1,7 +1,8 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <div class="erwm">
-    <span data-btn="close_erwm">关闭</span>
-    <a href="html/installReadme.html" target="_blank">点击查看安装说明</a>
+    <img src="<%=path %>/img/erwm.gif" alt="" style="margin:0 auto;">
+    <span data-btn="close_erwm">关闭</span> 
+    <a href="<%=path %>/html/installReadme.html?realname=1" target="_blank">查看安装说明</a>
 </div>
 <div class="header clearfix">
 	<a href="javascript:;" class="logo null">繁星</a>
