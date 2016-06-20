@@ -78,7 +78,7 @@ table .width_gd{width:12%;}
 .paging .jump .btn{ width:26px; height:23px; line-height:20px; cursor:pointer;font-size: 12px;background-color: #fff;border-radius: 2px;border:1px solid #ccd2d7;}
 /*公用分页-引自bootstrap*/
 .pull-right {float: right !important;}
-.bars{width:100%;}
+.bars{width:100%;margin:10px 0;}
 .pull-left {float: left !important;}
 .btn {
   display: inline-block;
