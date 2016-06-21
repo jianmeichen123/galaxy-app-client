@@ -42,6 +42,17 @@ public class User extends BaseUser {
 	private String address;// 地址
 	private Boolean isAdmin;// 是否管理员
 	
+	private boolean isCurrentUser;
+	
+	
+	public boolean isCurrentUser() {
+		return isCurrentUser;
+	}
+
+	public void setCurrentUser(boolean isCurrentUser) {
+		this.isCurrentUser = isCurrentUser;
+	}
+
 	public List<Long> getIds() {
 		return ids;
 	}
@@ -56,11 +67,15 @@ public class User extends BaseUser {
 	private List<Long> ids;
 	private String nameMbLike;
 	
+	//部门Ids
+	private List<Long> departmentIds;
 	
-	
-	/*
-	 * private String salt; private String originSalt;
-	 */
+	public List<Long> getDepartmentIds() {
+		return departmentIds;
+	}
+	public void setDepartmentIds(List<Long> departmentIds) {
+		this.departmentIds = departmentIds;
+	}
 
 	public String getBirthStr() {
 		return birthStr;

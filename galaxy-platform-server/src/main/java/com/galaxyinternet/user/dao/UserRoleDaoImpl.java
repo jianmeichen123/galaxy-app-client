@@ -39,8 +39,12 @@ public class UserRoleDaoImpl extends BaseDaoImpl<UserRole, Long>
 
 	@Override
 	public UserRole selectByUserId(Long userId) {
-		// TODO Auto-generated method stub
 		return sqlSessionTemplate.selectOne(getSqlName("selectByUserId"),
 				userId);
+	}
+
+	@Override
+	public List<Long> selectUserIdByRoleId(Long roleId) {
+		return sqlSessionTemplate.selectList(getSqlName("selectUserIdByRoleId"), roleId);
 	}
 }

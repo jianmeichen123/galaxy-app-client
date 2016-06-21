@@ -40,4 +40,9 @@ public class UserRoleServiceImpl extends BaseServiceImpl<UserRole>implements Use
 			return userRoleDao.insertUserRole(userRole);
 		}
 	}
+
+	@Override
+	public List<Long> selectUserIdByRoleId(Long roleId) {
+		return userRoleDao.selectUserIdByRoleId(roleId);
+	}
 }

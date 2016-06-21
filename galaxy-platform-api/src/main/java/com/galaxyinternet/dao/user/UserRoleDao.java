@@ -10,4 +10,8 @@ public interface UserRoleDao extends BaseDao<UserRole, Long> {
 	
 	Long insertUserRole(UserRole userRole);
 	UserRole selectByUserId(Long userId);
+	/**
+	 * 根据角色ID查询相关所有用户ID
+	 */
+	List<Long> selectUserIdByRoleId(Long roleId);
 }
