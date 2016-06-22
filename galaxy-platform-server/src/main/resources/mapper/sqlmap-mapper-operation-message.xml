@@ -13,15 +13,17 @@
 		 <result 	column="content" 		property="content"  	jdbcType="VARCHAR"/>
 		 <result 	column="module" 		property="module"  		jdbcType="INTEGER" />
 		 <result 	column="belong_uid" 	property="belongUid"  	jdbcType="BIGINT" />
-		 <result 	column="belong_uname" 	property="belongUname"  	jdbcType="VARCHAR" />
+		 <result 	column="belong_uname" 	property="belongUname"  jdbcType="VARCHAR" />
 		 <result 	column="created_time" 	property="createdTime" 	jdbcType="BIGINT" />
+		 <result 	column="department_id" 	property="departmentId" jdbcType="BIGINT" />
+		 <result 	column="message_type" 	property="messageType" 	jdbcType="VARCHAR" />
 
 	</resultMap>
 	
 	<sql id="Base_Column_List">
 		id,department,role,type,project_name,
 		operator,content,created_time,module,belong_uid,belong_uname,project_id,
-		operator_id
+		operator_id,department_id,message_type
 	</sql>
 
 
@@ -33,11 +35,11 @@
 	       	 t_operation_message (
 				department,role,type,project_name,module,belong_uid,belong_uname,
 				operator,content,project_id,created_time,
-				operator_id
+				operator_id,department_id,message_type
 	        ) VALUES (
 	        	#{department},#{role},#{type},#{projectName},#{module},#{belongUid},#{belongUname},
 	        	#{operator},#{content},#{projectId},#{createdTime},
-	        	#{operatorId}
+	        	#{operatorId},#{departmentId},#{messageType}
 	        )
     </insert>
     
@@ -51,9 +53,16 @@
 				<if test="module != null"> AND module = #{module}</if>
 				<if test="createdTimeStart != null"> AND created_time >= #{createdTimeStart}</if>
 				<if test="createdTimeEnd != null"> AND   #{createdTimeEnd} >= created_time </if>
+				<if test="departmentId != null"> AND  department_id = #{departmentId}  </if>
 				<if test="projectIds != null"> 
 					AND project_id IN
 							<foreach collection="projectIds" index="item" item="item" open="(" separator="," close=")">
+					            #{item}
+					        </foreach>
+				</if>
+				<if test="messageTypes != null"> 
+					AND message_type IN
+							<foreach collection="messageTypes" index="item" item="item" open="(" separator="," close=")">
 					            #{item}
 					        </foreach>
 				</if>

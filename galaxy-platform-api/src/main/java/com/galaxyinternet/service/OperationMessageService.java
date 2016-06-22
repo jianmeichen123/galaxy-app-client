@@ -13,4 +13,6 @@ public interface OperationMessageService extends BaseService<OperationMessage> {
 
 	
 	Long selectCount(OperationMessage query);
+	
+	void process(OperationMessage message);
 }

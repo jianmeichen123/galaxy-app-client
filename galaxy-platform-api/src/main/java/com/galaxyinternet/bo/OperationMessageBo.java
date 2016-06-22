@@ -12,7 +12,18 @@ public class OperationMessageBo extends OperationMessage  implements Pagable{
 	private List<String> projectIds;
 	private Long createdTimeStart;
 	private Long count;
+	private List<String> messageTypes;
 	
+	public List<String> getMessageTypes()
+	{
+		return messageTypes;
+	}
+
+	public void setMessageTypes(List<String> messageTypes)
+	{
+		this.messageTypes = messageTypes;
+	}
+
 	public String getExtendFiled() {
 		return extendFiled;
 	}

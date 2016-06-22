@@ -5,8 +5,15 @@ import static com.galaxyinternet.utils.ValidationUtil.isNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanFactoryUtils;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.core.OrderComparator;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -15,12 +22,15 @@ import com.galaxyinternet.dao.operationMessage.OperationMessageDao;
 import com.galaxyinternet.framework.core.dao.BaseDao;
 import com.galaxyinternet.framework.core.model.Page;
 import com.galaxyinternet.framework.core.service.impl.BaseServiceImpl;
+import com.galaxyinternet.handler.MessageHandler;
 import com.galaxyinternet.model.operationMessage.OperationMessage;
 import com.galaxyinternet.service.OperationMessageService;
 @Service("com.galaxyinternet.service.OperationMessageService")
-public class OperationMessageServiceImpl extends BaseServiceImpl<OperationMessage>implements OperationMessageService {
+public class OperationMessageServiceImpl extends BaseServiceImpl<OperationMessage>implements OperationMessageService,InitializingBean,ApplicationContextAware {
 	//private final Logger logger = LoggerFactory.getLogger(getClass());
 
+	private ApplicationContext context;
+	private List<MessageHandler> handlers = null;
 	@Autowired
 	private OperationMessageDao operationMessageDao;
 	
@@ -74,5 +84,42 @@ public class OperationMessageServiceImpl extends BaseServiceImpl<OperationMessag
 	public Long selectCount(OperationMessage query) {
 		return operationMessageDao.selectCount(query);
 	}
+
+	@Override
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException
+	{
+		this.context = applicationContext;
+	}
+
+	@Override
+	public void afterPropertiesSet() throws Exception
+	{
+		 Map<String, MessageHandler> map = BeanFactoryUtils.beansOfTypeIncludingAncestors(context, MessageHandler.class, true, false);
+		 if(map != null)
+		 {
+			 handlers = new ArrayList<MessageHandler>(map.values());
+			 OrderComparator.sort(handlers);
+		 }
+		
+	}
+
+	@Override
+	public void process(OperationMessage message)
+	{
+		if(handlers != null)
+		{
+			for(MessageHandler handler : handlers)
+			{
+				if(handler.support(message))
+				{
+					handler.handle(message);
+					break;
+				}
+			}
+		}
+	}
+
+	
+	
 
 }
