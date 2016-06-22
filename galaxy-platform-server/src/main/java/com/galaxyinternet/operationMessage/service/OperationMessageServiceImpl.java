@@ -66,7 +66,7 @@ public class OperationMessageServiceImpl extends BaseServiceImpl<OperationMessag
 		return operationMessageDao.insert(entity);
 	}
 	
-	@Override
+/*	@Override
 	public Page<OperationMessage> queryPageList(OperationMessageBo query, Pageable pageable) {
 		isNull(OperationMessage.COMMENT,query);
 		if(query.getModule()!= null &&query.getModule() == 2){
@@ -78,7 +78,7 @@ public class OperationMessageServiceImpl extends BaseServiceImpl<OperationMessag
 			query.setProjectIds(projectIds);
 		}
 		return operationMessageDao.selectPageList(query, pageable);
-	}
+	}*/
 
 	@Override
 	public Long selectCount(OperationMessage query) {

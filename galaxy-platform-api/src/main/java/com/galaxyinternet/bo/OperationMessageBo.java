@@ -13,6 +13,7 @@ public class OperationMessageBo extends OperationMessage  implements Pagable{
 	private Long createdTimeStart;
 	private Long count;
 	private List<String> messageTypes;
+	private Long roleId;
 	
 	public List<String> getMessageTypes()
 	{
@@ -115,6 +116,14 @@ public class OperationMessageBo extends OperationMessage  implements Pagable{
 	public String getProperty() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public Long getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
 	}
 
 	
