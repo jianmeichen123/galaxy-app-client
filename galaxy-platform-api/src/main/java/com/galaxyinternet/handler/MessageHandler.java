@@ -9,5 +9,5 @@ import com.galaxyinternet.model.operationMessage.OperationMessage;
 public interface MessageHandler extends Ordered,Serializable
 {
 	public boolean support(OperationMessage message);
-	public void handle(OperationMessage message);
+	public OperationMessage handle(OperationMessage message);
 }

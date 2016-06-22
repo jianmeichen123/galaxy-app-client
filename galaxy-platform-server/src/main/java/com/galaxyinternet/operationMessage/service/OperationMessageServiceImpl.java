@@ -104,7 +104,7 @@ public class OperationMessageServiceImpl extends BaseServiceImpl<OperationMessag
 	}
 
 	@Override
-	public void process(OperationMessage message)
+	public OperationMessage process(OperationMessage message)
 	{
 		if(handlers != null)
 		{
@@ -112,11 +112,11 @@ public class OperationMessageServiceImpl extends BaseServiceImpl<OperationMessag
 			{
 				if(handler.support(message))
 				{
-					handler.handle(message);
-					break;
+					return handler.handle(message);
 				}
 			}
 		}
+		return message;
 	}
 
 	

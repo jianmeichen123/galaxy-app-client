@@ -21,7 +21,8 @@ public class MessageServiceTest
 	{
 		OperationMessage entity = new OperationMessage();
 		entity.setDepartment("dept1");
-		entity.setDepartmentId(1L);
+		entity.setOperatorDepartmentId(1L);;
+		entity.setBelongDepartmentId(2L);
 		entity.setRole("Role1");
 		entity.setOperator("Operator 1");
 		entity.setOperatorId(2L);

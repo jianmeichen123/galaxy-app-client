@@ -20,15 +20,16 @@ public class CreateProjectMessageHandler implements MessageHandler
 	}
 
 	@Override
-	public void handle(OperationMessage message)
+	public OperationMessage handle(OperationMessage message)
 	{
 		StringBuffer content = new StringBuffer();
-		content.append("添加了项目<a href=\"#\"class=\"blue project_name\" data-project-id=\"")
+		content.append("添加了项目<a href=\"#\" class=\"blue project_name\" data-project-id=\"")
 		.append(message.getProjectId())
 		.append("\">")
 		.append(message.getProjectName())
 		.append("<a>");
 		message.setContent(content.toString());
+		return message;
 	}
 
 	@Override

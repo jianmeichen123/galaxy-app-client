@@ -17,7 +17,7 @@ public class CommonMessageHandler implements MessageHandler
 	}
 
 	@Override
-	public void handle(OperationMessage message)
+	public OperationMessage handle(OperationMessage message)
 	{
 		StringBuffer content = new StringBuffer();
 		if(message.getOperator() != null)
@@ -29,6 +29,7 @@ public class CommonMessageHandler implements MessageHandler
 			content.append(message.getContent());
 		}
 		message.setContent(content.toString());
+		return message;
 	}
 
 	@Override
