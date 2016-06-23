@@ -37,6 +37,8 @@ public enum OperationType {
 	
 	CLAIM_TASK				("/galaxy/soptask/goClaimtcPage", 				PlatformConst.TASK_TYPE, "认领任务"),
 	COMPLETE_TASK			("/galaxy/soptask/updateTaskStatus", 			PlatformConst.TASK_TYPE, "完成任务"),
+	SUBMIT_TASK              ("/galaxy/soptask/submitTask",                 PlatformConst.TASK_TYPE, "完成任务"),
+
 	
 	ADD_SCHEDULING			("/galaxy/project/updateReserveTime/"+ UrlNumber.one, 	PlatformConst.SCHEDULING_TYPE, "创建会议排期"),
 	UPDATE_SCHEDULING		("/galaxy/project/updateReserveTime/"+ UrlNumber.two, 	PlatformConst.SCHEDULING_TYPE, "更新会议排期"),
