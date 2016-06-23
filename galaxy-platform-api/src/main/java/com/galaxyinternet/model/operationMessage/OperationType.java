@@ -17,8 +17,12 @@ public enum OperationType {
 	PRO_INFO    			("/galaxy/project/getProjectInfo", 	PlatformConst.PROJECT_TYPE, "获取项目信息"),
 	PRO_FILE_UP 			("/galaxy/project/stageChange", 	PlatformConst.PROJECT_TYPE, "文档上传"),
 	PRO_START_REVIEW		("/galaxy/project/startReview", 	PlatformConst.PROJECT_TYPE, "启动内部评审"),
-	APPLY_PROJECT_SCHEDULE  ("/galaxy/project/ges", 			PlatformConst.PROJECT_TYPE,"申请立项会排期"), 
+	
+	APPLY_CEO_SCHEDULE  	("/galaxy/project/incm", 			PlatformConst.PROJECT_TYPE, "申请CEO评审会排期"),
+	APPLY_PROJECT_SCHEDULE  ("/galaxy/project/ges", 			PlatformConst.PROJECT_TYPE, "申请立项会排期"),
+	APPLY_PROJECT_SCH		("/galaxy/project/inlx", 			PlatformConst.PROJECT_TYPE, "申请立项会排期"),
 	APPLY_VOTE_SCHEDULE		("/galaxy/project/smp", 			PlatformConst.PROJECT_TYPE, "申请投决会排期"),
+	
 	CLOSE					("/galaxy/project/breakpro",					PlatformConst.PROJECT_TYPE, "关闭"),
 	
 	ADD_VIEW_FILE_RECORD	("/galaxy/project/progress/addFileInterview", 	PlatformConst.PROJECT_TYPE, "添加"),
