@@ -18,13 +18,18 @@ public enum OperationType {
 	PRO_FILE_UP 			("/galaxy/project/stageChange", 	PlatformConst.PROJECT_TYPE, "文档上传"),
 	PRO_START_REVIEW		("/galaxy/project/startReview", 	PlatformConst.PROJECT_TYPE, "启动内部评审"),
 	APPLY_PROJECT_SCHEDULE  ("/galaxy/project/ges", 			PlatformConst.PROJECT_TYPE,"申请立项会排期"), 
-	APPLY_VOTE_SCHEDULE		("/galaxy/project/smp/", 			PlatformConst.PROJECT_TYPE, "申请投决会排期"),
+	APPLY_VOTE_SCHEDULE		("/galaxy/project/smp", 			PlatformConst.PROJECT_TYPE, "申请投决会排期"),
 	CLOSE					("/galaxy/project/breakpro",					PlatformConst.PROJECT_TYPE, "关闭"),
 	
-	ADD_VIEW_FILE_RECORD	("/galaxy/project/progress/addFileInterview", 	PlatformConst.PROJECT_TYPE, "添加访谈记录"),
+	ADD_VIEW_FILE_RECORD	("/galaxy/project/progress/addFileInterview", 	PlatformConst.PROJECT_TYPE, "添加"),
+	EDIT_VIEW_FILE_RECORD	("/galaxy/project/progress/updateInterview", 	PlatformConst.PROJECT_TYPE, "编辑"),
+	ADD_MEET_FILE_RECORD	("/galaxy/project/progress/addfilemeet",		PlatformConst.PROJECT_TYPE, "添加"),
+	EDIT_MEET_FILE_RECORD	("/galaxy/project/progress/updatemeet",			PlatformConst.PROJECT_TYPE, "编辑"),
+	
 	ADD_VIEW_RECORD			("/galaxy/project/progress/addInterview", 		PlatformConst.PROJECT_TYPE, "添加访谈记录"),
-	ADD_MEET_FILE_RECORD	("/galaxy/project/progress/addfilemeet",		PlatformConst.PROJECT_TYPE, "添加会议纪要"),
 	ADD_MEET_RECORD			("/galaxy/project/progress/addmeet", 			PlatformConst.PROJECT_TYPE, "添加会议纪要"),
+	
+	
 	
 	CLAIM_TASK				("/galaxy/soptask/goClaimtcPage", 				PlatformConst.TASK_TYPE, "认领任务"),
 	COMPLETE_TASK			("/galaxy/soptask/updateTaskStatus", 			PlatformConst.TASK_TYPE, "完成任务"),
