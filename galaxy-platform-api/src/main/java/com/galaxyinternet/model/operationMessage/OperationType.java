@@ -44,7 +44,9 @@ public enum OperationType {
 	UPDATE_SCHEDULING		("/galaxy/project/updateReserveTime/"+ UrlNumber.two, 	PlatformConst.SCHEDULING_TYPE, "更新会议排期"),
 	DELETE_SCHEDULING		("/galaxy/project/updateReserveTime/"+ UrlNumber.three, PlatformConst.SCHEDULING_TYPE, "删除会议排期"),
 
-	TASK_URGED				("/galaxy/taskprocess/taskUrged/"+UrlNumber.one, 		PlatformConst.TASK_TYPE, "催办");
+	TASK_URGED				("/galaxy/taskprocess/taskUrged/"+UrlNumber.one, 		PlatformConst.TASK_TYPE, "催办"),
+	TASK_ADD_FILE			("/galaxy/taskprocess/uploadFile/"+UrlNumber.one,		PlatformConst.TASK_TYPE, "上传"),
+	TASK_UPDATE_FILE		("/galaxy/taskprocess/uploadFile/"+UrlNumber.two, 		PlatformConst.TASK_TYPE, "更新");
 	
 	private OperationType(String uniqueKey, String type, String content, Integer module) {
 		this.uniqueKey = uniqueKey;
