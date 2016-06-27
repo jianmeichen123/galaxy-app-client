@@ -17,14 +17,14 @@ public enum OperationType {
 	APPLY_PROJECT_SCH		("/galaxy/project/inlx", 			PlatformConst.PROJECT_TYPE, "申请立项会排期"),
 	
 	
-	_3_add_p1_	("/galaxy/project/progress/addFileInterview", 	PlatformConst.PROJECT_TYPE, "添加接触访谈"),
-	_3_add_p2_	("/galaxy/project/stageChange/"+UrlNumber.one, 	PlatformConst.PROJECT_TYPE, "添加接触访谈"),
+	_3_add_p1_	("/galaxy/project/progress/addFileInterview", 	PlatformConst.PROJECT_TYPE, "添加"),
+	_3_add_p2_	("/galaxy/project/stageChange/"+UrlNumber.one, 	PlatformConst.PROJECT_TYPE, "添加"),
 	EDIT_VIEW_FILE_RECORD	("/galaxy/project/progress/updateInterview", 	PlatformConst.PROJECT_TYPE, "编辑"),
-	_4_add_p1_	("/galaxy/project/progress/addfilemeet",		PlatformConst.PROJECT_TYPE, "添加会议记录"),
-	_4_add_p2_	("/galaxy/project/stageChange/"+UrlNumber.two,		PlatformConst.PROJECT_TYPE, "添加内部评审会议记录"),
-	_4_add_p3_	("/galaxy/project/stageChange/"+UrlNumber.three,		PlatformConst.PROJECT_TYPE, "添加CEO会议记录"),
-	_4_add_p4_	("/galaxy/project/stageChange/"+UrlNumber.four,		PlatformConst.PROJECT_TYPE, "添加立项会会议记录"),
-	_4_add_p5_	("/galaxy/project/stageChange/"+UrlNumber.eight,		PlatformConst.PROJECT_TYPE, "添加投决会会议记录"),
+	_4_add_p1_	("/galaxy/project/progress/addfilemeet",		PlatformConst.PROJECT_TYPE, "添加"),
+	_4_add_p2_	("/galaxy/project/stageChange/"+UrlNumber.two,		PlatformConst.PROJECT_TYPE, "添加"),
+	_4_add_p3_	("/galaxy/project/stageChange/"+UrlNumber.three,		PlatformConst.PROJECT_TYPE, "添加"),
+	_4_add_p4_	("/galaxy/project/stageChange/"+UrlNumber.four,		PlatformConst.PROJECT_TYPE, "添加"),
+	_4_add_p5_	("/galaxy/project/stageChange/"+UrlNumber.eight,		PlatformConst.PROJECT_TYPE, "添加"),
 	EDIT_MEET_FILE_RECORD	("/galaxy/project/progress/updatemeet",			PlatformConst.PROJECT_TYPE, "编辑"),
 	
 	
