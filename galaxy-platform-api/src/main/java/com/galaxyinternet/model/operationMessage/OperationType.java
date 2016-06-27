@@ -39,6 +39,7 @@ public enum OperationType {
 	TASK_URGED				("/galaxy/taskprocess/taskUrged/"+UrlNumber.one, 		PlatformConst.TASK_TYPE, "催办"),
 	TASK_ADD_FILE			("/galaxy/taskprocess/uploadFile/"+UrlNumber.one,		PlatformConst.TASK_TYPE, "上传"),
 	TASK_UPDATE_FILE		("/galaxy/taskprocess/uploadFile/"+UrlNumber.two, 		PlatformConst.TASK_TYPE, "更新"),
+	
 	_6_1_			("/galaxy/project/ap",		PlatformConst.PROJECT_TYPE, "进入接触访谈阶段"),
 	_6_2_			("/galaxy/project/startReview",		PlatformConst.PROJECT_TYPE, "进入内部评审阶段"),
 	_6_3_			("/galaxy/project/stageChange/"+UrlNumber.two,		PlatformConst.PROJECT_TYPE, "进入CEO评审阶段"),
