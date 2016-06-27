@@ -17,7 +17,8 @@ public enum OperationType {
 	APPLY_PROJECT_SCH		("/galaxy/project/inlx", 			PlatformConst.PROJECT_TYPE, "申请立项会排期"),
 	
 	
-	ADD_VIEW_FILE_RECORD	("/galaxy/project/progress/addFileInterview", 	PlatformConst.PROJECT_TYPE, "添加"),
+	_3_p1_	("/galaxy/project/progress/addFileInterview", 	PlatformConst.PROJECT_TYPE, "添加接触访谈"),
+	_3_p2_	("/galaxy/project/stageChange/"+UrlNumber.one, 	PlatformConst.PROJECT_TYPE, "添加接触访谈"),
 	EDIT_VIEW_FILE_RECORD	("/galaxy/project/progress/updateInterview", 	PlatformConst.PROJECT_TYPE, "编辑"),
 	ADD_MEET_FILE_RECORD	("/galaxy/project/progress/addfilemeet",		PlatformConst.PROJECT_TYPE, "添加"),
 	EDIT_MEET_FILE_RECORD	("/galaxy/project/progress/updatemeet",			PlatformConst.PROJECT_TYPE, "编辑"),
@@ -44,7 +45,8 @@ public enum OperationType {
 	_6_8_			("/galaxy/project/stageChange/"+UrlNumber.eight,		PlatformConst.PROJECT_TYPE, "进入投资协议阶段"),
 	_6_9_p1_			("/galaxy/project/stageChange/"+UrlNumber.eleven,		PlatformConst.PROJECT_TYPE, "进入股权交割阶段"),
 	_6_9_p2_			("/galaxy/project/stageChange/"+UrlNumber.twelve,		PlatformConst.PROJECT_TYPE, "进入股权交割阶段"),
-	_6_10_			("/galaxy/soptask/submitTask",		PlatformConst.PROJECT_TYPE, "进入投后运营阶段");
+	_6_10_p1_			("/galaxy/soptask/submitTask/"+UrlNumber.four,		PlatformConst.PROJECT_TYPE, "进入投后运营阶段"),
+	_6_10_p2_			("/galaxy/soptask/submitTask/"+UrlNumber.six,		PlatformConst.PROJECT_TYPE, "进入投后运营阶段");
 	
 	private OperationType(String uniqueKey, String type, String content, Integer module) {
 		this.uniqueKey = uniqueKey;
