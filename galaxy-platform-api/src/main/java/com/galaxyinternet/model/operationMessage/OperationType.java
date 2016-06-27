@@ -15,6 +15,7 @@ public enum OperationType {
 	
 	APPLY_CEO_SCHEDULE  	("/galaxy/project/incm", 			PlatformConst.PROJECT_TYPE, "申请CEO评审会排期"),
 	APPLY_PROJECT_SCH		("/galaxy/project/inlx", 			PlatformConst.PROJECT_TYPE, "申请立项会排期"),
+	APPLY_PROJECT_TJH		("/galaxy/project/intj", 			PlatformConst.PROJECT_TYPE, "申请投决会排期"),
 	
 	
 	_3_add_p1_	("/galaxy/project/progress/addFileInterview", 	PlatformConst.PROJECT_TYPE, "添加"),
