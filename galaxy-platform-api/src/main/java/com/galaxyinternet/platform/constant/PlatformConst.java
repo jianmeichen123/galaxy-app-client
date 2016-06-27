@@ -19,4 +19,5 @@ public class PlatformConst {
 	public static final String REQUEST_SCOPE_IDEA_CONTENT = "galaxy_idea_content";
 	public static final String REQUEST_DEPARTMENT = "galax_department";
 	public static final String REQUEST_SCOPE_MESSAGE_TYPE = "galaxy_message_type";
+	public static final String REQUEST_SCOPE_USER_DATA = "galaxy_user_data";
 }

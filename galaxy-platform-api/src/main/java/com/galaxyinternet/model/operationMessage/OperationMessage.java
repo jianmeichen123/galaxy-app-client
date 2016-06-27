@@ -35,6 +35,8 @@ public class OperationMessage extends BaseEntity{
 	private Long operatorDepartmentId;
 	private Long belongDepartmentId;
 	private String messageType;
+	private Object userData;
+	
 	
 	public String getDepartment() {
 		return department;
@@ -127,6 +129,13 @@ public class OperationMessage extends BaseEntity{
 	public void setMessageType(String messageType)
 	{
 		this.messageType = messageType;
+	}
+	
+	public Object getUserData() {
+		return userData;
+	}
+	public void setUserData(Object userData) {
+		this.userData = userData;
 	}
 	@Override
 	public String toString() {

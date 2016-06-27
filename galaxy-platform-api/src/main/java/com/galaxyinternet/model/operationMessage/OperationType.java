@@ -27,6 +27,7 @@ public enum OperationType {
 	_4_add_p5_	("/galaxy/project/stageChange/"+UrlNumber.eight,		PlatformConst.PROJECT_TYPE, "添加"),
 	EDIT_MEET_FILE_RECORD	("/galaxy/project/progress/updatemeet",			PlatformConst.PROJECT_TYPE, "编辑"),
 	
+
 	
 	CLAIM_TASK				("/galaxy/soptask/goClaimtcPage", 				PlatformConst.TASK_TYPE, "认领任务"),
 	COMPLETE_TASK			("/galaxy/soptask/updateTaskStatus", 			PlatformConst.TASK_TYPE, "完成任务"),
@@ -35,6 +36,8 @@ public enum OperationType {
 	ADD_SCHEDULING			("/galaxy/project/updateReserveTime/"+ UrlNumber.one, 	PlatformConst.SCHEDULING_TYPE, "创建会议排期"),
 	UPDATE_SCHEDULING		("/galaxy/project/updateReserveTime/"+ UrlNumber.two, 	PlatformConst.SCHEDULING_TYPE, "更新会议排期"),
 	DELETE_SCHEDULING		("/galaxy/project/updateReserveTime/"+ UrlNumber.three, PlatformConst.SCHEDULING_TYPE, "删除会议排期"),
+	FILE_BUSINESSPLAN("/galaxy/sopFile/commonUploadFile/" + UrlNumber.one,PlatformConst.PROJECT_TYPE,"上传"),
+	FILE_INTERESTLETTER("/galaxy/sopFile/commonUploadFile/" + UrlNumber.two,PlatformConst.PROJECT_TYPE,"更新"),
 
 	TASK_URGED				("/galaxy/taskprocess/taskUrged/"+UrlNumber.one, 		PlatformConst.TASK_TYPE, "催办"),
 	TASK_ADD_FILE			("/galaxy/taskprocess/uploadFile/"+UrlNumber.one,		PlatformConst.TASK_TYPE, "上传"),
