@@ -10,7 +10,7 @@ import com.galaxyinternet.platform.constant.PlatformConst;
 public enum OperationType {
 	
 	QUERY					("/galaxy/project/sp", 				PlatformConst.PROJECT_TYPE, "查阅过项目"), 
-	CREATE					("/galaxy/project/ap", 				PlatformConst.PROJECT_TYPE, "创建"), 
+	//CREATE					("/galaxy/project/ap", 				PlatformConst.PROJECT_TYPE, "创建"), 
 	UPDATE					("/galaxy/project/up", 				PlatformConst.PROJECT_TYPE, "编辑"), 
 	PRO_ADD_PER 			("/galaxy/project/app", 			PlatformConst.PROJECT_TYPE, "添加团队成员"), 
 	PRO_EDIT_PER			("/galaxy/project/upp", 			PlatformConst.PROJECT_TYPE, "修改团队成员"), 
@@ -20,9 +20,7 @@ public enum OperationType {
 	PRO_START_REVIEW		("/galaxy/project/startReview", 	PlatformConst.PROJECT_TYPE, "启动内部评审"),
 	
 	APPLY_CEO_SCHEDULE  	("/galaxy/project/incm", 			PlatformConst.PROJECT_TYPE, "申请CEO评审会排期"),
-	APPLY_PROJECT_SCHEDULE  ("/galaxy/project/ges", 			PlatformConst.PROJECT_TYPE, "申请立项会排期"),
 	APPLY_PROJECT_SCH		("/galaxy/project/inlx", 			PlatformConst.PROJECT_TYPE, "申请立项会排期"),
-	APPLY_VOTE_SCHEDULE		("/galaxy/project/smp", 			PlatformConst.PROJECT_TYPE, "申请投决会排期"),
 	
 	CLOSE					("/galaxy/project/breakpro",					PlatformConst.PROJECT_TYPE, "关闭"),
 	
@@ -47,7 +45,18 @@ public enum OperationType {
 
 	TASK_URGED				("/galaxy/taskprocess/taskUrged/"+UrlNumber.one, 		PlatformConst.TASK_TYPE, "催办"),
 	TASK_ADD_FILE			("/galaxy/taskprocess/uploadFile/"+UrlNumber.one,		PlatformConst.TASK_TYPE, "上传"),
-	TASK_UPDATE_FILE		("/galaxy/taskprocess/uploadFile/"+UrlNumber.two, 		PlatformConst.TASK_TYPE, "更新");
+	TASK_UPDATE_FILE		("/galaxy/taskprocess/uploadFile/"+UrlNumber.two, 		PlatformConst.TASK_TYPE, "更新"),
+	_6_1_			("/galaxy/project/ap",		PlatformConst.PROJECT_TYPE, "进入接触访谈阶段"),
+	_6_2_			("/galaxy/project/startReview",		PlatformConst.PROJECT_TYPE, "进入内部评审阶段"),
+	_6_3_			("/galaxy/project/stageChange/"+UrlNumber.two,		PlatformConst.PROJECT_TYPE, "进入CEO评审阶段"),
+	_6_4_			("/galaxy/project/ges",		PlatformConst.PROJECT_TYPE, "进入立项会阶段"),
+	_6_5_			("/galaxy/project/stageChange/"+UrlNumber.four,		PlatformConst.PROJECT_TYPE, "进入投资意向书阶段"),
+	_6_6_			("/galaxy/project/stageChange/"+UrlNumber.six,		PlatformConst.PROJECT_TYPE, "进入尽职调查阶段"),
+	_6_7_			("/galaxy/project/smp",		PlatformConst.PROJECT_TYPE, "进入投资决策会阶段"),
+	_6_8_			("/galaxy/project/stageChange/"+UrlNumber.eight,		PlatformConst.PROJECT_TYPE, "进入投资协议阶段"),
+	_6_9_p1_			("/galaxy/project/stageChange/"+UrlNumber.eleven,		PlatformConst.PROJECT_TYPE, "进入股权交割阶段"),
+	_6_9_p2_			("/galaxy/project/stageChange/"+UrlNumber.twelve,		PlatformConst.PROJECT_TYPE, "进入股权交割阶段"),
+	_6_10_			("/galaxy/soptask/submitTask",		PlatformConst.PROJECT_TYPE, "进入投后运营阶段");
 	
 	private OperationType(String uniqueKey, String type, String content, Integer module) {
 		this.uniqueKey = uniqueKey;
