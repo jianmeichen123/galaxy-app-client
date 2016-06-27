@@ -3,17 +3,11 @@ package com.galaxyinternet.operationMessage.service;
 import static com.galaxyinternet.utils.ValidationUtil.isMoreThan;
 import static com.galaxyinternet.utils.ValidationUtil.isNull;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.galaxyinternet.bo.OperationMessageBo;
 import com.galaxyinternet.dao.operationMessage.OperationMessageDao;
 import com.galaxyinternet.framework.core.dao.BaseDao;
-import com.galaxyinternet.framework.core.model.Page;
 import com.galaxyinternet.framework.core.service.impl.BaseServiceImpl;
 import com.galaxyinternet.model.operationMessage.OperationMessage;
 import com.galaxyinternet.service.OperationMessageService;
@@ -56,7 +50,7 @@ public class OperationMessageServiceImpl extends BaseServiceImpl<OperationMessag
 		return operationMessageDao.insert(entity);
 	}
 	
-	@Override
+/*	@Override
 	public Page<OperationMessage> queryPageList(OperationMessageBo query, Pageable pageable) {
 		isNull(OperationMessage.COMMENT,query);
 		if(query.getModule()!= null &&query.getModule() == 2){
@@ -68,11 +62,12 @@ public class OperationMessageServiceImpl extends BaseServiceImpl<OperationMessag
 			query.setProjectIds(projectIds);
 		}
 		return operationMessageDao.selectPageList(query, pageable);
-	}
+	}*/
 
 	@Override
 	public Long selectCount(OperationMessage query) {
 		return operationMessageDao.selectCount(query);
 	}
+
 
 }
