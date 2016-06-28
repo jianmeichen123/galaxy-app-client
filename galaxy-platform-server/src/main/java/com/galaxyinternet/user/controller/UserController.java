@@ -181,6 +181,8 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		}
 */
 		try { 
+			//默认是查询有效用户，此处是查询所有用户，故设置为null
+			user.setStatus(null);
 			Page<User> pageUser = userService.queryUserPageList(user,new PageRequest(user.getPageNum(), user.getPageSize()));
 			responseBody.setPageList(pageUser);
 			responseBody.setResult(new Result(Status.OK, ""));
