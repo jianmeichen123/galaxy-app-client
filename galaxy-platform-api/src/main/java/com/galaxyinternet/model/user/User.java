@@ -23,7 +23,7 @@ public class User extends BaseUser {
 	private String email;// 邮箱
 	private String mobile;// 手机
 	private String telephone;// 座机
-	private String status;// 账户状态 正常 禁用
+	private String status = "0";// 账户状态 正常 禁用
 	private String type;// 账户类型
 	@NotBlank(message="工号不能为空")
 	private String employNo;// 工号
