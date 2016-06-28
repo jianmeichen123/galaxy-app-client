@@ -9,7 +9,7 @@ import com.galaxyinternet.platform.constant.PlatformConst;
  */
 public enum OperationType {
 	
-	UPDATE					("/galaxy/project/up", 				PlatformConst.PROJECT_TYPE, "编辑"), 
+	UPDATE					("/galaxy/project/editProject",					PlatformConst.PROJECT_TYPE, "编辑"), 
 	
 	PRO_START_REVIEW		("/galaxy/project/startReview", 	PlatformConst.PROJECT_TYPE, "启动内部评审"),
 	

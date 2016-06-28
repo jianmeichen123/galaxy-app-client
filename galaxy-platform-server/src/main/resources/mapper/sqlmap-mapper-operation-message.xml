@@ -56,7 +56,7 @@
 				<if test="createdTimeEnd != null"> AND   #{createdTimeEnd} >= created_time </if>
 				<if test="operatorDepartmentId != null"> AND  operator_deparement_id = #{operatorDepartmentId}  </if>
 				<if test="belongDepartmentId != null"> AND  belong_department_id = #{belongDepartmentId}  </if>
-				<if test="belongUid != null"> AND  belong_uid = #{belongUid}  </if>
+				<if test="belongUid != null and roleId ==null"> AND  belong_uid = #{belongUid}  </if>
 				<if test="projectIds != null"> 
 					AND project_id IN
 							<foreach collection="projectIds" index="item" item="item" open="(" separator="," close=")">
@@ -73,7 +73,7 @@
 				
 				<if test="roleId != null"> 
 					AND
-						(CASE WHEN  message_type = #{belongDepartmentId} THEN belong_uid = #{belongUid} ELSE  1=1  END)
+						(CASE WHEN  message_type = #{messageType} THEN belong_uid = #{belongUid} ELSE  1=1  END)
 				</if>		
 				
 				 <if test="keyword != null">    
