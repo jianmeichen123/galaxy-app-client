@@ -68,31 +68,38 @@
 					        </foreach>
 				</if>
 				
-				<if test="inAll != null"> 
-					or (message_type IN
-							<foreach collection="inAll" index="item" item="item" open="(" separator="," close=")">
-					            #{item}
-					        </foreach>
-					    )
+				<if test="inAll != null or inPer != null or inPat != null"> 
+					and (
+					<trim prefixOverrides="or">
+						<if test="inAll != null"> 
+						or (message_type IN
+								<foreach collection="inAll" index="item" item="item" open="(" separator="," close=")">
+						            #{item}
+						        </foreach>
+						    )
+						</if>
+						<if test="inPer != null"> 
+							or( message_type IN
+									<foreach collection="inPer" index="item" item="item" open="(" separator="," close=")">
+							            #{item}
+							        </foreach>
+							   and
+							   	belong_uid = #{belongUid}
+							   )
+						</if>
+						<if test="inPat != null"> 
+							or( message_type IN
+									<foreach collection="inPat" index="item" item="item" open="(" separator="," close=")">
+							            #{item}
+							        </foreach>
+							   and
+							   	belong_department_id = #{belongDepartmentId}
+							   )
+						</if>
+					</trim>
+					)
 				</if>
-				<if test="inPer != null"> 
-					or( message_type IN
-							<foreach collection="inPer" index="item" item="item" open="(" separator="," close=")">
-					            #{item}
-					        </foreach>
-					   and
-					   	belong_uid = #{belongUid}
-					   )
-				</if>
-				<if test="inPat != null"> 
-					or( message_type IN
-							<foreach collection="inPat" index="item" item="item" open="(" separator="," close=")">
-					            #{item}
-					        </foreach>
-					   and
-					   	belong_department_id = #{belongDepartmentId}
-					   )
-				</if>
+				
 				
 				<!-- 模糊查询 -->
 				 <if test="keyword != null">    
