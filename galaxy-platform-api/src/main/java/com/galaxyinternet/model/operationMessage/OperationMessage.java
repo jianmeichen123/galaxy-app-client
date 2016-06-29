@@ -1,5 +1,8 @@
 package com.galaxyinternet.model.operationMessage;
 
+import java.io.Serializable;
+import java.util.List;
+
 import com.galaxyinternet.framework.core.model.BaseEntity;
 
 /**
@@ -35,7 +38,9 @@ public class OperationMessage extends BaseEntity{
 	private Long operatorDepartmentId;
 	private Long belongDepartmentId;
 	private String messageType;
-	private Object userData;
+	
+	private Serializable userData;
+	private List<String> messageList;
 	
 	
 	public String getDepartment() {
@@ -131,11 +136,19 @@ public class OperationMessage extends BaseEntity{
 		this.messageType = messageType;
 	}
 	
-	public Object getUserData() {
+
+	
+	public Serializable getUserData() {
 		return userData;
 	}
-	public void setUserData(Object userData) {
+	public void setUserData(Serializable userData) {
 		this.userData = userData;
+	}
+	public List<String> getMessageList() {
+		return messageList;
+	}
+	public void setMessageList(List<String> messageList) {
+		this.messageList = messageList;
 	}
 	@Override
 	public String toString() {
