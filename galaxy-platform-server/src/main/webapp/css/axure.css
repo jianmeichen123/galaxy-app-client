@@ -10,7 +10,6 @@ li{ display:block; list-style:none}
 textarea{resize: none;outline: none}
 input{outline: none;font-size:14px; font-family:"宋体";color:#525662;}
 .pointer-events{pointer-events: none;}
-select{padding-bottom: 4px !important;}
 /*clearfix-浮动清理*/
 .clearfix:after { content:"."; display:block; height:0; clear:both; visibility:hidden }
 .clearfix { display:inline-block }
@@ -44,7 +43,7 @@ input.disabled{background-color: #000;}
 .null{ display:block; overflow:hidden; font-size:0; line-height:0; text-indent:-999px}
 /*公用表格*/
 table{ background:#ffffff;}
-table th{ text-align:center; color:#2d3342; font-weight:normal; font-size:12px; line-height:38px;border-bottom: 1px solid #d6d8e1;}
+table th{ text-align:center; color:#2d3342; font-weight:normal; font-size:12px; line-height:34px;border-bottom: 1px solid #d6d8e1;}
 table td{ height:30px;line-height:30px; text-align:center; font-size:12px; color:#536379; font-family:"宋体"; border-bottom:1px solid #f6f7fa;}
 .fixed_width td{width:16%;}
 table td a{ font-size:12px; margin:0 2px; color:#536379; font-family:"宋体";margin:0 4px;}
@@ -604,7 +603,7 @@ background-size: cover;margin:0 5px 0  0;position: relative;top: 3px;}
 .pagebox .rit .top .tody{ margin:0 0 24px 18px; padding:0 0 0 74px; height:56px; background-position:0 -30px}
 .pagebox .rit .top .tody .time{ line-height:36px; font-size:24px; color:#60aae6; background-position: 105px 150px !important;}
 .pagebox .rit .top .tody .date{ line-height:20px; font-size:12px; color:#c9cbcf; font-family:"宋体"}
-.pagebox .rit .top .link{ line-height:20px; display:block; margin:0 14px 5px; position:relative; padding:0 0 0 16px; font-size:12px; color:#aaaaaa; font-family:"宋体";overflow: hidden;white-space: nowrap;text-overflow: ellipsis}
+.pagebox .rit .top .link{ line-height:20px; display:block; margin:0 22px 5px; position:relative; padding:0 0 0 16px; font-size:12px; color:#aaaaaa; font-family:"宋体";overflow: hidden;white-space: nowrap;text-overflow: ellipsis}
 .pagebox .rit .top .link b{ position:absolute; width:8px; height:8px; border-radius:8px; left:0; top:50%; margin:-4px 0 0}
 .pagebox .rit .top .link .b1{ background:#ff9000}
 .pagebox .rit .top .link .b2{ background:#3fdb51}
@@ -616,7 +615,7 @@ background-size: cover;margin:0 5px 0  0;position: relative;top: 3px;}
 .pagebox .rit dd .more{ float:right}
 /*右中部分*/
 .pagebox .ritmin{ float:left; width:88.5%;margin:60px 0 0 10.505%;}
-.pagebox .ritmin h2{ line-height:46px; height:46px; font-size:18px; font-weight:normal; color:#808e9b}
+.pagebox .ritmin h2{ line-height:46px; height:46px; font-size:22px; font-weight:normal; color:#808e9b}
 .pagebox .ritmin .breadcrumb{height: 48px;line-height: 44px;font-size:14px; font-weight:normal;}
 .pagebox .ritmin .breadcrumb li{float: left;color:#808e9b; }
 .pagebox .ritmin .breadcrumb li.bottom_align{padding-top:4px; }
@@ -1379,6 +1378,7 @@ form#update_form_basic tr td:nth-child(1){padding-left: 10% !important;}
 
 
 /*改版信息*/
+.project_center,.company_center,.portrayal_center,.product_center,.operation_center,.industry_center,.analysis_center,.next_financing_center{line-height:24px;}
 .label_static1{position:relative;}
 .new_tit_a{ width:100%; overflow:hidden; height:auto; color:#8895a2;}
 .new_tit_b{ width:100%; overflow:hidden; height:60px;  color:#8895a2;}
@@ -1620,17 +1620,17 @@ font-family: "宋体";
     border-radius: 6px;
     border-top-left-radius: 0;}
 .tabtable_con_jbxx table{padding:0px 20px 10px;}
-.compile_on_center{ min-height:45px; position: relative;}
+.compile_on_center{position: relative;}
 .compile_on_right{ position: absolute; right:20px; top: 5px;}
-.compile_on_right span{ float:left; border-radius:4px; margin-right:20px; width:100px;  cursor:pointer;}
-.compile_on_left{margin-left:20px; }
-.compile_on_left span{ float:left; border-radius:4px; margin-right:20px; width:100px;  cursor:pointer;}
+.compile_on_right span{ float:left; border-radius:4px; margin-right:20px;  cursor:pointer;}
+.compile_on_left{margin-left:20px; overflow:hidden;padding-bottom:20px;}
+.compile_on_left span{ float:left; border-radius:4px; margin-right:20px; cursor:pointer;}
 .ico_pgn{background:url(../img/functionico.png) no-repeat;height: 22px; line-height: 22px;background-position: 0 -306px;
     padding: 0 0 6px 22px;}
 .compile_on_right_b{ background-color:#66b1f2; color:#fff; text-align:center; line-height:35px; height:35px; display:block;}
 .compile_on_right_q{ background-color:#fff; border:1px solid #ccd2d7; display:block; text-align:center; line-height:35px; height:35px;}
-.new_nputr{ line-height:20px; width:200px; color:#525662; font-size:12px; height:20px; overflow:hidden; box-sizing: border-box;}
-.new_nputr_number{line-height:20px; width:90px; line-height:20px; overflow:hidden;}
+.new_nputr{ line-height:24px; width:200px; color:#525662; font-size:12px; overflow:hidden; box-sizing: border-box;height:24px;border:1px solid #aaa;border-radius:4px;padding:0 5px !important;}
+.new_nputr_number{width:90px; height:22px;line-height:22px; overflow:hidden;border:1px solid #aaa;border-radius:4px;padding-left:5px;}
 .no_con{height:105px;color:#aaa;font-size:12px;font-family:"宋体";background:url(../img/default.png) center 60px no-repeat;text-align:center;padding-top:120px;display:none;}
 .new_correlation_cen_con{height:225px;}
 /*全部项目*/
@@ -1706,7 +1706,7 @@ font-family: "宋体";
 /*访谈记录*/
 .add_interview{width:110px;}
 .interview .min_document{margin:0 30px;width:auto;position: relative;margin-top: 10px;margin-bottom: 20px}
-.interview .search_icon{font-size: 0;width:20px;height: 20px;background: url(../img/search1.png) 0 0 no-repeat;display: inline-block;position: absolute;top: 16px;}
+.interview .search_icon{font-size: 0;width:20px;height: 20px;background: url(../img/search1.png) 0 0 no-repeat;display: inline-block;position: absolute;top: 7px;}
 .interview table td{line-height: 22px;padding: 10px 0 10px 30px;}
 .interview table td span{font-size: 12px;width: 40px;padding-left: 25px;line-height: 20px;cursor: pointer;text-align:left;}
 .interview table span.see{background-position: 0 -19px;}
@@ -1725,19 +1725,19 @@ font-family: "宋体";
 .hide,.searchbox_hidden{display: none;}
 .document .see{background-position: 0 -18px;}
 /*创建项目*/
-.basic_ul{ width:100%; overflow:hidden; margin-bottom:20px;}
-.basic_ul li{ margin-bottom:20px; margin-top:20px; width:100%; overflow:hidden;}
+.basic_ul{ width:100%; overflow:hidden; margin-bottom:20px;font-family:"宋体";font-size:12px;line-height:30px}
+.basic_ul li{ margin-bottom:3px; margin-top:3px; width:100%; overflow:hidden;}
 .basic_ul li span{ display:block; float:left;}
 .m_r15{ margin-right:15px;}
-.m_r30{ margin-right:30px;}
+.m_r30{ margin-right:30px;position:relative;}
 .basic_span{ width:90px; text-align:right; position: relative;}
 .basic_span em{  height:20px; width:8px; left:10px; top:2px; position: absolute; display:block;}
 .basic_table{margin-top:20px; overflow:hidden; border:1px solid #e9ebf2;}
 .basic_table th{ background-color:#f9fafc; }
 .basic_table td{line-height: 38px; height:38px;}
 .basic_table a{ color:#529be2; text-decoration:inherit;}
-.basic_input{ width:90px; text-align:center; height:35px; line-height:35px; background-color:#529be2; color:#fff; border-radius:4px;  cursor:pointer;}
-.basic_right{ width:23%; float:right; background-color:#fff; margin-top:15px; position:relative; border-radius:4px;font-size: 12px;font-family: "宋体"}
+.basic_input{  text-align:center; height:30px; line-height:30px; background-color:#529be2; color:#fff; border-radius:4px;  cursor:pointer;}
+.basic_right{ width:23%; float:right; background-color:#fff; margin-top:10px; position:relative; border-radius:4px;font-size: 12px;font-family: "宋体"}
 .new_ico_hint{ background-image:url(../img/tubiao1.png); background-repeat:no-repeat; background-position: -100px -31px; width:20px; height:20px; display:block; float:left; padding-bottom:5px;}
 .basic_right_ul{ margin-bottom:20px; margin-top:20px; color:#6b799f;margin-left: 20px;}
 .basic_right_ul li{ line-height:30px; line-height:30px;}
@@ -1790,7 +1790,7 @@ font-family: "宋体";
   width: 100%;
   margin-top: 10px;
   overflow:hidden;
-  height: 290px;
+  height: 270px;
 }
 /*左侧导航icon*/
 .navbar{width:20px;height:22px;position:absolute;background: url(../img/baricon.png) 0 0 no-repeat;top: 14px;left: 22px;}
@@ -1848,6 +1848,17 @@ font-family: "宋体";
 .lft .toggle_li li a{color:#eee !important;}
 .lft .toggle_li li ul a{padding-left:30px;}
 .lft .toggle_li li a:hover,.lft .toggle_li li.on a{color:#6dafee !important;}
+/*消息提醒*/
+/* .message table{border-radius:6px;margin-bottom: 10px;width:80% !important;}*/
+.message table .message_t{width:20%;}
+.message table .message_t1{width:40%}
+.message table .message_n{width:80%;}
+.message table th{font-size: 16px;font-family: "微软雅黑";color:#6b799f;padding-left: 25px !important;}
+.message .bootstrap-table .table > tbody > tr > td{padding-left: 30px !important;}
+.message table .operator{margin-right: 10px;}
+.r_news table{table-layout:fixed;}
+.r_news table td{white-space:nowrap;text-overflow:ellipsis;overflow:hidden;}
+.r_news .fixed-table-pagination{display:none !important;} 
 /*添加日程*/
 #top{height:72px;}
 .add_schedule{background:url(../img/no_icon.png) 0 -57px no-repeat;padding-left:15px;float:right;}
@@ -1868,3 +1879,4 @@ dl{position: relative;}
 }
 .no_info_div{ width:230px; margin-left:auto; margin-right:auto; padding-top:80px;}
 .no_info_div span{ text-align: center; line-height:30px; color:#bbb;}
+.mask_platform_time,.mask_platform_progress{width:100%;height:148px;position:absolute;background-color: #000;z-index: 9;opacity: 0;filter:Alpha(opacity=0);display:none;}
