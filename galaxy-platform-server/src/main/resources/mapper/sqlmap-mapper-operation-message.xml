@@ -13,15 +13,18 @@
 		 <result 	column="content" 		property="content"  	jdbcType="VARCHAR"/>
 		 <result 	column="module" 		property="module"  		jdbcType="INTEGER" />
 		 <result 	column="belong_uid" 	property="belongUid"  	jdbcType="BIGINT" />
-		 <result 	column="belong_uname" 	property="belongUname"  	jdbcType="VARCHAR" />
+		 <result 	column="belong_uname" 	property="belongUname"  jdbcType="VARCHAR" />
 		 <result 	column="created_time" 	property="createdTime" 	jdbcType="BIGINT" />
+		 <result 	column="operator_deparement_id" 	property="operatorDepartmentId" jdbcType="BIGINT" />
+		 <result 	column="belong_department_id" 		property="belongDepartmentId" 	jdbcType="BIGINT" />
+		 <result 	column="message_type" 	property="messageType" 	jdbcType="VARCHAR" />
 
 	</resultMap>
 	
 	<sql id="Base_Column_List">
 		id,department,role,type,project_name,
 		operator,content,created_time,module,belong_uid,belong_uname,project_id,
-		operator_id
+		operator_id,operator_deparement_id,belong_department_id,message_type
 	</sql>
 
 
@@ -33,11 +36,11 @@
 	       	 t_operation_message (
 				department,role,type,project_name,module,belong_uid,belong_uname,
 				operator,content,project_id,created_time,
-				operator_id
+				operator_id,operator_deparement_id,belong_department_id,message_type
 	        ) VALUES (
 	        	#{department},#{role},#{type},#{projectName},#{module},#{belongUid},#{belongUname},
 	        	#{operator},#{content},#{projectId},#{createdTime},
-	        	#{operatorId}
+	        	#{operatorId},#{operatorDepartmentId},#{belongDepartmentId},#{messageType}
 	        )
     </insert>
     
@@ -45,20 +48,60 @@
     
     <sql id="Base_Where_Clause">
 		<where>
-			<trim prefixOverrides="and">
+			<trim prefixOverrides="and|or">
 				<if test="id != null"> AND id = #{id}</if>
 				<if test="type != null"> AND type = #{type}</if>
 				<if test="module != null"> AND module = #{module}</if>
 				<if test="createdTimeStart != null"> AND created_time >= #{createdTimeStart}</if>
 				<if test="createdTimeEnd != null"> AND   #{createdTimeEnd} >= created_time </if>
+				<if test="operatorDepartmentId != null"> AND  operator_deparement_id = #{operatorDepartmentId}  </if>
 				<if test="projectIds != null"> 
 					AND project_id IN
 							<foreach collection="projectIds" index="item" item="item" open="(" separator="," close=")">
 					            #{item}
 					        </foreach>
 				</if>
-				<!-- 模糊查询 -->
+				<if test="messageTypes != null"> 
+					AND message_type IN
+							<foreach collection="messageTypes" index="item" item="item" open="(" separator="," close=")">
+					            #{item}
+					        </foreach>
+				</if>
 				
+				<if test="inAll != null or inPer != null or inPat != null"> 
+					and (
+					<trim prefixOverrides="or">
+						<if test="inAll != null"> 
+						or (message_type IN
+								<foreach collection="inAll" index="item" item="item" open="(" separator="," close=")">
+						            #{item}
+						        </foreach>
+						    )
+						</if>
+						<if test="inPer != null"> 
+							or( message_type IN
+									<foreach collection="inPer" index="item" item="item" open="(" separator="," close=")">
+							            #{item}
+							        </foreach>
+							   and
+							   	belong_uid = #{belongUid}
+							   )
+						</if>
+						<if test="inPat != null"> 
+							or( message_type IN
+									<foreach collection="inPat" index="item" item="item" open="(" separator="," close=")">
+							            #{item}
+							        </foreach>
+							   and
+							   	belong_department_id = #{belongDepartmentId}
+							   )
+						</if>
+					</trim>
+					)
+				</if>
+				
+				
+				<!-- 模糊查询 -->
 				 <if test="keyword != null">    
 					AND project_name  LIKE '%${keyword}%'  
 					 	<if test="escapeChar ">
