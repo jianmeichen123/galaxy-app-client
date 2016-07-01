@@ -12,7 +12,22 @@ public class OperationMessageBo extends OperationMessage  implements Pagable{
 	private List<String> projectIds;
 	private Long createdTimeStart;
 	private Long count;
+	private List<String> messageTypes;
+	private Long roleId;
+	private List<String> inAll;
+	private List<String> inPer;
+	private List<String> inPat;
 	
+	public List<String> getMessageTypes()
+	{
+		return messageTypes;
+	}
+
+	public void setMessageTypes(List<String> messageTypes)
+	{
+		this.messageTypes = messageTypes;
+	}
+
 	public String getExtendFiled() {
 		return extendFiled;
 	}
@@ -104,6 +119,38 @@ public class OperationMessageBo extends OperationMessage  implements Pagable{
 	public String getProperty() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public Long getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
+	}
+
+	public List<String> getInAll() {
+		return inAll;
+	}
+
+	public void setInAll(List<String> inAll) {
+		this.inAll = inAll;
+	}
+
+	public List<String> getInPer() {
+		return inPer;
+	}
+
+	public void setInPer(List<String> inPer) {
+		this.inPer = inPer;
+	}
+
+	public List<String> getInPat() {
+		return inPat;
+	}
+
+	public void setInPat(List<String> inPat) {
+		this.inPat = inPat;
 	}
 
 	
