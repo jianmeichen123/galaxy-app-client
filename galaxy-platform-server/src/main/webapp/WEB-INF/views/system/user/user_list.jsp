@@ -78,15 +78,15 @@
 					data-toolbar="#custom-toolbar">
 						   <thead>
 						    <tr>
-					        <th data-field="nickName" data-align="center" class="data-input">登陆名称</th>
-					        <th data-field="status" data-align="center" data-formatter="formatStatus" class="data-input">账户状态</th>
-					        <th data-field="realName" data-align="center" class="col-md-1 status ">真实姓名</th>
-					        <th data-field="gender" data-align="center" data-formatter="formatGender">性别</th>
-					        <th data-field="departmentName" data-align="center" data-formatter="formatDept">所属部门</th>
-					        <th data-field="role" data-align="center" class="col-md-2" >职能角色</th>
-					        <th data-field="mobile" data-align="center" class="col-md-2" >手机号</th>
-					        <th data-field="telephone" data-align="center" class="col-md-2" >办公分机</th>
-					        <th data-align="center" class="col-md-2" data-formatter="editor">操作</th>
+					        <th data-field="nickName"  class="data-input">登陆名称</th>
+					        <th data-field="status"  data-formatter="formatStatus" class="data-input">账户状态</th>
+					        <th data-field="realName"  class="col-md-1 status ">真实姓名</th>
+					        <th data-field="gender"  data-formatter="formatGender">性别</th>
+					        <th data-field="departmentName"  data-formatter="formatDept">所属部门</th>
+					        <th data-field="role"  class="col-md-2" >职能角色</th>
+					        <th data-field="mobile"  class="col-md-2" >手机号</th>
+					        <th data-field="telephone"  class="col-md-2" >办公分机</th>
+					        <th  class="col-md-2" data-formatter="editor">操作</th>
 
    						 	</tr>	
    						 	</thead>
