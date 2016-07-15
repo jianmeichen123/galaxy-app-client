@@ -9,7 +9,7 @@ import com.galaxyinternet.platform.constant.PlatformConst;
  */
 public enum OperationType {
 	
-	UPDATE					("/galaxy/project/editProject",					PlatformConst.PROJECT_TYPE, "编辑"), 
+	UPDATE					("/galaxy/project/editProject",		PlatformConst.PROJECT_TYPE, "编辑"), 
 	
 	PRO_START_REVIEW		("/galaxy/project/startReview", 	PlatformConst.PROJECT_TYPE, "启动内部评审"),
 	
@@ -62,7 +62,10 @@ public enum OperationType {
 	_6_9_p1_			("/galaxy/project/stageChange/"+UrlNumber.eleven,		PlatformConst.PROJECT_TYPE, "进入股权交割阶段"),
 	_6_9_p2_			("/galaxy/project/stageChange/"+UrlNumber.twelve,		PlatformConst.PROJECT_TYPE, "进入股权交割阶段"),
 	_6_10_p1_			("/galaxy/soptask/submitTask/"+UrlNumber.four,		PlatformConst.PROJECT_TYPE, "进入投后运营阶段"),
-	_6_10_p2_			("/galaxy/soptask/submitTask/"+UrlNumber.six,		PlatformConst.PROJECT_TYPE, "进入投后运营阶段");
+	_6_10_p2_			("/galaxy/soptask/submitTask/"+UrlNumber.six,		PlatformConst.PROJECT_TYPE, "进入投后运营阶段"),
+	
+	
+	PRO_HEALTH			("/galaxy/health/addhealth",		PlatformConst.PROJECT_TYPE, "项目健康度");
 	
 	private OperationType(String uniqueKey, String type, String content, Integer module) {
 		this.uniqueKey = uniqueKey;
