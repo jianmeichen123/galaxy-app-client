@@ -45,4 +45,9 @@ public class UserDaoImpl extends BaseDaoImpl<User, Long>implements UserDao {
 	public List<User> selectTzjlSum(Map<String, Object> params) {
 		return sqlSessionTemplate.selectList(getSqlName("selectTzjlSum"),params);
 	}
+
+	@Override
+	public List<User> selectAllTzjl(Map<String, Object> params) {
+		return sqlSessionTemplate.selectList(getSqlName("selectAllTzjl"),params);
+	}
 }
