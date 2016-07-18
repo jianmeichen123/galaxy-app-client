@@ -14,4 +14,5 @@ public interface UserDao extends BaseDao<User, Long> {
 	public List<User> selectListById(List<String> idList);
 	
 	public List<User> selectTzjlSum(Map<String, Object> params);
+	List<User> selectAllTzjl(Map<String, Object> params);
 }
