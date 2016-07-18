@@ -96,6 +96,12 @@ var platformUrl = {
 	 * 获取token
 	 */
 	getToken:"galaxy/user/formtoken",
+	
+	/**
+	 * 查询角色列表
+	 */
+	getRoleList :"galaxy/role/roleList",
+	
 }
 /**
  * how to use? location.href = platformUrl.login

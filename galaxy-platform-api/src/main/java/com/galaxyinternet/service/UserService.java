@@ -110,4 +110,6 @@ public interface UserService extends BaseService<User> {
 	public List<Map<String, Object>> report(Map<String,Object> params);
 
 	List<User> querytTzjlSum(Map<String, Object> params);
+
+	List<User> querytAllTzjl(Map<String, Object> params);
 }
