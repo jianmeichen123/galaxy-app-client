@@ -48,6 +48,10 @@ String endpoint = (String)application.getAttribute(OSSConstant.GALAXYINTERNET_FX
 	endpointObj = JSON.parse(contextEndPoint);
 	sessionId = '<%=sessionId%>',realName = '<%=realName%>',userId = '<%=userId%>';
 	
+	
+	/**
+	 * @time 2016-07-29
+	 */
 	var allResourceToUser = new Array();
 	<%
 	if(user != null){
@@ -55,10 +59,20 @@ String endpoint = (String)application.getAttribute(OSSConstant.GALAXYINTERNET_FX
 		if(list!=null){
 			for(int j=0;j<list.size();j++)
 			{%>
-				allResourceToUser.push("<%=list.get(j)%>");
+				allResourceToUser.push(<%=list.get(j)%>);
 			<%}
 		}}%>
-	console.log(allResourceToUser);
+		
+		function isContainResourceByMark(mark){
+			var result = false;
+			$.each(allResourceToUser, function(index, element){
+				if(element.resourceMark == mark){
+					result = true;
+				}
+			});
+			return result;
+		}
+		//console.log(isContainResourceByMark("ttt_interView"));
 </script>
 <script src="<%=request.getContextPath() %>/js/common.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath() %>/js/axure.js" type="text/javascript"></script>

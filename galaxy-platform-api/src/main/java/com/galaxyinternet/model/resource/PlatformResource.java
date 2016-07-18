@@ -1,5 +1,6 @@
 package com.galaxyinternet.model.resource;
 
+import com.alibaba.fastjson.JSON;
 import com.galaxyinternet.framework.core.model.PagableEntity;
 
 public class PlatformResource extends PagableEntity {
@@ -92,5 +93,10 @@ public class PlatformResource extends PagableEntity {
     }
     public void setResourceDesc(String resourceDesc) {
         this.resourceDesc = resourceDesc;
+    }
+    
+    @Override
+    public String toString() {
+    	return JSON.toJSONString(this);
     }
 }
