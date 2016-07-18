@@ -40,7 +40,7 @@
 		</init-param>
 		<init-param>
 			<param-name>checkUrls</param-name>
-			<param-value>/galaxy/project/progress/interView</param-value>
+			<param-value>/galaxy/test/ajax</param-value>
 		</init-param>
 	</filter>
 	<filter-mapping>
