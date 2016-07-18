@@ -16,6 +16,7 @@ public class PlatformResource extends PagableEntity {
     private Long resourceOrder;
     private String resourceStatus;
     private String productMark;
+    private Integer applicationPlatform;
     private Long createdUid;
     private Long updatedUid;
     private String resourceDesc;
@@ -67,7 +68,13 @@ public class PlatformResource extends PagableEntity {
     public void setProductMark(String productMark) {
         this.productMark = productMark;
     }
-    public Long getCreatedUid() {
+    public Integer getApplicationPlatform() {
+		return applicationPlatform;
+	}
+	public void setApplicationPlatform(Integer applicationPlatform) {
+		this.applicationPlatform = applicationPlatform;
+	}
+	public Long getCreatedUid() {
         return createdUid;
     }
     public void setCreatedUid(Long createdUid) {
