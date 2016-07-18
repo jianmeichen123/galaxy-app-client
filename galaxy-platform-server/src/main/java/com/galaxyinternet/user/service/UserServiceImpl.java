@@ -2,6 +2,7 @@ package com.galaxyinternet.user.service;
 
 import static com.galaxyinternet.utils.ValidationUtil.throwPlatformException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -227,6 +228,29 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		if (userRole != null && userRole.getRoleId() != null) {
 			Role role = roleService.queryById(userRole.getRoleId());
 			return role;
+		} else {
+			return null;
+		}
+
+	}
+	
+	@Override
+	public List<User> getUserByRoleId(Long roleId) {
+		UserRole userRole = new UserRole();
+		userRole.setRoleId(roleId);
+		 List<UserRole> queryList = userRoleService.queryList(userRole);
+		 List<String> ids=new ArrayList<String>();
+			 if(null!=queryList&&!queryList.isEmpty()){
+			 for(UserRole ur:queryList){
+				 ids.add(ur.getUserId().toString());
+			 }
+		 }
+		if (ids != null&&!ids.isEmpty() ) {
+			 List<User> selectListById = userDao.selectListById(ids);
+			 for(int i=0;i<selectListById.size();i++){
+				 
+			 }
+			return selectListById;
 		} else {
 			return null;
 		}

@@ -49,6 +49,7 @@ import com.galaxyinternet.model.role.Role;
 import com.galaxyinternet.model.user.User;
 import com.galaxyinternet.service.DepartmentService;
 import com.galaxyinternet.service.RoleService;
+import com.galaxyinternet.service.UserService;
 
 /**
  * 用户相关
@@ -65,6 +66,9 @@ public class RoleController extends BaseControllerImpl<Role, RoleBo> {
 	
 	@Autowired
 	private Cache cache;
+	
+	@Autowired
+	private UserService userService;
 	
 	@Override
 	protected BaseService<Role> getBaseService() {
@@ -83,20 +87,83 @@ public class RoleController extends BaseControllerImpl<Role, RoleBo> {
 		ResponseData<Role> responseBody = new ResponseData<Role>();
 		try {
 			// 部门列表
-			List<Role> deptList = null;
-			deptList = roleService.queryAll();
-			responseBody.setEntityList(deptList);
+			List<Role> roleList = null;
+			if(type!=null){
+			    roleList = roleService.queryAll();
+			}else{
+				roleList=roleService.queryRoleList();
+			}
+			responseBody.setEntityList(roleList);
 			responseBody.setResult(new Result(Status.OK, ""));
 			return responseBody;
 
 		} catch (PlatformException e) {
 			responseBody
-					.setResult(new Result(Status.ERROR, "departmentList faild"));
+					.setResult(new Result(Status.ERROR, "roleList faild"));
 
 			if (logger.isErrorEnabled()) {
-				logger.error("departmentList ", e);
+				logger.error("roleList ", e);
 			}
 		}
 		return responseBody;
 	}
+	
+	/**
+	 * 新增角色
+	 * @param user
+	 * @param result
+	 * @return
+	 */
+	@Token
+	@ResponseBody
+	@RequestMapping(value = "/addRole", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseData<Role> addRole( @RequestBody Role role) {
+		ResponseData<Role> responseBody = new ResponseData<Role>();
+	
+		Result jsonResult = new Result();
+		Long result=null;
+		try {				
+			result  = roleService.insert(role);
+			
+		} catch (PlatformException e) {
+			
+			e.printStackTrace();
+		} 
+		 if (result ==null||result < 1) {
+			 jsonResult.addError("新增角色失败");
+				responseBody.setResult(jsonResult);
+			} 
+		return responseBody;
+	}
+	@ResponseBody
+	@RequestMapping(value = "/getRoleDetail", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+public ResponseData<Role> getRoleDetail(Long rid) {
+		
+		ResponseData<Role> responseBody = new ResponseData<Role>();
+		try {
+			// 部门列表
+			Role role=new Role();
+			role = roleService.queryById(rid);
+		    List<User> userByRoleId = userService.getUserByRoleId(rid);
+		    if(null!=userByRoleId){
+		    	role.setUserListByRid(userByRoleId);	
+		    }
+			responseBody.setEntity(role);
+			responseBody.setResult(new Result(Status.OK, ""));
+			return responseBody;
+
+		} catch (PlatformException e) {
+			responseBody
+					.setResult(new Result(Status.ERROR, "role faild"));
+
+			if (logger.isErrorEnabled()) {
+				logger.error("role ", e);
+			}
+		}
+		return responseBody;
+	}
+	
+	
+	
+	
 }
