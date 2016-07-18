@@ -1,10 +1,13 @@
 package com.galaxyinternet.model.role;
 
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import com.galaxyinternet.framework.core.model.BaseEntity;
+import com.galaxyinternet.model.user.User;
 
 /**
  * 角色
@@ -41,6 +44,8 @@ public class Role extends BaseEntity {
 	 * disabled
 	 */
 	private Integer disabled;
+	
+	private List<User> userListByRid;
 
 	public void setName(String name) {
 
@@ -129,4 +134,14 @@ public class Role extends BaseEntity {
 	public boolean equals(Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj);
 	}
+
+	public List<User> getUserListByRid() {
+		return userListByRid;
+	}
+
+	public void setUserListByRid(List<User> userListByRid) {
+		this.userListByRid = userListByRid;
+	}
+	
+	
 }
