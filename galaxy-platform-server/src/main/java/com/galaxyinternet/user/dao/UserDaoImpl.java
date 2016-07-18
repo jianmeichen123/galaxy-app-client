@@ -1,6 +1,7 @@
 package com.galaxyinternet.user.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -35,5 +36,13 @@ public class UserDaoImpl extends BaseDaoImpl<User, Long>implements UserDao {
 	public User selectByRealName(String realName) {
 		return sqlSessionTemplate.selectOne(getSqlName("selectByRealName"),
 				realName);
+	}
+	
+	
+	
+	//== report
+	@Override
+	public List<User> selectTzjlSum(Map<String, Object> params) {
+		return sqlSessionTemplate.selectList(getSqlName("selectTzjlSum"),params);
 	}
 }

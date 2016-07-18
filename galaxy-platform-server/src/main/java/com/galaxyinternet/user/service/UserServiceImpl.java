@@ -3,6 +3,7 @@ package com.galaxyinternet.user.service;
 import static com.galaxyinternet.utils.ValidationUtil.throwPlatformException;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -312,4 +313,16 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		return userDao.selectByRealName(realName);
 	}
 
+	
+	//====report
+	@Override
+	public List<Map<String, Object>> report(Map<String, Object> params) {
+		return null;
+	}
+	
+	
+	@Override
+	public List<User> querytTzjlSum(Map<String, Object> params) {
+		return userDao.selectTzjlSum(params);
+	}
 }

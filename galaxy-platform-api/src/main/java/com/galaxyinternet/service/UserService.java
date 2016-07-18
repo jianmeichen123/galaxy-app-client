@@ -1,6 +1,7 @@
 package com.galaxyinternet.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.data.domain.Pageable;
 
@@ -105,4 +106,8 @@ public interface UserService extends BaseService<User> {
 	
 	//导入数据用
 	public User queryUserByRealName(String realName);
+	
+	public List<Map<String, Object>> report(Map<String,Object> params);
+
+	List<User> querytTzjlSum(Map<String, Object> params);
 }

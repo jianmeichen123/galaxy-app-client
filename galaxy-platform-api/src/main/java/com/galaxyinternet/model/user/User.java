@@ -15,6 +15,8 @@ import com.galaxyinternet.framework.core.utils.DateUtil;
 public class User extends BaseUser {
 	private static final long serialVersionUID = 1L;
 
+	private int userTzjlSum;
+	
 	@NotBlank(message="真实姓名不能为空")
 	private String realName;// 真实姓名
 	@NotBlank(message="登陆名称不能为空")
@@ -243,4 +245,14 @@ public class User extends BaseUser {
 	public void setRoleId(Long roleId) {
 		this.roleId = roleId;
 	}
+
+	public int getUserTzjlSum() {
+		return userTzjlSum;
+	}
+
+	public void setUserTzjlSum(int userTzjlSum) {
+		this.userTzjlSum = userTzjlSum;
+	}
+	
+	
 }

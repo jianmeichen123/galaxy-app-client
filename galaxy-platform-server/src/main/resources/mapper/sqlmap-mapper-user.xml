@@ -310,4 +310,26 @@
 	        )
 	    ]]>
     </insert>
+    
+    
+    
+    
+    
+    <!-- report -->
+    
+    <!-- 查询 -->
+	<select id="selectTzjlSum" resultMap="BaseResultMap" parameterType="java.util.Map">
+		SELECT u.department_id department_id,COUNT(*) userTzjlSum
+		FROM t_user u,t_user_role ur 
+		WHERE u.id = ur.user_id 
+			<if test="roleId != null"> and ur.role_id =#{roleId}</if>  <!-- AND ur.role_id = 4 -->
+			<if test="departmentIds != null">
+					AND u.department_id IN 
+					<foreach collection="departmentIds" index="item" item="item" open="("
+						separator="," close=")">
+						#{item}
+					</foreach>
+			  </if>
+		GROUP BY u.department_id
+	</select>
 </mapper>
