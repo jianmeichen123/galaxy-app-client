@@ -26,6 +26,8 @@ public class Role extends BaseEntity {
 	 */
 	private String roleCode;
 	
+	private Integer applicationPlatform;
+	
 	private Long userId;
 	/**
 	 * description
@@ -62,6 +64,14 @@ public class Role extends BaseEntity {
 
 	public String getRoleCode() {
 		return this.roleCode;
+	}
+
+	public Integer getApplicationPlatform() {
+		return applicationPlatform;
+	}
+
+	public void setApplicationPlatform(Integer applicationPlatform) {
+		this.applicationPlatform = applicationPlatform;
 	}
 
 	public void setDescription(String description) {
