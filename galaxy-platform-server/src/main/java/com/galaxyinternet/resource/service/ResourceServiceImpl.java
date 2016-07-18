@@ -1,5 +1,7 @@
 package com.galaxyinternet.resource.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,12 @@ public class ResourceServiceImpl extends BaseServiceImpl<PlatformResource> imple
 	protected BaseDao<PlatformResource, Long> getBaseDao()
 	{
 		return resourceDao;
+	}
+	
+	
+	@Override
+	public List<PlatformResource> queryResourceListToUser(Long uid) {
+		return resourceDao.selectResourceListToUser(uid);
 	}
 
 }

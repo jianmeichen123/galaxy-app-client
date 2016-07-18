@@ -260,5 +260,13 @@
 			limit #{offset}, #{limit}
 		</if>
 	</sql>
+	
+	
+	
+	<!-- 查询出用户所拥有的资源项 -->
+	<select id="selectResourceListToUser" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select * from platform_resource r inner join platform_role_resource rr on r.id=rr.resource_id
+		where rr.role_id in (select role_id from platform_user_role where user_id = #{uid})
+	</select>
   
 </mapper>

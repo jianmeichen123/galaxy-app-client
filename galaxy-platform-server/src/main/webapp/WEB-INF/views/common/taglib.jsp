@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	import="com.galaxyinternet.framework.core.constants.Constants,com.galaxyinternet.framework.core.oss.OSSConstant,com.galaxyinternet.model.user.User"
+	import="com.galaxyinternet.framework.core.constants.Constants,
+	com.galaxyinternet.framework.core.oss.OSSConstant,
+	com.galaxyinternet.model.user.User,
+	java.util.List,
+	com.galaxyinternet.model.resource.PlatformResource"
 	pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
@@ -43,6 +47,17 @@ String endpoint = (String)application.getAttribute(OSSConstant.GALAXYINTERNET_FX
 	var contextEndPoint = '<%=endpoint%>';
 	endpointObj = JSON.parse(contextEndPoint);
 	sessionId = '<%=sessionId%>',realName = '<%=realName%>',userId = '<%=userId%>';
+	
+	var allResourceToUser = new Array();
+	<%
+	List<PlatformResource> list = user.getAllResourceToUser();
+	if(list!=null){
+	for(int j=0;j<list.size();j++)
+	{%>
+	allResourceToUser.push("<%=list.get(j)%>");
+	<%}
+	}%>
+	console.log(allResourceToUser);
 </script>
 <script src="<%=request.getContextPath() %>/js/common.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath() %>/js/axure.js" type="text/javascript"></script>
