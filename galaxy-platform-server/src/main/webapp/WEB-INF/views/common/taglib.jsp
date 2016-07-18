@@ -50,13 +50,14 @@ String endpoint = (String)application.getAttribute(OSSConstant.GALAXYINTERNET_FX
 	
 	var allResourceToUser = new Array();
 	<%
-	List<PlatformResource> list = user.getAllResourceToUser();
-	if(list!=null){
-	for(int j=0;j<list.size();j++)
-	{%>
-	allResourceToUser.push("<%=list.get(j)%>");
-	<%}
-	}%>
+	if(user != null){
+		List<PlatformResource> list = user.getAllResourceToUser();
+		if(list!=null){
+			for(int j=0;j<list.size();j++)
+			{%>
+				allResourceToUser.push("<%=list.get(j)%>");
+			<%}
+		}}%>
 	console.log(allResourceToUser);
 </script>
 <script src="<%=request.getContextPath() %>/js/common.js" type="text/javascript"></script>

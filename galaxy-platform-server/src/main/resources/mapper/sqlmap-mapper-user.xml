@@ -340,6 +340,7 @@
 		FROM platform_user u,platform_user_role ur 
 		WHERE u.id = ur.user_id 
 			<if test="roleId != null"> and ur.role_id =#{roleId}</if>  <!-- AND ur.role_id = 4 -->
-			<if test="status != null"> and status =#{status}</if>
+			<if test="departmentId != null"> and u.department_id =#{departmentId}</if>
+			<if test="status != null"> and u.status =#{status}</if>
 	</select>
 </mapper>
