@@ -286,7 +286,7 @@ dTree.prototype.node = function(node, nodeId) {
 		}
 
 		str += '<input type="checkbox" name="checkid" id="c'+this.parEnum+'"';
-        str +=' value="' + node.id +'" class="cx"';
+        str +=' value="' + node.id +'" class="cx_input"';
         if(!node.checkclick||node.checkclick==""){
             str += ' onClick="caBox(\''+this.formId+'\',\'c'+this.parEnum+'\')"';
         }

@@ -25,29 +25,63 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
-	<div class="pagebox clearfix">
+<div class="pagebox clearfix">
 	
 		<!--左侧导航-->
 		<jsp:include page="/WEB-INF/views/common/leftmenu.jsp" flush="true"></jsp:include>
 		<!--左侧导航-->
+		<div class="ritmin prj_all">
+    	<div class="new_tit_a"><a href="#" onclick="backIndex()">角色权限</a>&gt;编辑</div>
+       	<div class='role_center'>
+        	<div class="role_center_info">
+            	<ul class="ul_role">
+                	<li>
+                    	<div class="fl width_150 align_r">角色名称：</div>
+                        <div class="fl"><input type="text" class="new_nputr"></div>
+                    </li>
+                    <li>
+                    	<div class="fl width_150 align_r">角色描述：</div>
+                        <div class="fl"><textarea type="text" class="role_textarea"></textarea></div>
+                    </li>
+                    <li>
+                    	<div class="fl width_150 align_r">用户列表：</div>
+                        <div class="fl role_list">
+                            <span>用户列</span><span>用户列</span><span>用户列</span><span>用户列</span><span>用户列</span>
+                            <span>用户列</span><span>用户列</span><span>用户列</span><span>用户列</span>
+                            <span>用户列</span><span>用户列</span><span>用户列</span>
+                            <span>用户列</span><span>用户列</span><span>用户列</span>
+                            <span>用户列</span><span>用户列</span><span>用户列</span>
+                            <span>用户列</span><span>用户列</span><span>用户列</span>
+                        </div>
+                    </li>
+                    <li>
+                    	<div class="fl width_150 align_r">权限配置：</div>
+                        <div class="fl role_border">
+                            
+                            <div class="role_line"></div>
+                            <div class="role_set" id="form">
+                            	<div id="test">
+			                          
+			  					</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                    	<div class="fl width_150 align_r">　</div>
+                        <div class="fl">
+                        	<div class="role_save">
+                               <span class="pubbtn bluebtn" onclick="add();">保存</span>
+                               <span class="pubbtn fffbtn" data-name="industry" data-on="close">取消</span>
+                           </div>
+                        </div>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
 		
-		<!--右中部内容-->
-		<div class="ritmin"  source="user" id="form">
-			<h2>测试页面</h2>
-			 <!--  <table class="maintable">
-                <tr><td id="test"></td></tr>
-			
-			  </table> -->
-			  <div id="test">
-			  
-			  </div>
-
-		</div>
-
-
-
-
-	</div>
+	
 	<script src="js/layer/layer.js" type="text/javascript"></script>
 	<script src="js/jquery-ui.min.js"></script>
 	<script src="dtree/dtree.js"></script>
@@ -94,7 +128,7 @@
 					    param2.name = "自己的项目";
 					    param2.value = "自己的项目";
 					    obj.push(param2);
-					    var select= "<select id=\"select\" name =\"test\">";
+					    var select= "<select id=\"select\" class=\"cx_select\" name =\"test\">";
 						$.each(obj,function(i,entity){
 							select += '<option value="'+entity.value+'">'+entity.name+'</option>'; 
 						});
