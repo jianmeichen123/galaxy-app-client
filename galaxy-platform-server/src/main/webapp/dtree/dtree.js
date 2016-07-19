@@ -109,11 +109,11 @@ function dTree(objName, iPath, formId) {
 
 		plus				: iPath+'plus1.gif',
 
-		plusBottom	: iPath+'plusbottom.gif',
+		plusBottom	: iPath+'plus1.gif',
 
 		minus				: iPath+'minus1.gif',
 
-		minusBottom	: iPath+'minusbottom.gif',
+		minusBottom	: iPath+'minus1.gif',
 
 		nlPlus			: iPath+'nolines_plus.gif',
 
@@ -253,7 +253,32 @@ dTree.prototype.addNode = function(pNode) {
 dTree.prototype.node = function(node, nodeId) {
 	//alert("nodeId = " + nodeId + " | parentId = " + node.pid + " | nodeId = " + node.id);
 	var str = '<div class="dTreeNode">' + this.indent(node, nodeId);
+	
+	if(this.config.useCheckBox && nodeId!=0){
+		if(node.pid==0){
+			this.parEnum += node.id + "-";
+		}
+		else{
+			//alert("parEnum1 = " + this.parEnum + "node id = " + node.pid);	
+			var pL = this.parEnum.indexOf(node.pid+"-");
+			//alert(this.parEnum.substring(0,pL+(node.pid+"-").length))
+			this.parEnum = this.parEnum.substring(0,pL+(node.pid+"-").length) + node.id + "-";		
+			//alert("parEnum2 = " + this.parEnum);	
+		}
 
+		str += '<input type="checkbox" class="cx_input" name="checkid" id="c'+this.parEnum+'"';
+        str +=' value="' + node.id +'" class="cx_input"';
+        if(!node.checkclick||node.checkclick==""){
+            str += ' onClick="caBox(\''+this.formId+'\',\'c'+this.parEnum+'\')"';
+        }
+        else{
+            str += ' onClick="'+node.checkclick+'"';
+        }
+         if(node.checkflag==1){
+            str +=' checked ';
+        }
+        str += '/>';
+    }
 	if (this.config.useIcons) {
 
 		if (!node.icon) node.icon = (this.root.id == node.pid) ? this.icon.root : ((node._hc) ? this.icon.folder : this.icon.node);
@@ -271,34 +296,6 @@ dTree.prototype.node = function(node, nodeId) {
 		str += '<img id="i' + this.obj + nodeId + '" src="' + ((node._io) ? node.iconOpen : node.icon) + '" alt="" />';
 
 	}
-
-	
-	if(this.config.useCheckBox && nodeId!=0){
-		if(node.pid==0){
-			this.parEnum += node.id + "-";
-		}
-		else{
-			//alert("parEnum1 = " + this.parEnum + "node id = " + node.pid);	
-			var pL = this.parEnum.indexOf(node.pid+"-");
-			//alert(this.parEnum.substring(0,pL+(node.pid+"-").length))
-			this.parEnum = this.parEnum.substring(0,pL+(node.pid+"-").length) + node.id + "-";		
-			//alert("parEnum2 = " + this.parEnum);	
-		}
-
-		str += '<input type="checkbox" name="checkid" id="c'+this.parEnum+'"';
-        str +=' value="' + node.id +'" class="cx_input"';
-        if(!node.checkclick||node.checkclick==""){
-            str += ' onClick="caBox(\''+this.formId+'\',\'c'+this.parEnum+'\')"';
-        }
-        else{
-            str += ' onClick="'+node.checkclick+'"';
-        }
-         if(node.checkflag==1){
-            str +=' checked ';
-        }
-        str += '/>';
-    }
-
 	if (node.url) {
 
 		str += '<a id="s' + this.obj + nodeId + '" class="' + ((this.config.useSelection) ? ((node._is ? 'nodeSel' : 'node')) : 'node') + '" href="' + node.url + '"';
@@ -316,7 +313,6 @@ dTree.prototype.node = function(node, nodeId) {
 		str += '>';
 
 	}
-
 	else if ((!this.config.folderLinks || !node.url) && node._hc && node.pid != this.root.id)
 
 		str += '<a href="javascript: ' + this.obj + '.o(' + nodeId + ');" class="node">';

@@ -11,11 +11,7 @@
 	white-space: nowrap;
 	position: relative;
 }
-.dtree img {
-	border: 0px;
-	vertical-align: middle;
-	float:left;
-}
+
 .dtree a {
 	color: #333;
 	text-decoration: none;
@@ -35,4 +31,10 @@
 	overflow: hidden;
 }
 .dTreeNode{ overflow:hidden; height:35px; width:300px;}
-.cx_select{ position: absolute; right:0; z-index:3;}
+.cx_select{ position: absolute; right:0; z-index:3; padding: 2px 0 !important;}
+.cx_input{ float:left; margin-right:5px; margin-top:1px;}
+.dtree img {
+	border: 0px;
+	vertical-align: middle;
+	float:left;
+}
