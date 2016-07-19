@@ -75,7 +75,7 @@
 				},
 				success : function(data) {
 					    var rolerights=data.entity.resourceIdList;
-					    var relativePath="dtree/img/";
+					    var relativePath="dtree/";
 					    d = new dTree('d',relativePath,"form");
 					    d.add(0,-1,'所有权限');
 					    var entityList = data.entityList;
@@ -103,9 +103,9 @@
 						 
 					    $.each(entityList,function(i,entity){
 					    	if(rolerights.indexOf(entity.id) >= 0){
-				    			 d.add(entity.id,entity.parentId,entity.resourceName,'',1,true,select.toString());
+				    			 d.add(entity.id,entity.parentId,entity.resourceName,'',1,'',true,select);
 				    		}else{
-				    			 d.add(entity.id,entity.parentId,entity.resourceName,'','',true,select.toString());
+				    			 d.add(entity.id,entity.parentId,entity.resourceName,'','','',true,select);
 				    			
 				    		}
 					    });
