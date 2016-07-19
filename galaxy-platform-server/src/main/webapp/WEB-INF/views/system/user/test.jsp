@@ -58,12 +58,13 @@
                     	<div class="fl width_150 align_r">权限配置：</div>
                         <div class="fl role_border">
                             
-                            <div class="role_line"></div>
+                            
                             <div class="role_set" id="form">
                             	<div id="test">
 			                          
 			  					</div>
                             </div>
+                            <div class="role_line"></div>
                         </div>
                     </li>
                     <li>
