@@ -1,5 +1,7 @@
 package com.galaxyinternet.model.resource;
 
+import java.util.List;
+
 import com.alibaba.fastjson.JSON;
 import com.galaxyinternet.framework.core.model.PagableEntity;
 
@@ -23,7 +25,18 @@ public class PlatformResource extends PagableEntity {
     private Long createdUid;
     private Long updatedUid;
     private String resourceDesc;
-    public Long getParentId() {
+    
+    private List<Long> resourceIdList;
+    
+    
+    
+    public List<Long> getResourceIdList() {
+		return resourceIdList;
+	}
+	public void setResourceIdList(List<Long> resourceIdList) {
+		this.resourceIdList = resourceIdList;
+	}
+	public Long getParentId() {
         return parentId;
     }
     public void setParentId(Long parentId) {

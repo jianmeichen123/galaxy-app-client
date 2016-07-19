@@ -1,5 +1,6 @@
 package com.galaxyinternet.resource.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,11 +9,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.galaxyinternet.common.controller.BaseControllerImpl;
@@ -24,8 +28,11 @@ import com.galaxyinternet.framework.core.model.Result;
 import com.galaxyinternet.framework.core.model.Result.Status;
 import com.galaxyinternet.framework.core.service.BaseService;
 import com.galaxyinternet.model.resource.PlatformResource;
+import com.galaxyinternet.model.resource.RoleResource;
 import com.galaxyinternet.model.user.User;
 import com.galaxyinternet.service.ResourceService;
+import com.galaxyinternet.service.RoleResourceService;
+import com.galaxyinternet.service.UserRoleService;
 
 /**
  * Ȩ����Դ����
@@ -39,16 +46,17 @@ public class ResourceController extends BaseControllerImpl<PlatformResource, Pla
 	@Autowired
 	private ResourceService resourceService;
 	
+	@Autowired
+	private UserRoleService userRoleService;
+	
+	@Autowired
+	private RoleResourceService roleResourceService;
+	
+	
 	@Override
 	protected BaseService<PlatformResource> getBaseService() {
 		return this.resourceService;
 	}
-
-	
-	
-	
-	
-	
 
 	/**
 	 * 资源录入保存
@@ -220,11 +228,47 @@ public class ResourceController extends BaseControllerImpl<PlatformResource, Pla
 		return responseBody;
 	}
 	
+	/**
+	 * 树形菜单显示加载
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/resourceTree", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseData<PlatformResource> resourceTree(HttpServletRequest request) {
+		
+		ResponseData<PlatformResource> responseBody = new ResponseData<PlatformResource>();
+		User user = (User) request.getSession().getAttribute(Constants.SESSION_USER_KEY);
+		/**获取角色ID集合**/
+		List<Long> roleIdList = userRoleService.selectRoleIdByUserId(user
+				.getId());
+		/**查询角色对应的资源ID集合**/
+		RoleResource queryRole = new RoleResource();
+		             queryRole.setRoleList(roleIdList);
+		List<RoleResource> roleResourceBoList = roleResourceService.queryList(queryRole);
+		/**获取资源ID的集合**/
+		List<Long> resourceIdList = new ArrayList<Long>();
+		if(!StringUtils.isEmpty(roleResourceBoList)){
+			for(RoleResource resource:roleResourceBoList){
+				resourceIdList.add(resource.getResourceId());
+			}
+		}
+		/**获取全部的资源**/
+		List<PlatformResource> resourceList = resourceService.queryAll();
+		
+		PlatformResource platformResource = new PlatformResource();
+		platformResource.setResourceIdList(resourceIdList);
+		/**组装数据**/
+		responseBody.setEntityList(resourceList);
+		responseBody.setEntity(platformResource);
+		return responseBody;
+	}
 	
-	
-	
-	
-	
+	/**
+	 * 测试
+	 */
+	@RequestMapping(value="/test", method = RequestMethod.GET)
+	public String test(HttpServletRequest request){
+		return "system/user/test";
+	}
 	
 	
 	

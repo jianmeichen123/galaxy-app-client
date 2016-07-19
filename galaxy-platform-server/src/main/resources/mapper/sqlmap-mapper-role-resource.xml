@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="package com.galaxyinternet.model.resource.RoleResource" >
+<mapper namespace="com.galaxyinternet.model.resource.RoleResource" >
   <resultMap id="BaseResultMap" type="com.galaxyinternet.model.resource.RoleResource" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="role_id" property="roleId" jdbcType="BIGINT" />
@@ -156,6 +156,13 @@
 				    <if test="createdTime != null" > and created_time = #{createdTime,jdbcType=BIGINT}</if>
 				    <if test="updatedUid != null" > and updated_uid = #{updatedUid,jdbcType=BIGINT}</if>
 				    <if test="updatedTime != null" > and updated_time = #{updatedTime,jdbcType=BIGINT}</if>
+				    <if test="roleList != null">
+						AND role_id IN
+						<foreach collection="roleList" index="item" item="item" open="("
+			                     separator="," close=")">
+			                         #{item}
+			                  </foreach>
+					</if>
 				</trim>
 			</trim>
 		</where>
