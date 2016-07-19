@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.galaxyinternet.dao.role.RoleDao;
 import com.galaxyinternet.framework.core.dao.BaseDao;
+import com.galaxyinternet.framework.core.model.Page;
+import com.galaxyinternet.framework.core.model.PageRequest;
 import com.galaxyinternet.framework.core.service.impl.BaseServiceImpl;
 import com.galaxyinternet.model.role.Role;
 import com.galaxyinternet.model.user.User;
@@ -30,10 +32,10 @@ public class RoleServiceImpl extends BaseServiceImpl<Role>implements RoleService
 	}
 
 	@Override
-	public List<Role> queryRoleList() {
-		List<Role> selectAll = roleDao.selectAll();
+	public Page<Role> queryRoleList(Role role,PageRequest pageable) {
+		  Page<Role> selectPageList = roleDao.selectPageList(role, pageable);
 		// TODO Auto-generated method stub
-		for (Role r : selectAll) {
+		for (Role r : selectPageList.getContent()) {
 			List<User> userByRoleId = userService.
 					getUserByRoleId(r.getId());
 			if(null!=userByRoleId){
@@ -41,7 +43,7 @@ public class RoleServiceImpl extends BaseServiceImpl<Role>implements RoleService
 			}
 		}
 		
-		return selectAll;
+		return selectPageList;
 	}
 
 }

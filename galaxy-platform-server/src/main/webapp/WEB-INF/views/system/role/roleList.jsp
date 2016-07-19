@@ -1,92 +1,79 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
 <!DOCTYPE html>
-<html><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<html lang="en">
+<head>
 <meta charset="utf-8">
+<meta name="renderer" content="webkit">
 <title>繁星</title>
-<link href="<%=path %>/css/axure.css" type="text/css" rel="stylesheet">
+<base href="<%=basePath%>">
 <!-- jsp文件头和头部 -->
 <%@ include file="/WEB-INF/views/common/taglib.jsp"%>
-
-
+<!-- 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"  type="text/css">
+ -->    <!-- bootstrap-table -->
+	<link rel="stylesheet" href="bootstrap/bootstrap-table/bootstrap-table.css"  type="text/css">
+	<link rel="stylesheet" href="bootstrap/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"  type="text/css">
+    <link href="css/axure.css" type="text/css" rel="stylesheet" />
+    <link href="css/jquery-ui.min.css" type="text/css" rel="stylesheet" />
 </head>
-
 <body>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
-<div class="pagebox clearfix">
+	<div class="pagebox clearfix">
 	
-<!--左侧导航-->
+		<!--左侧导航-->
 		<jsp:include page="/WEB-INF/views/common/leftmenu.jsp" flush="true"></jsp:include>
-<!--左侧导航-->
+		<!--左侧导航-->
+		
 		<!--右中部内容-->
- 	<div class="ritmin prj_all"  source="role">
-    	<div class="new_tit_b">
-        	 <span class="new_color size18">角色权限</span>
-        </div>
-        
-        
-        <div class="top clearfix">
-                <!--按钮-->
-                <div class="btnbox_f btnbox_f1 clearfix">
-                    <a  href="tchtml/role_add.html" data-btn="role_add" data-name='添加角色' class="pubbtn bluebtn ico c4 add_prj">添加角色</a>
-                </div>
-            </div>
-    	<div class='role_center'>
-        	<table width="100%" cellspacing="0">
-        	<tr>
-                <th>角色名称</th>
-                <th>角色描述</th>
-                <th>用户列表</th>
-                <th>操作</th>
-            </tr>
-            <tr>
-                <td>角色名称</td>
-                <td>角色描述</td>
-                <td>用户列表</td>
-                <td><a href="javascript:; " class="blue" style="margin-right:10px;">编辑</a><a href="javascript:; " class="blue">删除</a></td>
-            </tr>
-            <tr>
-                <td>角色名称</td>
-                <td>角色描述</td>
-                <td>用户列表</td>
-                <td><a href="javascript:; " class="blue" style="margin-right:10px;">编辑</a><a href="javascript:;" class='delete'>删除</a></td>
-            </tr>
-            <tr>
-                <td>角色名称</td>
-                <td>角色描述</td>
-                <td>用户列表</td>
-                <td><a href="javascript:; " class="blue" style="margin-right:10px;">编辑</a><a href="javascript:; " class="blue">删除</a></td>
-            </tr>
-        </table>
-        <!--分页-->
-          <div class="pagright clearfix">
-              <ul class="paging clearfix">
-                  <li>每页<input type="text" class="txt" value="20"/>条/共<span>9</span>条记录</li>
-                  <li class="margin">共1页</li>
-                  <li><a href="javascript:;">|&lt;</a></li>
-                  <li><a href="javascript:;">&lt;</a></li>
-                  <li><a href="javascript:;">&gt;</a></li>
-                  <li><a href="javascript:;">&gt;|</a></li>
-                  <li class="jump clearfix">
-                      第<input type="text" class="txt" value="1"/>页
-                      <input type="button" class="btn margin" value="GO">
-                  </li>
-              </ul>
-          </div>
-        </div>
-        
+		<div class="ritmin"  source="role">
+			<h2>角色权限</h2>
+			<!--页眉-->
+			<div class="top clearfix">
+				<!--按钮-->
+				<div class="btnbox_f btnbox_f1 clearfix">
+					<a href="html/role_add.html" data-btn="role_add"
+						class="pubbtn bluebtn ico c4">添加角色</a>
+				</div>
+			</div>
 
-          
+			<div class="tab-pane active" id="view">		
+					<table id="data-table" data-url="galaxy/role/roleList"  data-page-list="[10, 20, 30]" 
+					data-toolbar="#custom-toolbar">
+						   <thead>
+						    <tr>
+					        <th data-field="name"  class="data-input">角色名称</th>
+					        <th data-field="description"   class="data-input">角色描述</th>
+					        <th data-field="description" data-formatter="formatStatus"  class="col-md-1 status ">用户列表</th>
+					        <th  class="col-md-2" data-formatter="editor">操作</th>
 
-    </div>
+   						 	</tr>	
+   						 	</thead>
+					</table>
+	              </div>
+		</div>
 </div>
-<script src="<%=path %>/js/jquery-1.10.2.min.js" type="text/javascript"></script>
-<script src="<%=path %>/js/axure.js" type="text/javascript"></script>
-<script src="<%=path %>/js/axure_ext.js" type="text/javascript"></script>
+	</div>
+	<script src="js/layer/layer.js" type="text/javascript"></script>
+	<script src="js/role.js" type="text/javascript"></script>
+		<!-- bootstrap-table -->
+	
+	<!-- <script src="js/bootstrap3-typeahead.js"></script> -->
+	<script src="js/jquery-ui.min.js"></script>
+		<!-- bootstrap-table -->
+	<script src="bootstrap/js/bootstrap.min.js"></script>	
+	<!-- bootstrap-table -->
+	<script src="bootstrap/bootstrap-table/bootstrap-table-xhhl.js"></script>
+	<script src="bootstrap/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+	<script src="bootstrap/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+	<script src="js/init.js"></script>	
+	<script src="js/login.js"></script>
+	<script src="<%=request.getContextPath() %>/js/axure_ext.js" type="text/javascript"></script>
 </body>
 </html>
+

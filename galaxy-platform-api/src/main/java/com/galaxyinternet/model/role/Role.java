@@ -7,6 +7,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import com.galaxyinternet.framework.core.model.BaseEntity;
+import com.galaxyinternet.framework.core.model.PagableEntity;
 import com.galaxyinternet.model.user.User;
 
 /**
@@ -15,7 +16,7 @@ import com.galaxyinternet.model.user.User;
  * @author zhaoying
  *
  */
-public class Role extends BaseEntity {
+public class Role extends PagableEntity {
 	/**
 	 * 
 	 */

@@ -25,9 +25,13 @@ var platformUrl = {
 	 */
 	userIndex :Constants.platformContentURL+ "galaxy/user",
 	/**
-	 * 用户权限管理
+	 * 角色管理
 	 */
-	roleIndex :Constants.platformContentURL+ "role/index",
+	roleIndex :Constants.platformContentURL+ "galaxy/role/index",
+    /**
+	 * 删除角色
+	 */
+	deleteRole :Constants.platformContentURL+ "galaxy/role/deleteRole",
 	/**
 	 * 分页查询
 	 */

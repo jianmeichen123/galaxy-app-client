@@ -58,7 +58,7 @@ import com.galaxyinternet.service.UserService;
  *
  */
 @Controller
-@RequestMapping("/role")
+@RequestMapping("/galaxy/role")
 public class RoleController extends BaseControllerImpl<Role, RoleBo> {
 	final Logger logger = LoggerFactory.getLogger(RoleController.class);
 	@Autowired
@@ -86,20 +86,22 @@ public class RoleController extends BaseControllerImpl<Role, RoleBo> {
 	 * @author chenjianmei
 	 * @return
 	 */
-	@ResponseBody
-	@RequestMapping(value = "/roleList", method = RequestMethod.GET)
-	public ResponseData<Role> roleList(Integer type) {
+		@ResponseBody
+	@RequestMapping(value = "/roleList", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseData<Role> roleList(HttpServletRequest request,
+			@RequestBody Role role,Long type) {
 		
 		ResponseData<Role> responseBody = new ResponseData<Role>();
+		Page<Role> pageRole=new Page<>(null, null, null);
 		try {
 			// 部门列表
 			List<Role> roleList = null;
 			if(type!=null){
 			    roleList = roleService.queryAll();
 			}else{
-				roleList=roleService.queryRoleList();
+				pageRole=roleService.queryRoleList(role,new PageRequest(role.getPageNum(), role.getPageSize()));
 			}
-			responseBody.setEntityList(roleList);
+			responseBody.setPageList(pageRole);
 			responseBody.setResult(new Result(Status.OK, ""));
 			return responseBody;
 
@@ -169,7 +171,28 @@ public ResponseData<Role> getRoleDetail(Long rid) {
 		return responseBody;
 	}
 	
-	
+	@ResponseBody
+	@RequestMapping(value = "/deleteRole", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseData<User> deleteRole(@RequestBody Role role) {
+
+			ResponseData<User> responseBody = new ResponseData<User>();
+		try {
+
+			int result = roleService.delete(role);
+			responseBody.setResult(new Result(Status.OK, role));
+
+		} catch (PlatformException e) {
+			responseBody
+					.setResult(new Result(Status.ERROR, "deleteRole faild"));
+
+			if (logger.isErrorEnabled()) {
+				logger.error("deleteRole ", e);
+			}
+		}
+		
+		return responseBody;
+	}
+
 	
 	
 }
