@@ -323,11 +323,11 @@ dTree.prototype.node = function(node, nodeId) {
 	
 	str += node.name;
 
-        if(node.userSelect){
-		str += node.userSelectData;
-	}
-
 	if (node.url || ((!this.config.folderLinks || !node.url) && node._hc)) str += '</a>';
+	
+	if(node.userSelect){
+			str += node.userSelectData;
+	}
 
 	str += '</div>';
 
