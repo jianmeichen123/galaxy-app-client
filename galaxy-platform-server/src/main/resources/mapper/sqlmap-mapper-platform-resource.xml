@@ -12,6 +12,7 @@
     <result column="resource_status" property="resourceStatus" jdbcType="VARCHAR" />
     <result column="product_mark" property="productMark" jdbcType="VARCHAR" />
     <result column="application_platform" property="applicationPlatform" jdbcType="INTEGER" />
+    <result column="style" property="style"/>
     <result column="created_uid" property="createdUid" jdbcType="BIGINT" />
     <result column="created_time" property="createdTime" jdbcType="BIGINT" />
     <result column="updated_uid" property="updatedUid" jdbcType="BIGINT" />
@@ -21,7 +22,7 @@
 
   <sql id="Base_Column_List" >
     id, parent_id, resource_mark, resource_name, resource_url, resource_type, resource_order, 
-    resource_status, product_mark, application_platform, created_uid, created_time, updated_uid, updated_time,resource_desc
+    resource_status, product_mark, application_platform, style, created_uid, created_time, updated_uid, updated_time,resource_desc
   </sql>
   <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -36,12 +37,12 @@
   <insert id="insert" parameterType="com.galaxyinternet.model.resource.PlatformResource"  useGeneratedKeys="true" keyProperty="id">
     insert into platform_resource (id, parent_id, resource_mark, 
       resource_name, resource_url, resource_type, 
-      resource_order, resource_status, product_mark, application_platform,
+      resource_order, resource_status, product_mark, application_platform, style
       created_uid, created_time, updated_uid, 
       updated_time, resource_desc)
     values (#{id,jdbcType=BIGINT}, #{parentId,jdbcType=BIGINT}, #{resourceMark,jdbcType=VARCHAR}, 
       #{resourceName,jdbcType=VARCHAR}, #{resourceUrl,jdbcType=VARCHAR}, #{resourceType,jdbcType=VARCHAR}, 
-      #{resourceOrder,jdbcType=BIGINT}, #{resourceStatus,jdbcType=VARCHAR}, #{productMark,jdbcType=VARCHAR}, #{applicationPlatform}, 
+      #{resourceOrder,jdbcType=BIGINT}, #{resourceStatus,jdbcType=VARCHAR}, #{productMark,jdbcType=VARCHAR}, #{applicationPlatform}, #{style}
       #{createdUid,jdbcType=BIGINT}, #{createdTime,jdbcType=BIGINT}, #{updatedUid,jdbcType=BIGINT}, 
       #{updatedTime,jdbcType=BIGINT}, #{resourceDesc,jdbcType=VARCHAR})
   </insert>
@@ -78,6 +79,9 @@
       </if>
       <if test="applicationPlatform != null" >
         application_platform,
+      </if>
+      <if test="style != null" >
+      style,
       </if>
       <if test="createdUid != null" >
         created_uid,
@@ -126,6 +130,9 @@
       <if test="applicationPlatform != null" >
         #{applicationPlatform},
       </if>
+       <if test="style != null" >
+      #{style},
+      </if>
       <if test="createdUid != null" >
         #{createdUid,jdbcType=BIGINT},
       </if>
@@ -173,6 +180,9 @@
       <if test="applicationPlatform != null" >
       application_platform = #{applicationPlatform},
       </if>
+      <if test="style != null" >
+      style = #{style},
+      </if>
       <if test="createdUid != null" >
         created_uid = #{createdUid,jdbcType=BIGINT},
       </if>
@@ -203,6 +213,7 @@
       resource_status = #{resourceStatus,jdbcType=VARCHAR},
       product_mark = #{productMark,jdbcType=VARCHAR},
       application_platform = #{applicationPlatform},
+      style = #{style},
       created_uid = #{createdUid,jdbcType=BIGINT},
       resource_desc = #{resourceDesc,jdbcType=VARCHAR},
       updated_uid = #{updatedUid,jdbcType=BIGINT},

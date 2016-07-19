@@ -18,6 +18,8 @@ public class PlatformResource extends PagableEntity {
     private String resourceStatus;
     private String productMark;
     private Integer applicationPlatform;
+    //样式
+    private String style;
     private Long createdUid;
     private Long updatedUid;
     private String resourceDesc;
@@ -74,6 +76,12 @@ public class PlatformResource extends PagableEntity {
 	}
 	public void setApplicationPlatform(Integer applicationPlatform) {
 		this.applicationPlatform = applicationPlatform;
+	}
+	public String getStyle() {
+		return style;
+	}
+	public void setStyle(String style) {
+		this.style = style;
 	}
 	public Long getCreatedUid() {
         return createdUid;
