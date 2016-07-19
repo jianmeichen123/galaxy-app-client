@@ -74,7 +74,13 @@ public class RoleController extends BaseControllerImpl<Role, RoleBo> {
 	protected BaseService<Role> getBaseService() {
 		return this.roleService;
 	}
-
+	/**
+	 * 跳转登录
+	 */
+	@RequestMapping(value = "/index")
+	public String index() {
+		return "system/role/roleList";
+	}
 	/**
 	 * 获取部门列表
 	 * @author chenjianmei

@@ -25,6 +25,10 @@ var platformUrl = {
 	 */
 	userIndex :Constants.platformContentURL+ "galaxy/user",
 	/**
+	 * 用户权限管理
+	 */
+	roleIndex :Constants.platformContentURL+ "galaxy/role/index",
+	/**
 	 * 分页查询
 	 */
 	queryUserList :"galaxy/user/queryUserList",
