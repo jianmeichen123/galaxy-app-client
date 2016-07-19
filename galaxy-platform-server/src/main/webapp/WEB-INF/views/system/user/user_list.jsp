@@ -59,6 +59,10 @@
 					<a href="javascript:void(0);" data-btn="userinfro4" style="width:200px;" 
 						class="pubbtn bluebtn ico c4">非法模拟HTTP请求-权限测试</a>
 				</div>
+				<div class="btnbox_f btnbox_f1 clearfix"  resource-mark="interView2">
+					<a href="javascript:void(0);" data-btn="userinfro8" style="width:200px;" 
+						class="pubbtn bluebtn ico c4">树形菜单测试</a>
+				</div>
 				<script type="text/javascript">
 				   /**
 				    * @time 2016-07-29
@@ -153,6 +157,10 @@
 								 layer.msg(data.result.message);
 							}
 						});
+					});
+					$('a[data-btn="userinfro8" ]').click(function(){
+						var url ="<%= path%>/galaxy/resource/test";
+					    forwardWithHeader(url);
 					});
 				</script>
 				
