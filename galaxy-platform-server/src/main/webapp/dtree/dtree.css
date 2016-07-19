@@ -1,7 +1,7 @@
 /*--------------------------------------------------|
 | dTree 2.05 | www.destroydrop.com/javascript/tree/ |
 |---------------------------------------------------|
-| Copyright (c) 2002-2003 Geir Landrö               |
+| Copyright (c) 2002-2003 Geir Landrï¿½               |
 |--------------------------------------------------*/
 
 .dtree {
@@ -9,11 +9,9 @@
 	font-size: 11px;
 	color: #666;
 	white-space: nowrap;
+	position: relative;
 }
-.dtree img {
-	border: 0px;
-	vertical-align: middle;
-}
+
 .dtree a {
 	color: #333;
 	text-decoration: none;
@@ -31,4 +29,12 @@
 }
 .dtree .clip {
 	overflow: hidden;
+}
+.dTreeNode{ overflow:hidden; height:35px; width:300px;}
+.cx_select{ position: absolute; right:0; z-index:3; padding: 2px 0 !important;}
+.cx_input{ float:left; margin-right:5px; margin-top:1px;}
+.dtree img {
+	border: 0px;
+	vertical-align: middle;
+	float:left;
 }
