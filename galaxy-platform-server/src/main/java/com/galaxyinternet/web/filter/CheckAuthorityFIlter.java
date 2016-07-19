@@ -73,7 +73,7 @@ public class CheckAuthorityFIlter implements Filter{
 		String resourceMark = SessionUtils.getValueFromRequest(request, Constants._session_resource_mark_key_);
 		User user  = (User) request.getSession().getAttribute(Constants.SESSION_USER_KEY);
 		if(checked){
-			if(!StringUtils.isNotBlank(resourceMark)){
+			if(StringUtils.isNotBlank(resourceMark)){
 				List<PlatformResource> allResourceToUser = user.getAllResourceToUser();
 				for(PlatformResource resource : allResourceToUser){
 					if(resource.getResourceMark().equals(resourceMark)){

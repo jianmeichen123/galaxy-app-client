@@ -83,7 +83,7 @@
 							cache : false,
 							contentType : "application/json; charset=UTF-8",
 							beforeSend : function(xhr) {
-								xhr.setRequestHeader("resource_mark", "interView");
+								xhr.setRequestHeader("resourceMark", "interView");
 								if (sessionId) {
 									xhr.setRequestHeader("sessionId", sessionId);
 								}
