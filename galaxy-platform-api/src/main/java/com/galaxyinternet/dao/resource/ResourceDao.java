@@ -13,5 +13,7 @@ public interface ResourceDao extends BaseDao<PlatformResource, Long> {
 	 * @return
 	 */
 	List<PlatformResource> selectResourceListToUser(Long uid);
+	
+	List<PlatformResource> selectWithJoin(PlatformResource entity);
 
 }

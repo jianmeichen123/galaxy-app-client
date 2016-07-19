@@ -19,5 +19,15 @@ public class ResourceDaoImpl extends BaseDaoImpl<PlatformResource, Long> impleme
 			throw new DaoException(String.format("查询用户拥有的资源项出错！语句：%s", getSqlName("selectResourceListToUser")), e);
 		}
 	}
+
+	@Override
+	public List<PlatformResource> selectWithJoin(PlatformResource entity)
+	{
+		try {
+			return sqlSessionTemplate.selectList(getSqlName("selectWithJoin"), getParams(entity, null));
+		} catch (Exception e) {
+			throw new DaoException(String.format("查询用户拥有的资源项出错！语句：%s", getSqlName("selectWithJoin")), e);
+		}
+	}
 	
 }
