@@ -27,7 +27,7 @@ var platformUrl = {
 	/**
 	 * 用户权限管理
 	 */
-	roleIndex :Constants.platformContentURL+ "galaxy/role/index",
+	roleIndex :Constants.platformContentURL+ "role/index",
 	/**
 	 * 分页查询
 	 */

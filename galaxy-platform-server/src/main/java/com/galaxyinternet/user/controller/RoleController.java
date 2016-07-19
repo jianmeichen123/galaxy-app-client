@@ -58,7 +58,7 @@ import com.galaxyinternet.service.UserService;
  *
  */
 @Controller
-@RequestMapping("/galaxy/role")
+@RequestMapping("/role")
 public class RoleController extends BaseControllerImpl<Role, RoleBo> {
 	final Logger logger = LoggerFactory.getLogger(RoleController.class);
 	@Autowired
