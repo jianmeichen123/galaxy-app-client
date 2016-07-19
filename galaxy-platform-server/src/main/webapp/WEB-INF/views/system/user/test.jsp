@@ -32,7 +32,7 @@
 		<!--左侧导航-->
 		
 		<!--右中部内容-->
-		<div class="ritmin"  source="user">
+		<div class="ritmin"  source="user" id="form">
 			<h2>测试页面</h2>
 			 <!--  <table class="maintable">
                 <tr><td id="test"></td></tr>
@@ -76,7 +76,7 @@
 				success : function(data) {
 					    var rolerights=data.entity.resourceIdList;
 					    var relativePath="dtree/img/";
-					    d = new dTree('d',relativePath);
+					    d = new dTree('d',relativePath,"form");
 					    d.add(0,-1,'所有权限');
 					    var entityList = data.entityList;
 					    
