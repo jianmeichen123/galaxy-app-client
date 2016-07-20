@@ -18,11 +18,12 @@
     <result column="updated_uid" property="updatedUid" jdbcType="BIGINT" />
     <result column="updated_time" property="updatedTime" jdbcType="BIGINT" />
     <result column="resource_desc" property="resourceDesc" jdbcType="VARCHAR" />
+    <result column="resource_range" property="resourceRange" jdbcType="INTEGER" />
   </resultMap>
 
   <sql id="Base_Column_List" >
     id, parent_id, resource_mark, resource_name, resource_url, resource_type, resource_order, 
-    resource_status, product_mark, application_platform, style, created_uid, created_time, updated_uid, updated_time,resource_desc
+    resource_status, product_mark, application_platform, style, created_uid, created_time, updated_uid, updated_time,resource_desc,resource_range
   </sql>
   <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -39,12 +40,12 @@
       resource_name, resource_url, resource_type, 
       resource_order, resource_status, product_mark, application_platform, style
       created_uid, created_time, updated_uid, 
-      updated_time, resource_desc)
+      updated_time, resource_desc,resource_range)
     values (#{id,jdbcType=BIGINT}, #{parentId,jdbcType=BIGINT}, #{resourceMark,jdbcType=VARCHAR}, 
       #{resourceName,jdbcType=VARCHAR}, #{resourceUrl,jdbcType=VARCHAR}, #{resourceType,jdbcType=VARCHAR}, 
       #{resourceOrder,jdbcType=BIGINT}, #{resourceStatus,jdbcType=VARCHAR}, #{productMark,jdbcType=VARCHAR}, #{applicationPlatform}, #{style}
       #{createdUid,jdbcType=BIGINT}, #{createdTime,jdbcType=BIGINT}, #{updatedUid,jdbcType=BIGINT}, 
-      #{updatedTime,jdbcType=BIGINT}, #{resourceDesc,jdbcType=VARCHAR})
+      #{updatedTime,jdbcType=BIGINT}, #{resourceDesc,jdbcType=VARCHAR},#{resourceRange})
   </insert>
   
   <insert id="insertSelective" parameterType="com.galaxyinternet.model.resource.PlatformResource" >
@@ -98,6 +99,10 @@
       <if test="resourceDesc != null" >
         resource_desc,
       </if>
+       <if test="resourceRange != null" >
+        resource_range,
+      </if>
+      
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -148,6 +153,10 @@
       <if test="resourceDesc != null" >
         #{resourceDesc,jdbcType=VARCHAR},
       </if>
+       <if test="resourceRange != null" >
+        #{resourceRange},
+      </if>
+      
     </trim>
   </insert>
   <update id="updateByIdSelective" parameterType="com.galaxyinternet.model.resource.PlatformResource" >
@@ -198,6 +207,9 @@
       <if test="resourceDesc != null" >
         resource_desc = #{resourceDesc,jdbcType=VARCHAR},
       </if>
+       <if test="resourceRange != null" >
+        resource_range = #{resourceRange},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -217,7 +229,9 @@
       created_uid = #{createdUid,jdbcType=BIGINT},
       resource_desc = #{resourceDesc,jdbcType=VARCHAR},
       updated_uid = #{updatedUid,jdbcType=BIGINT},
-      updated_time = #{updatedTime,jdbcType=BIGINT}
+      updated_time = #{updatedTime,jdbcType=BIGINT}, 
+      resource_range = #{resourceRange}
+      
     where id = #{id,jdbcType=BIGINT}
   </update>
   
@@ -276,6 +290,7 @@
 			</trim>
 		</where>
 		<if test="sorting != null">order by ${sorting}</if>
+		<if test="sorting = null">order by resource_order</if>
 		<if test="offset != null and limit != null">
 			limit #{offset}, #{limit}
 		</if>

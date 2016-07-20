@@ -262,6 +262,39 @@ public class ResourceController extends BaseControllerImpl<PlatformResource, Pla
 		return responseBody;
 	}
 	
+	
+	/**
+	 * 角色添加权限
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/addRoleResource", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseData<PlatformResource> addRoleResource(@RequestBody RoleResource roleResource,HttpServletRequest request,HttpServletResponse response ) {
+		ResponseData<PlatformResource> responseBody = new ResponseData<PlatformResource>();
+		User user = (User) request.getSession().getAttribute(Constants.SESSION_USER_KEY);
+		if(StringUtils.isEmpty(roleResource) || StringUtils.isEmpty(roleResource.getRoleId())){
+			responseBody.setResult(new Result(Status.ERROR,null, "参数丢失!"));
+			return responseBody;
+		}
+		try{
+			if(!StringUtils.isEmpty(roleResource.getResourceIds())){
+				roleResource.setCreatedUid(user.getId());
+				roleResourceService.insertBatch(roleResource);
+				responseBody.setResult(new Result(Status.OK,null, "保存成功!"));
+			}
+		} catch (Exception e) {
+			responseBody.setResult(new Result(Status.ERROR,null, "资源录入保存失败"));
+			logger.error("addResource 资源录入保存失败",e);
+		}
+		return responseBody;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * 测试
 	 */
