@@ -159,7 +159,7 @@
 				<!-- dubbo -->
 				<dubbo.application.name>galaxyPlatformDubboProvider</dubbo.application.name>
 				<dubbo.protocol.name>dubbo</dubbo.protocol.name>
-				<dubbo.registry.address>zookeeper://10.9.210.22:2181?client=zkclient</dubbo.registry.address>
+				<dubbo.registry.address>zookeeper://10.9.210.22:12181?client=zkclient</dubbo.registry.address>
 				<dubbo.protocol.port>8081</dubbo.protocol.port>
 
 				<project.home.page.url>http://fx.dev.galaxyinternet.com/</project.home.page.url>
