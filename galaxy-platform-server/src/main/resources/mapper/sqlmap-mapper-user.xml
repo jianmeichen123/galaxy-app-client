@@ -24,7 +24,7 @@
 		 <result column="created_time" property="createdTime"  />
 		 <result column="updated_time" property="updatedTime"  />
 
-    
+    	<result property="userTzjlSum" column="userTzjlSum" />
 	</resultMap>
 	
 	<sql id="Base_Column_List">
