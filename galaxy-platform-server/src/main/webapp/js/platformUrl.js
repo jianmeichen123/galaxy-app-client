@@ -38,10 +38,24 @@ var platformUrl = {
 	checkRoleName :Constants.platformContentURL+ "galaxy/role/checkRoleName",
 	
 	/**
-	 * 删除角色
+	 * 新增角色
 	 */
 	
 	addRole :Constants.platformContentURL+ "galaxy/role/addRole",
+	
+	/**
+	 * 跳转至角色编辑页面
+	 */
+	
+	roleEdit :Constants.platformContentURL+ "galaxy/role/roleEdit",
+	
+	/**
+	 * 跳转至角色编辑页面
+	 */
+	
+	getRoleDetail :Constants.platformContentURL+ "galaxy/role/getRoleDetail",
+	
+	
 	
 	/**
 	 * 分页查询

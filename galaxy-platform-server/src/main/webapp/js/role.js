@@ -1,11 +1,6 @@
 
 var flag;
 var TOKEN ;
-
-function callback(data){
-	TOKEN=data.TOKEN;
-	 return TOKEN;
-}
 function formatStatus(index, row) {
 	var arr=row.userListByRid;
 	var nameStr="";
@@ -24,7 +19,7 @@ sendPostRequest(platformUrl.getToken,callback);
 //操作链接
 function editor(index, row) {
 	var id = row.id;
-	var arr=row.userListByRid;
+	var arr=row.callback;
 	if (typeof(arr)=="undefined"||arr==null) {
 		var resetUrl = "<a class='blue' href='javascript:resetPwd(" + id
 		+ ")'>编辑</a>&nbsp;<a class='blue' href='javascript:deleteRole(" + id
@@ -39,7 +34,13 @@ function editor(index, row) {
 	}
 }
 
-//禁用用户
+//重置密码
+function resetPwd(id) {
+	
+	forwardWithHeader(platformUrl.roleEdit+"?id="+id);
+	
+}
+//删除角色
 function deleteRole(id) {
 	var data = {
 		'id' : id
@@ -47,19 +48,6 @@ function deleteRole(id) {
 	sendPostRequestByJsonObj(platformUrl.deleteRole, data, deleteRoleCallBack);
 }
 
-//禁用用户 ---回调函数
-function deleteRoleCallBack(data) {
-	if (data.result.status!="OK") {
-		layer.msg("删除失败");
-	} else {
-		layer.msg("删除成功", {
-			time : 1000
-		}, function() {
-			history.go(0);
-		});
-	}
-	
-}
 function doSumbit(){
 $(".poptxt")
 .on(
@@ -154,7 +142,24 @@ $(".poptxt")
 
 		});
 }
+function callback(data){
+	TOKEN=data.TOKEN;
+	 return TOKEN;
+}
 function callbackcheckRoleName(data) {
 	flag = data.flag;
 }
 
+//删除角色---回调函数
+function deleteRoleCallBack(data) {
+	if (data.result.status!="OK") {
+		layer.msg("删除失败");
+	} else {
+		layer.msg("删除成功", {
+			time : 1000
+		}, function() {
+			history.go(0);
+		});
+	}
+	
+}

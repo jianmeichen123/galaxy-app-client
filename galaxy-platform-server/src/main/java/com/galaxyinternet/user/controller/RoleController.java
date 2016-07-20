@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -86,7 +87,9 @@ public class RoleController extends BaseControllerImpl<Role, RoleBo> {
 	 * 跳转登录
 	 */
 	@RequestMapping(value = "/roleEdit")
-	public String roleEdit() {
+	public String roleEdit(HttpServletRequest request) {
+		String id=request.getParameter("id");
+		request.setAttribute("id", id);
 		return "system/role/roleEdit";
 	}
 	
@@ -154,15 +157,15 @@ public class RoleController extends BaseControllerImpl<Role, RoleBo> {
 		return responseBody;
 	}
 	@ResponseBody
-	@RequestMapping(value = "/getRoleDetail", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-public ResponseData<Role> getRoleDetail(Long rid) {
+	@RequestMapping(value = "/getRoleDetail/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+public ResponseData<Role> getRoleDetail(@PathVariable("id") String id) {
 		
 		ResponseData<Role> responseBody = new ResponseData<Role>();
 		try {
 			// 部门列表
 			Role role=new Role();
-			role = roleService.queryById(rid);
-		    List<User> userByRoleId = userService.getUserByRoleId(rid);
+			role = roleService.queryById(Long.parseLong(id));
+		    List<User> userByRoleId = userService.getUserByRoleId(Long.parseLong(id));
 		    if(null!=userByRoleId){
 		    	role.setUserListByRid(userByRoleId);	
 		    }
