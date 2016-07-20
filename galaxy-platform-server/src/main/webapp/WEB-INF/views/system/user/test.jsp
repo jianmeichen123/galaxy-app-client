@@ -170,12 +170,8 @@
 			value.description = description;
 			value.resourceIds = ids;
 			value.resouceRange = 0; 
-			obj.push(value);*/
-			
-			<%-- obj 为参数格式
-			url = "<%= path%>/galaxy/resource/addRoleResource" --%>
-    	    
-    	    
+			obj.push(value);
+			alert(obj);*/
     	  
       }
     </script>
