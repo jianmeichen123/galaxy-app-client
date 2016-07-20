@@ -144,4 +144,17 @@
 	<delete id="deleteById" parameterType="Role">
 		delete from platform_role where id = #{id}
 	</delete>
+	
+   <select id="selectByRoleName" resultMap="BaseResultMap" parameterType="Role">
+		select
+		<include refid="Base_Column_List" />
+		from platform_role 
+		
+		<where>
+			<trim prefixOverrides="and">
+				<if test="id != null"> and id !=#{id}</if>
+				<if test="name != null"> and name =#{name}</if>
+			</trim>
+		</where>
+	</select>
 </mapper>

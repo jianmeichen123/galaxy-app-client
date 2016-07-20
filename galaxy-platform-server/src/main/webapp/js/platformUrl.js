@@ -33,6 +33,17 @@ var platformUrl = {
 	 */
 	deleteRole :Constants.platformContentURL+ "galaxy/role/deleteRole",
 	/**
+	 * 删除角色
+	 */
+	checkRoleName :Constants.platformContentURL+ "galaxy/role/checkRoleName",
+	
+	/**
+	 * 删除角色
+	 */
+	
+	addRole :Constants.platformContentURL+ "galaxy/role/addRole",
+	
+	/**
 	 * 分页查询
 	 */
 	queryUserList :"galaxy/user/queryUserList",

@@ -81,6 +81,15 @@ public class RoleController extends BaseControllerImpl<Role, RoleBo> {
 	public String index() {
 		return "system/role/roleList";
 	}
+	
+	/**
+	 * 跳转登录
+	 */
+	@RequestMapping(value = "/roleEdit")
+	public String roleEdit() {
+		return "system/role/roleEdit";
+	}
+	
 	/**
 	 * 获取部门列表
 	 * @author chenjianmei
@@ -125,7 +134,7 @@ public class RoleController extends BaseControllerImpl<Role, RoleBo> {
 	@Token
 	@ResponseBody
 	@RequestMapping(value = "/addRole", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseData<Role> addRole( @RequestBody Role role) {
+	public ResponseData<Role> addRole( @RequestBody @Valid Role role) {
 		ResponseData<Role> responseBody = new ResponseData<Role>();
 	
 		Result jsonResult = new Result();
@@ -141,6 +150,7 @@ public class RoleController extends BaseControllerImpl<Role, RoleBo> {
 			 jsonResult.addError("新增角色失败");
 				responseBody.setResult(jsonResult);
 			} 
+		 responseBody.setResult(new Result(Status.OK, ""));
 		return responseBody;
 	}
 	@ResponseBody
@@ -192,7 +202,22 @@ public ResponseData<Role> getRoleDetail(Long rid) {
 		
 		return responseBody;
 	}
+	/**
+	 * Ajax请求校验角色名称是否重复
+	 */
+	@RequestMapping(value = "checkRoleName")
+	@ResponseBody
+	public Map<String, Object>  checkRoleName(@RequestBody Role query) {
 
+		Role role = roleService.queryByRoleName(query);
+		Map<String, Object> map = new HashMap<String, Object>();
+		if (role == null) {
+			map.put("flag", false);
+		} else {
+			map.put("flag", true);
+		}
+		return map;
+	}
 	
 	
 }
