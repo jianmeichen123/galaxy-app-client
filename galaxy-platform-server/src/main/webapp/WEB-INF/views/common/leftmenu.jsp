@@ -15,7 +15,6 @@
  	$(".lft").on("click",'a',function(){
  		var a = $(this);
  		var url = platformUrl[a.attr("target-url")];
- 		alert(url);
  		return forwardWithHeader(url);
  	});
 </script>
