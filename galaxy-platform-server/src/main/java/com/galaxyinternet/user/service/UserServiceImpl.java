@@ -351,7 +351,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	}
 	
 	@Override
-	public List<User> querytAllTzjl(Map<String, Object> params) {
-		return userDao.selectAllTzjl(params);
+	public List<User> querytUserByParams(Map<String, Object> params) {
+		return userDao.selectUserByParams(params);
 	}
 }
