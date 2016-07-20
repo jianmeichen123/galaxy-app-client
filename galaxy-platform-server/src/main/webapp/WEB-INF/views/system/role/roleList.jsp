@@ -14,6 +14,7 @@
 <title>繁星</title>
 <base href="<%=basePath%>">
 <!-- jsp文件头和头部 -->
+
 <%@ include file="/WEB-INF/views/common/taglib.jsp"%>
 <!-- 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"  type="text/css">
  -->    <!-- bootstrap-table -->
@@ -60,7 +61,7 @@
 </div>
 	</div>
 	<script src="js/layer/layer.js" type="text/javascript"></script>
-	<script src="js/role.js" type="text/javascript"></script>
+	
 		<!-- bootstrap-table -->
 	
 	<!-- <script src="js/bootstrap3-typeahead.js"></script> -->
@@ -74,6 +75,7 @@
 	<script src="js/init.js"></script>	
 	<script src="js/login.js"></script>
 	<script src="<%=request.getContextPath() %>/js/axure_ext.js" type="text/javascript"></script>
+	<script src="js/role.js" type="text/javascript"></script>
 </body>
 </html>
 

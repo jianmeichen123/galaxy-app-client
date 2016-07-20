@@ -25,12 +25,19 @@ public class PlatformResource extends PagableEntity {
     private Long createdUid;
     private Long updatedUid;
     private String resourceDesc;
+    private int resourceRange;
     
     private List<Long> resourceIdList;
     
     
     
-    public List<Long> getResourceIdList() {
+    public int getResourceRange() {
+		return resourceRange;
+	}
+	public void setResourceRange(int resourceRange) {
+		this.resourceRange = resourceRange;
+	}
+	public List<Long> getResourceIdList() {
 		return resourceIdList;
 	}
 	public void setResourceIdList(List<Long> resourceIdList) {

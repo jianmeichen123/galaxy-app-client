@@ -735,11 +735,10 @@ if (!Array.prototype.pop) {
 		/* checkbox tree */
 		function caBox(formId, regx ) {
 			if( document.getElementById( regx ).checked ){
-				var form = document.getElementById(formId);
 				var regxArray = regx.split("-");
 				$('input[type="checkbox"][name="checkid"]').each(
 						function() {
-							if(this.id.indexOf(regx)!=-1){
+							if($(this).attr("id").indexOf(regx)!=-1){
 								this.checked = true;
 							}
 						}
@@ -752,12 +751,20 @@ if (!Array.prototype.pop) {
 				}
 			}
 			else{
+				
+				$('input[type="checkbox"][name="checkid"]').each(
+						function() {
+							if($(this).attr("id").indexOf(regx)!=-1){
+								this.checked = false;
+							}
+						}
+				);
+				
 				// unChecked
-				var form = document.getElementById(formId);
 				var regxArray = regx.split("-");
 				$('input[type="checkbox"][name="checkid"]').each(
 						function() {
-							if(this.id.indexOf(regx)!=-1){
+							if($(this).attr("id").indexOf(regxArray)!=-1){
 								this.checked = false;
 							}
 						}
@@ -766,8 +773,20 @@ if (!Array.prototype.pop) {
 				for(var j=0;j<regxArray.length-1;j++){
 					if( !isCheckedByRec(form, regx.substring(0,regx.indexOf(regxArray[regxArray.length-j-2]+"-"))) ){
 						var pDiv = regx.substring(0,regx.indexOf(regxArray[regxArray.length-j-2]+"-"));
+						var count = 0;
+						$('input[type="checkbox"][name="checkid"]').each(
+								function() {
+									if($(this).attr("id").indexOf(pDiv)!=-1 && pDiv != ''){
+										if(document.getElementById($(this).attr("id")).checked){
+											count++;
+										}
+									}
+								}
+						);
 						if(document.getElementById(pDiv))
-							document.getElementById(pDiv).checked=false;
+							if(count == 1){
+								document.getElementById(pDiv).checked=false;
+							}
 					}
 				}
 				
@@ -776,7 +795,7 @@ if (!Array.prototype.pop) {
 		function isCheckedByRec( form ,regx){
 			$('input[type="checkbox"][name="checkid"]').each(
 					function() {
-						if(this.id.indexOf(regx)!=-1 && this.checked && this.id!=regx ){
+						if($(this).attr("id").indexOf(regx)!=-1 && document.getElementById($(this).attr("id")).checked && $(this).attr("id")!=regx ){
 							return true;
 						}
 					}

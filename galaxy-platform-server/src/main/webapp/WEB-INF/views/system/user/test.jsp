@@ -37,11 +37,12 @@
             	<ul class="ul_role">
                 	<li>
                     	<div class="fl width_150 align_r">角色名称：</div>
-                        <div class="fl"><input type="text" class="new_nputr"></div>
+                    	<input type="hidden" name="id" value="1" class="new_nputr">
+                        <div class="fl"><input type="text" name="name" value="测试" class="new_nputr"></div>
                     </li>
                     <li>
                     	<div class="fl width_150 align_r">角色描述：</div>
-                        <div class="fl"><textarea type="text" class="role_textarea"></textarea></div>
+                        <div class="fl"><textarea type="text" name="description" value=""  class="role_textarea"></textarea></div>
                     </li>
                     <li>
                     	<div class="fl width_150 align_r">用户列表：</div>
@@ -149,6 +150,30 @@
 			});
       });
     
+      function add(){
+    	  /* var id = $("input[name='id']");
+    	  var name = $("input[name='name']");
+    	  var description = $("input[name='description']");
+    	  
+    	  var ids = "";
+    	  $('input[type="checkbox"][name="checkid"]').each(
+					function() {
+						if($(this).attr("checked")){
+							ids = ids + $(this).val() + ",";
+						}
+					}
+			);
+			var obj = [];
+			var value = {};
+			value.roleId = id;
+			value.name = name;
+			value.description = description;
+			value.resourceIds = ids;
+			value.resouceRange = 0; 
+			obj.push(value);
+			alert(obj);*/
+    	  
+      }
     </script>
 
 </body>

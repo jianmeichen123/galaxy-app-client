@@ -45,5 +45,11 @@ public class RoleServiceImpl extends BaseServiceImpl<Role>implements RoleService
 		
 		return selectPageList;
 	}
+	
+	@Override
+	public Role queryByRoleName(Role role) {
+		return roleDao.selectByRoleName(role);
+	}
+
 
 }

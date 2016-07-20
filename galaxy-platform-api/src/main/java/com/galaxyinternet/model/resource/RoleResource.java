@@ -14,7 +14,37 @@ public class RoleResource extends PagableEntity {
     private Long createdUid;
     private Long updatedUid;
     
-    private List<Long> roleList;
+    private String resourceIds;
+    private int resouceRange;
+    private String name;
+    private String  description;
+    
+    
+    public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public int getResouceRange() {
+		return resouceRange;
+	}
+	public void setResouceRange(int resouceRange) {
+		this.resouceRange = resouceRange;
+	}
+	public String getResourceIds() {
+		return resourceIds;
+	}
+	public void setResourceIds(String resourceIds) {
+		this.resourceIds = resourceIds;
+	}
+	private List<Long> roleList;
     
     public List<Long> getRoleList() {
 		return roleList;

@@ -24,7 +24,7 @@
 		 <result column="created_time" property="createdTime"  />
 		 <result column="updated_time" property="updatedTime"  />
 
-    
+    	<result property="userTzjlSum" column="userTzjlSum" />
 	</resultMap>
 	
 	<sql id="Base_Column_List">
@@ -322,6 +322,7 @@
 		SELECT u.department_id department_id,COUNT(*) userTzjlSum
 		FROM platform_user u,platform_user_role ur 
 		WHERE u.id = ur.user_id 
+			<if test="status != null"> and u.status =#{status}</if>
 			<if test="roleId != null"> and ur.role_id =#{roleId}</if>  <!-- AND ur.role_id = 4 -->
 			<if test="departmentIds != null">
 					AND u.department_id IN 
@@ -334,13 +335,43 @@
 	</select>
 	
 	
-	 <!-- 查询 角色为4 的 所有用户-->
-	<select id="selectAllTzjl" resultMap="BaseResultMap" parameterType="java.util.Map">
+	 <!--  查询 用户-->
+	<select id="selectUserByParams" resultMap="BaseResultMap" parameterType="java.util.Map">
 		SELECT  u.id,  u.department_id, u.real_name
 		FROM platform_user u,platform_user_role ur 
 		WHERE u.id = ur.user_id 
 			<if test="roleId != null"> and ur.role_id =#{roleId}</if>  <!-- AND ur.role_id = 4 -->
 			<if test="departmentId != null"> and u.department_id =#{departmentId}</if>
+			<if test="departmentIds != null">
+				AND u.department_id IN 
+				<foreach collection="departmentIds" index="item" item="item" open="("
+					separator="," close=")">
+					#{item}
+				</foreach>
+		    </if>
 			<if test="status != null"> and u.status =#{status}</if>
 	</select>
+	
+	
+	
+	
+	
+	
+	<!-- report 删除
+	<select id="selectAllTzjl" resultMap="BaseResultMap" parameterType="java.util.Map">
+		SELECT  u.id,  u.department_id, u.real_name
+		FROM platform_user u,platform_user_role ur 
+		WHERE u.id = ur.user_id 
+			<if test="roleId != null"> and ur.role_id =#{roleId}</if>  
+			<if test="departmentId != null"> and u.department_id =#{departmentId}</if>
+			<if test="departmentIds != null">
+				AND u.department_id IN 
+				<foreach collection="departmentIds" index="item" item="item" open="("
+					separator="," close=")">
+					#{item}
+				</foreach>
+		    </if>
+			<if test="status != null"> and u.status =#{status}</if>
+	</select>
+	 -->
 </mapper>
