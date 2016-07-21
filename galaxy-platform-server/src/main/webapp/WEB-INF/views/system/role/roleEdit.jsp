@@ -192,9 +192,9 @@
   			
   			if(0==i){
   				spCodesTemp += $(this).val();
-  				spCodesTemp+=(":"+$(this).next($('select option:selected')).val());
+  				spCodesTemp+=(":"+$(this).parent().find($('select option:selected')).val());
   			}else{
-  				spCodesTemp += (","+$(this).val()+":"+$(this).next($('select option:selected')).val());
+  				spCodesTemp += (","+$(this).val()+":"+$(this).parent().find($('select option:selected')).val());
   			}
   			
   		});
