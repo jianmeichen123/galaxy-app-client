@@ -15,12 +15,19 @@ public class RoleResource extends PagableEntity {
     private Long updatedUid;
     
     private String resourceIds;
-    private int resouceRange;
     private String name;
     private String  description;
+    private Integer resourceRange;
     
     
-    public String getName() {
+   
+	public Integer getResourceRange() {
+		return resourceRange;
+	}
+	public void setResourceRange(Integer resourceRange) {
+		this.resourceRange = resourceRange;
+	}
+	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
@@ -32,12 +39,7 @@ public class RoleResource extends PagableEntity {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public int getResouceRange() {
-		return resouceRange;
-	}
-	public void setResouceRange(int resouceRange) {
-		this.resouceRange = resouceRange;
-	}
+	
 	public String getResourceIds() {
 		return resourceIds;
 	}

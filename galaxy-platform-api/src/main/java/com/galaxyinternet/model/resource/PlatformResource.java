@@ -1,6 +1,7 @@
 package com.galaxyinternet.model.resource;
 
 import java.util.List;
+import java.util.Map;
 
 import com.alibaba.fastjson.JSON;
 import com.galaxyinternet.framework.core.model.PagableEntity;
@@ -28,10 +29,16 @@ public class PlatformResource extends PagableEntity {
     private int resourceRange;
     
     private List<Long> resourceIdList;
+    private Map<String,Object> mapList;
     
     
-    
-    public int getResourceRange() {
+    public Map<String, Object> getMapList() {
+		return mapList;
+	}
+	public void setMapList(Map<String, Object> mapList) {
+		this.mapList = mapList;
+	}
+	public int getResourceRange() {
 		return resourceRange;
 	}
 	public void setResourceRange(int resourceRange) {

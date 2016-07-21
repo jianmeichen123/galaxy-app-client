@@ -1,5 +1,11 @@
 package com.galaxyinternet.resource.service;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,18 +52,34 @@ public class RoleResourceServiceImpl extends BaseServiceImpl<RoleResource> imple
 		role.setDescription(roleResource.getDescription());
 		roleDao.updateById(role);
 		
+		/**查询角色对应的资源ID集合**/
+		RoleResource queryRole = new RoleResource();
+		             queryRole.setRoleId(roleResource.getRoleId());
+		List<RoleResource> roleResourceBoList = roleResourceDao.selectList(queryRole);
+		List<String> resourceMap = new ArrayList<String>();
+		
+		if(roleResourceBoList != null ){
+			for(RoleResource rr:roleResourceBoList){
+				resourceMap.add(rr.getRoleId()+":"+rr.getResourceId());
+			}
+		}
+		
 		for(int i = 0 ;i < resourceIds.length ; i++ ){
 			if(!StringUtils.isBlank(resourceIds[i])){
+				String resourceRange[] = resourceIds[i].split(":");
 				//角色资源关系表
 				RoleResource roleSource = new RoleResource();
 				roleSource.setRoleId(roleResource.getRoleId());
-				roleSource.setResourceId(Long.valueOf(resourceIds[i]));
-				roleSource.setCreatedUid(roleResource.getCreatedUid());
-				roleResourceDao.insert(roleSource);
+				roleSource.setResourceId(Long.valueOf(resourceRange[0]));
+				
+				if(!resourceMap.contains(roleResource.getRoleId()+":"+Long.valueOf(resourceRange[0]))){
+					roleSource.setCreatedUid(roleResource.getCreatedUid());
+					roleResourceDao.insert(roleSource);
+				}
 				//资源表
 				PlatformResource  resource = new PlatformResource();
-				resource.setId(Long.valueOf(resourceIds[i]));
-				resource.setResourceRange(roleResource.getResouceRange());
+				resource.setId(Long.valueOf(resourceRange[0]));
+				resource.setResourceRange(Integer.valueOf(resourceRange[1]));
 				resourceDao.updateByIdSelective(resource);
 				
 			}

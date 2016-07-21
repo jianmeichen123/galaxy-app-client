@@ -106,11 +106,11 @@
     			$(".role_list").text(result);
     		
     		});
-
+          var jsonData = {"roleId":roleId};
     	  $.ajax({
 				url : "<%= path%>/galaxy/resource/resourceTree",
 				type : "POST",
-			    data : "",
+			    data :  JSON.stringify(jsonData),
 				dataType : "json",
 				cache : false,
 				contentType : "application/json; charset=UTF-8",
@@ -127,7 +127,8 @@
 				error : function(request) {
 				},
 				success : function(data) {
-					    var rolerights=data.entity.resourceIdList;
+					    var rolerights=data.entity.mapList.resourceIdList;
+					    var resourceRangeMap=data.entity.mapList.resourceRangeMap;
 					    var relativePath="dtree/";
 					    d = new dTree('d',relativePath,"form");
 					    d.add(0,-1,'所有权限');
@@ -136,25 +137,31 @@
 					    /*select 数据组装 ---------start--------*/
 					    var obj = [];
 					    var param = {};
-					    param.name = "全公司的项目";
-					    param.value = "全公司的项目";
-					    obj.push(param);
+					        param.name = "全公司的项目";
+					        param.value = "0";
+					        obj.push(param);
 					    var param1 = {};
-					    param1.name = "本部门的项目";
-					    param1.value = "本部门的项目";
-					    obj.push(param1);
+						    param1.name = "本部门的项目";
+						    param1.value = "1";
+						    obj.push(param1);
 					    var param2 = {};
-					    param2.name = "自己的项目";
-					    param2.value = "自己的项目";
-					    obj.push(param2);
-					    var select= "<select id=\"select\" class=\"cx_select\" name =\"test\">";
-						$.each(obj,function(i,entity){
-							select += '<option value="'+entity.value+'">'+entity.name+'</option>'; 
-						});
-						select += "</select>";
+						    param2.name = "自己的项目";
+						    param2.value = "2";
+						    obj.push(param2);
 						 /*select 数据组装 ---------end--------*/
 						 
 					    $.each(entityList,function(i,entity){
+					    	var select= "<select id=\"select\" class=\"cx_select\" name =\"test\">";
+								$.each(obj,function(i,objEntity){
+									select += '<option value="'+objEntity.value+'"';
+									if(resourceRangeMap[entity.id]){
+										if(resourceRangeMap[entity.id] == objEntity.value){
+											select +=' selected="selected"';
+										}
+									}
+									select +='>'+objEntity.name+'</option>'; 
+								});
+							select += "</select>";
 					    	if(rolerights.indexOf(entity.id) >= 0){
 				    			 d.add(entity.id,entity.parentId,entity.resourceName,'',1,'',true,select);
 				    		}else{

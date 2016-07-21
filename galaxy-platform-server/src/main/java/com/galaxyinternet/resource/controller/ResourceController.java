@@ -1,7 +1,9 @@
 package com.galaxyinternet.resource.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -233,29 +235,34 @@ public class ResourceController extends BaseControllerImpl<PlatformResource, Pla
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/resourceTree", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseData<PlatformResource> resourceTree(HttpServletRequest request) {
+	public ResponseData<PlatformResource> resourceTree(@RequestBody RoleResource roleResource,HttpServletRequest request) {
 		
 		ResponseData<PlatformResource> responseBody = new ResponseData<PlatformResource>();
-		User user = (User) request.getSession().getAttribute(Constants.SESSION_USER_KEY);
-		/**获取角色ID集合**/
-		List<Long> roleIdList = userRoleService.selectRoleIdByUserId(user
-				.getId());
+		if(StringUtils.isEmpty(roleResource) || StringUtils.isEmpty(roleResource.getRoleId())){
+			responseBody.setResult(new Result(Status.ERROR,null, "参数丢失!"));
+			return responseBody;
+		}
 		/**查询角色对应的资源ID集合**/
 		RoleResource queryRole = new RoleResource();
-		             queryRole.setRoleList(roleIdList);
+		             queryRole.setRoleId(roleResource.getRoleId());
 		List<RoleResource> roleResourceBoList = roleResourceService.queryList(queryRole);
 		/**获取资源ID的集合**/
+		Map<String,Object> mapList = new HashMap<String,Object>();
 		List<Long> resourceIdList = new ArrayList<Long>();
+		Map<Long,Integer> resourceRangeMap = new HashMap<Long,Integer>();
 		if(!StringUtils.isEmpty(roleResourceBoList)){
 			for(RoleResource resource:roleResourceBoList){
 				resourceIdList.add(resource.getResourceId());
+				resourceRangeMap.put(resource.getResourceId(), resource.getResourceRange());
 			}
 		}
+		mapList.put("resourceIdList", resourceIdList);
+		mapList.put("resourceRangeMap", resourceRangeMap);
 		/**获取全部的资源**/
 		List<PlatformResource> resourceList = resourceService.queryAll();
 		
 		PlatformResource platformResource = new PlatformResource();
-		platformResource.setResourceIdList(resourceIdList);
+		platformResource.setMapList(mapList);
 		/**组装数据**/
 		responseBody.setEntityList(resourceList);
 		responseBody.setEntity(platformResource);
@@ -287,23 +294,5 @@ public class ResourceController extends BaseControllerImpl<PlatformResource, Pla
 		}
 		return responseBody;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	/**
-	 * 测试
-	 */
-	@RequestMapping(value="/test", method = RequestMethod.GET)
-	public String test(HttpServletRequest request){
-		return "system/user/test";
-	}
-	
-	
-	
 	
 }

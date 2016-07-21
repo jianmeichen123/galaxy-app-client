@@ -9,9 +9,10 @@
     <result column="created_time" property="createdTime" jdbcType="BIGINT" />
     <result column="updated_uid" property="updatedUid" jdbcType="BIGINT" />
     <result column="updated_time" property="updatedTime" jdbcType="BIGINT" />
+    <result column="resource_range" property="resourceRange" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, role_id, resource_id, created_uid, created_time, updated_uid, updated_time
+    id, role_id, resource_id, created_uid, created_time, updated_uid, updated_time,resource_range
   </sql>
   <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -26,10 +27,10 @@
   <insert id="insert" parameterType="com.galaxyinternet.model.resource.RoleResource" >
     insert into platform_role_resource (id, role_id, resource_id, 
       created_uid, created_time, updated_uid, 
-      updated_time)
+      updated_time,resource_range)
     values (#{id,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, #{resourceId,jdbcType=BIGINT}, 
       #{createdUid,jdbcType=BIGINT}, #{createdTime,jdbcType=BIGINT}, #{updatedUid,jdbcType=BIGINT}, 
-      #{updatedTime,jdbcType=BIGINT})
+      #{updatedTime,jdbcType=BIGINT},#{resourceRange})
   </insert>
   <insert id="insertSelective" parameterType="com.galaxyinternet.model.resource.RoleResource" >
     insert into platform_role_resource
@@ -55,6 +56,9 @@
       <if test="updatedTime != null" >
         updated_time,
       </if>
+      <if test="resourceRange != null" >
+        resource_range,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -77,6 +81,9 @@
       </if>
       <if test="updatedTime != null" >
         #{updatedTime,jdbcType=BIGINT},
+      </if>
+        <if test="resourceRange != null" >
+        #{resourceRange},
       </if>
     </trim>
   </insert>
@@ -101,6 +108,9 @@
       <if test="updatedTime != null" >
         updated_time = #{updatedTime,jdbcType=BIGINT},
       </if>
+       <if test="resourceRange != null" >
+        resource_range = #{resourceRange},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -111,7 +121,8 @@
       created_uid = #{createdUid,jdbcType=BIGINT},
       created_time = #{createdTime,jdbcType=BIGINT},
       updated_uid = #{updatedUid,jdbcType=BIGINT},
-      updated_time = #{updatedTime,jdbcType=BIGINT}
+      updated_time = #{updatedTime,jdbcType=BIGINT},
+       resource_range = #{resourceRange}
     where id = #{id,jdbcType=BIGINT}
   </update>
   
@@ -156,6 +167,7 @@
 				    <if test="createdTime != null" > and created_time = #{createdTime,jdbcType=BIGINT}</if>
 				    <if test="updatedUid != null" > and updated_uid = #{updatedUid,jdbcType=BIGINT}</if>
 				    <if test="updatedTime != null" > and updated_time = #{updatedTime,jdbcType=BIGINT}</if>
+				    <if test="resourceRange != null" > and resource_range = #{resourceRange} </if>
 				    <if test="roleList != null">
 						AND role_id IN
 						<foreach collection="roleList" index="item" item="item" open="("
