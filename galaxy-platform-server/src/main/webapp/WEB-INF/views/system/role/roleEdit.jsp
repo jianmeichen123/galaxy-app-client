@@ -40,7 +40,7 @@
                 	<input type="hidden" id="id" value="${id}" />
                     	<div class="fl width_150 align_r">角色名称：</div>
                     	<input type="hidden" name="id" value="1" class="new_nputr">
-                        <div class="fl"><input type="text" name="name" value="测试" class="new_nputr"></div>
+                        <div class="fl"><input type="text" name="name" value="" class="new_nputr"></div>
                     </li>
                     <li>
                     	<div class="fl width_150 align_r">角色描述：</div>
