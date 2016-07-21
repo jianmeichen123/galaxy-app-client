@@ -58,7 +58,7 @@
                             
                             
                             <div class="role_set" id="form">
-                            	<div id="test">
+                            	<div id="roleResource">
 			                          
 			  					</div>
                             </div>
@@ -89,6 +89,7 @@
       $(function(){
     	  var roleDetail
     	  var roleId='${id}';
+    	  /**获取角色信息**/
     	  sendGetRequest(platformUrl.getRoleDetail + "/"+roleId, {}, function(data){	
     			roleDetail = data.entity;
     			$("input[name='name']").val(roleDetail.name);
@@ -106,6 +107,7 @@
     			$(".role_list").text(result);
     		
     		});
+    	  /**获取角色权限信息**/
           var jsonData = {"roleId":roleId};
     	  $.ajax({
 				url : "<%= path%>/galaxy/resource/resourceTree",
@@ -169,14 +171,12 @@
 				    			
 				    		}
 					    });
-				        $("#test").html(d.toString());
+				        $("#roleResource").html(d.toString());
 				}
 			});
       });
-      
+      /**添加角色权限**/
       function add(){
-  		//alert($('#select').val())
-  		//alert($("#test").find("input").length)
   		var obj={}
   		var spCodesTemp = "";
     	var id = $("input[name='id']").val();
@@ -186,47 +186,42 @@
    	    obj.roleId = id;
    	    obj.name = name;
    	    obj.description = description;
-  		console.log(obj)
   		$('#test input:checkbox[name=checkid]:checked').each(function(i){
-  			console.log($(this).val()+'eee')
-  			
   			if(0==i){
   				spCodesTemp += $(this).val();
   				spCodesTemp+=(":"+$(this).parent().find($('select option:selected')).val());
   			}else{
   				spCodesTemp += (","+$(this).val()+":"+$(this).parent().find($('select option:selected')).val());
   			}
-  			
   		});
   		obj.resourceIds = spCodesTemp;
-  		console.log(obj)
-  		 $.ajax({
-				url : "<%= path%>/galaxy/resource/addRoleResource",
-				type : "POST",
-			    data :  JSON.stringify(obj),
-				dataType : "json",
-				cache : false,
-				contentType : "application/json; charset=UTF-8",
-				beforeSend : function(xhr) {
-					xhr.setRequestHeader("resource_mark", "interView");
-					if (sessionId) {
-						xhr.setRequestHeader("sessionId", sessionId);
-					}
-					if(userId){
-						xhr.setRequestHeader("guserId", userId);
-					}
-				},
-				async : false,
-				error : function(request) {
-				},
-				success : function(data) {
-					  if(data.result.status == "OK"){
-						  forwardWithHeader("<%= path%>/galaxy/role/index");
-					  }else{
-						  alert("操作失败!")
-					  }
+ 		$.ajax({
+			url : "<%= path%>/galaxy/resource/addRoleResource",
+			type : "POST",
+		    data :  JSON.stringify(obj),
+			dataType : "json",
+			cache : false,
+			contentType : "application/json; charset=UTF-8",
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader("resource_mark", "interView");
+				if (sessionId) {
+					xhr.setRequestHeader("sessionId", sessionId);
 				}
-			});
+				if(userId){
+					xhr.setRequestHeader("guserId", userId);
+				}
+			},
+			async : false,
+			error : function(request) {
+			},
+			success : function(data) {
+				  if(data.result.status == "OK"){
+					  forwardWithHeader("<%= path%>/galaxy/role/index");
+				  }else{
+					  alert(data.result.message);
+				  }
+			}
+	    });
   	
   	}
     </script>
