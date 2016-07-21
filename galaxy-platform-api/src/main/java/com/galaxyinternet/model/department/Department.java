@@ -1,5 +1,7 @@
 package com.galaxyinternet.model.department;
 
+import java.util.List;
+
 import com.galaxyinternet.framework.core.model.BaseEntity;
 
 public class Department extends BaseEntity {
@@ -9,7 +11,8 @@ public class Department extends BaseEntity {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-
+	private List<Long> ids;
+	
     private String name;
 
     private String remark;
@@ -69,6 +72,14 @@ public class Department extends BaseEntity {
 
 	public void setType(Integer type) {
 		this.type = type;
+	}
+
+	public List<Long> getIds() {
+		return ids;
+	}
+
+	public void setIds(List<Long> ids) {
+		this.ids = ids;
 	}
     
     
