@@ -45,25 +45,19 @@ public class RoleResourceServiceImpl extends BaseServiceImpl<RoleResource> imple
 		// TODO Auto-generated method stub
 		String[] resourceIds = roleResource.getResourceIds().split(",");
 		
-		//更新角色表
+		/**更新角色表**/
 		Role role = new Role();
 		role.setId(roleResource.getRoleId());
 		role.setName(roleResource.getName());
 		role.setDescription(roleResource.getDescription());
 		roleDao.updateById(role);
 		
-		/**查询角色对应的资源ID集合**/
-		RoleResource queryRole = new RoleResource();
-		             queryRole.setRoleId(roleResource.getRoleId());
-		List<RoleResource> roleResourceBoList = roleResourceDao.selectList(queryRole);
-		List<String> resourceMap = new ArrayList<String>();
+		/**删除原来有的角色权限关系**/
+		RoleResource rr = new RoleResource();
+		rr.setRoleId(roleResource.getRoleId());
+		roleResourceDao.delete(rr);
 		
-		if(roleResourceBoList != null ){
-			for(RoleResource rr:roleResourceBoList){
-				resourceMap.add(rr.getRoleId()+":"+rr.getResourceId());
-			}
-		}
-		
+		/**插入角色关系表**/
 		for(int i = 0 ;i < resourceIds.length ; i++ ){
 			if(!StringUtils.isBlank(resourceIds[i])){
 				String resourceRange[] = resourceIds[i].split(":");
@@ -71,16 +65,9 @@ public class RoleResourceServiceImpl extends BaseServiceImpl<RoleResource> imple
 				RoleResource roleSource = new RoleResource();
 				roleSource.setRoleId(roleResource.getRoleId());
 				roleSource.setResourceId(Long.valueOf(resourceRange[0]));
-				
-				if(!resourceMap.contains(roleResource.getRoleId()+":"+Long.valueOf(resourceRange[0]))){
-					roleSource.setCreatedUid(roleResource.getCreatedUid());
-					roleResourceDao.insert(roleSource);
-				}
-				//资源表
-				PlatformResource  resource = new PlatformResource();
-				resource.setId(Long.valueOf(resourceRange[0]));
-				resource.setResourceRange(Integer.valueOf(resourceRange[1]));
-				resourceDao.updateByIdSelective(resource);
+				roleSource.setCreatedUid(roleResource.getCreatedUid());
+				roleSource.setResourceRange(Integer.valueOf(resourceRange[1]));
+				roleResourceDao.insert(roleSource);
 				
 			}
 		}

@@ -26,7 +26,6 @@ public class PlatformResource extends PagableEntity {
     private Long createdUid;
     private Long updatedUid;
     private String resourceDesc;
-    private int resourceRange;
     
     private List<Long> resourceIdList;
     private Map<String,Object> mapList;
@@ -37,12 +36,6 @@ public class PlatformResource extends PagableEntity {
 	}
 	public void setMapList(Map<String, Object> mapList) {
 		this.mapList = mapList;
-	}
-	public int getResourceRange() {
-		return resourceRange;
-	}
-	public void setResourceRange(int resourceRange) {
-		this.resourceRange = resourceRange;
 	}
 	public List<Long> getResourceIdList() {
 		return resourceIdList;
