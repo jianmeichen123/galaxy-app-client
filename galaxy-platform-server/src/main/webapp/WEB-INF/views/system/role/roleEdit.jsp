@@ -194,7 +194,6 @@
 	  			}
 	  		});
   		    obj.resourceIds = spCodesTemp;
-  		    alert(spCodesTemp);
  		$.ajax({
 			url : "<%= path%>/galaxy/resource/addRoleResource",
 			type : "POST",
