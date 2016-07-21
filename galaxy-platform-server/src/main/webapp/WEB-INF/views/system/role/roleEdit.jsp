@@ -177,24 +177,23 @@
       });
       /**添加角色权限**/
       function add(){
-  		var obj={}
+  		var obj={};
   		var spCodesTemp = "";
     	var id = $("input[name='id']").val();
    	  	var name = $("input[name='name']").val();
    	  	var description = $("textarea[name='description']").val();
-   	  	
-   	    obj.roleId = id;
-   	    obj.name = name;
-   	    obj.description = description;
-  		$('#test input:checkbox[name=checkid]:checked').each(function(i){
-  			if(0==i){
-  				spCodesTemp += $(this).val();
-  				spCodesTemp+=(":"+$(this).parent().find($('select option:selected')).val());
-  			}else{
-  				spCodesTemp += (","+$(this).val()+":"+$(this).parent().find($('select option:selected')).val());
-  			}
-  		});
-  		obj.resourceIds = spCodesTemp;
+	   	    obj.roleId = id;
+	   	    obj.name = name;
+	   	    obj.description = description;
+	  		$('#test input:checkbox[name=checkid]:checked').each(function(i){
+	  			if(0==i){
+	  				spCodesTemp += $(this).val();
+	  				spCodesTemp+=(":"+$(this).parent().find($('select option:selected')).val());
+	  			}else{
+	  				spCodesTemp += (","+$(this).val()+":"+$(this).parent().find($('select option:selected')).val());
+	  			}
+	  		});
+  		    obj.resourceIds = spCodesTemp;
  		$.ajax({
 			url : "<%= path%>/galaxy/resource/addRoleResource",
 			type : "POST",
