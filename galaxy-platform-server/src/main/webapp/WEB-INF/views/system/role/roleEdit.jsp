@@ -70,7 +70,7 @@
                         <div class="fl">
                         	<div class="role_save">
                                <span class="pubbtn bluebtn" onclick="add();">保存</span>
-                               <span class="pubbtn fffbtn" data-name="industry" data-on="close">取消</span>
+                               <span class="pubbtn fffbtn" data-name="industry" onclick="sole_close()">取消</span>
                            </div>
                         </div>
                     </li>
@@ -223,6 +223,9 @@
 	    });
   	
   	}
+    function sole_close(){
+    	forwardWithHeader("<%= path%>/galaxy/role/index");
+    }
     </script>
 
 </body>
