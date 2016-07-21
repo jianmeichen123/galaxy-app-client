@@ -185,7 +185,7 @@
 	   	    obj.roleId = id;
 	   	    obj.name = name;
 	   	    obj.description = description;
-	  		$('#test input:checkbox[name=checkid]:checked').each(function(i){
+	  		$('#roleResource input:checkbox[name=checkid]:checked').each(function(i){
 	  			if(0==i){
 	  				spCodesTemp += $(this).val();
 	  				spCodesTemp+=(":"+$(this).parent().find($('select option:selected')).val());
@@ -194,6 +194,7 @@
 	  			}
 	  		});
   		    obj.resourceIds = spCodesTemp;
+  		    alert(spCodesTemp);
  		$.ajax({
 			url : "<%= path%>/galaxy/resource/addRoleResource",
 			type : "POST",
