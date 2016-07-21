@@ -283,11 +283,9 @@ public class ResourceController extends BaseControllerImpl<PlatformResource, Pla
 			return responseBody;
 		}
 		try{
-			if(!StringUtils.isEmpty(roleResource.getResourceIds())){
-				roleResource.setCreatedUid(user.getId());
-				roleResourceService.insertBatch(roleResource);
-				responseBody.setResult(new Result(Status.OK,null, "保存成功!"));
-			}
+			roleResource.setCreatedUid(user.getId());
+			roleResourceService.insertBatch(roleResource);
+			responseBody.setResult(new Result(Status.OK,null, "保存成功!"));
 		} catch (Exception e) {
 			responseBody.setResult(new Result(Status.ERROR,null, "资源录入保存失败"));
 			logger.error("addResource 资源录入保存失败",e);

@@ -43,8 +43,6 @@ public class RoleResourceServiceImpl extends BaseServiceImpl<RoleResource> imple
 	@Transactional
 	public void insertBatch(RoleResource roleResource) {
 		// TODO Auto-generated method stub
-		String[] resourceIds = roleResource.getResourceIds().split(",");
-		
 		/**更新角色表**/
 		Role role = new Role();
 		role.setId(roleResource.getRoleId());
@@ -52,25 +50,28 @@ public class RoleResourceServiceImpl extends BaseServiceImpl<RoleResource> imple
 		role.setDescription(roleResource.getDescription());
 		roleDao.updateById(role);
 		
-		/**删除原来有的角色权限关系**/
-		RoleResource rr = new RoleResource();
-		rr.setRoleId(roleResource.getRoleId());
-		roleResourceDao.delete(rr);
-		
-		/**插入角色关系表**/
-		for(int i = 0 ;i < resourceIds.length ; i++ ){
-			if(!StringUtils.isBlank(resourceIds[i])){
-				String resourceRange[] = resourceIds[i].split(":");
-				//角色资源关系表
-				RoleResource roleSource = new RoleResource();
-				roleSource.setRoleId(roleResource.getRoleId());
-				roleSource.setResourceId(Long.valueOf(resourceRange[0]));
-				roleSource.setCreatedUid(roleResource.getCreatedUid());
-				roleSource.setResourceRange(Integer.valueOf(resourceRange[1]));
-				roleResourceDao.insert(roleSource);
-				
+		if(!StringUtils.isBlank(roleResource.getResourceIds())){
+			String[] resourceIds = roleResource.getResourceIds().split(",");
+			/**删除原来有的角色权限关系**/
+			RoleResource rr = new RoleResource();
+			rr.setRoleId(roleResource.getRoleId());
+			roleResourceDao.delete(rr);
+			/**插入角色关系表**/
+			for(int i = 0 ;i < resourceIds.length ; i++ ){
+				if(!StringUtils.isBlank(resourceIds[i])){
+					String resourceRange[] = resourceIds[i].split(":");
+					//角色资源关系表
+					RoleResource roleSource = new RoleResource();
+					roleSource.setRoleId(roleResource.getRoleId());
+					roleSource.setResourceId(Long.valueOf(resourceRange[0]));
+					roleSource.setCreatedUid(roleResource.getCreatedUid());
+					roleSource.setResourceRange(Integer.valueOf(resourceRange[1]));
+					roleResourceDao.insert(roleSource);
+					
+				}
 			}
 		}
+	
 	}
 
 }
