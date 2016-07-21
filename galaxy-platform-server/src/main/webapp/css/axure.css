@@ -1989,12 +1989,12 @@ dl{position: relative;}
     margin-right: 20px;
     cursor: pointer;
 }
-.role_textarea{ min-width:1050px; overflow:hidden; border-radius:6px; height:100px; overflow-y:auto;}
-.role_list{width:1050px; }
+.role_textarea{ min-width:950px; overflow:hidden; border-radius:6px; height:100px; overflow-y:auto;}
+.role_list{width:950px; }
 .role_list span{ display:block; float:left; margin-right:20px; margin-bottom:5px;}
-.role_border{ border:1px solid #ccd2d7; width:auto; border-radius:6px; box-sizing:border-box; min-width:1050px; }
-.role_set{ width:960px; margin-left:auto; margin-right:auto; margin-top:20px; margin-bottom:20px; overflow:hidden; }
-.role_line{ width:960px; margin-left:auto; margin-right:auto; margin-top:20px; margin-bottom:20px; height:1px; background-color:#dfe0e3;}
+.role_border{ border:1px solid #ccd2d7; width:auto; border-radius:6px; box-sizing:border-box; min-width:950px; }
+.role_set{ width:900px; margin-left:auto; margin-right:auto; margin-top:20px; margin-bottom:20px; overflow:hidden; }
+.role_line{ width:900px; margin-left:auto; margin-right:auto; margin-top:20px; margin-bottom:20px; height:1px; background-color:#dfe0e3;}
 .role_set ul li{ line-height:35px; margin-bottom:0px;}
 .role_set ul li ul{ margin-left:35px;}
 .role_set ul li select{ float:right; width:120px; height:25px; padding:2px 0 !important}
