@@ -50,13 +50,14 @@ public class RoleResourceServiceImpl extends BaseServiceImpl<RoleResource> imple
 		role.setDescription(roleResource.getDescription());
 		roleDao.updateById(role);
 		
+		/**删除原来有的角色权限关系**/
+		RoleResource rr = new RoleResource();
+		rr.setRoleId(roleResource.getRoleId());
+		roleResourceDao.delete(rr);
+		
+		/**插入角色关系表**/
 		if(!StringUtils.isBlank(roleResource.getResourceIds())){
 			String[] resourceIds = roleResource.getResourceIds().split(",");
-			/**删除原来有的角色权限关系**/
-			RoleResource rr = new RoleResource();
-			rr.setRoleId(roleResource.getRoleId());
-			roleResourceDao.delete(rr);
-			/**插入角色关系表**/
 			for(int i = 0 ;i < resourceIds.length ; i++ ){
 				if(!StringUtils.isBlank(resourceIds[i])){
 					String resourceRange[] = resourceIds[i].split(":");
