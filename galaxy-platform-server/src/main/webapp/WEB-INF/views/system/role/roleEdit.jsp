@@ -39,7 +39,6 @@
                 	<li>
                 	<input type="hidden" id="id" value="${id}" />
                     	<div class="fl width_150 align_r">角色名称：</div>
-                    	<input type="hidden" name="id" value="1" class="new_nputr">
                         <div class="fl"><input type="text" name="name" value="" class="new_nputr"></div>
                     </li>
                     <li>
@@ -70,7 +69,7 @@
                         <div class="fl">
                         	<div class="role_save">
                                <span class="pubbtn bluebtn" onclick="add();">保存</span>
-                               <span class="pubbtn fffbtn" data-name="industry" data-on="close">取消</span>
+                               <span class="pubbtn fffbtn" data-name="industry" onclick="sole_close()">取消</span>
                            </div>
                         </div>
                     </li>
@@ -179,13 +178,13 @@
       function add(){
   		var obj={};
   		var spCodesTemp = "";
-    	var id = $("input[name='id']").val();
+    	var id = $("input[id='id']").val();
    	  	var name = $("input[name='name']").val();
    	  	var description = $("textarea[name='description']").val();
 	   	    obj.roleId = id;
 	   	    obj.name = name;
 	   	    obj.description = description;
-	  		$('#test input:checkbox[name=checkid]:checked').each(function(i){
+	  		$('#roleResource input:checkbox[name=checkid]:checked').each(function(i){
 	  			if(0==i){
 	  				spCodesTemp += $(this).val();
 	  				spCodesTemp+=(":"+$(this).parent().find($('select option:selected')).val());
@@ -223,6 +222,9 @@
 	    });
   	
   	}
+    function sole_close(){
+    	forwardWithHeader("<%= path%>/galaxy/role/index");
+    }
     </script>
 
 </body>
