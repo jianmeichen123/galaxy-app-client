@@ -19,7 +19,7 @@ sendPostRequest(platformUrl.getToken,callback);
 //操作链接
 function editor(index, row) {
 	var id = row.id;
-	var arr=row.callback;
+	var arr=row.userListByRid;
 	if (typeof(arr)=="undefined"||arr==null) {
 		var resetUrl = "<a class='blue' href='javascript:resetPwd(" + id
 		+ ")'>编辑</a>&nbsp;<a class='blue' href='javascript:deleteRole(" + id
