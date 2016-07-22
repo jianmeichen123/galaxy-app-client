@@ -39,7 +39,6 @@
                 	<li>
                 	<input type="hidden" id="id" value="${id}" />
                     	<div class="fl width_150 align_r">角色名称：</div>
-                    	<input type="hidden" name="id" value="1" class="new_nputr">
                         <div class="fl"><input type="text" name="name" value="" class="new_nputr"></div>
                     </li>
                     <li>
@@ -179,7 +178,7 @@
       function add(){
   		var obj={};
   		var spCodesTemp = "";
-    	var id = $("input[name='id']").val();
+    	var id = $("input[id='id']").val();
    	  	var name = $("input[name='name']").val();
    	  	var description = $("textarea[name='description']").val();
 	   	    obj.roleId = id;
