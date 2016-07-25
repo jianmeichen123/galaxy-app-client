@@ -32,7 +32,7 @@
 		<jsp:include page="/WEB-INF/views/common/leftmenu.jsp" flush="true"></jsp:include>
 		<!--左侧导航-->
 		<div class="ritmin prj_all">
-    	<div class="new_tit_a"><a href="#" onclick="backIndex()">角色权限</a>&gt;编辑</div>
+    	<div class="new_tit_a"><a href="javascript:void(0);"  onclick="backIndex()">角色权限</a>&gt;编辑</div>
        	<div class='role_center'>
         	<div class="role_center_info">
             	<ul class="ul_role">
@@ -223,6 +223,9 @@
   	
   	}
     function sole_close(){
+    	forwardWithHeader("<%= path%>/galaxy/role/index");
+    }
+    function backIndex(){
     	forwardWithHeader("<%= path%>/galaxy/role/index");
     }
     </script>
