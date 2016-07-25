@@ -24,7 +24,7 @@
 		 <result column="created_time" property="createdTime"  />
 		 <result column="updated_time" property="updatedTime"  />
 
-    
+    	<result property="userTzjlSum" column="userTzjlSum" />
 	</resultMap>
 	
 	<sql id="Base_Column_List">
@@ -113,7 +113,7 @@
 	<!-- 查询总数 -->
 	<select id="selectCount" resultType="java.lang.Long"
 		parameterType="java.util.Map">
-		select count(id) from t_user
+		select count(id) from platform_user
 		<include refid="Base_Where_Clause" />
 	</select>
 
@@ -121,7 +121,7 @@
 	<select id="select" resultMap="BaseResultMap" parameterType="java.util.Map">
 		select
 		<include refid="Base_Column_List" />
-		from t_user
+		from platform_user
 		<include refid="Base_Where_Clause" />
 	</select>
 
@@ -129,27 +129,27 @@
 	<select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
 		select
 		<include refid="Base_Column_List" />
-		from t_user where id = #{id}
+		from platform_user where id = #{id}
 	</select>
 	
 	<select id="selectByNickName" resultMap="BaseResultMap" parameterType="UserPO">
 		select
 		<include refid="Base_Column_List" />
-		from t_user 
+		from platform_user 
 		where nick_name =#{nickName} and id !=#{id}
 	</select>
 	
 	<select id="selectByRealName" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
-		from t_user 
+		from platform_user 
 		where real_name =#{realName}
 	</select>
 	
     <select id="selectByEmail" resultMap="BaseResultMap" parameterType="UserPO">
 		select
 		<include refid="Base_Column_List" />
-		from t_user 
+		from platform_user 
 		
 		<where>
 			<trim prefixOverrides="and">
@@ -162,7 +162,7 @@
 	<select id="selectListById" resultMap="BaseResultMap" >
 	  select
 		<include refid="Base_Column_List" />
-		 from t_user
+		 from platform_user
 		    where id in
 					<foreach collection="list" index="item" item="item" open="("
 						separator="," close=")">
@@ -173,7 +173,7 @@
   	<insert id="insert" parameterType="UserPO" useGeneratedKeys="true" keyProperty="id">
 	    <![CDATA[
 	        insert into
-	        t_user (
+	        platform_user (
         	  id,
         	  employ_no,
         	  real_name,
@@ -216,7 +216,7 @@
     
     <!-- 更新 -->
 	<update id="updateByIdSelective" parameterType="UserPO">
-		update t_user
+		update platform_user
 		<set>
 		    <if test="employNo != null">  employ_no =#{employNo},</if>
 			<if test="realName != null">  real_name =#{realName},</if>
@@ -261,7 +261,7 @@
 	</update>
     <!-- 通过ID更新 -->
 	<update id="updateById" parameterType="UserPO">
-		update t_user
+		update platform_user
 		<set>
 		    <if test="employNo != null"> employ_no =#{employNo},</if>
 			<if test="realName != null">  real_name =#{realName},</if>
@@ -286,18 +286,18 @@
     
     <!-- 删除 -->
 	<delete id="delete" parameterType="java.util.Map">
-		delete from t_user
+		delete from platform_user
 		<include refid="Base_Where_Clause" />
 	</delete>
      <!-- 根据ID删除 -->
 	<delete id="deleteById" parameterType="java.lang.Long">
-		delete from t_user where id = #{id}
+		delete from platform_user where id = #{id}
 	</delete>
 	
 	 	<insert id="insertUserRole" parameterType="com.galaxyinternet.model.user.UserRole"  useGeneratedKeys="true" keyProperty="id">
 	    <![CDATA[
 	        insert into
-	        t_user_role (
+	        platform_user_role (
         	id,
         	role_id,
         	user_id,
@@ -310,4 +310,68 @@
 	        )
 	    ]]>
     </insert>
+    
+    
+    
+    
+    
+    <!-- report -->
+    
+    <!-- 查询 -->
+	<select id="selectTzjlSum" resultMap="BaseResultMap" parameterType="java.util.Map">
+		SELECT u.department_id department_id,COUNT(*) userTzjlSum
+		FROM platform_user u,platform_user_role ur 
+		WHERE u.id = ur.user_id 
+			<if test="status != null"> and u.status =#{status}</if>
+			<if test="roleId != null"> and ur.role_id =#{roleId}</if>  <!-- AND ur.role_id = 4 -->
+			<if test="departmentIds != null">
+					AND u.department_id IN 
+					<foreach collection="departmentIds" index="item" item="item" open="("
+						separator="," close=")">
+						#{item}
+					</foreach>
+			  </if>
+		GROUP BY u.department_id
+	</select>
+	
+	
+	 <!--  查询 用户-->
+	<select id="selectUserByParams" resultMap="BaseResultMap" parameterType="java.util.Map">
+		SELECT  u.id,  u.department_id, u.real_name
+		FROM platform_user u,platform_user_role ur 
+		WHERE u.id = ur.user_id 
+			<if test="roleId != null"> and ur.role_id =#{roleId}</if>  <!-- AND ur.role_id = 4 -->
+			<if test="departmentId != null"> and u.department_id =#{departmentId}</if>
+			<if test="departmentIds != null">
+				AND u.department_id IN 
+				<foreach collection="departmentIds" index="item" item="item" open="("
+					separator="," close=")">
+					#{item}
+				</foreach>
+		    </if>
+			<if test="status != null"> and u.status =#{status}</if>
+	</select>
+	
+	
+	
+	
+	
+	
+	<!-- report 删除
+	<select id="selectAllTzjl" resultMap="BaseResultMap" parameterType="java.util.Map">
+		SELECT  u.id,  u.department_id, u.real_name
+		FROM platform_user u,platform_user_role ur 
+		WHERE u.id = ur.user_id 
+			<if test="roleId != null"> and ur.role_id =#{roleId}</if>  
+			<if test="departmentId != null"> and u.department_id =#{departmentId}</if>
+			<if test="departmentIds != null">
+				AND u.department_id IN 
+				<foreach collection="departmentIds" index="item" item="item" open="("
+					separator="," close=")">
+					#{item}
+				</foreach>
+		    </if>
+			<if test="status != null"> and u.status =#{status}</if>
+	</select>
+	 -->
 </mapper>

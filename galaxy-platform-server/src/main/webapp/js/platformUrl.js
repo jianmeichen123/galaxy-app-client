@@ -25,6 +25,39 @@ var platformUrl = {
 	 */
 	userIndex :Constants.platformContentURL+ "galaxy/user",
 	/**
+	 * 角色管理
+	 */
+	roleIndex :Constants.platformContentURL+ "galaxy/role/index",
+    /**
+	 * 删除角色
+	 */
+	deleteRole :Constants.platformContentURL+ "galaxy/role/deleteRole",
+	/**
+	 * 删除角色
+	 */
+	checkRoleName :Constants.platformContentURL+ "galaxy/role/checkRoleName",
+	
+	/**
+	 * 新增角色
+	 */
+	
+	addRole :Constants.platformContentURL+ "galaxy/role/addRole",
+	
+	/**
+	 * 跳转至角色编辑页面
+	 */
+	
+	roleEdit :Constants.platformContentURL+ "galaxy/role/roleEdit",
+	
+	/**
+	 * 跳转至角色编辑页面
+	 */
+	
+	getRoleDetail :Constants.platformContentURL+ "galaxy/role/getRoleDetail",
+	
+	
+	
+	/**
 	 * 分页查询
 	 */
 	queryUserList :"galaxy/user/queryUserList",
@@ -96,6 +129,12 @@ var platformUrl = {
 	 * 获取token
 	 */
 	getToken:"galaxy/user/formtoken",
+	
+	/**
+	 * 查询角色列表
+	 */
+	getRoleList :"galaxy/role/roleList",
+	
 }
 /**
  * how to use? location.href = platformUrl.login
