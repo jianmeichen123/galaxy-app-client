@@ -17,7 +17,7 @@
                     <div class="fl">
                     	<div class="button_affrim">
         <a href="javascript:;" class="register_all_affrim fl" action="save" >确认</a>
-        <a href="javascript:;" class="register_all_input fr" action="close">取消</a>
+        <a href="javascript:;" class="register_all_input fr" data-close="close">取消</a>
     </div>
                     </div>
                 </li>
@@ -28,9 +28,3 @@
     
   	
 </div>
-<script>
-$("div").delegate('[action="close"]',"click",function(){
-	$("#popbg").remove();
-	$('[data-id="popid0"]').remove();
-});
-</script>
