@@ -51,7 +51,7 @@
 					        <th data-field="name"  class="data-input">角色名称</th>
 					        <th data-field="description"   class="data-input">角色描述</th>
 					        <th data-field="description" data-formatter="formatStatus"  class="col-md-1 status ">用户列表</th>
-					        <th  class="col-md-2" data-formatter="editor">操作</th>
+					        <th  class="col-md-2 lpubbtn" data-formatter="editor" style='width:120px'>操作</th>
 
    						 	</tr>	
    						 	</thead>
