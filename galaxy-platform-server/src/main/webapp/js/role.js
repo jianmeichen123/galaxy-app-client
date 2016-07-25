@@ -58,12 +58,7 @@ function deleteRole(id) {
 			);}
 
 function doSumbit(){
-$(".poptxt")
-.on(
-		"click",
-		"a[action='save']",
-		function() {
-
+$(".poptxt").on("click","a[action='save']",function() {
 			var pop = $(".pop");
 			var json = {};
 			var pattern = /^[\u4e00-\u9fa5]{1,8}$/;
@@ -172,3 +167,4 @@ function deleteRoleCallBack(data) {
 	}
 	
 }
+
