@@ -66,11 +66,12 @@ $(".poptxt")
 
 			var pop = $(".pop");
 			var json = {};
+			var pattern = /^[\u4e00-\u9fa5]{1,8}$/;
      	if (pop.find("input[name='name']").val() == "") {
 				layer.msg("请填写角色名");
 				return;
 			} else {
-				var pattern = /^[\u4e00-\u9fa5]{1,8}$/;
+				
 				var value = pop.find("input[name='name']").val();
 				if (!pattern.test(value)) {
 					layer.msg("角色名称只能输入汉字,最多输入8个汉字");
@@ -87,10 +88,7 @@ $(".poptxt")
 			}
      	    var desc=pop.find("[name='description']").val();
 	     	if ( desc!= ""){
-	     		if (!pattern.test(desc)) {
-					layer.msg("角色描述只能输入汉字");
-					return;
-				} if(desc.length>200){
+	     		if(desc.length>200){
 					layer.msg("角色描述只能，最多输入200个汉字");
 					return;
 				}else{
