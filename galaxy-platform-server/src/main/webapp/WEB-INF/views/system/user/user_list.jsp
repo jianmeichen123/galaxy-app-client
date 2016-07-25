@@ -1,6 +1,6 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://www.galaxyinternet.com/tags/acl" prefix="acl" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -40,11 +40,12 @@
 					<a href="html/userinfrotc.html" data-btn="userinfro"
 						class="pubbtn bluebtn ico c4">添加人员</a>
 				</div>
-				
+				<acl:acl resourceMark="interView">
 				<div class="btnbox_f btnbox_f1 clearfix" style="display:none;" resource-mark="interView">
 					<a href="javascript:void(0);" data-btn="userinfro1" style="width:200px;" 
 						class="pubbtn bluebtn ico c4">权限隐藏测试-有</a>
 				</div>
+				</acl:acl>
 				<div class="btnbox_f btnbox_f1 clearfix" style="display:none;" resource-mark="no">
 					<a href="javascript:void(0);" data-btn="userinfro2" style="width:200px;" 
 						class="pubbtn bluebtn ico c4">权限隐藏测试-无</a>
