@@ -83,7 +83,7 @@ $(".poptxt")
 					layer.msg("角色描述只能输入200个汉字");
 					return;
 				}else{
-					json['description']=value;
+					json['description']=desc;
 				}
 	      	}
 	     	$.ajax({		
