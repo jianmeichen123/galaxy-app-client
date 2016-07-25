@@ -170,7 +170,7 @@ function doSumbit() {
 	/**
 	 * 新增用户页面----职能角色下拉框
 	 */
-	sendGetRequest(platformUrl.getRoleList, json, callbackFun1);
+	sendGetRequest(platformUrl.roleListBySelect, json, callbackFun1);
 	/**
 	 * 新增用户页面----部门归属下拉框
 	 */

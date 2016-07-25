@@ -92,6 +92,36 @@ public class RoleController extends BaseControllerImpl<Role, RoleBo> {
 		request.setAttribute("id", id);
 		return "system/role/roleEdit";
 	}
+	/**
+	 * 获取部门列表
+	 * @author chenjianmei
+	 * @return
+	 */
+		@ResponseBody
+	@RequestMapping(value = "/roleListBySelect",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseData<Role> roleListBySelect(Long type) {
+		
+		ResponseData<Role> responseBody = new ResponseData<Role>();
+		try {
+			// 部门列表
+			List<Role> roleList = null;
+			if(type!=null){
+			    roleList = roleService.queryAll();
+			}
+			responseBody.setEntityList(roleList);
+			responseBody.setResult(new Result(Status.OK, ""));
+			return responseBody;
+
+		} catch (PlatformException e) {
+			responseBody
+					.setResult(new Result(Status.ERROR, "roleList faild"));
+
+			if (logger.isErrorEnabled()) {
+				logger.error("roleList ", e);
+			}
+		}
+		return responseBody;
+	}
 	
 	/**
 	 * 获取部门列表
@@ -101,18 +131,16 @@ public class RoleController extends BaseControllerImpl<Role, RoleBo> {
 		@ResponseBody
 	@RequestMapping(value = "/roleList", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseData<Role> roleList(HttpServletRequest request,
-			@RequestBody Role role,Long type) {
+			@RequestBody Role role) {
 		
 		ResponseData<Role> responseBody = new ResponseData<Role>();
 		Page<Role> pageRole=new Page<>(null, null, null);
 		try {
 			// 部门列表
 			List<Role> roleList = null;
-			if(type!=null){
-			    roleList = roleService.queryAll();
-			}else{
+	
 				pageRole=roleService.queryRoleList(role,new PageRequest(role.getPageNum(), role.getPageSize()));
-			}
+		
 			responseBody.setPageList(pageRole);
 			responseBody.setResult(new Result(Status.OK, ""));
 			return responseBody;
