@@ -164,9 +164,9 @@
 								});
 							select += "</select>";
 					    	if(rolerights.indexOf(entity.id) >= 0){
-				    			 d.add(entity.id,entity.parentId,entity.resourceName,'',1,'',true,select);
+				    			 d.add(entity.id,entity.parentId,entity.resourceDesc,'',1,'',true,select);
 				    		}else{
-				    			 d.add(entity.id,entity.parentId,entity.resourceName,'','','',true,select);
+				    			 d.add(entity.id,entity.parentId,entity.resourceDesc,'','','',true,select);
 				    			
 				    		}
 					    });
