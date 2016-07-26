@@ -256,13 +256,13 @@ function doSumbit() {
 						}
 						if (pop.find('#selectId option:selected').val() == null
 								|| $('#selectId option:selected').val() == "") {
-							layer.msg("请选择职能部门");
+							layer.msg("请选择角色");
 							return;
 						}
 						if (pop.find('#selectDepId option:selected').val() == null
 								|| pop.find('#selectDepId option:selected')
 										.val() == "") {
-							layer.msg("请选择角色");
+							layer.msg("请选择职能部门");
 							return;
 						}
 						$(pop).find("input").each(function() {
