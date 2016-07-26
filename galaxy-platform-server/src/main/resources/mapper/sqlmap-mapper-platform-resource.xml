@@ -279,7 +279,8 @@
 			</trim>
 		</where>
 		<if test="sorting != null">order by ${sorting}</if>
-		<if test="sorting = null">order by resource_order asc</if>
+		<if test="sorting == null"> order by resource_order asc</if>
+		
 		<if test="offset != null and limit != null">
 			limit #{offset}, #{limit}
 		</if>
