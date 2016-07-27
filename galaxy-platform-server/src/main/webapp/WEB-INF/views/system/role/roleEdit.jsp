@@ -180,7 +180,11 @@
   		var spCodesTemp = "";
     	var id = $("input[id='id']").val();
    	  	var name = $("input[name='name']").val();
-   	  	var description = $("textarea[name='description']").val();
+   		var description = $("textarea[name='description']").val();
+   	  	if(name==''){
+	   	  	layer.msg("角色名称!");
+	   	  	return ;
+   	  	}   	  
 	   	    obj.roleId = id;
 	   	    obj.name = name;
 	   	    obj.description = description;
