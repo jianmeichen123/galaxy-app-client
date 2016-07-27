@@ -82,6 +82,12 @@ var platformUrl = {
 	 * 查询部门
 	 */
 	getDepartList :"galaxy/user/departmentList",
+	
+	/**
+	 * 查询部门
+	 */
+	roleListBySelect :"galaxy/role/roleListBySelect",
+	
 	/**
 	 * 查询用户 自动补全
 	 */

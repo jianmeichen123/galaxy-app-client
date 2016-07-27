@@ -1,6 +1,6 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://www.galaxyinternet.com/tags/acl" prefix="acl" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -40,123 +40,6 @@
 					<a href="html/userinfrotc.html" data-btn="userinfro"
 						class="pubbtn bluebtn ico c4">添加人员</a>
 				</div>
-				
-				<div class="btnbox_f btnbox_f1 clearfix" style="display:none;" resource-mark="interView">
-					<a href="javascript:void(0);" data-btn="userinfro1" style="width:200px;" 
-						class="pubbtn bluebtn ico c4">权限隐藏测试-有</a>
-				</div>
-				<div class="btnbox_f btnbox_f1 clearfix" style="display:none;" resource-mark="no">
-					<a href="javascript:void(0);" data-btn="userinfro2" style="width:200px;" 
-						class="pubbtn bluebtn ico c4">权限隐藏测试-无</a>
-				</div>
-				
-				
-				<div class="btnbox_f btnbox_f1 clearfix"  resource-mark="interView1">
-					<a href="javascript:void(0);" data-btn="userinfro3" style="width:200px;" 
-						class="pubbtn bluebtn ico c4">非法模拟HTTP请求-权限测试</a>
-				</div>
-				<div class="btnbox_f btnbox_f1 clearfix"  resource-mark="interView2">
-					<a href="javascript:void(0);" data-btn="userinfro4" style="width:200px;" 
-						class="pubbtn bluebtn ico c4">非法模拟HTTP请求-权限测试</a>
-				</div>
-				<script type="text/javascript">
-				   /**
-				    * @time 2016-07-29
-				    */
-				    if(isContainResourceByMark("interView")){
-				    	$('div[resource-mark="interView"]').css("display","block");
-				    }
-				    if(isContainResourceByMark("no")){
-				    	$('div[resource-mark="no"]').css("display","block");
-				    }
-				    
-				    
-				    $('a[data-btn="userinfro1" ]').click(function(){
-						/**
-						 * 模拟正常的请求
-						 */
-						$.ajax({
-							url : "<%= path%>/galaxy/test/ajax",
-							type : "POST",
-						    data : "",
-							dataType : "json",
-							cache : false,
-							contentType : "application/json; charset=UTF-8",
-							beforeSend : function(xhr) {
-								xhr.setRequestHeader("resourceMark", "interView");
-								if (sessionId) {
-									xhr.setRequestHeader("sessionId", sessionId);
-								}
-								if(userId){
-									xhr.setRequestHeader("guserId", userId);
-								}
-							},
-							async : false,
-							error : function(request) {
-							},
-							success : function(data) {
-								 layer.msg(data.result.message);
-							}
-						});
-					});
-					$('a[data-btn="userinfro3" ]').click(function(){
-						/**
-						 * 模拟不传入资源标识
-						 */
-						$.ajax({
-							url : "<%= path%>/galaxy/test/ajax",
-							type : "POST",
-						    data : "",
-							dataType : "json",
-							cache : false,
-							contentType : "application/json; charset=UTF-8",
-							beforeSend : function(xhr) {
-								if (sessionId) {
-									xhr.setRequestHeader("sessionId", sessionId);
-								}
-								if(userId){
-									xhr.setRequestHeader("guserId", userId);
-								}
-							},
-							async : false,
-							error : function(request) {
-							},
-							success : function(data) {
-								 layer.msg(data.result.message);
-							}
-						});
-					});
-					$('a[data-btn="userinfro4" ]').click(function(){
-						/**
-						 * 模拟传入自己未拥有的资源标识
-						 */
-						$.ajax({
-							url : "<%= path%>/galaxy/test/ajax",
-							type : "POST",
-						    data : "",
-							dataType : "json",
-							cache : false,
-							contentType : "application/json; charset=UTF-8",
-							beforeSend : function(xhr) {
-								xhr.setRequestHeader("resource_mark", "interView_test");
-								if (sessionId) {
-									xhr.setRequestHeader("sessionId", sessionId);
-								}
-								if(userId){
-									xhr.setRequestHeader("guserId", userId);
-								}
-							},
-							async : false,
-							error : function(request) {
-							},
-							success : function(data) {
-								 layer.msg(data.result.message);
-							}
-						});
-					});
-				</script>
-				
-				
 			</div>
 
 			<!-- 搜索条件 -->
@@ -195,7 +78,7 @@
 					data-toolbar="#custom-toolbar">
 						   <thead>
 						    <tr>
-					        <th data-field="nickName"  class="data-input">登陆名称</th>
+					        <th data-field="nickName"  class="data-input">登录名称</th>
 					        <th data-field="status"  data-formatter="formatStatus" class="data-input">账户状态</th>
 					        <th data-field="realName"  class="col-md-1 status ">真实姓名</th>
 					        <th data-field="gender"  data-formatter="formatGender">性别</th>

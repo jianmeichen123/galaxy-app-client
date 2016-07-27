@@ -44,14 +44,14 @@
 			</div>
 
 			<div class="tab-pane active" id="view">		
-					<table id="data-table" data-url="galaxy/role/roleList"  data-page-list="[10, 20, 30]" 
+					<table id="data-table" data-url="<%=path %>/galaxy/role/roleList"  data-page-list="[10, 20, 30]" 
 					data-toolbar="#custom-toolbar">
 						   <thead>
 						    <tr>
 					        <th data-field="name"  class="data-input">角色名称</th>
 					        <th data-field="description"   class="data-input">角色描述</th>
 					        <th data-field="description" data-formatter="formatStatus"  class="col-md-1 status ">用户列表</th>
-					        <th  class="col-md-2" data-formatter="editor">操作</th>
+					        <th  class="col-md-2 lpubbtn" data-formatter="editor" style='width:120px'>操作</th>
 
    						 	</tr>	
    						 	</thead>

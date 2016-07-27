@@ -43,28 +43,33 @@ function resetPwd(id) {
 //删除角色
 function deleteRole(id) {
 	var data = {
-		'id' : id
-	};	
-	sendPostRequestByJsonObj(platformUrl.deleteRole, data, deleteRoleCallBack);
-}
+			'id' : id
+		};	
+		layer.confirm('你确定要删除吗?', 
+				{
+				  btn: ['确定', '取消'] 
+				}, 
+				function(index, layero){
+					sendPostRequestByJsonObj(platformUrl.deleteRole, data, deleteRoleCallBack);
+				}, 
+				function(index){
+					
+				}
+			);}
 
 function doSumbit(){
-$(".poptxt")
-.on(
-		"click",
-		"a[action='save']",
-		function() {
-
+$(".poptxt").on("click","a[action='save']",function() {
 			var pop = $(".pop");
 			var json = {};
+			var pattern = /^[\u4e00-\u9fa5]{1,8}$/;
      	if (pop.find("input[name='name']").val() == "") {
 				layer.msg("请填写角色名");
 				return;
 			} else {
-				var pattern = /^[\u4e00-\u9fa5]{1,8}$/;
+				
 				var value = pop.find("input[name='name']").val();
 				if (!pattern.test(value)) {
-					layer.msg("角色名称只能输入8个汉字");
+					layer.msg("角色名称只能输入汉字,最多输入8个汉字");
 					return;
 				}
 				var json = {"name" : value};	
@@ -78,9 +83,8 @@ $(".poptxt")
 			}
      	    var desc=pop.find("[name='description']").val();
 	     	if ( desc!= ""){
-	     		var pattern = /^[\u4e00-\u9fa5]{0,200}$/;
-	     		if (!pattern.test(desc)||desc>200) {
-					layer.msg("角色描述只能输入200个汉字");
+	     		if(desc.length>200){
+					layer.msg("角色描述只能，最多输入200个汉字");
 					return;
 				}else{
 					json['description']=value;
@@ -163,3 +167,4 @@ function deleteRoleCallBack(data) {
 	}
 	
 }
+
