@@ -62,7 +62,6 @@
 			                          
 			  					</div>
                             </div>
-                            <div class="role_line"></div>
                         </div>
                     </li>
                     <li>
