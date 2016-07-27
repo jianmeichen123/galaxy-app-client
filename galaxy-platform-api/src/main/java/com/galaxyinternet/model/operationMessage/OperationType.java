@@ -65,7 +65,9 @@ public enum OperationType {
 	_6_10_p2_			("/galaxy/soptask/submitTask/"+UrlNumber.six,		PlatformConst.PROJECT_TYPE, "进入投后运营阶段"),
 	
 	
-	PRO_HEALTH			("/galaxy/health/addhealth",		PlatformConst.PROJECT_TYPE, "项目健康度");
+	PRO_HEALTH			("/galaxy/health/addhealth",		PlatformConst.PROJECT_TYPE, "项目健康度"),
+	ADD_OPERAT_MEETING		("/galaxy/project/postOperation/saveMeeting/"+UrlNumber.one,		PlatformConst.PROJECT_TYPE, "添加"),
+	EDIT_OPERAT_MEETING		("/galaxy/project/postOperation/saveMeeting/"+UrlNumber.two,		PlatformConst.PROJECT_TYPE, "编辑");
 	
 	private OperationType(String uniqueKey, String type, String content, Integer module) {
 		this.uniqueKey = uniqueKey;
