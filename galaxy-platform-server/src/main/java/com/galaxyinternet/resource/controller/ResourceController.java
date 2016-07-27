@@ -258,8 +258,10 @@ public class ResourceController extends BaseControllerImpl<PlatformResource, Pla
 		}
 		mapList.put("resourceIdList", resourceIdList);
 		mapList.put("resourceRangeMap", resourceRangeMap);
-		/**获取全部的资源**/
-		List<PlatformResource> resourceList = resourceService.queryAll();
+		/**获取全部的资源:除禁用**/
+		PlatformResource resource = new PlatformResource();
+		resource.setResourceStatus("1");
+		List<PlatformResource> resourceList = resourceService.queryList(resource);
 		
 		PlatformResource platformResource = new PlatformResource();
 		platformResource.setMapList(mapList);
