@@ -40,6 +40,7 @@
                 	<input type="hidden" id="id" value="${id}" />
                     	<div class="fl width_150 align_r">角色名称：</div>
                         <div class="fl"><input type="text" name="name" value="" class="new_nputr"></div>
+                        <input type="hidden" name="oldName">
                     </li>
                     <li>
                     	<div class="fl width_150 align_r">角色描述：</div>
@@ -92,6 +93,8 @@
     			roleDetail = data.entity;
     			$("input[name='name']").val(roleDetail.name);
     			$("textarea[name='description']").val(roleDetail.description);
+    			$("input[name='oldName']").val(roleDetail.name);
+    			
     			var arr=roleDetail.userListByRid;
     			var nameStr="";
     			var result="";
@@ -180,13 +183,38 @@
     	var id = $("input[id='id']").val();
    	  	var name = $("input[name='name']").val();
    		var description = $("textarea[name='description']").val();
+   		var pattern = /^[\u4e00-\u9fa5]{1,8}$/;
    	  	if(name==''){
-	   	  	layer.msg("角色名称!");
+	   	  	layer.msg("请填写角色名!");
 	   	  	return ;
-   	  	}   	  
+   	  	} else {
+			if (!pattern.test(name)) {
+				layer.msg("角色名称只能输入汉字,最多输入8个汉字");
+				return;
+			}
+		    var oldName=$("input[name='oldName']").val();
+			if(oldName!=name){
+				var json = {"name" : name};	
+				sendPostRequestByJsonObj(platformUrl.checkRoleName,
+						json, callbackcheckRoleName);
+				if (flag == true) {
+					layer.msg("角色名不能重复");
+					return;
+				}
+		    }
+		} 
+   	 if ( description!= ""){
+  		if(description.length>200){
+				layer.msg("角色描述最多输入200个汉字");
+				return;
+			}else{
+				//json['description']=description;
+				obj.description = description;
+			}
+   	}
 	   	    obj.roleId = id;
 	   	    obj.name = name;
-	   	    obj.description = description;
+	   	    
 	  		$('#roleResource input:checkbox[name=checkid]:checked').each(function(i){
 	  			if(0==i){
 	  				spCodesTemp += $(this).val();

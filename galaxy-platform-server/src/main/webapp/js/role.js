@@ -76,7 +76,7 @@ $(".poptxt").on("click","a[action='save']",function() {
 				sendPostRequestByJsonObj(platformUrl.checkRoleName,
 						json, callbackcheckRoleName);
 				if (flag == true) {
-					layer.msg("角色不能重复");
+					layer.msg("角色名不能重复");
 					return;
 				}
 			
@@ -84,7 +84,7 @@ $(".poptxt").on("click","a[action='save']",function() {
      	    var desc=pop.find("[name='description']").val();
 	     	if ( desc!= ""){
 	     		if(desc.length>200){
-					layer.msg("角色描述只能，最多输入200个汉字");
+					layer.msg("角色描述最多输入200个汉字");
 					return;
 				}else{
 					json['description']=desc;
