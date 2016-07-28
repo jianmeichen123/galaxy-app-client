@@ -10,7 +10,7 @@ function formatStatus(index, row) {
 			nameStr=nameStr+arr[i].realName+",";
 		}
 		
-		result=nameStr.substring(0,nameStr.length-1)
+		result='<div class="height_90"><a href="javascript:void(0);" title="'+nameStr.substring(0,nameStr.length-1)+'">'+nameStr.substring(0,nameStr.length-1)+'</a></div>'
 	} 
 	return result;
 }

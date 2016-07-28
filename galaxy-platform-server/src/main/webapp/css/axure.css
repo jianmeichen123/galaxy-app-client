@@ -391,7 +391,12 @@ table .width_gd{width:12%;}
 .searchall .cx,.searchall .tj{margin-left: 25px;}
 /*公用按钮*/
 .pubbtn{ display:block; width:80px; height:28px; border:1px solid #FFF; text-align:center; line-height:28px; font-size:14px; font-family:"宋体"; border-radius:4px;}
-.lpubbtn{width: 115px;}
+.width_8 ,.lpubbtn{width: 115px;}
+.heightstatus{}
+.width_450{ width:500px}
+.height_90{ max-height:90px; overflow:hidden;}
+.height_ding .table td {vertical-align: top;}
+.height_90 a{ text-decoration:none;}
 .llpubbtn{width: 140px;}
 .pubbtn:hover{ text-decoration:none}
 .bluebtn{ background-color:#66b1f2; border-color:#66b1f2; color:#FFF}
