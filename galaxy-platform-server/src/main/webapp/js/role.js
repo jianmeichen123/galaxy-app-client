@@ -61,15 +61,15 @@ function doSumbit(){
 $(".poptxt").on("click","a[action='save']",function() {
 			var pop = $(".pop");
 			var json = {};
-			//var pattern = /^[\u4e00-\u9fa5]{1,8}$/;
+			var pattern = /^[a-zA-Z\u4e00-\u9fa5]{1,8}$/;
      	if (pop.find("input[name='name']").val() == "") {
 				layer.msg("请填写角色名");
 				return;
-			} else {
-				
+			} else {			
 				var value = pop.find("input[name='name']").val();
-				if (value.length>8) {
-					layer.msg("角色名称最多输入8个字符");
+				if (!pattern.test(value)) {
+					layer.msg("角色名称只能输8个汉字或者字母");
+
 					return;
 				}
 				var json = {"name" : value};	
@@ -81,10 +81,12 @@ $(".poptxt").on("click","a[action='save']",function() {
 				}
 			
 			}
+     	     var patternd = /^[\u4e00-\u9fa5]{0,200}$/;
      	    var desc=pop.find("[name='description']").val();
 	     	if ( desc!= ""){
-	     		if(desc.length>200){
-					layer.msg("角色描述最多输入200个字符");
+	     		if (!patternd.test(desc)) {
+					layer.msg("角色描述只能输入200个汉字");
+
 					return;
 				}else{
 					json['description']=desc;
