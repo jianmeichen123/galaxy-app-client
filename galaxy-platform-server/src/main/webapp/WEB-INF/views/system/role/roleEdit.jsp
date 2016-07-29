@@ -188,8 +188,8 @@
 	   	  	layer.msg("请填写角色名!");
 	   	  	return ;
    	  	} else {
-			if (!pattern.test(name)) {
-				layer.msg("角色名称只能输8个汉字或者字母");
+			if (name.length>8) {
+				layer.msg("角色名称只能输8个字符");
 				return;
 			}
 
@@ -206,8 +206,8 @@
 		} 
    	 var patternd = /^[\u4e00-\u9fa5]{0,200}$/;
    	 if ( description!= ""){
-  		if(!patternd.test(description)){
-				layer.msg("角色描述最多输入200个汉字");
+  		if(description.length>200){
+				layer.msg("角色描述只能输入200个字符");
 			    return;
 			}else{
 				//json['description']=description;
