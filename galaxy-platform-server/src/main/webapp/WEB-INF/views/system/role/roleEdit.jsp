@@ -192,6 +192,7 @@
 				layer.msg("角色名称只能输8个汉字或者字母");
 				return;
 			}
+
 		    var oldName=$("input[name='oldName']").val();
 			if(oldName!=name){
 				var json = {"name" : name};	
@@ -207,7 +208,7 @@
    	 if ( description!= ""){
   		if(!patternd.test(description)){
 				layer.msg("角色描述最多输入200个汉字");
-				return;
+			    return;
 			}else{
 				//json['description']=description;
 				obj.description = description;

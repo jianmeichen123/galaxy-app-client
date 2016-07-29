@@ -43,15 +43,15 @@
 				</div>
 			</div>
 
-			<div class="tab-pane active" id="view">		
-					<table id="data-table" data-url="<%=path %>/galaxy/role/roleList"  data-page-list="[10, 20, 30]" 
+			<div class="tab-pane active height_ding" id="view">		
+					<table id="data-table" data-url="<%=path %>/galaxy/role/roleList" style='table-layout:fixed ;'  data-page-list="[10, 20, 30]" 
 					data-toolbar="#custom-toolbar">
 						   <thead>
 						    <tr>
-					        <th data-field="name"  class="data-input">角色名称</th>
-					        <th data-field="description"   class="data-input">角色描述</th>
-					        <th data-field="description" data-formatter="formatStatus"  class="col-md-1 status ">用户列表</th>
-					        <th  class="col-md-2 lpubbtn" data-formatter="editor" style='width:120px'>操作</th>
+					        <th data-field="name"  class="data-input width_8" >角色名称</th>
+					        <th data-field="description"   class="data-input width_450">角色描述</th>
+					        <th data-field="description" data-formatter="formatStatus"  class="col-md-1 heightstatus ">用户列表</th>
+					        <th  class="col-md-2 lpubbtn" data-formatter="editor" >操作</th>
 
    						 	</tr>	
    						 	</thead>

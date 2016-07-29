@@ -10,7 +10,7 @@ function formatStatus(index, row) {
 			nameStr=nameStr+arr[i].realName+",";
 		}
 		
-		result=nameStr.substring(0,nameStr.length-1)
+		result='<div class="height_90"><a href="javascript:void(0);" title="'+nameStr.substring(0,nameStr.length-1)+'">'+nameStr.substring(0,nameStr.length-1)+'</a></div>'
 	} 
 	return result;
 }
@@ -61,15 +61,19 @@ function doSumbit(){
 $(".poptxt").on("click","a[action='save']",function() {
 			var pop = $(".pop");
 			var json = {};
+<<<<<<< HEAD
 			var pattern = /^[a-zA-Z\u4e00-\u9fa5]{1,8}$/;
+=======
+			//var pattern = /^[\u4e00-\u9fa5]{1,8}$/;
+>>>>>>> branch 'develop2' of http://git.gi.com/galaxy-star/galaxy-platform.git
      	if (pop.find("input[name='name']").val() == "") {
 				layer.msg("请填写角色名");
 				return;
-			} else {
-				
+			} else {			
 				var value = pop.find("input[name='name']").val();
 				if (!pattern.test(value)) {
 					layer.msg("角色名称只能输8个汉字或者字母");
+
 					return;
 				}
 				var json = {"name" : value};	
@@ -86,6 +90,7 @@ $(".poptxt").on("click","a[action='save']",function() {
 	     	if ( desc!= ""){
 	     		if (!patternd.test(desc)) {
 					layer.msg("角色描述只能输入200个汉字");
+
 					return;
 				}else{
 					json['description']=desc;
