@@ -50,4 +50,10 @@ public class UserDaoImpl extends BaseDaoImpl<User, Long>implements UserDao {
 	public List<User> selectUserByParams(Map<String, Object> params) {
 		return sqlSessionTemplate.selectList(getSqlName("selectUserByParams"),params);
 	}
+
+	@Override
+	public List<Map<String,Object>> selectUserDetail(Map<String, Object> params) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectList(getSqlName("selectUserDetail"),params);
+	}
 }

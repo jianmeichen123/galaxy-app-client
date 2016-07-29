@@ -170,6 +170,26 @@
 					</foreach>
 	</select>
 	
+	<!-- 关联查询用户的详细信息 包括名字,角色,email,部门 -->
+	<select id="selectUserDetail" resultType="java.util.Map" parameterType="java.util.Map" >
+	  	select 	pu.id as userId,
+				pu.real_name as userName,
+				pu.email as email,
+				pur.role_id as roleId,
+				pr.name as roleName,
+				depart.id as departmentId,
+				depart.name as departmentName
+		from 	platform_user pu,platform_user_role pur,platform_role pr,t_department depart
+		where	pu.id = pur.user_id
+		and		pr.id = pur.role_id
+		and 	pu.department_id = depart.id
+		<if test="userId != null"> and pu.id = #{userId}</if>
+		<if test="email != null"> and pu.email = #{email}</if>
+		<if test="roleId != null"> and pur.role_id = #{roleId}</if>
+		<if test="departmentId != null"> and depart.id = #{departmentId}</if>
+	</select>
+	
+	
   	<insert id="insert" parameterType="UserPO" useGeneratedKeys="true" keyProperty="id">
 	    <![CDATA[
 	        insert into

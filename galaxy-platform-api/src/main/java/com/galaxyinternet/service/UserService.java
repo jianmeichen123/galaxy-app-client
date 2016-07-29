@@ -114,4 +114,15 @@ public interface UserService extends BaseService<User> {
 	List<User> querytUserByParams(Map<String, Object> params);
 	
 	public List<User> getUserByRoleId(Long roleId);
+	
+	/**
+	 * 关联查询用户的详细信息 包括名字,角色,email,部门
+	 * @param map(条件查询)
+	 * 	userId 
+		email
+		roleId
+		departmentId
+	 * @return
+	 */
+	public List<Map<String,Object>> queryUserDetail(Map<String,Object> params);
 }

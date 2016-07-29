@@ -394,7 +394,7 @@ table .width_gd{width:12%;}
 .width_8 ,.lpubbtn{width: 115px;}
 .heightstatus{}
 .width_450{ width:500px}
-.height_90{ max-height:90px; overflow:hidden;}
+.height_90{ max-height:150px; overflow:hidden;}
 .height_ding .table td {vertical-align: top;}
 .height_90 a{ text-decoration:none;}
 .llpubbtn{width: 140px;}
