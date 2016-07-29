@@ -38,7 +38,7 @@
 	<!-- 查询总数 -->
 	<select id="selectCount" resultType="java.lang.Long"
 		parameterType="java.util.Map">
-		select count(id) from t_user_role
+		select count(id) from platform_user_role
 		<include refid="Base_Where_Clause" />
 	</select>
 
@@ -46,37 +46,37 @@
 	<select id="select" resultMap="BaseResultMap" parameterType="java.util.Map">
 		select
 		<include refid="Base_Column_List" />
-		from t_user_role
+		from platform_user_role
 		<include refid="Base_Where_Clause" />
 	</select>
 	
 	<!-- 查询投资经理的用户Id -->
 	<select id="selectUserIdByRoleId" resultType="java.lang.Long" parameterType="java.lang.Long">
-		select user_id from t_user_role where role_id = #{roleId}
+		select user_id from platform_user_role where role_id = #{roleId}
 	</select>
 
 	<!-- 根据ID查询 -->
 	<select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
 		select
 		<include refid="Base_Column_List" />
-		from t_user_role where id = #{id}
+		from platform_user_role where id = #{id}
 	</select>
 	
 	<!-- 根据ID查询 -->
 	<select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long">
 		select
 		<include refid="Base_Column_List" />
-		from t_user_role where user_id = #{userId}
+		from platform_user_role where user_id = #{userId}
 	</select>
 	<!-- 根据userID查询role的ID -->
 	<select id="selectRoleIdByUserId" resultType="java.lang.Long" parameterType="java.lang.Long">
-		select role_id from t_user_role where user_id = #{userId}
+		select role_id from platform_user_role where user_id = #{userId}
 	</select>
 	
   	<insert id="insert" parameterType="UserRole" useGeneratedKeys="true" keyProperty="id">
 	    <![CDATA[
 	        insert into
-	        t_user_role (
+	        platform_user_role (
         	role_id,
         	user_id,
         	created_time
@@ -90,7 +90,7 @@
     
     <!-- 更新 -->
 	<update id="updateByIdSelective" parameterType="UserRole">
-		update t_user_role
+		update platform_user_role
 		<set>
 			<if test="roleId != null">  role_id =#{roleId},</if>
 			<if test="userId != null">  user_id =#{userId},</if>
@@ -109,7 +109,7 @@
 	</update>
     <!-- 通过ID更新 -->
 	<update id="updateById" parameterType="UserRole">
-		update t_user_role
+		update platform_user_role
 		<set>
 			<if test="roleId != null">  role_id =#{roleId},</if>
 			<if test="userId != null">  user_id =#{userId},</if>
@@ -119,7 +119,7 @@
 		where id = #{id}
 	</update>
     <update id="updateByUserId" parameterType="java.lang.Long">
-		update t_user_role
+		update platform_user_role
 		<set>
 			<if test="roleId != null">  role_id =#{roleId},</if>
 			<if test="createdTime != null">  created_time =#{createdTime},</if>
@@ -129,11 +129,11 @@
 	</update>
     <!-- 删除 -->
 	<delete id="delete" parameterType="java.util.Map">
-		delete from t_user_role
+		delete from platform_user_role
 		<include refid="Base_Where_Clause" />
 	</delete>
      <!-- 根据ID删除 -->
 	<delete id="deleteById" parameterType="UserRole">
-		delete from t_user_role where id = #{id}
+		delete from platform_user_role where id = #{id}
 	</delete>
 </mapper>

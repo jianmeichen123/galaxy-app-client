@@ -1,5 +1,7 @@
 package com.galaxyinternet.user.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
@@ -25,8 +27,10 @@ import com.galaxyinternet.framework.core.service.BaseService;
 import com.galaxyinternet.framework.core.utils.PWDUtils;
 import com.galaxyinternet.framework.core.utils.SessionUtils;
 import com.galaxyinternet.model.department.Department;
+import com.galaxyinternet.model.resource.PlatformResource;
 import com.galaxyinternet.model.role.Role;
 import com.galaxyinternet.model.user.User;
+import com.galaxyinternet.service.ResourceService;
 import com.galaxyinternet.service.UserService;
 
 @Controller
@@ -35,6 +39,8 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 	final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private ResourceService resourceService;
 
 	@Autowired
 	com.galaxyinternet.framework.cache.Cache cache;
@@ -78,6 +84,13 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 				responsebody.setResult(new Result(Status.ERROR, Constants.USER_DISABLE, "用户已被禁用！"));
 				return responsebody;
 			}
+			/**
+			 * @time 2016-07-29
+			 */
+			List<PlatformResource> allResourceToUser = resourceService.queryResourceListToUser(user.getId());
+			user.setAllResourceToUser(allResourceToUser);
+			
+			
 			String sessionId = SessionUtils.createWebSessionId(); // 生成sessionId
 			setCacheSessionId(request, user, sessionId);
 			Header header = getHeader(user, sessionId);
@@ -127,6 +140,7 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 		cache.set(sessionId, user); // 将sessionId存入cache
 		request.getSession().setAttribute(Constants.SESSION_USER_KEY, user);
 	}
+	
 
 	/**
 	 * 用户注销

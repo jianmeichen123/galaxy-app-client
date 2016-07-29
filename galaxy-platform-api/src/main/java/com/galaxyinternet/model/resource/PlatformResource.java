@@ -1,5 +1,9 @@
 package com.galaxyinternet.model.resource;
 
+import java.util.List;
+import java.util.Map;
+
+import com.alibaba.fastjson.JSON;
 import com.galaxyinternet.framework.core.model.PagableEntity;
 
 public class PlatformResource extends PagableEntity {
@@ -16,10 +20,30 @@ public class PlatformResource extends PagableEntity {
     private Long resourceOrder;
     private String resourceStatus;
     private String productMark;
+    private Integer applicationPlatform;
+    //样式
+    private String style;
     private Long createdUid;
     private Long updatedUid;
     private String resourceDesc;
-    public Long getParentId() {
+    
+    private List<Long> resourceIdList;
+    private Map<String,Object> mapList;
+    
+    
+    public Map<String, Object> getMapList() {
+		return mapList;
+	}
+	public void setMapList(Map<String, Object> mapList) {
+		this.mapList = mapList;
+	}
+	public List<Long> getResourceIdList() {
+		return resourceIdList;
+	}
+	public void setResourceIdList(List<Long> resourceIdList) {
+		this.resourceIdList = resourceIdList;
+	}
+	public Long getParentId() {
         return parentId;
     }
     public void setParentId(Long parentId) {
@@ -67,7 +91,19 @@ public class PlatformResource extends PagableEntity {
     public void setProductMark(String productMark) {
         this.productMark = productMark;
     }
-    public Long getCreatedUid() {
+    public Integer getApplicationPlatform() {
+		return applicationPlatform;
+	}
+	public void setApplicationPlatform(Integer applicationPlatform) {
+		this.applicationPlatform = applicationPlatform;
+	}
+	public String getStyle() {
+		return style;
+	}
+	public void setStyle(String style) {
+		this.style = style;
+	}
+	public Long getCreatedUid() {
         return createdUid;
     }
     public void setCreatedUid(Long createdUid) {
@@ -85,5 +121,10 @@ public class PlatformResource extends PagableEntity {
     }
     public void setResourceDesc(String resourceDesc) {
         this.resourceDesc = resourceDesc;
+    }
+    
+    @Override
+    public String toString() {
+    	return JSON.toJSONString(this);
     }
 }

@@ -1,6 +1,6 @@
-<div class="userinfrotc">
-
-  <div class="userinfro">
+<div class="userinfrotc ">
+<div class="title_bj">添加人员</div>
+  <div class="userinfro margin_45">
 
   <dl>
   <div class="ui-widget">
@@ -44,37 +44,30 @@
     <dt>常用收件地址：</dt>
     <dd><input type="text" id="address" name="address" class="addr"><a href="javascript:;" onclick="useCompanyAddress();" class="flr">使用公司地址</a></dd>
   </dl>
-    <dl class="role">
+    <dl>
     <dt>职能角色：</dt>
     <dd>
-      <div class="top">
-        <div style='margin-right: 20px; margin-left:10px; width: 155px;display: inline-block; font-weight: normal;'>
-          <input type="radio" value="10000" name="departmentId">
           <select id='selectId' >
-            <option value="">投资线</option>
+            <option value="">请选择</option>
           </select>
-        </div>
-        <label for=""><input type="radio" value="100" name="departmentId">总部职能部门</label>
-      </div>
-      <div class="bottom">
-        <label for=""><input type="radio" value='1' name="roleId">董事长</label>
-        <label for=""><input type="radio" value='3' name="roleId">投资线合伙人 </label>
-        <label for=""><input type="radio" value='2' name="roleId">CEO </label>
-        <label for=""><input type="radio" value='4' name="roleId">投资经理 </label>
-        <label for=""><input type="radio" value='7' name="roleId">人事总监 </label>
-        <label for=""><input type="radio" value='8' name="roleId">人事经理  </label>
-        <label for=""><input type="radio" value='10' name="roleId">法务经理 </label>
-        <label for=""><input type="radio" value='12' name="roleId">财务经理 </label>
-        <label for=""><input type="radio" value='9' name="roleId">法务总监 </label>
-        <label for=""><input type="radio" value='11' name="roleId">财务总监  </label>
-        <label for=""><input type="radio" value='17' name="roleId">档案管理员 </label>
-        <label for=""><input type="radio" value='5' name="roleId">投后负责人 </label>
-       <!--  <label for=""><input type="radio" value='18' name="roleId">秘书</label> -->
-      </div>
-    </dd>
+          &nbsp;&nbsp;<label class="red">&#42;&nbsp;必填</dd>
+
+       </dd>
+       
+  
+  </dl> 
+  <dl class="department">
+    <dt>部门归属：</dt>
     <dd>
-    </dd>
+          <select id='selectDepId' >
+                <option value="">请选择</option>
+          </select>
+          &nbsp;&nbsp;<label class="red">&#42;&nbsp;必填</dd>
+
+       </dd>
+  
   </dl>
+  
   </div>
     <div class="btnbox">
       <a href="javascript:;" class="pubbtn bluebtn" action="save">保存</a><a href="javascript:;" class="pubbtn fffbtn"data-close="close">取消</a>

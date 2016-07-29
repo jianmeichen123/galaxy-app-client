@@ -11,10 +11,13 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import com.galaxyinternet.framework.core.model.BaseUser;
 import com.galaxyinternet.framework.core.utils.DateUtil;
+import com.galaxyinternet.model.resource.PlatformResource;
 
 public class User extends BaseUser {
 	private static final long serialVersionUID = 1L;
 
+	private int userTzjlSum;
+	
 	@NotBlank(message="真实姓名不能为空")
 	private String realName;// 真实姓名
 	@NotBlank(message="登陆名称不能为空")
@@ -43,6 +46,9 @@ public class User extends BaseUser {
 	private Boolean isAdmin;// 是否管理员
 	
 	private boolean isCurrentUser;
+	
+	
+	private List<PlatformResource> allResourceToUser;
 	
 	
 	public boolean isCurrentUser() {
@@ -243,4 +249,22 @@ public class User extends BaseUser {
 	public void setRoleId(Long roleId) {
 		this.roleId = roleId;
 	}
+
+	public int getUserTzjlSum() {
+		return userTzjlSum;
+	}
+
+	public void setUserTzjlSum(int userTzjlSum) {
+		this.userTzjlSum = userTzjlSum;
+	}
+
+	public List<PlatformResource> getAllResourceToUser() {
+		return allResourceToUser;
+	}
+
+	public void setAllResourceToUser(List<PlatformResource> allResourceToUser) {
+		this.allResourceToUser = allResourceToUser;
+	}
+	
+	
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="package com.galaxyinternet.model.resource.RoleResource" >
+<mapper namespace="com.galaxyinternet.model.resource.RoleResource" >
   <resultMap id="BaseResultMap" type="com.galaxyinternet.model.resource.RoleResource" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="role_id" property="roleId" jdbcType="BIGINT" />
@@ -9,30 +9,31 @@
     <result column="created_time" property="createdTime" jdbcType="BIGINT" />
     <result column="updated_uid" property="updatedUid" jdbcType="BIGINT" />
     <result column="updated_time" property="updatedTime" jdbcType="BIGINT" />
+    <result column="resource_range" property="resourceRange" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, role_id, resource_id, created_uid, created_time, updated_uid, updated_time
+    id, role_id, resource_id, created_uid, created_time, updated_uid, updated_time,resource_range
   </sql>
   <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from t_role_resource
+    from platform_role_resource
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteById" parameterType="java.lang.Long" >
-    delete from t_role_resource
+    delete from platform_role_resource
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.galaxyinternet.model.resource.RoleResource" >
-    insert into t_role_resource (id, role_id, resource_id, 
+    insert into platform_role_resource (id, role_id, resource_id, 
       created_uid, created_time, updated_uid, 
-      updated_time)
+      updated_time,resource_range)
     values (#{id,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, #{resourceId,jdbcType=BIGINT}, 
       #{createdUid,jdbcType=BIGINT}, #{createdTime,jdbcType=BIGINT}, #{updatedUid,jdbcType=BIGINT}, 
-      #{updatedTime,jdbcType=BIGINT})
+      #{updatedTime,jdbcType=BIGINT},#{resourceRange})
   </insert>
   <insert id="insertSelective" parameterType="com.galaxyinternet.model.resource.RoleResource" >
-    insert into t_role_resource
+    insert into platform_role_resource
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -54,6 +55,9 @@
       </if>
       <if test="updatedTime != null" >
         updated_time,
+      </if>
+      <if test="resourceRange != null" >
+        resource_range,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -78,10 +82,13 @@
       <if test="updatedTime != null" >
         #{updatedTime,jdbcType=BIGINT},
       </if>
+        <if test="resourceRange != null" >
+        #{resourceRange},
+      </if>
     </trim>
   </insert>
   <update id="updateByIdSelective" parameterType="com.galaxyinternet.model.resource.RoleResource" >
-    update t_role_resource
+    update platform_role_resource
     <set >
       <if test="roleId != null" >
         role_id = #{roleId,jdbcType=BIGINT},
@@ -101,23 +108,27 @@
       <if test="updatedTime != null" >
         updated_time = #{updatedTime,jdbcType=BIGINT},
       </if>
+       <if test="resourceRange != null" >
+        resource_range = #{resourceRange},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateById" parameterType="com.galaxyinternet.model.resource.RoleResource" >
-    update t_role_resource
+    update platform_role_resource
     set role_id = #{roleId,jdbcType=BIGINT},
       resource_id = #{resourceId,jdbcType=BIGINT},
       created_uid = #{createdUid,jdbcType=BIGINT},
       created_time = #{createdTime,jdbcType=BIGINT},
       updated_uid = #{updatedUid,jdbcType=BIGINT},
-      updated_time = #{updatedTime,jdbcType=BIGINT}
+      updated_time = #{updatedTime,jdbcType=BIGINT},
+       resource_range = #{resourceRange}
     where id = #{id,jdbcType=BIGINT}
   </update>
   
   <!-- 删除 -->
 	<delete id="delete" parameterType="java.util.Map">
-		delete from t_role_resource
+		delete from platform_role_resource
 		<include refid="Base_Where_Clause" />
 	</delete>
 	
@@ -125,7 +136,7 @@
 	<select id="select" resultMap="BaseResultMap" parameterType="java.util.Map">
 		select
 		<include refid="Base_Column_List" />
-		from t_role_resource
+		from platform_role_resource
 		<include refid="Base_Where_Clause" />
 		<if test="sorting != null">order by ${sorting}</if>
 		<if test="offset != null and limit != null">
@@ -137,7 +148,7 @@
 	<!-- 查询总数 -->
 	<select id="selectCount" resultType="java.lang.Long"
 		parameterType="java.util.Map">
-		select count(id) from t_role_resource
+		select count(id) from platform_role_resource
 		<include refid="Base_Where_Clause" />
 		<if test="sorting != null">order by ${sorting}</if>
 		<if test="offset != null and limit != null">
@@ -156,6 +167,14 @@
 				    <if test="createdTime != null" > and created_time = #{createdTime,jdbcType=BIGINT}</if>
 				    <if test="updatedUid != null" > and updated_uid = #{updatedUid,jdbcType=BIGINT}</if>
 				    <if test="updatedTime != null" > and updated_time = #{updatedTime,jdbcType=BIGINT}</if>
+				    <if test="resourceRange != null" > and resource_range = #{resourceRange} </if>
+				    <if test="roleList != null">
+						AND role_id IN
+						<foreach collection="roleList" index="item" item="item" open="("
+			                     separator="," close=")">
+			                         #{item}
+			                  </foreach>
+					</if>
 				</trim>
 			</trim>
 		</where>

@@ -1,5 +1,7 @@
 package com.galaxyinternet.model.resource;
 
+import java.util.List;
+
 import com.galaxyinternet.framework.core.model.PagableEntity;
 
 public class RoleResource extends PagableEntity {
@@ -11,7 +13,48 @@ public class RoleResource extends PagableEntity {
     private Long resourceId;
     private Long createdUid;
     private Long updatedUid;
-    public Long getRoleId() {
+    
+    private String resourceIds;
+    private String name;
+    private String  description;
+    private Integer resourceRange;
+    
+    
+   
+	public Integer getResourceRange() {
+		return resourceRange;
+	}
+	public void setResourceRange(Integer resourceRange) {
+		this.resourceRange = resourceRange;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	public String getResourceIds() {
+		return resourceIds;
+	}
+	public void setResourceIds(String resourceIds) {
+		this.resourceIds = resourceIds;
+	}
+	private List<Long> roleList;
+    
+    public List<Long> getRoleList() {
+		return roleList;
+	}
+	public void setRoleList(List<Long> roleList) {
+		this.roleList = roleList;
+	}
+	public Long getRoleId() {
         return roleId;
     }
     public void setRoleId(Long roleId) {

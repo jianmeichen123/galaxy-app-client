@@ -28,6 +28,12 @@
 		<where>
 			<trim prefixOverrides="and">
 				<if test="id != null"> and id =#{id}</if>
+				<if test="ids != null"> 
+					and id in
+					<foreach collection="ids" item="iditem" index="index" open="(" close=")" separator=",">
+			            #{iditem}
+			        </foreach>
+				</if>
 				<if test="name != null"> and name =#{name}</if>
 				<if test="type != null"> and type =#{type}</if>
 				<if test="managerId != null"> and manager_id =#{managerId}</if>
