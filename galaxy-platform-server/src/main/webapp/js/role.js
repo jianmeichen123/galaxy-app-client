@@ -61,11 +61,7 @@ function doSumbit(){
 $(".poptxt").on("click","a[action='save']",function() {
 			var pop = $(".pop");
 			var json = {};
-<<<<<<< HEAD
 			var pattern = /^[a-zA-Z\u4e00-\u9fa5]{1,8}$/;
-=======
-			//var pattern = /^[\u4e00-\u9fa5]{1,8}$/;
->>>>>>> branch 'develop2' of http://git.gi.com/galaxy-star/galaxy-platform.git
      	if (pop.find("input[name='name']").val() == "") {
 				layer.msg("请填写角色名");
 				return;
