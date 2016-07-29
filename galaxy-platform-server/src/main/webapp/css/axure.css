@@ -1987,7 +1987,7 @@ dl{position: relative;}
 }
 .role_center{ width:100%; background-color:#fff; border-radius:6px; margin-top:10px; padding-bottom: 20px;}
 .role_center_info{ padding:20px;}
-.width_150{ width:100px;}
+.width_150{ width:100px;  line-height: 25px;}
 .align_r{ text-align:right;}
 .ul_role{ width:100%; overflow:hidden;}
 .ul_role li{ width:100%; overflow:hidden; margin-bottom:10px; position:relative;}
