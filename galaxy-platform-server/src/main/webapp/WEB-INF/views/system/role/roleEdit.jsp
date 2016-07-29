@@ -188,12 +188,12 @@
 	   	  	layer.msg("请填写角色名!");
 	   	  	return ;
    	  	} else {
-			if (!pattern.test(name)) {
-				layer.msg("角色名称只能输8个汉字或者字母");
-				return;
-			}
+   	 	if (value.length>8) {
+			layer.msg("角色名称只能输8个字符");
 
-		    var oldName=$("input[name='oldName']").val();
+			return;
+		}
+		  var oldName=$("input[name='oldName']").val();
 			if(oldName!=name){
 				var json = {"name" : name};	
 				sendPostRequestByJsonObj(platformUrl.checkRoleName,
@@ -204,15 +204,14 @@
 				}
 		    }
 		} 
-   	 var patternd = /^[\u4e00-\u9fa5]{0,200}$/;
    	 if ( description!= ""){
-  		if(!patternd.test(description)){
-				layer.msg("角色描述最多输入200个汉字");
-			    return;
-			}else{
-				//json['description']=description;
-				obj.description = description;
-			}
+   		if (description.length>200) {
+			layer.msg("角色描述只能输入200个字符");
+
+			return;
+		}else{
+			json['description']=description;
+		}
    	}
 	   	    obj.roleId = id;
 	   	    obj.name = name;
