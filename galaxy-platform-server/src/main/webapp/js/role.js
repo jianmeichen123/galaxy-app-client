@@ -67,7 +67,8 @@ $(".poptxt").on("click","a[action='save']",function() {
 				return;
 			} else {			
 				var value = pop.find("input[name='name']").val();
-				if (!pattern.test(value)) {
+				//if (!pattern.test(value)) {
+				if (value.length>8) {
 					layer.msg("角色名称只能输8个汉字或者字母");
 
 					return;
@@ -84,7 +85,7 @@ $(".poptxt").on("click","a[action='save']",function() {
      	     var patternd = /^[\u4e00-\u9fa5]{0,200}$/;
      	    var desc=pop.find("[name='description']").val();
 	     	if ( desc!= ""){
-	     		if (!patternd.test(desc)) {
+	     		if (desc.length>200) {
 					layer.msg("角色描述只能输入200个汉字");
 
 					return;
