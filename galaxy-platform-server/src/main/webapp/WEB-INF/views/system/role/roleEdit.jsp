@@ -189,7 +189,7 @@
 	   	  	return ;
    	  	} else {
 			if (name.length>8) {
-				layer.msg("角色名称只能输8个字符");
+				layer.msg("角色名称最多输入8个字符");
 				return;
 			}
 		}
@@ -206,7 +206,7 @@
 		 
    	 if ( description!= ""){
   		if(description.length>200){
-				layer.msg("角色描述只能输入200个字符");
+				layer.msg("角色描述最多输入200个字符");
 			    return;
 			}else{
 				//json['description']=description;
