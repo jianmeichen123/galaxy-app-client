@@ -188,10 +188,10 @@
 	   	  	layer.msg("请填写角色名!");
 	   	  	return ;
    	  	} else {
-			if (!pattern.test(name)) {
-				layer.msg("角色名称只能输入汉字,最多输入8个汉字");
-				return;
-			}
+   	  	if (name.length>8) {
+			layer.msg("角色名称最多输入8个字符");
+			return;
+		}
 		    var oldName=$("input[name='oldName']").val();
 			if(oldName!=name){
 				var json = {"name" : name};	
@@ -205,7 +205,7 @@
 		} 
    	 if ( description!= ""){
   		if(description.length>200){
-				layer.msg("角色描述最多输入200个汉字");
+				layer.msg("角色描述最多输入200个字符");
 				return;
 			}else{
 				//json['description']=description;

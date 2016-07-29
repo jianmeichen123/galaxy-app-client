@@ -150,6 +150,9 @@ function eachDataSelect(data,selectType){
 						+ "</option>"
 		selectType.append(option);
 	});
+	if(selectType[0].id=="selectDepId"){
+		selectType.append("<option value='100'>总部职能部门</option>")
+	}
 }
 function doSumbit() {
 	

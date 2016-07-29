@@ -10,7 +10,7 @@ function formatStatus(index, row) {
 			nameStr=nameStr+arr[i].realName+",";
 		}
 		
-		result=nameStr.substring(0,nameStr.length-1)
+		result='<div class="height_90"><a href="javascript:void(0);" title="'+nameStr.substring(0,nameStr.length-1)+'">'+nameStr.substring(0,nameStr.length-1)+'</a></div>'
 	} 
 	return result;
 }
@@ -61,15 +61,15 @@ function doSumbit(){
 $(".poptxt").on("click","a[action='save']",function() {
 			var pop = $(".pop");
 			var json = {};
-			var pattern = /^[\u4e00-\u9fa5]{1,8}$/;
+			//var pattern = /^[\u4e00-\u9fa5]{1,8}$/;
      	if (pop.find("input[name='name']").val() == "") {
 				layer.msg("请填写角色名");
 				return;
 			} else {
 				
 				var value = pop.find("input[name='name']").val();
-				if (!pattern.test(value)) {
-					layer.msg("角色名称只能输入汉字,最多输入8个汉字");
+				if (value.length>8) {
+					layer.msg("角色名称最多输入8个字符");
 					return;
 				}
 				var json = {"name" : value};	
@@ -84,7 +84,7 @@ $(".poptxt").on("click","a[action='save']",function() {
      	    var desc=pop.find("[name='description']").val();
 	     	if ( desc!= ""){
 	     		if(desc.length>200){
-					layer.msg("角色描述最多输入200个汉字");
+					layer.msg("角色描述最多输入200个字符");
 					return;
 				}else{
 					json['description']=desc;
