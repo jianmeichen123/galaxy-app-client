@@ -354,4 +354,11 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	public List<User> querytUserByParams(Map<String, Object> params) {
 		return userDao.selectUserByParams(params);
 	}
+
+	@Override
+	public List<Map<String,Object>> queryUserDetail(Map<String,Object> params) {
+		// TODO Auto-generated method stub
+		
+		return userDao.selectUserDetail(params);
+	}
 }
