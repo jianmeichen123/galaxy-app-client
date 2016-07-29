@@ -183,13 +183,13 @@
     	var id = $("input[id='id']").val();
    	  	var name = $("input[name='name']").val();
    		var description = $("textarea[name='description']").val();
-   		var pattern = /^[\u4e00-\u9fa5]{1,8}$/;
+   		var pattern = /^[A-Za-z\u4e00-\u9fa5]{1,8}$/;
    	  	if(name==''){
 	   	  	layer.msg("请填写角色名!");
 	   	  	return ;
    	  	} else {
 			if (!pattern.test(name)) {
-				layer.msg("角色名称只能输入汉字,最多输入8个汉字");
+				layer.msg("角色名称只能输8个汉字或者字母");
 				return;
 			}
 		    var oldName=$("input[name='oldName']").val();
@@ -203,8 +203,9 @@
 				}
 		    }
 		} 
+   	 var patternd = /^[\u4e00-\u9fa5]{0,200}$/;
    	 if ( description!= ""){
-  		if(description.length>200){
+  		if(!patternd.test(description)){
 				layer.msg("角色描述最多输入200个汉字");
 				return;
 			}else{
