@@ -1987,7 +1987,7 @@ dl{position: relative;}
 }
 .role_center{ width:100%; background-color:#fff; border-radius:6px; margin-top:10px; padding-bottom: 20px;}
 .role_center_info{ padding:20px;}
-.width_150{ width:100px;  line-height: 25px;}
+.width_150{ width:100px;  line-height: 28px;}
 .align_r{ text-align:right;}
 .ul_role{ width:100%; overflow:hidden;}
 .ul_role li{ width:100%; overflow:hidden; margin-bottom:10px; position:relative;}
@@ -2017,6 +2017,6 @@ dl{position: relative;}
 
 /*角色弹窗*/
 .role_all{ width:450px; margin-top:45px; }
-.role_toolTip_input{ width:325px; border:1px solid #ccd2d7; line-height:30px; height:30px; border-radius:2px;}
+.role_toolTip_input{ width:325px; border:1px solid #ccd2d7; line-height:30px; height:30px; border-radius:2px; font-size: 12px; text-indent:5px;}
 .role_all ul li{ overflow:hidden; margin-bottom:20px;}
-.role_toolTip_area{ width:325px; height:150px; overflow-y:auto;　border:1px solid #ccd2d7; resize:none; box-sizing:border-box;}
+.role_toolTip_area{ width:325px; height:150px; overflow-y:auto;　border:1px solid #ccd2d7; resize:none; box-sizing:border-box; text-indent:5px;}
