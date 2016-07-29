@@ -11,6 +11,8 @@
     <result column="resource_order" property="resourceOrder" jdbcType="BIGINT" />
     <result column="resource_status" property="resourceStatus" jdbcType="VARCHAR" />
     <result column="product_mark" property="productMark" jdbcType="VARCHAR" />
+    <result column="application_platform" property="applicationPlatform" jdbcType="INTEGER" />
+    <result column="style" property="style"/>
     <result column="created_uid" property="createdUid" jdbcType="BIGINT" />
     <result column="created_time" property="createdTime" jdbcType="BIGINT" />
     <result column="updated_uid" property="updatedUid" jdbcType="BIGINT" />
@@ -20,7 +22,7 @@
 
   <sql id="Base_Column_List" >
     id, parent_id, resource_mark, resource_name, resource_url, resource_type, resource_order, 
-    resource_status, product_mark, created_uid, created_time, updated_uid, updated_time,resource_desc
+    resource_status, product_mark, application_platform, style, created_uid, created_time, updated_uid, updated_time,resource_desc
   </sql>
   <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -35,12 +37,12 @@
   <insert id="insert" parameterType="com.galaxyinternet.model.resource.PlatformResource"  useGeneratedKeys="true" keyProperty="id">
     insert into platform_resource (id, parent_id, resource_mark, 
       resource_name, resource_url, resource_type, 
-      resource_order, resource_status, product_mark, 
+      resource_order, resource_status, product_mark, application_platform, style
       created_uid, created_time, updated_uid, 
       updated_time, resource_desc)
     values (#{id,jdbcType=BIGINT}, #{parentId,jdbcType=BIGINT}, #{resourceMark,jdbcType=VARCHAR}, 
       #{resourceName,jdbcType=VARCHAR}, #{resourceUrl,jdbcType=VARCHAR}, #{resourceType,jdbcType=VARCHAR}, 
-      #{resourceOrder,jdbcType=BIGINT}, #{resourceStatus,jdbcType=VARCHAR}, #{productMark,jdbcType=VARCHAR}, 
+      #{resourceOrder,jdbcType=BIGINT}, #{resourceStatus,jdbcType=VARCHAR}, #{productMark,jdbcType=VARCHAR}, #{applicationPlatform}, #{style}
       #{createdUid,jdbcType=BIGINT}, #{createdTime,jdbcType=BIGINT}, #{updatedUid,jdbcType=BIGINT}, 
       #{updatedTime,jdbcType=BIGINT}, #{resourceDesc,jdbcType=VARCHAR})
   </insert>
@@ -75,6 +77,12 @@
       <if test="productMark != null" >
         product_mark,
       </if>
+      <if test="applicationPlatform != null" >
+        application_platform,
+      </if>
+      <if test="style != null" >
+      style,
+      </if>
       <if test="createdUid != null" >
         created_uid,
       </if>
@@ -90,6 +98,7 @@
       <if test="resourceDesc != null" >
         resource_desc,
       </if>
+      
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -119,6 +128,12 @@
       <if test="productMark != null" >
         #{productMark,jdbcType=VARCHAR},
       </if>
+      <if test="applicationPlatform != null" >
+        #{applicationPlatform},
+      </if>
+       <if test="style != null" >
+      #{style},
+      </if>
       <if test="createdUid != null" >
         #{createdUid,jdbcType=BIGINT},
       </if>
@@ -134,6 +149,7 @@
       <if test="resourceDesc != null" >
         #{resourceDesc,jdbcType=VARCHAR},
       </if>
+      
     </trim>
   </insert>
   <update id="updateByIdSelective" parameterType="com.galaxyinternet.model.resource.PlatformResource" >
@@ -162,6 +178,12 @@
       </if>
       <if test="productMark != null" >
         product_mark = #{productMark,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationPlatform != null" >
+      application_platform = #{applicationPlatform},
+      </if>
+      <if test="style != null" >
+      style = #{style},
       </if>
       <if test="createdUid != null" >
         created_uid = #{createdUid,jdbcType=BIGINT},
@@ -192,10 +214,13 @@
       resource_order = #{resourceOrder,jdbcType=BIGINT},
       resource_status = #{resourceStatus,jdbcType=VARCHAR},
       product_mark = #{productMark,jdbcType=VARCHAR},
+      application_platform = #{applicationPlatform},
+      style = #{style},
       created_uid = #{createdUid,jdbcType=BIGINT},
       resource_desc = #{resourceDesc,jdbcType=VARCHAR},
       updated_uid = #{updatedUid,jdbcType=BIGINT},
       updated_time = #{updatedTime,jdbcType=BIGINT}
+      
     where id = #{id,jdbcType=BIGINT}
   </update>
   
@@ -236,17 +261,44 @@
 		      <if test="resourceOrder != null" > and resource_order = #{resourceOrder,jdbcType=BIGINT}</if>
 		      <if test="resourceStatus != null" > and resource_status = #{resourceStatus,jdbcType=VARCHAR}</if>
 		      <if test="productMark != null" > and product_mark = #{productMark,jdbcType=VARCHAR}</if>
+		      <if test="applicationPlatform != null" > and application_platform = #{applicationPlatform}</if>
 		      <if test="createdUid != null" > and created_uid = #{createdUid,jdbcType=BIGINT}</if>
 		      <if test="createdTime != null" > and created_time = #{createdTime,jdbcType=BIGINT}</if>
 		      <if test="updatedUid != null" > and updated_uid = #{updatedUid,jdbcType=BIGINT}</if>
 		      <if test="updatedTime != null" > and updated_time = #{updatedTime,jdbcType=BIGINT}</if>
 		      <if test="resourceDesc != null" > and resource_desc = #{resourceDesc,jdbcType=VARCHAR}</if>
+		      <if test="userId != null" > and ur.user_id = #{userId,jdbcType=BIGINT}</if>
+			  
+			  <if test="resourceIdList != null">
+				AND id IN
+				<foreach collection="resourceIdList" index="item" item="item" open="("
+	                     separator="," close=")">
+	                         #{item}
+	            </foreach>
+			  </if>
 			</trim>
 		</where>
 		<if test="sorting != null">order by ${sorting}</if>
+		<if test="sorting == null"> order by resource_order asc</if>
+		
 		<if test="offset != null and limit != null">
 			limit #{offset}, #{limit}
 		</if>
 	</sql>
-  
+	
+	
+	
+	<!-- 查询出用户所拥有的资源项 -->
+	<select id="selectResourceListToUser" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select * from platform_resource r inner join platform_role_resource rr on r.id=rr.resource_id
+		where rr.role_id in (select role_id from platform_user_role where user_id = #{uid})
+	</select>
+  	<select id="selectWithJoin" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		SELECT res.* 
+		FROM platform_resource res 
+		INNER JOIN platform_role_resource rr ON res.id=rr.resource_id
+		INNER JOIN platform_role r ON r.id = rr.role_id AND r.disabled IS NULL OR r.disabled = '0'
+		INNER JOIN platform_user_role ur ON ur.role_id = rr.role_id
+		<include refid="Base_Where_Clause" />
+	</select>
 </mapper>

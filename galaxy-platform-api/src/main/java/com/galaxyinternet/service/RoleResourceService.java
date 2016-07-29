@@ -5,4 +5,5 @@ import com.galaxyinternet.model.resource.RoleResource;
 
 public interface RoleResourceService extends BaseService<RoleResource> {
 
+	public void insertBatch(RoleResource roleResource);
 }

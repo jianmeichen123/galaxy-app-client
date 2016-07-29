@@ -8,5 +8,11 @@ import com.galaxyinternet.model.role.Role;
 
 @Repository("roleDao")
 public class RoleDaoImpl extends BaseDaoImpl<Role, Long>implements RoleDao {
+	
+	@Override
+	public Role selectByRoleName(Role role) {
+		return sqlSessionTemplate.selectOne(getSqlName("selectByRoleName"), role);
+	}
+	
 
 }

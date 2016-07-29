@@ -1,6 +1,6 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://www.galaxyinternet.com/tags/acl" prefix="acl" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -78,7 +78,7 @@
 					data-toolbar="#custom-toolbar">
 						   <thead>
 						    <tr>
-					        <th data-field="nickName"  class="data-input">登陆名称</th>
+					        <th data-field="nickName"  class="data-input">登录名称</th>
 					        <th data-field="status"  data-formatter="formatStatus" class="data-input">账户状态</th>
 					        <th data-field="realName"  class="col-md-1 status ">真实姓名</th>
 					        <th data-field="gender"  data-formatter="formatGender">性别</th>

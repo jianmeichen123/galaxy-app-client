@@ -2,7 +2,9 @@ package com.galaxyinternet.user.service;
 
 import static com.galaxyinternet.utils.ValidationUtil.throwPlatformException;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -231,6 +233,29 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		}
 
 	}
+	
+	@Override
+	public List<User> getUserByRoleId(Long roleId) {
+		UserRole userRole = new UserRole();
+		userRole.setRoleId(roleId);
+		 List<UserRole> queryList = userRoleService.queryList(userRole);
+		 List<String> ids=new ArrayList<String>();
+			 if(null!=queryList&&!queryList.isEmpty()){
+			 for(UserRole ur:queryList){
+				 ids.add(ur.getUserId().toString());
+			 }
+		 }
+		if (ids != null&&!ids.isEmpty() ) {
+			 List<User> selectListById = userDao.selectListById(ids);
+			 for(int i=0;i<selectListById.size();i++){
+				 
+			 }
+			return selectListById;
+		} else {
+			return null;
+		}
+
+	}
 
 	@Override
 	public User queryByNickName(User user) {
@@ -312,4 +337,28 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		return userDao.selectByRealName(realName);
 	}
 
+	
+	//====report
+	@Override
+	public List<Map<String, Object>> report(Map<String, Object> params) {
+		return null;
+	}
+	
+	
+	@Override
+	public List<User> querytTzjlSum(Map<String, Object> params) {
+		return userDao.selectTzjlSum(params);
+	}
+	
+	@Override
+	public List<User> querytUserByParams(Map<String, Object> params) {
+		return userDao.selectUserByParams(params);
+	}
+
+	@Override
+	public List<Map<String,Object>> queryUserDetail(Map<String,Object> params) {
+		// TODO Auto-generated method stub
+		
+		return userDao.selectUserDetail(params);
+	}
 }

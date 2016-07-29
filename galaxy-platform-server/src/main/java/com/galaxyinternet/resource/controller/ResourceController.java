@@ -1,6 +1,9 @@
 package com.galaxyinternet.resource.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,11 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.galaxyinternet.common.controller.BaseControllerImpl;
@@ -24,8 +30,11 @@ import com.galaxyinternet.framework.core.model.Result;
 import com.galaxyinternet.framework.core.model.Result.Status;
 import com.galaxyinternet.framework.core.service.BaseService;
 import com.galaxyinternet.model.resource.PlatformResource;
+import com.galaxyinternet.model.resource.RoleResource;
 import com.galaxyinternet.model.user.User;
 import com.galaxyinternet.service.ResourceService;
+import com.galaxyinternet.service.RoleResourceService;
+import com.galaxyinternet.service.UserRoleService;
 
 /**
  * Ȩ����Դ����
@@ -39,16 +48,17 @@ public class ResourceController extends BaseControllerImpl<PlatformResource, Pla
 	@Autowired
 	private ResourceService resourceService;
 	
+	@Autowired
+	private UserRoleService userRoleService;
+	
+	@Autowired
+	private RoleResourceService roleResourceService;
+	
+	
 	@Override
 	protected BaseService<PlatformResource> getBaseService() {
 		return this.resourceService;
 	}
-
-	
-	
-	
-	
-	
 
 	/**
 	 * 资源录入保存
@@ -220,13 +230,69 @@ public class ResourceController extends BaseControllerImpl<PlatformResource, Pla
 		return responseBody;
 	}
 	
+	/**
+	 * 树形菜单显示加载
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/resourceTree", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseData<PlatformResource> resourceTree(@RequestBody RoleResource roleResource,HttpServletRequest request) {
+		
+		ResponseData<PlatformResource> responseBody = new ResponseData<PlatformResource>();
+		if(StringUtils.isEmpty(roleResource) || StringUtils.isEmpty(roleResource.getRoleId())){
+			responseBody.setResult(new Result(Status.ERROR,null, "参数丢失!"));
+			return responseBody;
+		}
+		/**查询角色对应的资源ID集合**/
+		RoleResource queryRole = new RoleResource();
+		             queryRole.setRoleId(roleResource.getRoleId());
+		List<RoleResource> roleResourceBoList = roleResourceService.queryList(queryRole);
+		/**获取资源ID的集合**/
+		Map<String,Object> mapList = new HashMap<String,Object>();
+		List<Long> resourceIdList = new ArrayList<Long>();
+		Map<Long,Integer> resourceRangeMap = new HashMap<Long,Integer>();
+		if(!StringUtils.isEmpty(roleResourceBoList)){
+			for(RoleResource resource:roleResourceBoList){
+				resourceIdList.add(resource.getResourceId());
+				resourceRangeMap.put(resource.getResourceId(), resource.getResourceRange());
+			}
+		}
+		mapList.put("resourceIdList", resourceIdList);
+		mapList.put("resourceRangeMap", resourceRangeMap);
+		/**获取全部的资源:除禁用**/
+		PlatformResource resource = new PlatformResource();
+		resource.setResourceStatus("1");
+		List<PlatformResource> resourceList = resourceService.queryList(resource);
+		
+		PlatformResource platformResource = new PlatformResource();
+		platformResource.setMapList(mapList);
+		/**组装数据**/
+		responseBody.setEntityList(resourceList);
+		responseBody.setEntity(platformResource);
+		return responseBody;
+	}
 	
 	
-	
-	
-	
-	
-	
-	
+	/**
+	 * 角色添加权限
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/addRoleResource", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseData<PlatformResource> addRoleResource(@RequestBody RoleResource roleResource,HttpServletRequest request,HttpServletResponse response ) {
+		ResponseData<PlatformResource> responseBody = new ResponseData<PlatformResource>();
+		User user = (User) request.getSession().getAttribute(Constants.SESSION_USER_KEY);
+		if(StringUtils.isEmpty(roleResource) || StringUtils.isEmpty(roleResource.getRoleId())){
+			responseBody.setResult(new Result(Status.ERROR,null, "参数丢失!"));
+			return responseBody;
+		}
+		try{
+			roleResource.setCreatedUid(user.getId());
+			roleResourceService.insertBatch(roleResource);
+			responseBody.setResult(new Result(Status.OK,null, "保存成功!"));
+		} catch (Exception e) {
+			responseBody.setResult(new Result(Status.ERROR,null, "资源录入保存失败"));
+			logger.error("addResource 资源录入保存失败",e);
+		}
+		return responseBody;
+	}
 	
 }

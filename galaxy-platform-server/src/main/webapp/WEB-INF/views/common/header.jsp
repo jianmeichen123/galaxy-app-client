@@ -33,17 +33,10 @@
         <a href="javascript:logout()" class="loginout">退出</a>
     </div>
 </div>
-<script src="js/login.js"></script>
-<script src="js/car_limit.js"></script>
+<script src="<%=path %>/js/login.js"></script>
+<script src="<%=path %>/js/car_limit.js"></script>
  <script type = "text/javascript">
- <!--fillHeaderdata();
-	sendPostRequest(platformUrl.messageCount, remindcbf);
-	function remindcbf(data){
-		if(data.result.status == "OK"){
-			 $(".work em[action='remind']").html(data.entity.count);
-		}
-	}
-	 -->
+
 	/*关闭二维码*/
 		$("[data-btn='close_erwm']").on("click",function(){
             $('.erwm').hide();
