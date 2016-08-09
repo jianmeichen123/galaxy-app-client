@@ -72,8 +72,8 @@ public enum OperationType {
 	
 	_15_1_	    ("/galaxy/projectTransfer/applyTransfer",		PlatformConst.PROJECT_TYPE, "移交"),
 	_15_2_		("/galaxy/projectTransfer/undoTransfer",		PlatformConst.PROJECT_TYPE, "撤销移交"),
-	_15_3_		("/galaxy/projectTransfer/rejectTransfer",		PlatformConst.PROJECT_TYPE, "接受"),
-	_15_4_	    ("/galaxy/projectTransfer/receiveTransfer",		PlatformConst.PROJECT_TYPE, "拒绝");
+	_15_3_		("/galaxy/projectTransfer/rejectTransfer",		PlatformConst.PROJECT_TYPE, "拒绝"),
+	_15_4_	    ("/galaxy/projectTransfer/receiveTransfer",		PlatformConst.PROJECT_TYPE, "接收");
 
 	private OperationType(String uniqueKey, String type, String content, Integer module) {
 		this.uniqueKey = uniqueKey;
