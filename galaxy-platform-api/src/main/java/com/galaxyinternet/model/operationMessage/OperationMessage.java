@@ -39,6 +39,8 @@ public class OperationMessage extends BaseEntity{
 	private Long belongDepartmentId;
 	private String messageType;
 	
+	private boolean flag;
+	
 	private Serializable userData;
 	private List<String> messageList;
 	
@@ -154,6 +156,14 @@ public class OperationMessage extends BaseEntity{
 	public String toString() {
 		return "OperationMessage [department=" + department + ", role=" + role + ", type=" + type + ", projectName="
 				+ projectName + ", operator=" + operator + ", content=" + content + ", module=" + module
-				+ ", projectId=" + projectId + ", operatorId=" + operatorId + "]";
+				+ ", projectId=" + projectId + ", operatorId=" + operatorId + ", flag=" + flag+"]";
 	}
+	public boolean getFlag() {
+		return flag;
+	}
+	public void setFlag(boolean flag) {
+		this.flag = flag;
+	}
+	
+	
 }
