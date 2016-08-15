@@ -393,7 +393,7 @@ table .width_gd{width:12%;}
 .pubbtn{ display:block; width:80px; height:28px; border:1px solid #FFF; text-align:center; line-height:28px; font-size:14px; font-family:"宋体"; border-radius:4px;}
 .width_8 ,.lpubbtn{width: 115px;}
 .heightstatus{}
-.width_450{ width:500px}
+.width_450{ width:500px; white-space:normal; word-break:break-all;}
 .height_90{ max-height:150px; overflow:hidden;}
 .height_ding .table td {vertical-align: top;}
 .height_90 a{ text-decoration:none;}
@@ -464,7 +464,7 @@ table .width_gd{width:12%;}
 .header{ width:100%;min-width: 1260px; height:50px; background:#539be2; margin:0 auto;position: fixed; top:0; z-index:9;}
 .header .rit{float:right !important; margin:15px 0 0 0;line-height: 18px;}
 .header .ico{ background-image:url(../img/headico.png);}
-.header .logo{ float:left; width:171px; height:49px; margin:0 0 0 25px; background:url(../img/logo.png) no-repeat}
+.header .logo{ float:left; width:171px; height:49px; margin:0 0 0 25px; cursor: default; background:url(../img/logo.png) no-repeat}
 .header .min{ float:left; padding:15px 0 0;line-height:20px; font-size:12px; font-family:"宋体";}
 .header .min a{ font-family:"宋体"; font-size:12px}
 .header .light_blue{color: #cae2f7;background: url(../img/email.png) 0 4px no-repeat;padding: 0 0 0 20px;}
@@ -1997,7 +1997,7 @@ dl{position: relative;}
     margin-right: 20px;
     cursor: pointer;
 }
-.role_textarea{ min-width:950px; overflow:hidden; border-radius:6px; height:100px; overflow-y:auto;}
+.role_textarea{ min-width:950px; overflow:hidden; border-radius:6px; height:100px; overflow-y:auto; color: #525662;}
 .role_list{width:950px; }
 .role_list span{ display:block; float:left; margin-right:20px; margin-bottom:5px;}
 .role_border{ border:1px solid #ccd2d7; width:auto; border-radius:6px; box-sizing:border-box; min-width:950px; }
