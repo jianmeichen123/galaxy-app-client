@@ -26,4 +26,7 @@ public class PlatformConst {
 	public static final String REQUEST_SCOPE_MESSAGE_STAGE= "galaxy_message_stage";
 	
 	
+	// ios 消息推送
+	public static final String IOS_TITLE_TASK = "会议通知";
+	public static final String IOS_TITLE_MEET = "任务状态变更";
 }
