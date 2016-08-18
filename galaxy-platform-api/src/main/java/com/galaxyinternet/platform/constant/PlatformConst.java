@@ -27,6 +27,6 @@ public class PlatformConst {
 	
 	
 	// ios 消息推送
-	public static final String IOS_TITLE_TASK = "会议通知";
-	public static final String IOS_TITLE_MEET = "任务状态变更";
+	public static final String IOS_TITLE_TASK = "任务状态变更";
+	public static final String IOS_TITLE_MEET = "会议通知";
 }
