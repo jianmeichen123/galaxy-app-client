@@ -34,9 +34,10 @@ public enum OperationType {
 	COMPLETE_TASK			("/galaxy/soptask/updateTaskStatus", 			PlatformConst.TASK_TYPE, "完成任务"),
 	SUBMIT_TASK              ("/galaxy/soptask/submitTask",                 PlatformConst.TASK_TYPE, "完成任务"),
 	
-	ADD_SCHEDULING			("/galaxy/project/updateReserveTime/"+ UrlNumber.one, 	PlatformConst.SCHEDULING_TYPE, "创建会议排期"),
-	UPDATE_SCHEDULING		("/galaxy/project/updateReserveTime/"+ UrlNumber.two, 	PlatformConst.SCHEDULING_TYPE, "更新会议排期"),
-	DELETE_SCHEDULING		("/galaxy/project/updateReserveTime/"+ UrlNumber.three, PlatformConst.SCHEDULING_TYPE, "删除会议排期"),
+	ADD_SCHEDULING			("/galaxy/project/updateReserveTime", 	PlatformConst.SCHEDULING_TYPE, "会议排期"),
+    /*UPDATE_SCHEDULING		("/galaxy/project/updateReserveTime/"+ UrlNumber.two, 	PlatformConst.SCHEDULING_TYPE, "更新会议排期"),
+	DELETE_SCHEDULING		("/galaxy/project/updateReserveTime/"+ UrlNumber.three, PlatformConst.SCHEDULING_TYPE, "删除会议排期"),*/
+	
 	FILE_BUSINESSPLAN("/galaxy/sopFile/commonUploadFile/" + UrlNumber.one,PlatformConst.PROJECT_TYPE,"上传"),
 	FILE_INTERESTLETTER("/galaxy/sopFile/commonUploadFile/" + UrlNumber.two,PlatformConst.PROJECT_TYPE,"更新"),
 
