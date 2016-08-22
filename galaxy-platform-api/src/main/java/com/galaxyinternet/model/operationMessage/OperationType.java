@@ -74,7 +74,21 @@ public enum OperationType {
 	_15_1_	    ("/galaxy/projectTransfer/applyTransfer",		PlatformConst.PROJECT_TYPE, "移交"),
 	_15_2_		("/galaxy/projectTransfer/undoTransfer",		PlatformConst.PROJECT_TYPE, "撤销移交"),
 	_15_3_		("/galaxy/projectTransfer/rejectTransfer",		PlatformConst.PROJECT_TYPE, "拒绝"),
-	_15_4_	    ("/galaxy/projectTransfer/receiveTransfer",		PlatformConst.PROJECT_TYPE, "接收");
+	_15_4_	    ("/galaxy/projectTransfer/receiveTransfer",		PlatformConst.PROJECT_TYPE, "接收"),
+	
+	//总拨款计划
+	_14_1_1	    ("/galaxy/..."+UrlNumber.one,		PlatformConst.PROJECT_TYPE, "添加"),
+	_14_1_2	    ("/galaxy/..."+UrlNumber.two,		PlatformConst.PROJECT_TYPE, "编辑"),
+	_14_1_3	    ("/galaxy/..."+UrlNumber.three,		PlatformConst.PROJECT_TYPE, "删除"),
+	//分期拨款计划
+	_14_2_1	    ("/galaxy/.../"+UrlNumber.one,		PlatformConst.PROJECT_TYPE, "添加"),
+	_14_2_2	    ("/galaxy/.../"+UrlNumber.two,		PlatformConst.PROJECT_TYPE, "编辑"),
+	_14_2_3	    ("/galaxy/.../"+UrlNumber.three,		PlatformConst.PROJECT_TYPE, "删除"),
+	//实际拨款信息
+	_14_3_1	    ("/galaxy/.../"+UrlNumber.one,		PlatformConst.PROJECT_TYPE, "添加"),
+	_14_3_2	    ("/galaxy/.../"+UrlNumber.two,		PlatformConst.PROJECT_TYPE, "编辑"),
+	_14_3_3     ("/galaxy/.../"+UrlNumber.three,		PlatformConst.PROJECT_TYPE, "删除");
+	
 
 	private OperationType(String uniqueKey, String type, String content, Integer module) {
 		this.uniqueKey = uniqueKey;
