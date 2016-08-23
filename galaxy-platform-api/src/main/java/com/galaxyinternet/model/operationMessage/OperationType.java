@@ -110,9 +110,20 @@ public enum OperationType {
 		OperationType[] types = OperationType.values();
 		OperationType result = null;
 		for (OperationType type : types) {
-			if (type.getUniqueKey()!=null && type.getUniqueKey().trim().length()>0 && uniqueKey.contains(type.getUniqueKey())) {
-				result = type;
-				break;
+			if (type.getUniqueKey()!=null && type.getUniqueKey().trim().length()>0){
+				
+				String requestNum = uniqueKey.substring(uniqueKey.lastIndexOf("/"));
+				String localNum = type.getUniqueKey().substring(type.getUniqueKey().lastIndexOf("/"));
+				
+				if(requestNum.equals(localNum)){
+					if ( uniqueKey.substring(0,uniqueKey.lastIndexOf("/")).contains(type.getUniqueKey().substring(0,type.getUniqueKey().lastIndexOf("/")))) {
+						result = type;
+						break;
+					}
+				}else if ( uniqueKey.contains(type.getUniqueKey())) {
+					result = type;
+					break;
+				}
 			}
 		}
 		return result;
