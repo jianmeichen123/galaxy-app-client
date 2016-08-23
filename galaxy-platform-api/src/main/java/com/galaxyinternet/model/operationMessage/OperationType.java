@@ -46,24 +46,24 @@ public enum OperationType {
 	TASK_UPDATE_FILE		("/galaxy/taskprocess/uploadFile/"+UrlNumber.two, 		PlatformConst.TASK_TYPE, "更新"),
 	
 	_5_2_			("/galaxy/project/stageChange/"+UrlNumber.five,		PlatformConst.PROJECT_TYPE, "上传"),
-	_5_4_			("/galaxy/project/stageChange/"+UrlNumber.seven,		PlatformConst.PROJECT_TYPE, "上传"),
+	_5_4_			("/galaxy/project/stageChange/"+UrlNumber.seven,	PlatformConst.PROJECT_TYPE, "上传"),
 	_5_8_			("/galaxy/project/stageChange/"+UrlNumber.nine,		PlatformConst.PROJECT_TYPE, "上传"),
-	_5_9_			("/galaxy/project/stageChange/"+UrlNumber.twelve,		PlatformConst.PROJECT_TYPE, "上传"),
+	_5_9_			("/galaxy/project/stageChange/"+UrlNumber.twelve,	PlatformConst.PROJECT_TYPE, "上传"),
 	_5_12_			("/galaxy/project/stageChange/"+UrlNumber.ten,		PlatformConst.PROJECT_TYPE, "上传"),
-	_5_13_			("/galaxy/project/stageChange/"+UrlNumber.eleven,		PlatformConst.PROJECT_TYPE, "上传"),
+	_5_13_			("/galaxy/project/stageChange/"+UrlNumber.eleven,	PlatformConst.PROJECT_TYPE, "上传"),
 	
-	_6_1_			("/galaxy/project/ap",		PlatformConst.PROJECT_TYPE, "进入接触访谈阶段"),
-	_6_2_			("/galaxy/project/startReview",		PlatformConst.PROJECT_TYPE, "进入内部评审阶段"),
-	_6_3_			("/galaxy/project/stageChange/"+UrlNumber.two,		PlatformConst.PROJECT_TYPE, "进入CEO评审阶段"),
-	_6_4_			("/galaxy/project/ges",		PlatformConst.PROJECT_TYPE, "进入立项会阶段"),
-	_6_5_			("/galaxy/project/stageChange/"+UrlNumber.four,		PlatformConst.PROJECT_TYPE, "进入投资意向书阶段"),
-	_6_6_			("/galaxy/project/stageChange/"+UrlNumber.six,		PlatformConst.PROJECT_TYPE, "进入尽职调查阶段"),
-	_6_7_			("/galaxy/project/smp",		PlatformConst.PROJECT_TYPE, "进入投资决策会阶段"),
+	_6_1_			("/galaxy/project/ap",				PlatformConst.PROJECT_TYPE, 		"进入接触访谈阶段"),
+	_6_2_			("/galaxy/project/startReview",		PlatformConst.PROJECT_TYPE, 		"进入内部评审阶段"),
+	_6_3_			("/galaxy/project/stageChange/"+UrlNumber.two,		PlatformConst.PROJECT_TYPE, 	"进入CEO评审阶段"),
+	_6_4_			("/galaxy/project/ges",				PlatformConst.PROJECT_TYPE, 		"进入立项会阶段"),
+	_6_5_			("/galaxy/project/stageChange/"+UrlNumber.four,		PlatformConst.PROJECT_TYPE, 	"进入投资意向书阶段"),
+	_6_6_			("/galaxy/project/stageChange/"+UrlNumber.six,		PlatformConst.PROJECT_TYPE, 	"进入尽职调查阶段"),
+	_6_7_			("/galaxy/project/smp",				PlatformConst.PROJECT_TYPE, 		"进入投资决策会阶段"),
 	_6_8_			("/galaxy/project/stageChange/"+UrlNumber.eight,		PlatformConst.PROJECT_TYPE, "进入投资协议阶段"),
-	_6_9_p1_			("/galaxy/project/stageChange/"+UrlNumber.eleven,		PlatformConst.PROJECT_TYPE, "进入股权交割阶段"),
-	_6_9_p2_			("/galaxy/project/stageChange/"+UrlNumber.twelve,		PlatformConst.PROJECT_TYPE, "进入股权交割阶段"),
-	_6_10_p1_			("/galaxy/soptask/submitTask/"+UrlNumber.four,		PlatformConst.PROJECT_TYPE, "进入投后运营阶段"),
-	_6_10_p2_			("/galaxy/soptask/submitTask/"+UrlNumber.six,		PlatformConst.PROJECT_TYPE, "进入投后运营阶段"),
+	_6_9_p1_		("/galaxy/project/stageChange/"+UrlNumber.eleven,		PlatformConst.PROJECT_TYPE, "进入股权交割阶段"),
+	_6_9_p2_		("/galaxy/project/stageChange/"+UrlNumber.twelve,		PlatformConst.PROJECT_TYPE, "进入股权交割阶段"),
+	_6_10_p1_		("/galaxy/soptask/submitTask/"+UrlNumber.four,		PlatformConst.PROJECT_TYPE, 	"进入投后运营阶段"),
+	_6_10_p2_		("/galaxy/soptask/submitTask/"+UrlNumber.six,		PlatformConst.PROJECT_TYPE, 	"进入投后运营阶段"),
 	
 	
 	PRO_HEALTH			("/galaxy/health/addhealth",		PlatformConst.PROJECT_TYPE, "项目健康度"),
@@ -77,13 +77,16 @@ public enum OperationType {
 	_15_4_	    ("/galaxy/projectTransfer/receiveTransfer",		PlatformConst.PROJECT_TYPE, "接收"),
 	
 	//总拨款计划
-	_14_1_1	    ("/galaxy/..."+UrlNumber.one,		PlatformConst.PROJECT_TYPE, "添加"),
-	_14_1_2	    ("/galaxy/..."+UrlNumber.two,		PlatformConst.PROJECT_TYPE, "编辑"),
-	_14_1_3	    ("/galaxy/..."+UrlNumber.three,		PlatformConst.PROJECT_TYPE, "删除"),
+	_14_1_1	    ("/galaxy/grant/total/addGrantTotal/"+UrlNumber.one,		PlatformConst.PROJECT_TYPE, "添加"),
+	_14_1_2	    ("/galaxy/grant/total/addGrantTotal/"+UrlNumber.two,		PlatformConst.PROJECT_TYPE, "编辑"),
+	_14_1_2_1	("/galaxy/grant/total/resetGrantTotal/"+UrlNumber.two,		PlatformConst.PROJECT_TYPE, "编辑"),
+	_14_1_3_1   ("/galaxy/grant/total/deleteGrantTotal/"+UrlNumber.three,	PlatformConst.PROJECT_TYPE, "删除"),
+	
+	
 	//分期拨款计划
-	_14_2_1	    ("/galaxy/.../"+UrlNumber.one,		PlatformConst.PROJECT_TYPE, "添加"),
-	_14_2_2	    ("/galaxy/.../"+UrlNumber.two,		PlatformConst.PROJECT_TYPE, "编辑"),
-	_14_2_3	    ("/galaxy/.../"+UrlNumber.three,		PlatformConst.PROJECT_TYPE, "删除"),
+	_14_2_1	    ("/galaxy/grant/part/addGrantPart/"+UrlNumber.one,		PlatformConst.PROJECT_TYPE, "添加"),
+	_14_2_2	    ("/galaxy/grant/part/addGrantPart/"+UrlNumber.two,		PlatformConst.PROJECT_TYPE, "编辑"),
+	_14_2_3	    ("/galaxy/grant/part/delGrantPart/"+UrlNumber.three,	PlatformConst.PROJECT_TYPE, "删除"),
 	//实际拨款信息
 	_14_3_1	    ("/galaxy/.../"+UrlNumber.one,		PlatformConst.PROJECT_TYPE, "添加"),
 	_14_3_2	    ("/galaxy/.../"+UrlNumber.two,		PlatformConst.PROJECT_TYPE, "编辑"),
