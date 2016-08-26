@@ -82,17 +82,17 @@ public enum OperationType {
 	_14_1_2_1	("/galaxy/grant/total/resetGrantTotal/"+UrlNumber.two,		PlatformConst.PROJECT_TYPE, "编辑"),
 	_14_1_3_1   ("/galaxy/grant/total/deleteGrantTotal/"+UrlNumber.three,	PlatformConst.PROJECT_TYPE, "删除"),
 	
-	
 	//分期拨款计划
 	_14_2_1	    ("/galaxy/grant/part/addGrantPart/"+UrlNumber.one,		PlatformConst.PROJECT_TYPE, "添加"),
 	_14_2_2	    ("/galaxy/grant/part/addGrantPart/"+UrlNumber.two,		PlatformConst.PROJECT_TYPE, "编辑"),
 	_14_2_3	    ("/galaxy/grant/part/delGrantPart/"+UrlNumber.three,	PlatformConst.PROJECT_TYPE, "删除"),
-	//实际拨款信息
-	_14_3_1	    ("/galaxy/.../"+UrlNumber.one,		PlatformConst.PROJECT_TYPE, "添加"),
-	_14_3_2	    ("/galaxy/.../"+UrlNumber.two,		PlatformConst.PROJECT_TYPE, "编辑"),
-	_14_3_3     ("/galaxy/.../"+UrlNumber.three,		PlatformConst.PROJECT_TYPE, "删除");
 	
-
+	//实际拨款信息
+	_14_3_1	    ("/galaxy/grant/actual/saveApprActual/"+UrlNumber.one,		PlatformConst.PROJECT_TYPE, "添加"),
+	_14_3_2	    ("/galaxy/grant/actual/saveApprActual/"+UrlNumber.two,		PlatformConst.PROJECT_TYPE, "编辑"),
+	_14_3_3     ("/galaxy/grant/actual/deleteApprActual/"+UrlNumber.three,	PlatformConst.PROJECT_TYPE, "删除");
+	
+	
 	private OperationType(String uniqueKey, String type, String content, Integer module) {
 		this.uniqueKey = uniqueKey;
 		this.type = type;
