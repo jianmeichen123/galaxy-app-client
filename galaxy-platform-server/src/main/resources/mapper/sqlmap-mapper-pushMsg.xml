@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.galaxyinternet.model.pushmsg.PushMsg">
+	<resultMap id="BaseResultMap" type="com.galaxyinternet.model.pushmsg.PushMsg">
+		<result column="user_str" 			property="userStr" 		 	/>
+		<result column="content" 			property="content" 		 	/>
+		<result column="notice_time" 		property="noticeTime" 	/>
+	</resultMap>
+ 	<insert id="insert" parameterType="com.galaxyinternet.model.pushmsg.PushMsg" useGeneratedKeys="true" keyProperty="id">
+	    <![CDATA[
+	        insert into
+	        platform_pushmsg (
+        	  id,
+        	  content,
+        	  user_str,
+           	  notice_time
+	        ) values (
+        	   #{id},
+        	   #{content},
+        	   #{userStr},
+        	   #{noticeTime}
+	        )
+	    ]]>
+    </insert>
+    
+    <!-- 查询 -->
+	<select id="select" resultMap="BaseResultMap" parameterType="java.util.Map">
+		select notice_time,content,user_str
+		from platform_pushmsg 
+		order by notice_time desc
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if> 
+	</select>
+	
+		<!-- 查询总数 -->
+	<select id="selectCount" resultType="java.lang.Long" parameterType="java.util.Map">
+		select count(id) from platform_pushmsg
+	</select>
+</mapper>

@@ -140,7 +140,16 @@ var platformUrl = {
 	 * 查询角色列表
 	 */
 	getRoleList :"galaxy/role/roleList",
-	
+	/**
+	 * 自定义消息推送
+	 */
+	pushMsgIndex:"galaxy/pushMsg",
+	/**
+	 * 
+	 */
+	queryUserByDept:"galaxy/user/queryUserByDept",
+		
+	insertPushMsg:"galaxy/pushMsg/insertPushMsg"
 }
 /**
  * how to use? location.href = platformUrl.login
