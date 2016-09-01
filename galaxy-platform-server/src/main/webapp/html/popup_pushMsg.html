@@ -1,0 +1,157 @@
+<div class="popup_project">
+	<div class="popup_project_title"><span class="popup_ico"></span><span id="popup_name"></span></div>
+    <div class="popup_project_center">
+    <div ></div>
+    	<div class="popup_project_center_l">
+          <div class="form-group popup_top15 ">
+                通知对象
+             </div> 
+            <div class="popup_c_b slim-scroll" id="investor">
+            </div>
+        </div>
+        <div class="popup_project_center_r">
+        	<div class="form-group popup_top15">
+                <span >已选　<span id="show_number">0</span></span>
+                <span class="empty_all">清空</span>
+             </div>
+            <div class="popup_c_b slim-scroll">
+            	<ul class="list-unstyled popup_ul_onclick" id="investorCheck">                    
+                </ul>
+            </div>
+        </div>
+    </div>
+        </div>
+     <div style='width:545px; margin:0 auto; margin-top:10px;'>消息内容</div>
+    <div style='width:545px; margin:0 auto; margin-top:10px;'><textarea id="content" placeholder="此处填写通知内容,最大170字" style='width:545px; padding:5px; height:100px;'></textarea></div>
+    <div class="popup_button" style='margin-left:240px;'>
+	    <button type="button" onclick="submitInvestor();" class="pbtn bluebtn h_bluebtn">确定</button>
+	    <button type="button" onclick="cancel();" class="pbtn bluebtn h_bluebtn">取消</button>
+    </div>
+</div>
+<style>
+.popup_button button{ float:left; margin-right:20px; margin-bottom: 20px; overflow:hidden; }
+</style>
+<!--滚动条-->
+<script src="js/jquery.slimscroll.min.js"></script>
+<script>
+// scrollables
+  $('.slim-scroll').each(function () {
+	var $this = $(this);
+	$this.slimScroll({
+		height: $this.data('height') || 275,
+		railVisible:true
+	});
+}); 
+
+
+function show_number(){
+	var show_number=0; //获取数目
+	show_number=$("#investorCheck li").length;
+	$('#show_number').html(show_number);
+}
+
+//选框种类
+ $('#investor').delegate("div input","change",function(){
+ 	$(this).parent().toggleClass('on_class'); //添加class
+	var this_class=$(this).parent().attr('class');
+	var input_name =$(this).parent().attr('data-name');
+	
+	if(this_class=='people_all on_class'){
+		$("[name='"+input_name+"']:checkbox").prop("checked",true);
+		//添加
+		$("[name='"+input_name+"']").each(function(){
+			$(this).parent().addClass('on_class');
+			var item_id=$(this).attr('item_id');
+			var popup_id=$(this).attr('data_id');
+			var popup_value=$(this).attr('value');
+			var popup_parent=$(this).attr('parent');
+			var add_html="<li value='"+popup_value+"' parent='"+popup_parent+"' id='" + popup_id + "_li' data-on='" + popup_id + "' item_id='"+item_id+"' ><span>"+popup_value+"</span><span class='popup_ul_onclick_close'></span></li>";
+			if($("#"+ popup_id + "_li ").size()>0){
+				return;
+			}else{
+				$(".popup_ul_onclick").append(add_html);
+			}
+			              
+		});   
+		show_number();
+		
+	}else{
+		$("[name='"+input_name+"']:checkbox").prop("checked",false);
+		$("[name='"+input_name+"']").parent().removeClass("on_class");
+
+		//删除
+		$("[name='"+input_name+"']").each(function(){
+			var popup_id=$(this).attr('data_id');
+			$( " #"+ popup_id +"_li ").remove();          
+		}); 
+		show_number();
+		
+	} 
+}) 
+
+//单个选框
+$('#investor').delegate("ul input","change",function(){
+	var input_name =$(this).attr('name');
+	//遍历选中的checkbox数量
+	$(this).toggleClass('on_class'); 
+	var count = 0;  //公司下投资人的个数
+	for(var i=0;i<$("[name='"+input_name+"']").length;i++){
+		if($("[name='"+input_name+"']")[i].checked){
+			count = count + 1;
+		}
+	}
+	if(count==$("[name='"+input_name+"']").length){
+		$(this).parent().parent().prev().addClass('on_class');
+		$(".people_all").each(function(){
+			var data_name=$(this).attr('data-name');
+			if(data_name==input_name){
+				$(this).children().prop("checked",true);
+				$(this).parent().addClass('on_class');
+			}      
+		}); 
+		
+	}
+	 
+	
+	
+	$(this).parent().toggleClass('on_class'); //添加class
+	//获取信息
+	var item_id=$(this).attr('item_id');
+	var popup_id=$(this).attr('data_id');
+	var popup_value=$(this).attr('value');
+	var this_class=$(this).parent().attr('class')
+	var popup_parent=$(this).attr('parent');
+	var add_html="<li value='"+popup_value+"' parent='"+popup_parent+"' id='" + popup_id + "_li' data-on='" + popup_id + "' item_id='"+item_id+"'><span>"+popup_value+"</span><span class='popup_ul_onclick_close'></span></li>";
+	if(this_class=='on_class'){
+		$(".popup_ul_onclick").append(add_html); 
+		
+	}else{
+		$( " #"+ popup_id +"_li ").remove();
+		
+		$(this).parent().parent().prev().removeClass('on_class');
+		$(this).parent().parent().prev().children().prop("checked", false)
+	}  
+	show_number()
+});
+//清空
+ $('.empty_all').click(function(){
+	$(".popup_c_b input").removeAttr("checked");
+	$(".people_all_ul li").removeClass("on_class");
+	$(".people_all").removeClass("on_class");
+	$('.popup_ul_onclick').html("");
+	$('#show_number').html('0')
+});
+	
+$(".popup_ul_onclick").delegate(".popup_ul_onclick_close","click",function(){
+	
+	var close_on=$(this).parent().attr('data-on')
+	$("#"+close_on+"_li").remove();
+	$("#"+close_on+"").removeAttr('checked');
+	$("#"+close_on+"").parent().removeClass('on_class');
+	$("#"+close_on+"").parent().parent().prev().removeClass('on_class');
+	$("#"+close_on+"").parent().parent().prev().children().prop("checked", false);
+	$("#"+close_on+"").parent().parent().prev().removeClass('on_class');
+	show_number()
+	
+}); 
+</script>

@@ -9,13 +9,16 @@
         </li>	
         <li >
         	<a href="javascript:void(-1);" target-url="dictIndex" target="dict"><span class="navbar nav7"></span>数据字典</a>
+        </li>
+         <li >
+        	<a href="javascript:void(-1);" target-url="pushMsgIndex" target="msg"><span class="navbar nav7"></span>消息推送</a>
         </li>	
 		</ul>
  <script type = "text/javascript">
- 	$(".lft").on("click",'a',function(){
+ 	 $(".lft").on("click",'a',function(){
  		var a = $(this);
  		var url = platformUrl[a.attr("target-url")];
  		return forwardWithHeader(url);
- 	});
+ 	}); 
 </script>
 <script src="<%=request.getContextPath() %>/js/platformUrl.js" type="text/javascript"></script>

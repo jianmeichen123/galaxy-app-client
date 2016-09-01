@@ -1,8 +1,17 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-<div class="erwm">
+<%-- <div class="erwm">
     <img src="<%=path %>/img/erwm.gif" alt="" style="margin:0 auto;">
     <span data-btn="close_erwm">关闭</span> 
     <a href="<%=path %>/html/installReadme.html?realname=1" target="_blank">查看安装说明</a>
+</div> --%>
+<div class="erwms erwm">
+	<p>繁星APP</p>
+   	<img src="<%=path %>/img/ewms.gif" alt="">
+</div>
+<div class="erwmb erwm">
+   	<img src="<%=path %>/img/ewmb.gif" alt="">
+   	<p>繁星APP客户端</p>
+   	<p><a href="<%=path %>/html/installReadme.html?realname=1" target="_blank">查看安装说明</a></p>
 </div>
 <div class="header clearfix">
 	<a href="javascript:;" class="logo null">繁星</a>
@@ -37,9 +46,14 @@
 <script src="<%=path %>/js/car_limit.js"></script>
  <script type = "text/javascript">
 
-	/*关闭二维码*/
-		$("[data-btn='close_erwm']").on("click",function(){
-            $('.erwm').hide();
-        })
+	/*需要时二维码放大*/
+		$(".erwms").on("mouseover",function(){
+			 $(this).hide();
+		     $(".erwmb").show();
+		 })
+		  $(".erwmb").on("mouseout",function(){
+			 $(".erwms").show();
+		     $(this).hide();
+		 })
 </script>
 
