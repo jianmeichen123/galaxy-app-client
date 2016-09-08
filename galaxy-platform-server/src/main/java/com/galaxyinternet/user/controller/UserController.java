@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -392,4 +393,31 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		return map;
 	}
 	
+	/***
+	 * 根据部门查用户 
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/queryUserByDept/{departmentId}", method = RequestMethod.GET)
+	public ResponseData<User> queryUserByDept(@PathVariable("departmentId") Long departmentId) {
+		
+		ResponseData<User> responseBody = new ResponseData<User>();
+		try {
+			User user = new User();
+			user.setDepartmentId(departmentId);
+			user.setStatus("0");
+			List<User> userList = userService.queryList(user);
+			responseBody.setEntityList(userList);
+			responseBody.setResult(new Result(Status.OK, ""));
+			return responseBody;
+
+		} catch (PlatformException e) {
+			responseBody
+					.setResult(new Result(Status.ERROR, "queryUserByDept faild"));
+
+			if (logger.isErrorEnabled()) {
+				logger.error("queryUserByDept ", e);
+			}
+		}
+		return responseBody;
+	}
 }

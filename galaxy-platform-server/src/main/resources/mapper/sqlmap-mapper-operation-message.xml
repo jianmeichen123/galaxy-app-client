@@ -18,13 +18,15 @@
 		 <result 	column="operator_deparement_id" 	property="operatorDepartmentId" jdbcType="BIGINT" />
 		 <result 	column="belong_department_id" 		property="belongDepartmentId" 	jdbcType="BIGINT" />
 		 <result 	column="message_type" 	property="messageType" 	jdbcType="VARCHAR" />
+		 <result 	column="single_mark" 	property="singleMark" 	jdbcType="TINYINT" />
+		 
 
 	</resultMap>
 	
 	<sql id="Base_Column_List">
 		id,department,role,type,project_name,
 		operator,content,created_time,module,belong_uid,belong_uname,project_id,
-		operator_id,operator_deparement_id,belong_department_id,message_type
+		operator_id,operator_deparement_id,belong_department_id,message_type,single_mark
 	</sql>
 
 
@@ -36,11 +38,11 @@
 	       	 t_operation_message (
 				department,role,type,project_name,module,belong_uid,belong_uname,
 				operator,content,project_id,created_time,
-				operator_id,operator_deparement_id,belong_department_id,message_type
+				operator_id,operator_deparement_id,belong_department_id,message_type,single_mark
 	        ) VALUES (
 	        	#{department},#{role},#{type},#{projectName},#{module},#{belongUid},#{belongUname},
 	        	#{operator},#{content},#{projectId},#{createdTime},
-	        	#{operatorId},#{operatorDepartmentId},#{belongDepartmentId},#{messageType}
+	        	#{operatorId},#{operatorDepartmentId},#{belongDepartmentId},#{messageType},#{singleMark}
 	        )
     </insert>
     
@@ -76,6 +78,7 @@
 								<foreach collection="inAll" index="item" item="item" open="(" separator="," close=")">
 						            #{item}
 						        </foreach>
+						        and single_mark = 0
 						    )
 						</if>
 						<if test="inPer != null"> 
@@ -83,8 +86,7 @@
 									<foreach collection="inPer" index="item" item="item" open="(" separator="," close=")">
 							            #{item}
 							        </foreach>
-							   and
-							   	belong_uid = #{belongUid}
+							   and belong_uid = #{belongUid}
 							   )
 						</if>
 						<if test="inPat != null"> 
@@ -92,8 +94,8 @@
 									<foreach collection="inPat" index="item" item="item" open="(" separator="," close=")">
 							            #{item}
 							        </foreach>
-							   and
-							   	belong_department_id = #{belongDepartmentId}
+							   and belong_department_id = #{belongDepartmentId}
+							   and single_mark = 0
 							   )
 						</if>
 					</trim>
