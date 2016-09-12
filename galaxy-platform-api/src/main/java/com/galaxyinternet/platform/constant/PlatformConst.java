@@ -5,6 +5,7 @@ public class PlatformConst {
 	public static final String REQUEST_SCOPE_MESSAGE_TIP = "galaxy_project_message_tip";
 	public static final String REQUEST_SCOPE_PROJECT_NAME = "galaxy_project_name";
 	public static final String REQUEST_SCOPE_PROJECT_ID = "galaxy_project_id";
+	public static final String REQUEST_SCOPE_PROJECT_PROGRESS = "galaxy_project_progress";
 	public static final String REQUEST_SCOPE_USER = "galaxy_user";
 	public static final String REQUEST_SCOPE_URL_NUMBER = "galaxy_url_number";
 	public static final String PROJECT_TYPE = "项目";
@@ -24,6 +25,10 @@ public class PlatformConst {
 	public static final String REQUEST_SCOPE_MESSAGE_NUM = "galaxy_message_nums";
 	public static final String REQUEST_SCOPE_MESSAGE_REASON = "galaxy_message_reason";
 	public static final String REQUEST_SCOPE_MESSAGE_STAGE= "galaxy_message_stage";
+	public static final String REQUEST_SCOPE_MESSAGE_BATCH = "galaxy_message_batch";
 	
 	
+	// ios 消息推送
+	public static final String IOS_TITLE_TASK = "任务状态变更";
+	public static final String IOS_TITLE_MEET = "会议通知";
 }
