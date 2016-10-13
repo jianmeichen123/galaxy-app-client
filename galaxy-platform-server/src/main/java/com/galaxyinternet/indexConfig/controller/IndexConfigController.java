@@ -78,6 +78,7 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 		}
 		return responseBody;
 	}
+	
 
 	
 	/**

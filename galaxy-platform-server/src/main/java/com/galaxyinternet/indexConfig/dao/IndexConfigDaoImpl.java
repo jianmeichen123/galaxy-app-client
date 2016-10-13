@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.util.Assert;
 
 import com.galaxyinternet.bo.IndexConfigBo;
 import com.galaxyinternet.dao.sopIndex.IndexConfigDao;
