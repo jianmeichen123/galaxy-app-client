@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.galaxyinternet.model.sopIndex.IndexConfig" >
+
+  <resultMap id="BaseResultMap" type="com.galaxyinternet.bo.IndexConfigBo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="role_id" property="roleId" jdbcType="BIGINT" />
+    <result column="resource_id" property="resourceId" jdbcType="BIGINT" />
+    <result column="content_url" property="contentUrl" jdbcType="VARCHAR" />
+    <result column="sorting" property="sorting" jdbcType="TINYINT" />
+    <result column="style_css" property="styleCss" jdbcType="VARCHAR" />
+    <result column="shape_type" property="shapeType" jdbcType="TINYINT" />
+    <result column="updated_time" property="updatedTime" jdbcType="BIGINT" />
+    <result column="updated_uid" property="updatedUid" jdbcType="BIGINT" />
+    <result column="created_uid" property="createdUid" jdbcType="BIGINT" />
+    <result column="created_time" property="createdTime" jdbcType="BIGINT" />
+    
+    <result column="resource_mark" property="resourceMark" jdbcType="VARCHAR" />
+    <result column="resource_name" property="resourceName" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, user_id, role_id, resource_id, content_url, sorting, style_css, shape_type, 
+    updated_time, updated_uid, created_uid, created_time
+  </sql>
+  
+  
+  
+  <sql id="Base_Where_Clause">
+		<where>
+			<trim prefixOverrides="and">
+				<if test="id != null"> and id = #{id,jdbcType=BIGINT}</if>
+				<if test="userId != null" >and user_id = #{userId,jdbcType=BIGINT} </if>
+				<if test="roleId != null" >and role_id = #{roleId,jdbcType=BIGINT} </if>
+				<if test="resourceId != null" >and resource_id = #{resourceId,jdbcType=BIGINT} </if>
+				<if test="resourceIdNullFilter == true" >and resource_id is not null </if>
+				<if test="contentUrl != null" >and content_url = #{contentUrl,jdbcType=VARCHAR} </if>
+				<if test="sorting != null" >and sorting = #{sorting,jdbcType=TINYINT} </if>
+				<if test="styleCss != null" >and style_css = #{styleCss,jdbcType=VARCHAR} </if>
+				<if test="shapeType != null" >and shape_type = #{shapeType,jdbcType=TINYINT} </if>
+				<if test="updatedTime != null" >and updated_time = #{updatedTime,jdbcType=BIGINT} </if>
+				<if test="updatedUid != null" >and updated_uid = #{updatedUid,jdbcType=BIGINT} </if>
+				<if test="createdUid != null" >and created_uid = #{createdUid,jdbcType=BIGINT} </if>
+				<if test="createdTime != null" >and created_time = #{createdTime,jdbcType=BIGINT} </if>
+			</trim>
+		</where>
+		<if test="sorting != null">order by ${sorting}</if>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</sql>
+	
+	<!-- 查询总数 -->
+	<select id="selectCount" resultType="java.lang.Long" parameterType="java.util.Map">
+		select count(id) from platform_index_config
+		<include refid="Base_Where_Clause" />
+	</select>
+
+	<!-- 查询 -->
+	<select id="select" resultMap="BaseResultMap" parameterType="java.util.Map">
+		select
+		<include refid="Base_Column_List" />
+		from platform_index_config
+		<include refid="Base_Where_Clause" />
+	</select>
+
+	<!-- 根据ID查询 -->
+	<select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from platform_index_config 
+		where id = #{id}
+	</select>
+	
+  
+  	<!-- 删除 -->
+	<delete id="delete" parameterType="java.util.Map">
+		delete from platform_index_config
+		<include refid="Base_Where_Clause" />
+	</delete>
+     <!-- 根据ID删除 -->
+	<delete id="deleteById" parameterType="com.galaxyinternet.model.project.MeetingRecord">
+		delete from platform_index_config where id = #{id}
+	</delete>
+  
+  
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id"  parameterType="com.galaxyinternet.model.sopIndex.IndexConfig" >
+	 <![CDATA[
+	  insert into platform_index_config (
+	  	id, user_id, role_id,resource_id, content_url, sorting,style_css, shape_type, updated_time,updated_uid, created_uid, created_time
+	    )
+	  values (
+	  	#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT},#{resourceId,jdbcType=BIGINT}, 
+	  	#{contentUrl,jdbcType=VARCHAR}, #{sorting,jdbcType=TINYINT},#{styleCss,jdbcType=VARCHAR}, #{shapeType,jdbcType=TINYINT},
+	  	#{updatedTime,jdbcType=BIGINT},#{updatedUid,jdbcType=BIGINT}, #{createdUid,jdbcType=BIGINT}, #{createdTime,jdbcType=BIGINT}
+	    )
+	]]>
+	</insert>
+  
+  
+	<!-- 更新 -->
+	<update id="updateByIdSelective" parameterType="com.galaxyinternet.model.sopIndex.IndexConfig">
+		update platform_index_config
+		<set>
+			<if test="userId != null" > user_id = #{userId,jdbcType=BIGINT}, </if>
+			<if test="roleId != null" > role_id = #{roleId,jdbcType=BIGINT}, </if>
+			<if test="resourceId != null" > resource_id = #{resourceId,jdbcType=BIGINT}, </if>
+			<if test="contentUrl != null" > content_url = #{contentUrl,jdbcType=VARCHAR}, </if>
+			<if test="sorting != null" > sorting = #{sorting,jdbcType=TINYINT}, </if>
+			<if test="styleCss != null" > style_css = #{styleCss,jdbcType=VARCHAR}, </if>
+			<if test="shapeType != null" > shape_type = #{shapeType,jdbcType=TINYINT}, </if>
+			<if test="updatedTime != null" > updated_time = #{updatedTime,jdbcType=BIGINT}, </if>
+			<if test="updatedUid != null" > updated_uid = #{updatedUid,jdbcType=BIGINT}, </if>
+			<if test="createdUid != null" > created_uid = #{createdUid,jdbcType=BIGINT}, </if>
+			<if test="createdTime != null" > created_time = #{createdTime,jdbcType=BIGINT} </if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<!-- 更新 -->
+	<update id="updateById" parameterType="com.galaxyinternet.model.sopIndex.IndexConfig">
+		update platform_index_config
+		<set>
+			<if test="userId != null" > user_id = #{userId,jdbcType=BIGINT}, </if>
+			<if test="roleId != null" > role_id = #{roleId,jdbcType=BIGINT}, </if>
+			<if test="resourceId != null" > resource_id = #{resourceId,jdbcType=BIGINT}, </if>
+			<if test="contentUrl != null" > content_url = #{contentUrl,jdbcType=VARCHAR}, </if>
+			<if test="sorting != null" > sorting = #{sorting,jdbcType=TINYINT}, </if>
+			<if test="styleCss != null" > style_css = #{styleCss,jdbcType=VARCHAR}, </if>
+			<if test="shapeType != null" > shape_type = #{shapeType,jdbcType=TINYINT}, </if>
+			<if test="updatedTime != null" > updated_time = #{updatedTime,jdbcType=BIGINT}, </if>
+			<if test="updatedUid != null" > updated_uid = #{updatedUid,jdbcType=BIGINT}, </if>
+			<if test="createdUid != null" > created_uid = #{createdUid,jdbcType=BIGINT}, </if>
+			<if test="createdTime != null" > created_time = #{createdTime,jdbcType=BIGINT} </if>
+		</set>
+		where id = #{id}
+	</update>
+  
+   
+  	
+  	<!-- 查询配置信息 -->
+	<select id="selectConfigByResource" resultMap="BaseResultMap" parameterType="java.util.Map">
+		select
+			ta.*,tb.resource_mark,tb.resource_name
+		from 
+			platform_index_config ta
+			left join
+			platform_resource tb
+			on ta.resource_id = tb.id
+		where 
+			ta.resource_id is not null
+			<if test="indexDivConfig != null" >and tb.index_div_config = #{indexDivConfig,jdbcType=TINYINT} </if>
+			<if test="userId != null" >and ta.user_id = #{userId,jdbcType=BIGINT} </if>
+			<if test="roleId != null" >and ta.role_id = #{roleId,jdbcType=BIGINT} </if>
+	</select>
+
+
+
+
+</mapper>
