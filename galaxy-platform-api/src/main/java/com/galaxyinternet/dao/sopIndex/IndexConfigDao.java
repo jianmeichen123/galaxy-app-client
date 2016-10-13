@@ -11,4 +11,7 @@ public interface IndexConfigDao extends BaseDao<IndexConfig, Long>{
 	
 	List<IndexConfigBo> selectConfigByResource(Map<String,Object> params);
 
+	List<IndexConfigBo> selectAvailableConfig(Map<String, Object> params);
+
+
 }

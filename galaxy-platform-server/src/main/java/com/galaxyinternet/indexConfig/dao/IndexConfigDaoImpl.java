@@ -17,13 +17,23 @@ public class IndexConfigDaoImpl extends BaseDaoImpl<IndexConfig, Long> implement
 
 	@Override
 	public List<IndexConfigBo> selectConfigByResource(Map<String, Object> params) {
-		Assert.notNull(params);
 		try {
 			return sqlSessionTemplate.selectList(getSqlName("selectConfigByResource"), params);
 		} catch (Exception e) {
 			throw new DaoException(String.format("根据操作人查询项目id出错！语句：%s", getSqlName("selectConfigByResource")), e);
 		}
 	}
+
+	
+	@Override
+	public List<IndexConfigBo> selectAvailableConfig(Map<String, Object> params) {
+		try {
+			return sqlSessionTemplate.selectList(getSqlName("selectAvailableConfig"), params);
+		} catch (Exception e) {
+			throw new DaoException(String.format("根据操作人查询项目id出错！语句：%s", getSqlName("selectAvailableConfig")), e);
+		}
+	}
+
 
 	
 	

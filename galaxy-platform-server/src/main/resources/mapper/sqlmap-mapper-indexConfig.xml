@@ -157,5 +157,29 @@
 
 
 
+	<!-- 查询管理员可用配置信息 -->
+	<select id="selectAvailableConfig" resultMap="BaseResultMap" parameterType="java.util.Map">
+		select
+			id resource_id,resource_mark,resource_name
+		from 
+			platform_resource
+		where
+			id not in(
+				select
+					resource_id
+				from 
+					platform_index_config
+				<where>
+				<trim prefixOverrides="and">
+					<if test="resourceIdNullFilter == true" >and resource_id is not null </if>
+					<if test="userId != null" >and ta.user_id = #{userId,jdbcType=BIGINT} </if>
+					<if test="roleId != null" >and ta.role_id = #{roleId,jdbcType=BIGINT} </if>
+				</trim>
+				</where>
+			)
+			and 
+			<if test="indexDivConfig != null" >and tb.index_div_config = #{indexDivConfig,jdbcType=TINYINT} </if>
+	</select>
+
 
 </mapper>
