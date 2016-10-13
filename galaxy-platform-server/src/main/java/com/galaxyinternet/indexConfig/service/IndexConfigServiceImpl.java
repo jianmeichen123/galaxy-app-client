@@ -25,7 +25,7 @@ public class IndexConfigServiceImpl extends BaseServiceImpl<IndexConfig> impleme
 	}
 
 	@Override
-	public List<IndexConfigBo> queryConfigByResource(Map<String, Object> params) {
+	public List<IndexConfigBo> queryConfigResource(Map<String, Object> params) {
 		return indexConfigDao.selectConfigByResource(params);
 	}
 
@@ -47,6 +47,8 @@ public class IndexConfigServiceImpl extends BaseServiceImpl<IndexConfig> impleme
 		}
 		indexConfigDao.insertInBatch(toSave);
 	}
+
+	
 
 
 

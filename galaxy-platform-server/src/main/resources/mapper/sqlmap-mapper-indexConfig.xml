@@ -80,7 +80,7 @@
 		<include refid="Base_Where_Clause" />
 	</delete>
      <!-- 根据ID删除 -->
-	<delete id="deleteById" parameterType="com.galaxyinternet.model.project.MeetingRecord">
+	<delete id="deleteById" parameterType="com.galaxyinternet.model.sopIndex.IndexConfig">
 		delete from platform_index_config where id = #{id}
 	</delete>
   

@@ -46,7 +46,7 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 	
 	
 	/**
-	 * 管理员 拉取 可配置项
+	 * 管理员 获取 可配置项
 	 * resources 中 indexDivConfig = 1 的列表
 	 * 选择度 indexConfig 中 未配置的
 	 * 
@@ -79,6 +79,40 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 		return responseBody;
 	}
 
+	
+	/**
+	 * 管理员 拉取  已配置项
+	 * 
+	 * @param roleOrUser 标识 是为 某角色 或 某用户 配置首页
+	 * @param id 标识属性的id
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/queryIndexModelConfig/{roleOrUser}/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseData<IndexConfigBo> queryIndexModelConfig(HttpServletRequest request,
+			@PathVariable("roleOrUser") String roleOrUser, @PathVariable("id") Long id) {
+		ResponseData<IndexConfigBo> responseBody = new ResponseData<IndexConfigBo>();
+		try {
+			Map<String,Object> params = new HashMap<String,Object>();
+			if(roleOrUser != null && !roleOrUser.equals("null")){
+				if(roleOrUser.equals("user")){
+					params.put("userId", id);
+				}else if(roleOrUser.equals("role")){
+					params.put("roleId", id);
+				}
+			}
+			
+			List<IndexConfigBo> configList = indexConfigService.queryConfigResource(params);
+			
+			responseBody.setEntityList(configList);
+			responseBody.setResult(new Result(Status.OK, ""));
+		} catch (Exception e) {
+			responseBody.setResult(new Result(Status.ERROR, null,"查询失败"));
+			logger.error("查询事业线失败",e);
+		}
+		return responseBody;
+	}
+	
+	
 	
 	/**
 	 * 管理员 配置 某角色 或 某用户 首页后保存
