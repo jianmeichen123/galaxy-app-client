@@ -39,7 +39,7 @@ public class IndexConfigServiceImpl extends BaseServiceImpl<IndexConfig> impleme
 	public void saveIndexConfig(IndexConfig indexConfig, List<IndexConfig> indexConfigList) {
 		List<IndexConfig> toSave = new ArrayList<IndexConfig>();
 		for(IndexConfig iCon : indexConfigList){
-			indexConfig.setSorting(iCon.getShapeType());
+			indexConfig.setConfigOrder(iCon.getConfigOrder());
 			indexConfig.setResourceId(iCon.getResourceId());
 			indexConfig.setStyleCss(iCon.getStyleCss());
 			indexConfig.setShapeType(iCon.getShapeType());

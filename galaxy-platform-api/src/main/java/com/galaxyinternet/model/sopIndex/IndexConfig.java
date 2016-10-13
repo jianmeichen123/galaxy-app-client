@@ -15,7 +15,7 @@ public class IndexConfig extends PagableEntity{
 
     private String contentUrl;
 
-    private Byte sorting;
+    private Byte configOrder;
 
     private String styleCss;
 
@@ -59,15 +59,16 @@ public class IndexConfig extends PagableEntity{
         this.contentUrl = contentUrl == null ? null : contentUrl.trim();
     }
 
-    public Byte getSorting() {
-        return sorting;
-    }
 
-    public void setSorting(Byte sorting) {
-        this.sorting = sorting;
-    }
+    public Byte getConfigOrder() {
+		return configOrder;
+	}
 
-    public String getStyleCss() {
+	public void setConfigOrder(Byte configOrder) {
+		this.configOrder = configOrder;
+	}
+
+	public String getStyleCss() {
         return styleCss;
     }
 

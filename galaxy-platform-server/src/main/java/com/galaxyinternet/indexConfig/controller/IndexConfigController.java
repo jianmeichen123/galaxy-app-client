@@ -81,7 +81,7 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 
 	
 	/**
-	 * 管理员 拉取  已配置项
+	 * 管理员 拉取  已配置项（获取全部， 所以不过滤null）
 	 * 
 	 * @param roleOrUser 标识 是为 某角色 或 某用户 配置首页
 	 * @param id 标识属性的id
