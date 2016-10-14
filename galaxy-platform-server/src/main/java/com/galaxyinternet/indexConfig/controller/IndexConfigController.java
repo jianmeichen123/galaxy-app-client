@@ -46,6 +46,15 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 	
 	
 	/**
+	 * 页面 
+	 */
+	@RequestMapping(value = "/toIndexConfig",  produces = MediaType.APPLICATION_JSON_VALUE)
+	public String toIndexConfig(HttpServletRequest request) {
+		return "indexConfig";
+	}
+	
+	
+	/**
 	 * 管理员 获取 可配置项
 	 * resources 中 indexDivConfig = 1 的列表
 	 * 选择度 indexConfig 中 未配置的
@@ -54,7 +63,7 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 	 * @param id 标识属性的id
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/queryAvailableConfig/{roleOrUser}/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/queryAvailableConfig/{roleOrUser}/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseData<IndexConfigBo> queryAvailableConfig(HttpServletRequest request,
 			@PathVariable("roleOrUser") String roleOrUser, @PathVariable("id") Long id) {
 		ResponseData<IndexConfigBo> responseBody = new ResponseData<IndexConfigBo>();
@@ -74,7 +83,7 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 			responseBody.setResult(new Result(Status.OK, ""));
 		} catch (Exception e) {
 			responseBody.setResult(new Result(Status.ERROR, null,"查询失败"));
-			logger.error("查询事业线失败",e);
+			logger.error("获取 可配置项 失败",e);
 		}
 		return responseBody;
 	}
@@ -88,7 +97,7 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 	 * @param id 标识属性的id
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/queryIndexModelConfig/{roleOrUser}/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/queryIndexModelConfig/{roleOrUser}/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseData<IndexConfigBo> queryIndexModelConfig(HttpServletRequest request,
 			@PathVariable("roleOrUser") String roleOrUser, @PathVariable("id") Long id) {
 		ResponseData<IndexConfigBo> responseBody = new ResponseData<IndexConfigBo>();
@@ -108,7 +117,7 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 			responseBody.setResult(new Result(Status.OK, ""));
 		} catch (Exception e) {
 			responseBody.setResult(new Result(Status.ERROR, null,"查询失败"));
-			logger.error("查询事业线失败",e);
+			logger.error("拉取  已配置项",e);
 		}
 		return responseBody;
 	}
@@ -149,8 +158,8 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 			indexConfigService.delete(indexConfig);
 			indexConfigService.saveIndexConfig(indexConfig,indexConfigList);
 		} catch (Exception e) {
-			responseBody.setResult(new Result(Status.ERROR, null,"查询失败"));
-			logger.error("查询事业线失败",e);
+			responseBody.setResult(new Result(Status.ERROR, null,"保存失败"));
+			logger.error("首页配置保存 失败",e);
 		}
 		return responseBody;
 	}

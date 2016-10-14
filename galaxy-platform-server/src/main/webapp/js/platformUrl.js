@@ -16,6 +16,30 @@ var platformUrl = {
 	 * 验证登录
 	 */
 	toLogin :"galaxy/userlogin/login",
+	
+	
+	/**
+	 * 桌面配置 页面
+	 */
+	indexConfig:"galaxy/indexConfig/toIndexConfig",
+	/**
+	 * 桌面配置 可用 资源拉取
+	 */
+	queryAvailableConfig:"galaxy/indexConfig/queryAvailableConfig/",
+	/**
+	 * 桌面配置 模版 资源拉取
+	 */
+	queryModelConfig:"galaxy/indexConfig/queryIndexModelConfig/",
+	/**
+	 * 桌面配置 模版 保存
+	 */
+	saveIndexModel:"galaxy/indexConfig/saveIndexConfig/",
+	
+	
+	
+	
+	
+	
 	/**
 	 * 跳转到首页
 	 */
