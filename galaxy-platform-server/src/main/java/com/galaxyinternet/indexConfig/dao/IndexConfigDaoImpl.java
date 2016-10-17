@@ -1,4 +1,4 @@
-﻿package com.galaxyinternet.indexConfig.dao;
+package com.galaxyinternet.indexConfig.dao;
 
 import java.util.List;
 import java.util.Map;
