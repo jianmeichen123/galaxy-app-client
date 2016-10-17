@@ -167,7 +167,7 @@
 			id resource_id,resource_mark,resource_name
 		from 
 			platform_resource
-		where
+		<where>
 			id not in(
 				select
 					resource_id
@@ -181,8 +181,8 @@
 				</trim>
 				</where>
 			)
-			and 
 			<if test="indexDivConfig != null" >and tb.index_div_config = #{indexDivConfig,jdbcType=TINYINT} </if>
+		</where>
 	</select>
 
 
