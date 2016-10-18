@@ -40,6 +40,7 @@
     <dubbo:reference interface="com.galaxyinternet.service.DepartmentService" id="com.galaxyinternet.service.DepartmentService" version="1.0.0" />
     <dubbo:reference interface="com.galaxyinternet.service.OperationMessageService" id="com.galaxyinternet.service.OperationMessageService" version="1.0.0" />
     <dubbo:reference interface="com.galaxyinternet.service.ResourceService" id="com.galaxyinternet.service.ResourceService" version="1.0.0" />
+    <dubbo:reference interface="com.galaxyinternet.service.IndexConfigService" id="com.galaxyinternet.service.IndexConfigService" version="1.0.0" />
 
 
 	
