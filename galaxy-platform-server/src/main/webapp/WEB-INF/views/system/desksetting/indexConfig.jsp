@@ -38,8 +38,6 @@
 
 </div>
 
-<script src="/js/jquery-1.10.2.min.js" type="text/javascript"></script>
-<script src="/js/axure.js" type="text/javascript"></script>
 <!-- 模块配置区js部分 -->
 <script>
 $(function(){
