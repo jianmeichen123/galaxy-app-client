@@ -52,6 +52,14 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 		return "system/desksetting/indexConfig";
 	}
 	
+	/**
+	 * 页面 
+	 */
+	@RequestMapping(value = "/toAddCon",  produces = MediaType.APPLICATION_JSON_VALUE)
+	public String toAddCon(HttpServletRequest request) {
+		return "system/desksetting/addCon";
+	}
+	
 	
 	/**
 	 * 管理员 获取 可配置项
