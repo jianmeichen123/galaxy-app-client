@@ -161,7 +161,7 @@
 
 
 	<!-- 查询 用户 可用 配置-->
-	<select id="selectUserIndexModel" resultMap="BaseResultMap" parameterType="java.lang.Long">
+	<select id="selectUserIndexModel" resultMap="BaseResultMap" parameterType="java.util.Map">
 		select
 			ta.*,tb.resource_mark,tb.resource_name
 		from 
@@ -177,7 +177,10 @@
 				FROM
 					platform_role_resource
 				WHERE
-					role_id = #{roleId,jdbcType=BIGINT}
+					role_id in
+					<foreach collection="roleIds" item="id_item" index="index" open="(" close=")" separator=",">
+			            #{id_item}
+			        </foreach>
 			)
 		</where>
 		order by ta.config_order
@@ -202,7 +205,6 @@
 					<if test="resourceIdNullFilter == true" >and resource_id is not null </if>
 					<if test="userId != null" >and ta.user_id = #{userId,jdbcType=BIGINT} </if>
 					<if test="roleId != null" >and ta.role_id = #{roleId,jdbcType=BIGINT} </if>
-					
 				</trim>
 				</where>
 			)
@@ -210,6 +212,5 @@
 			<if test="indexDivConfig != null" >and index_div_config = #{indexDivConfig,jdbcType=TINYINT} </if>
 		</where>
 	</select>
-
 
 </mapper>

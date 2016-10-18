@@ -35,9 +35,9 @@ public class IndexConfigDaoImpl extends BaseDaoImpl<IndexConfig, Long> implement
 
 
 	@Override
-	public List<IndexConfigBo> selectUserIndexModel(Long userRoleId) {
+	public List<IndexConfigBo> selectUserIndexModel(Map<String,Object> params) {
 		try {
-			return sqlSessionTemplate.selectList(getSqlName("selectUserIndexModel"), userRoleId);
+			return sqlSessionTemplate.selectList(getSqlName("selectUserIndexModel"), params);
 		} catch (Exception e) {
 			throw new DaoException(String.format("用户查询页面可显示模块出错！语句：%s", getSqlName("selectUserIndexModel")), e);
 		}

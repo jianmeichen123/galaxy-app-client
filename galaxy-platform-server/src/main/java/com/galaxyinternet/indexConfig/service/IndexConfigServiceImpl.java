@@ -29,10 +29,12 @@ public class IndexConfigServiceImpl extends BaseServiceImpl<IndexConfig> impleme
 	 * userRole 中用户关联的 resourceId
 	 * indexConfig 中 首页配置的 resourceId
 	 * 2者交集  
+	 * 
+	 * @param params key:roleIds 用户角色集合
 	 */
 	@Override
-	public List<IndexConfigBo> queryUserIndexModel(Long userRoleId) {
-		return indexConfigDao.selectUserIndexModel(userRoleId);
+	public List<IndexConfigBo> queryUserIndexModel(Map<String, Object> params) {
+		return indexConfigDao.selectUserIndexModel(params);
 	}
 	
 	

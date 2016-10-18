@@ -15,6 +15,14 @@ public interface IndexConfigService extends BaseService<IndexConfig> {
 
 	void saveIndexConfig(IndexConfig indexConfig, List<IndexConfig> indexConfigList);
 
-	List<IndexConfigBo> queryUserIndexModel(Long userRoleId);
+	/**
+	 * 用户  获取  首页可显示项
+	 * userRole 中用户关联的 resourceId
+	 * indexConfig 中 首页配置的 resourceId
+	 * 2者交集  
+	 * 
+	 * @param params key:roleIds 用户角色集合
+	 */
+	List<IndexConfigBo> queryUserIndexModel(Map<String,Object> params);
 
 }

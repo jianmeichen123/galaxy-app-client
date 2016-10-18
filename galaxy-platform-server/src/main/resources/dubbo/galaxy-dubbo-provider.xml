@@ -44,6 +44,6 @@
     <dubbo:service interface="com.galaxyinternet.service.DepartmentService" ref="com.galaxyinternet.service.DepartmentService" version="1.0.0"/>
     <dubbo:service interface="com.galaxyinternet.service.OperationMessageService" ref="com.galaxyinternet.service.OperationMessageService" version="1.0.0"/>
     <dubbo:service interface="com.galaxyinternet.service.ResourceService" ref="com.galaxyinternet.service.ResourceService" version="1.0.0"/>
-	<dubbo:service interface="com.galaxyinternet.service.IndexConfigService" id="com.galaxyinternet.service.IndexConfigService" version="1.0.0" />
+	<dubbo:service interface="com.galaxyinternet.service.IndexConfigService" ref="com.galaxyinternet.service.IndexConfigService" version="1.0.0" />
 
 </beans>
