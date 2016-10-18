@@ -49,7 +49,7 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 	 */
 	@RequestMapping(value = "/toIndexConfig",  produces = MediaType.APPLICATION_JSON_VALUE)
 	public String toIndexConfig(HttpServletRequest request) {
-		return "desksetting/indexConfig";
+		return "system/desksetting/indexConfig";
 	}
 	
 	
