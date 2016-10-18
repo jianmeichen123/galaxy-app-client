@@ -77,7 +77,7 @@ function configChange_2(){
 function model_result(){
 	var valu=$('#resourceIdS input[name="resource"]:checked ').val();
 	var data={
-			"reourceId":valu
+			"id":valu
 	}
 	return data;
 }
