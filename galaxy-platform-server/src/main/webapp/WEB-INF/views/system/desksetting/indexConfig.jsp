@@ -71,6 +71,7 @@ $(function(){
   addEblockCon();
   function addEblockCon(){  //点击弹出层
     $(".addEblockCon button").on("click",function(){ 
+    	$(".pop").remove();
       var len=$(this).attr("data-btn").length;
       var last=$(this).attr("data-btn").substring(len-1,len);
       console.log(last);
@@ -89,7 +90,7 @@ $(function(){
                 alert("请选择菜单！")
                }else{
             	save_result();
-                $(".pop , #popbg").remove();
+                $(".pop, #popbg").remove();
                 $(".addEblockCon_"+last+"").hide();
                 $(".deleteEblockCon_"+last+"").show();
                 $(".deleteEblockCon_"+last+" span").text(inputVal);
