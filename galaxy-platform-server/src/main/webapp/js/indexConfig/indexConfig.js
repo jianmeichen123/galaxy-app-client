@@ -99,9 +99,16 @@ function saveCallBack(data){
 		layer.msg(data.result.message);
 		return;
 	}
-	alert("保存成功");
+	layer.msg("保存成功");
 }
 
+
+function deleteIndexConfig(resourceId){
+	var data={
+		"resourceId":resourceId
+	};
+	sendPostRequestByJsonObj(platformUrl.deleteIndexModel,params,saveCallBack);
+}
 
 
 

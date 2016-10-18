@@ -35,6 +35,12 @@ var platformUrl = {
 	 */
 	saveIndexModel:"galaxy/indexConfig/saveIndexConfig/",
 	
+	/**
+	 * 桌面配置 模版 保存
+	 */
+	deleteIndexModel:"galaxy/indexConfig/deleteIndexModel/",
+	
+	
 	
 	
 	
@@ -174,6 +180,8 @@ var platformUrl = {
 	queryUserByDept:"galaxy/user/queryUserByDept",
 		
 	insertPushMsg:"galaxy/pushMsg/insertPushMsg"
+		
+		
 }
 /**
  * how to use? location.href = platformUrl.login

@@ -86,13 +86,15 @@ $(function(){
           queryAvailableConfig();
           $("#ok").click(function(){
                var inputVal=$(".addEblockContc label input:checked").parent("label").text();
+               var inputId=$(".addEblockContc label input:checked").val();
                if(inputVal==""){
-                alert("请选择菜单！")
+            	   layer.msg( "请选择菜单！");
                }else{
             	save_result();
                 $(".pop, #popbg").remove();
                 $(".addEblockCon_"+last+"").hide();
                 $(".deleteEblockCon_"+last+"").show();
+                $(".deleteEblockCon_"+last+" button").val(inputId);
                 $(".deleteEblockCon_"+last+" span").text(inputVal);
                }
           });

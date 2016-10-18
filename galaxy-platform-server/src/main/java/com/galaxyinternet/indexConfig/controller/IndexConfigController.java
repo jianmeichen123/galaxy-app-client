@@ -157,8 +157,44 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 			//根据资源id查询资源的详细信息
 			 PlatformResource resource = resourceService.queryById(indexConfig.getResourceId());
 			 indexConfig.setContentUrl(resource.getResourceUrl());
-			 indexConfigService.insert(indexConfig);
-			 responseBody.setResult(new Result(Status.OK, ""));
+			 Long insert = indexConfigService.insert(indexConfig);
+			 if(insert>0){
+				 responseBody.setResult(new Result(Status.OK, "保存成功"));
+			 }else{
+				 responseBody.setResult(new Result(Status.ERROR, "保存失败")); 
+			 }
+			 
+		} catch (Exception e) {
+			responseBody.setResult(new Result(Status.ERROR, null,"保存失败"));
+			logger.error("首页配置保存 失败",e);
+		}
+		return responseBody;
+	}
+	
+	/**
+	 * 管理员 配置 某角色 或 某用户 首页后保存
+	 * 
+	 * 删除  IndexConfig 中 某角色 或 某用户 的列表
+	 * 获取前台配置数据
+	 * 保存到 IndexConfig
+	 * 
+	 * @param roleOrUser 标识 是为 某角色 或 某用户 配置首页
+	 * @param id 标识属性的id
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/deleteIndexModel", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseData<IndexConfig> deleteIndexModel(HttpServletRequest request,
+			@RequestBody IndexConfig  indexConfig ) {
+		ResponseData<IndexConfig> responseBody = new ResponseData<IndexConfig>();
+		try {
+			//根据资源id查询资源的详细信息
+			 int delete = indexConfigService.delete(indexConfig);
+			 if(delete>0){
+				 responseBody.setResult(new Result(Status.OK, "删除配置项成功"));
+			 }else{
+				 responseBody.setResult(new Result(Status.ERROR, "删除配置项失败"));
+			 }
+			 
 		} catch (Exception e) {
 			responseBody.setResult(new Result(Status.ERROR, null,"保存失败"));
 			logger.error("首页配置保存 失败",e);
