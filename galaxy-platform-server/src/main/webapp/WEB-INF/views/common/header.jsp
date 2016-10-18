@@ -41,10 +41,7 @@
         <b class="line null">分割线</b>
         <a href="javascript:logout()" class="loginout">退出</a>
     </div>
-     <div class="xingmou fr">
-        <a href="#" target="_blank"><span class="navbar xingmou"></span>星眸</a>
-      </div>
-</div>
+     </div>
 <script src="<%=path %>/js/login.js"></script>
 <script src="<%=path %>/js/car_limit.js"></script>
  <script type = "text/javascript">

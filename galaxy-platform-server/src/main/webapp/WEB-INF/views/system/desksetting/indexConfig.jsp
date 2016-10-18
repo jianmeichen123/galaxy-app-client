@@ -6,9 +6,8 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<!doctype html>
 <html>
-<base href="<%=basePath%>">
+<base href="<%=basePath%>"/>
 <head>
 <meta charset="utf-8">
 <title>繁星</title>
@@ -20,7 +19,6 @@
 <body>
  <%@ include file="/WEB-INF/views/common/header.jsp"%>   
  <!-- 头部右边 -->
-</div>
 <div class="pagebox clearfix">
 	<!--左侧导航-->
 	<jsp:include page="/WEB-INF/views/common/leftmenu.jsp" flush="true"></jsp:include>	
