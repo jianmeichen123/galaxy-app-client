@@ -88,6 +88,7 @@ $(function(){
                if(inputVal==""){
                 alert("请选择菜单！")
                }else{
+            	save_result();
                 $(".pop , #popbg").remove();
                 $(".addEblockCon_"+last+"").hide();
                 $(".deleteEblockCon_"+last+"").show();

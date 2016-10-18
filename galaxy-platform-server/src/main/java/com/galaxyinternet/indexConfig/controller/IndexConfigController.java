@@ -142,7 +142,7 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 	 * @param id 标识属性的id
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/saveIndexConfig", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/saveIndexConfig/{roleOrUser}/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseData<IndexConfig> saveIndexConfig(HttpServletRequest request,
 			@PathVariable("roleOrUser") String roleOrUser, @PathVariable("id") Long id,@RequestBody List<IndexConfig> indexConfigList) {
 		ResponseData<IndexConfig> responseBody = new ResponseData<IndexConfig>();
