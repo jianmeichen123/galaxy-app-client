@@ -208,7 +208,6 @@
 				</trim>
 				</where>
 			)
-			<if test="parentId != null" >and parent_id = #{parentId,jdbcType=BIGINT} </if>		
 			<if test="indexDivConfig != null" >and index_div_config = #{indexDivConfig,jdbcType=TINYINT} </if>
 		</where>
 	</select>

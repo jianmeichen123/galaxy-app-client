@@ -75,8 +75,11 @@ function configChange_2(){
  * 获取页面配置模版 的值
  */
 function model_result(){
-
-	
+	var valu=$('#resourceIdS input[name="resource"]:checked ').val();
+	var data={
+			"reourceId":valu
+	}
+	return data;
 }
 
 

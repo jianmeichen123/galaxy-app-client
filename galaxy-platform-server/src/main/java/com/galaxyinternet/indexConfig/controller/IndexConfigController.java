@@ -83,7 +83,7 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 					params.put("roleId", id);
 				}
 			}
-			params.put("parentId", 160);
+			params.put("indexDivConfig", 1);	
 			List<IndexConfigBo> configList = indexConfigService.queryAvailableConfig(params);
 			
 			responseBody.setEntityList(configList);
