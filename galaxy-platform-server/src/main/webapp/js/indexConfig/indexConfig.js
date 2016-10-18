@@ -21,7 +21,7 @@ function setRadioResource(data){
 	var entityList = data.entityList;
 	if(entityList.length != 0 ){
 		for(var i=0;i<data.entityList.length;i++){
-	    	$("#resourceIdS").append("<input type='radio' name='resource' value='"+data.entityList[i].resourceId+"' />"+data.entityList[i].resourceName);
+	    	$("#resourceIdS").append("<label><input type='radio' name='resource' value='"+data.entityList[i].resourceId+"' />"+data.entityList[i].resourceName)+"</label>";
 	    } 
 	}
 }

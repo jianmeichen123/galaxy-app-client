@@ -13,6 +13,7 @@
 <title>繁星</title>
 
 <link href="css/axure.css" type="text/css" rel="stylesheet"/>
+<script src="js/indexConfig/indexConfig.js" type="text/javascript"></script>
 <!--[if lt IE 9]><link href="css/lfie8.css" type="text/css" rel="stylesheet"/><![endif]-->
 </head>
 <%@ include file="/WEB-INF/views/common/taglib.jsp"%>
@@ -81,6 +82,7 @@ $(function(){
         data:"",//传递参数
         okback:function(){
           $("#popup_name").html(_name);
+          queryAvailableConfig();
           $("#ok").click(function(){
                var inputVal=$(".addEblockContc label input:checked").parent("label").text();
                if(inputVal==""){

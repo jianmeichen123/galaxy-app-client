@@ -202,10 +202,12 @@
 					<if test="resourceIdNullFilter == true" >and resource_id is not null </if>
 					<if test="userId != null" >and ta.user_id = #{userId,jdbcType=BIGINT} </if>
 					<if test="roleId != null" >and ta.role_id = #{roleId,jdbcType=BIGINT} </if>
+					
 				</trim>
 				</where>
 			)
-			<if test="indexDivConfig != null" >and tb.index_div_config = #{indexDivConfig,jdbcType=TINYINT} </if>
+			<if test="parentId != null" >and parent_id = #{parentId,jdbcType=BIGINT} </if>		
+			<if test="indexDivConfig != null" >and index_div_config = #{indexDivConfig,jdbcType=TINYINT} </if>
 		</where>
 	</select>
 
