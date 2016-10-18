@@ -19,7 +19,7 @@ public class IndexConfigDaoImpl extends BaseDaoImpl<IndexConfig, Long> implement
 		try {
 			return sqlSessionTemplate.selectList(getSqlName("selectConfigByResource"), params);
 		} catch (Exception e) {
-			throw new DaoException(String.format("根据操作人查询项目id出错！语句：%s", getSqlName("selectConfigByResource")), e);
+			throw new DaoException(String.format("管理员查询页面配置信息出错！语句：%s", getSqlName("selectConfigByResource")), e);
 		}
 	}
 
@@ -29,7 +29,17 @@ public class IndexConfigDaoImpl extends BaseDaoImpl<IndexConfig, Long> implement
 		try {
 			return sqlSessionTemplate.selectList(getSqlName("selectAvailableConfig"), params);
 		} catch (Exception e) {
-			throw new DaoException(String.format("根据操作人查询项目id出错！语句：%s", getSqlName("selectAvailableConfig")), e);
+			throw new DaoException(String.format("管理员查询页面可配置信息出错！语句：%s", getSqlName("selectAvailableConfig")), e);
+		}
+	}
+
+
+	@Override
+	public List<IndexConfigBo> selectUserIndexModel(Long userRoleId) {
+		try {
+			return sqlSessionTemplate.selectList(getSqlName("selectUserIndexModel"), userRoleId);
+		} catch (Exception e) {
+			throw new DaoException(String.format("用户查询页面可显示模块出错！语句：%s", getSqlName("selectUserIndexModel")), e);
 		}
 	}
 

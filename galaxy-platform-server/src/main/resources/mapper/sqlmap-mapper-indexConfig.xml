@@ -160,6 +160,30 @@
 	</select>
 
 
+	<!-- 查询 用户 可用 配置-->
+	<select id="selectUserIndexModel" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+			ta.*,tb.resource_mark,tb.resource_name
+		from 
+			platform_index_config ta
+			left join
+			platform_resource tb
+			on ta.resource_id = tb.id
+		<where>
+			ta.resource_id IS NOT NULL
+			AND ta.resource_id IN (
+				SELECT 
+					resource_id
+				FROM
+					platform_role_resource
+				WHERE
+					role_id = #{roleId,jdbcType=BIGINT}
+			)
+		</where>
+		order by ta.config_order
+	</select>
+	
+	
 
 	<!-- 查询管理员可用配置信息 -->
 	<select id="selectAvailableConfig" resultMap="BaseResultMap" parameterType="java.util.Map">
