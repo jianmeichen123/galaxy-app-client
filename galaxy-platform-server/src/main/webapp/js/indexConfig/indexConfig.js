@@ -77,7 +77,8 @@ function configChange_2(){
 function model_result(){
 	var valu=$('#resourceIdS input[name="resource"]:checked ').val();
 	var data={
-			"id":valu
+			"resourceId":valu,
+			"shapeType":1
 	}
 	return data;
 }
@@ -88,18 +89,17 @@ function model_result(){
  */
 function save_result(){
 	var params = model_result();
-	sendPostRequestByJsonObj(platformUrl.saveIndexModel+"null/0",params,saveCallBack);
+	sendPostRequestByJsonObj(platformUrl.saveIndexModel,params,saveCallBack);
 }
 
 //保存回调
 function saveCallBack(data){
 	var result = data.result.status;
-	
 	if(result == "ERROR"){ //OK, ERROR
 		layer.msg(data.result.message);
 		return;
 	}
-	layer.msg("保存成功", {time : 500 });
+	alert("保存成功");
 }
 
 

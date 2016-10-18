@@ -23,8 +23,12 @@ import com.galaxyinternet.framework.core.model.ResponseData;
 import com.galaxyinternet.framework.core.model.Result;
 import com.galaxyinternet.framework.core.model.Result.Status;
 import com.galaxyinternet.framework.core.service.BaseService;
+import com.galaxyinternet.model.resource.PlatformResource;
+import com.galaxyinternet.model.resource.RoleResource;
 import com.galaxyinternet.model.sopIndex.IndexConfig;
 import com.galaxyinternet.service.IndexConfigService;
+import com.galaxyinternet.service.ResourceService;
+import com.galaxyinternet.service.RoleResourceService;
 
 @Controller
 @RequestMapping("/galaxy/indexConfig")
@@ -34,6 +38,9 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 	
 	@Autowired
 	private IndexConfigService indexConfigService;
+	
+	@Autowired
+	private ResourceService resourceService;
 	
 	@Autowired
 	com.galaxyinternet.framework.cache.Cache cache;
@@ -142,28 +149,16 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 	 * @param id 标识属性的id
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/saveIndexConfig/{roleOrUser}/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/saveIndexConfig", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseData<IndexConfig> saveIndexConfig(HttpServletRequest request,
-			@PathVariable("roleOrUser") String roleOrUser, @PathVariable("id") Long id,@RequestBody List<IndexConfig> indexConfigList) {
+			@RequestBody IndexConfig  indexConfig ) {
 		ResponseData<IndexConfig> responseBody = new ResponseData<IndexConfig>();
 		try {
-			responseBody.setResult(new Result(Status.OK, ""));
-			
-			if(indexConfigList == null || indexConfigList.isEmpty()){
-				return responseBody;
-			}
-			
-			IndexConfig indexConfig = new IndexConfig();
-			if(roleOrUser != null && !roleOrUser.equals("null")){
-				if(roleOrUser.equals("user")){
-					indexConfig.setUserId(id);
-				}else if(roleOrUser.equals("role")){
-					indexConfig.setRoleId(id);
-				}
-			}
-			
-			indexConfigService.delete(indexConfig);
-			indexConfigService.saveIndexConfig(indexConfig,indexConfigList);
+			//根据资源id查询资源的详细信息
+			 PlatformResource resource = resourceService.queryById(indexConfig.getResourceId());
+			 indexConfig.setContentUrl(resource.getResourceUrl());
+			 indexConfigService.insert(indexConfig);
+			 responseBody.setResult(new Result(Status.OK, ""));
 		} catch (Exception e) {
 			responseBody.setResult(new Result(Status.ERROR, null,"保存失败"));
 			logger.error("首页配置保存 失败",e);
