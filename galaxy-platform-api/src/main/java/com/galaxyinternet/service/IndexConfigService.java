@@ -15,4 +15,6 @@ public interface IndexConfigService extends BaseService<IndexConfig> {
 
 	void saveIndexConfig(IndexConfig indexConfig, List<IndexConfig> indexConfigList);
 
+	List<IndexConfigBo> queryUserIndexModel(Long userRoleId);
+
 }

@@ -23,12 +23,30 @@ public class IndexConfigServiceImpl extends BaseServiceImpl<IndexConfig> impleme
 	protected BaseDao<IndexConfig, Long> getBaseDao() {
 		return this.indexConfigDao;
 	}
-
+	
+	/**
+	 * 用户  获取  首页可显示项
+	 * userRole 中用户关联的 resourceId
+	 * indexConfig 中 首页配置的 resourceId
+	 * 2者交集  
+	 */
+	@Override
+	public List<IndexConfigBo> queryUserIndexModel(Long userRoleId) {
+		return indexConfigDao.selectUserIndexModel(userRoleId);
+	}
+	
+	
+	/**
+	 * 管理员 获取  模版已配置项
+	 */
 	@Override
 	public List<IndexConfigBo> queryConfigResource(Map<String, Object> params) {
 		return indexConfigDao.selectConfigByResource(params);
 	}
 
+	/**
+	 * 管理员 获取 可配置项
+	 */
 	@Override
 	public List<IndexConfigBo> queryAvailableConfig(Map<String, Object> params) {
 		List<IndexConfigBo> result = indexConfigDao.selectAvailableConfig(params);
