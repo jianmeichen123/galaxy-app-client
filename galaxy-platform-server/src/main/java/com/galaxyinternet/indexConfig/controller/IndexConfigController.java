@@ -206,8 +206,10 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 		ResponseData<IndexConfig> responseBody = new ResponseData<IndexConfig>();
 		try {
 			//根据资源id查询资源的详细信息
-			 int delete = indexConfigService.delete(indexConfig);
-			 if(delete>0){
+			//indexConfig.setResourceId(null);
+			int updateByResourceId = indexConfigService.updateByResourceId(indexConfig);
+		//	 int delete = indexConfigService.delete(indexConfig);
+			 if(updateByResourceId>0){
 				 responseBody.setResult(new Result(Status.OK, "删除配置项成功"));
 			 }else{
 				 responseBody.setResult(new Result(Status.ERROR, "删除配置项失败"));

@@ -42,9 +42,7 @@
 <script>
 $(function(){
   var i=0;
-  
- 
-	  sendPostRequestByJsonObj(Constants.platformContentURL + "/galaxy/indexConfig/queryIndexModelConfig",{},function(data){
+    sendPostRequestByJsonObj(Constants.platformContentURL + "/galaxy/indexConfig/queryIndexModelConfig",{},function(data){
 		  var current = 0;
 		  var innerHtml = '<div class="eblockRow clearfix">';
 		  $.each(data.entityList,function(i, o){
@@ -54,15 +52,18 @@ $(function(){
 				  if(typeof(o.resourceId) == "undefined"){
 					  //未配置
 					  innerHtml += '<div class="addEblockCon addEblockCon_'+i+'">';
-					  innerHtml += '<button class="addCircleBtn" href="<%=path%>/galaxy/indexConfig/toAddCon" data-btn="addEblockCon_'+i+'" data-name="选择菜单">+</button>';
+					  innerHtml += '<button class="addCircleBtn" value="'+o.id+'" href="<%=path%>/galaxy/indexConfig/toAddCon" data-btn="addEblockCon_'+i+'" data-name="选择菜单">+</button>';
 					  innerHtml += '</div>';
 					  innerHtml += '<div class="deleteEblockCon deleteEblockCon_'+i+'"><span></span>';
 					  innerHtml += '<button class="deleteCircleBtn" data-btn="delete_'+i+'">-</button>';
 					  innerHtml += '</div></div>';
 				  }else{
 					  //已配置
+					  innerHtml += '<div class="addEblockCon addEblockCon_'+i+'" style="display:none;">';
+					  innerHtml += '<button class="addCircleBtn" value="'+o.id+'" href="<%=path%>/galaxy/indexConfig/toAddCon" data-btn="addEblockCon_'+i+'" data-name="选择菜单">+</button>';
+					  innerHtml += '</div>';
 					  innerHtml += '<div class="deleteEblockCon deleteEblockCon_'+i+'" style="display:block;"><span>'+o.resourceName+'</span>';
-					  innerHtml += '<button class="deleteCircleBtn" data-btn="delete_'+i+'">-</button>';
+					  innerHtml += '<button class="deleteCircleBtn" value="'+o.resourceId+'" data-btn="delete_'+i+'">-</button>';
 					  innerHtml += '</div></div>';
 				  }
 				  current ++;
@@ -104,7 +105,7 @@ function addEblockRow(i,reslut){
             +'</div>'
           +'</div>'
         +'</div>';
-  $(".equipmentBox").append(eblockRow);
+      $(".equipmentBox").append(eblockRow);
   }
   addEblockCon();
   function addEblockCon(){  //点击弹出层
@@ -139,7 +140,7 @@ function addEblockRow(i,reslut){
 	            	}
                }
           });
-          $(".deleteEblockCon_"+last+" button").click(function(){
+        /*   $(".deleteEblockCon_"+last+" button").click(function(){
         	  var resourceId=$(".deleteEblockCon_"+last+" button").val();
         	  var result=deleteIndexConfig(resourceId);
         	  if(result){
@@ -148,13 +149,25 @@ function addEblockRow(i,reslut){
                   $(".deleteEblockCon_"+last+" span").text("");
         	  }
            
-          })
+          }) */
         }//模版反回成功执行 
       });
       return false;
   });
   }
-
+  $(".deleteCircleBtn").click(function(){
+	  var len=$(this).attr("data-btn").length;
+      var last=$(this).attr("data-btn").substring(len-1,len);
+    	  var resourceId=$(".deleteEblockCon_"+last+" button").val();
+    	  var result=deleteIndexConfig(resourceId);
+    	  if(result){
+    		 
+              $(".deleteEblockCon_"+last+"").hide();
+              $(".addEblockCon_"+last+"").show();
+              $(".deleteEblockCon_"+last+" span").text("");
+    	  }
+  })
+ 
   $("button[data-btn='addBlock']").click(function(){   
 	 var reslut= addBlock(1);
 		    i+=2;

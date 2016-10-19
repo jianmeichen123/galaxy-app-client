@@ -34,7 +34,6 @@ public class IndexConfigServiceImpl extends BaseServiceImpl<IndexConfig> impleme
 	 */
 	@Override
 	public List<IndexConfigBo> queryUserIndexModel(Map<String, Object> params) {
-		params.put("indexDivConfig", 1);
 		return indexConfigDao.selectUserIndexModel(params);
 	}
 	
@@ -55,5 +54,15 @@ public class IndexConfigServiceImpl extends BaseServiceImpl<IndexConfig> impleme
 		List<IndexConfigBo> result = indexConfigDao.selectAvailableConfig(params);
 		return result==null||result.isEmpty()?new ArrayList<IndexConfigBo>():result;
 	}
+
+	@Override
+	public int updateByResourceId(IndexConfig indexConfig) {
+		int updateByResourceId = indexConfigDao.updateByResourceId(indexConfig);
+		return updateByResourceId;
+	}
+
+	
+
+
 
 }

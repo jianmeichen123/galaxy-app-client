@@ -139,20 +139,10 @@
 	</update>
   <!-- 更新 -->
 	<update id="updateByResourceId" parameterType="com.galaxyinternet.model.sopIndex.IndexConfig">
-		update platform_index_config
-		<set>
-			<if test="userId != null" > user_id = #{userId,jdbcType=BIGINT}, </if>
-			<if test="roleId != null" > role_id = #{roleId,jdbcType=BIGINT}, </if>
-			<if test="contentUrl != null" > content_url = #{contentUrl,jdbcType=VARCHAR}, </if>
-			<if test="configOrder != null" > config_order = #{configOrder,jdbcType=TINYINT}, </if>
-			<if test="styleCss != null" > style_css = #{styleCss,jdbcType=VARCHAR}, </if>
-			<if test="shapeType != null" > shape_type = #{shapeType,jdbcType=TINYINT}, </if>
-			<if test="updatedTime != null" > updated_time = #{updatedTime,jdbcType=BIGINT}, </if>
-			<if test="updatedUid != null" > updated_uid = #{updatedUid,jdbcType=BIGINT}, </if>
-			<if test="createdUid != null" > created_uid = #{createdUid,jdbcType=BIGINT}, </if>
-			<if test="createdTime != null" > created_time = #{createdTime,jdbcType=BIGINT} </if>
-		</set>
-		where resource_id = #{resourceId}
+		update platform_index_config set
+		   resource_id=null,
+		   content_url=null
+		   where resource_id = #{resourceId}
 	</update>
    
   	
