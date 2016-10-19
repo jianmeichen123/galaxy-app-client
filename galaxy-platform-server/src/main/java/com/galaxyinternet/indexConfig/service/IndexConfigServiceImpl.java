@@ -55,25 +55,4 @@ public class IndexConfigServiceImpl extends BaseServiceImpl<IndexConfig> impleme
 		return result==null||result.isEmpty()?new ArrayList<IndexConfigBo>():result;
 	}
 
-	@Override
-	public void saveIndexConfig(IndexConfig indexConfig) {
-		List<IndexConfig> toSave = new ArrayList<IndexConfig>();
-		for(int i=0;i<2;i++){
-			IndexConfig indexConfigNew=new IndexConfig();
-			indexConfigNew.setShapeType(indexConfig.getShapeType());
-			toSave.add(indexConfigNew);
-		}
-		indexConfigDao.insertInBatch(toSave);
-	}
-
-	@Override
-	public int updateByResourceId(IndexConfig indexConfig) {
-		int updateByResourceId = indexConfigDao.updateByResourceId(indexConfig);
-		return updateByResourceId;
-	}
-
-	
-
-
-
 }
