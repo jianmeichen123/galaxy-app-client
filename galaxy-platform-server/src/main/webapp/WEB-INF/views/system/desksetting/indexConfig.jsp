@@ -90,18 +90,25 @@ $(function(){
                if(inputVal==""){
             	   layer.msg( "请选择菜单！");
                }else{
-            	save_result();
-                $(".pop, #popbg").remove();
-                $(".addEblockCon_"+last+"").hide();
-                $(".deleteEblockCon_"+last+"").show();
-                $(".deleteEblockCon_"+last+" button").val(inputId);
-                $(".deleteEblockCon_"+last+" span").text(inputVal);
+            	var result=save_result();
+	            	if(result){
+	            		 $(".pop, #popbg").remove();
+	                     $(".addEblockCon_"+last+"").hide();
+	                     $(".deleteEblockCon_"+last+"").show();
+	                     $(".deleteEblockCon_"+last+" button").val(inputId);
+	                     $(".deleteEblockCon_"+last+" span").text(inputVal);
+	            	}
                }
           });
           $(".deleteEblockCon_"+last+" button").click(function(){
-            $(".addEblockCon_"+last+"").show();
-            $(".deleteEblockCon_"+last+"").hide();
-            $(".deleteEblockCon_"+last+" span").text("");
+        	  var resourceId=$(".deleteEblockCon_"+last+" button").val();
+        	  var result=deleteIndexConfig(resourceId);
+        	  if(result){
+        		  $(".addEblockCon_"+last+"").show();
+                  $(".deleteEblockCon_"+last+"").hide();
+                  $(".deleteEblockCon_"+last+" span").text("");
+        	  }
+           
           })
         }//模版反回成功执行 
       });

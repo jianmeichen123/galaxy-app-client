@@ -89,25 +89,31 @@ function model_result(){
  */
 function save_result(){
 	var params = model_result();
-	sendPostRequestByJsonObj(platformUrl.saveIndexModel,params,saveCallBack);
+	sendPostRequestByJsonObj(platformUrl.saveIndexModel,params,function(data){
+		var result = data.result.status;
+		if(result == "ERROR"){ //OK, ERROR
+			layer.msg(data.result.message);
+			return;
+		}
+		layer.msg("保存成功");
+	});
+	return true;
 }
-
-//保存回调
-function saveCallBack(data){
-	var result = data.result.status;
-	if(result == "ERROR"){ //OK, ERROR
-		layer.msg(data.result.message);
-		return;
-	}
-	layer.msg("保存成功");
-}
-
 
 function deleteIndexConfig(resourceId){
-	var data={
+	var datas={
 		"resourceId":resourceId
 	};
-	sendPostRequestByJsonObj(platformUrl.deleteIndexModel,params,saveCallBack);
+	sendPostRequestByJsonObj(platformUrl.deleteIndexModel,datas,function(data){
+		var result = data.result.status;
+		if(result == "ERROR"){ //OK, ERROR
+			layer.msg(data.result.message);
+			return;
+		}
+		layer.msg("删除配置成功");	
+		
+	});
+	return true;
 }
 
 
