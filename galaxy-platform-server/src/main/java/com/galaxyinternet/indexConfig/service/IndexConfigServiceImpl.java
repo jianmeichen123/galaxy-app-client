@@ -51,6 +51,8 @@ public class IndexConfigServiceImpl extends BaseServiceImpl<IndexConfig> impleme
 	 */
 	@Override
 	public List<IndexConfigBo> queryAvailableConfig(Map<String, Object> params) {
+		List<Long> usedResourseIds = indexConfigDao.selectUsedResourseIds(params);
+		params.put("usedResourseIds", usedResourseIds);
 		List<IndexConfigBo> result = indexConfigDao.selectAvailableConfig(params);
 		return result==null||result.isEmpty()?new ArrayList<IndexConfigBo>():result;
 	}

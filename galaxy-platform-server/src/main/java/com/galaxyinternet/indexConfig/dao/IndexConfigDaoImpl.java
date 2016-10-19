@@ -62,4 +62,15 @@ public class IndexConfigDaoImpl extends BaseDaoImpl<IndexConfig, Long> implement
 	private final void UpdatedTime(IndexConfig entity) {
 		entity.setUpdatedTime(new Date().getTime());
 	}
+
+
+	@Override
+	public List<Long> selectUsedResourseIds(Map<String, Object> params) {
+		try {
+			List<Long> ids = sqlSessionTemplate.selectList(getSqlName("selectUsedResourseIds"), params);
+			return ids == null || ids.isEmpty()?null:ids;
+		} catch (Exception e) {
+			throw new DaoException(String.format("语句：%s", getSqlName("selectUsedResourseIds")), e);
+		}
+	}
 }

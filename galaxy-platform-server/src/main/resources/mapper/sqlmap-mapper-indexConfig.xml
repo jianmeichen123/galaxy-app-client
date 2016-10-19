@@ -196,6 +196,22 @@
 	
 	
 
+	<!-- 查询管理员 已用资源id -->
+	<select id="selectUsedResourseIds" resultType="java.lang.Long"  parameterType="java.util.Map">
+		select
+			resource_id
+		from 
+			platform_index_config
+		<where>
+			<trim prefixOverrides="and">
+				<if test="resourceIdNullFilter == true" >and resource_id is not null </if>
+				<if test="userId != null" >and user_id = #{userId,jdbcType=BIGINT} </if>
+				<if test="roleId != null" >and role_id = #{roleId,jdbcType=BIGINT} </if>
+			</trim>
+		</where>
+	</select>
+	
+	
 	<!-- 查询管理员可用配置信息 -->
 	<select id="selectAvailableConfig" resultMap="BaseResultMap" parameterType="java.util.Map">
 		select
@@ -203,20 +219,15 @@
 		from 
 			platform_resource
 		<where>
-			id not in(
-				select
-					resource_id
-				from 
-					platform_index_config
-				<where>
-				<trim prefixOverrides="and">
-					<if test="resourceIdNullFilter == true" >and resource_id is not null </if>
-					<if test="userId != null" >and ta.user_id = #{userId,jdbcType=BIGINT} </if>
-					<if test="roleId != null" >and ta.role_id = #{roleId,jdbcType=BIGINT} </if>
-				</trim>
-				</where>
-			)
+		<trim prefixOverrides="and">
+			<if test="usedResourseIds != null">
+				id not in
+				<foreach collection="usedResourseIds" item="id_item" index="index" open="(" close=")" separator=",">
+		            #{id_item}
+		        </foreach>	
+		    </if>
 			<if test="indexDivConfig != null" >and index_div_config = #{indexDivConfig,jdbcType=TINYINT} </if>
+		</trim>
 		</where>
 	</select>
 
