@@ -74,10 +74,12 @@ function configChange_2(){
 /**
  * 获取页面配置模版 的值
  */
-function model_result(){
+function model_result(id){
 	var valu=$('#resourceIdS input[name="resource"]:checked ').val();
 	var data={
+			"id":id,
 			"resourceId":valu
+			
 	}
 	return data;
 }
@@ -86,8 +88,8 @@ function model_result(){
 /**
  * 保存配置模版的 数组 值
  */
-function save_result(){
-	var params = model_result();
+function save_result(id){
+	var params = model_result(id);
 	sendPostRequestByJsonObj(platformUrl.saveIndexModel,params,function(data){
 		var result = data.result.status;
 		if(result == "ERROR"){ //OK, ERROR
@@ -119,16 +121,18 @@ function addBlock(shapeType){
 	var datas={
 		"shapeType":shapeType		
 	};
+	var reslut2;
 	sendPostRequestByJsonObj(platformUrl.saveModel,datas,function(data){
 		var result = data.result.status;
 		if(result == "ERROR"){ //OK, ERROR
 			layer.msg(data.result.message);
 			return;
 		}
-		layer.msg("删除配置成功");	
-		
+	//	layer.msg("删除配置成功");	
+	reslut2=data.userData.arr;
 	});
 	
+	return reslut2;
 	
 }
 

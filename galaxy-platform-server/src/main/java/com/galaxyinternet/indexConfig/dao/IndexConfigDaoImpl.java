@@ -1,5 +1,6 @@
 package com.galaxyinternet.indexConfig.dao;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +11,6 @@ import org.springframework.util.Assert;
 
 import com.galaxyinternet.bo.IndexConfigBo;
 import com.galaxyinternet.dao.sopIndex.IndexConfigDao;
-import com.galaxyinternet.framework.core.constants.SqlId;
 import com.galaxyinternet.framework.core.dao.impl.BaseDaoImpl;
 import com.galaxyinternet.framework.core.exception.DaoException;
 import com.galaxyinternet.model.sopIndex.IndexConfig;
@@ -62,7 +62,4 @@ public class IndexConfigDaoImpl extends BaseDaoImpl<IndexConfig, Long> implement
 	private final void UpdatedTime(IndexConfig entity) {
 		entity.setUpdatedTime(new Date().getTime());
 	}
-
-	
-	
 }
