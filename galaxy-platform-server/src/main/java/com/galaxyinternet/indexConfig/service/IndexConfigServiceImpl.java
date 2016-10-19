@@ -34,6 +34,7 @@ public class IndexConfigServiceImpl extends BaseServiceImpl<IndexConfig> impleme
 	 */
 	@Override
 	public List<IndexConfigBo> queryUserIndexModel(Map<String, Object> params) {
+		params.put("indexDivConfig", 1);
 		return indexConfigDao.selectUserIndexModel(params);
 	}
 	

@@ -199,6 +199,7 @@
 			            #{id_item}
 			        </foreach>
 			)
+			<if test="indexDivConfig != null" >and tb.index_div_config = #{indexDivConfig,jdbcType=TINYINT} </if>
 		</where>
 		order by ta.config_order
 	</select>
