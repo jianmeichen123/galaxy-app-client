@@ -117,10 +117,13 @@ $(function(){
   }
 
   $("button[data-btn='addBlock']").click(function(){   
-    i+=2;
-    addEblockRow(i);  //点击一次添加一行
-    addEblockCon();  //点击弹出层
-    disposedWidth();
+	 var result= addBlock(1);
+	 if(result){
+		 i+=2;
+		    addEblockRow(i);  //点击一次添加一行
+		    addEblockCon();  //点击弹出层
+		    disposedWidth();
+	 }
   });
   //首页获取ritmin的宽度
     disposedWidth();

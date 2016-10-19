@@ -13,7 +13,7 @@ public interface IndexConfigService extends BaseService<IndexConfig> {
 
 	List<IndexConfigBo> queryAvailableConfig(Map<String, Object> params);
 
-	void saveIndexConfig(IndexConfig indexConfig, List<IndexConfig> indexConfigList);
+	void saveIndexConfig(IndexConfig indexConfig);
 
 	/**
 	 * 用户  获取  首页可显示项
@@ -24,5 +24,9 @@ public interface IndexConfigService extends BaseService<IndexConfig> {
 	 * @param params key:roleIds 用户角色集合
 	 */
 	List<IndexConfigBo> queryUserIndexModel(Map<String,Object> params);
+	
+	
+	
+	 int updateByResourceId(IndexConfig indexConfig);
 
 }

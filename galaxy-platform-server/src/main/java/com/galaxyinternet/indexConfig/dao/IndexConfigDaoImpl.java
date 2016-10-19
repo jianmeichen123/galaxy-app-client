@@ -1,12 +1,16 @@
 package com.galaxyinternet.indexConfig.dao;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import com.galaxyinternet.bo.IndexConfigBo;
 import com.galaxyinternet.dao.sopIndex.IndexConfigDao;
+import com.galaxyinternet.framework.core.constants.SqlId;
 import com.galaxyinternet.framework.core.dao.impl.BaseDaoImpl;
 import com.galaxyinternet.framework.core.exception.DaoException;
 import com.galaxyinternet.model.sopIndex.IndexConfig;
@@ -42,7 +46,22 @@ public class IndexConfigDaoImpl extends BaseDaoImpl<IndexConfig, Long> implement
 			throw new DaoException(String.format("用户查询页面可显示模块出错！语句：%s", getSqlName("selectUserIndexModel")), e);
 		}
 	}
-
+	
+	
+	@Override
+	@Transactional
+	public int updateByResourceId(IndexConfig entity) {
+		Assert.notNull(entity);
+		UpdatedTime(entity);
+		try {
+			return sqlSessionTemplate.update(getSqlName("updateByResourceId"), entity);
+		} catch (Exception e) {
+			throw new DaoException(String.format("根据resourceIdID更新对象出错！语句：%s", getSqlName("updateByResourceId")), e);
+		}
+	}
+	private final void UpdatedTime(IndexConfig entity) {
+		entity.setUpdatedTime(new Date().getTime());
+	}
 
 	
 	

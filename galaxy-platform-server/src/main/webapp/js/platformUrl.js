@@ -36,9 +36,13 @@ var platformUrl = {
 	saveIndexModel:"galaxy/indexConfig/saveIndexConfig/",
 	
 	/**
-	 * 桌面配置 模版 保存
+	 * 删除保存
 	 */
 	deleteIndexModel:"galaxy/indexConfig/deleteIndexModel/",
+	/**
+	 * 桌面配置 模版 保存
+	 */
+	saveModel:"galaxy/indexConfig/saveModel/",
 	
 	
 	

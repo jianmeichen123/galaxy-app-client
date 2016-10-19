@@ -136,7 +136,26 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 		return responseBody;
 	}
 	
-	
+	/**
+	 * 保存模型
+	 * @param roleOrUser 标识 是为 某角色 或 某用户 配置首页
+	 * @param id 标识属性的id
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/saveModel", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseData<IndexConfig> saveModel(HttpServletRequest request,
+			@RequestBody IndexConfig  indexConfig ) {
+		ResponseData<IndexConfig> responseBody = new ResponseData<IndexConfig>();
+		try {
+			//根据资源id查询资源的详细信
+			 indexConfigService.saveIndexConfig(indexConfig);
+			 responseBody.setResult(new Result(Status.OK, "保存成功"));
+		} catch (Exception e) {
+			responseBody.setResult(new Result(Status.ERROR, null,"保存失败"));
+			logger.error("首页配置保存 失败",e);
+		}
+		return responseBody;
+	}
 	
 	/**
 	 * 管理员 配置 某角色 或 某用户 首页后保存
@@ -157,7 +176,7 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 			//根据资源id查询资源的详细信息
 			 PlatformResource resource = resourceService.queryById(indexConfig.getResourceId());
 			 indexConfig.setContentUrl(resource.getResourceUrl());
-			 Long insert = indexConfigService.insert(indexConfig);
+			 int insert = indexConfigService.updateByResourceId(indexConfig);
 			 if(insert>0){
 				 responseBody.setResult(new Result(Status.OK, "保存成功"));
 			 }else{

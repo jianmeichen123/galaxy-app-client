@@ -56,16 +56,20 @@ public class IndexConfigServiceImpl extends BaseServiceImpl<IndexConfig> impleme
 	}
 
 	@Override
-	public void saveIndexConfig(IndexConfig indexConfig, List<IndexConfig> indexConfigList) {
+	public void saveIndexConfig(IndexConfig indexConfig) {
 		List<IndexConfig> toSave = new ArrayList<IndexConfig>();
-		for(IndexConfig iCon : indexConfigList){
-			indexConfig.setConfigOrder(iCon.getConfigOrder());
-			indexConfig.setResourceId(iCon.getResourceId());
-			indexConfig.setStyleCss(iCon.getStyleCss());
-			indexConfig.setShapeType(iCon.getShapeType());
-			toSave.add(iCon);
+		for(int i=0;i<2;i++){
+			IndexConfig indexConfigNew=new IndexConfig();
+			indexConfigNew.setShapeType(indexConfig.getShapeType());
+			toSave.add(indexConfigNew);
 		}
 		indexConfigDao.insertInBatch(toSave);
+	}
+
+	@Override
+	public int updateByResourceId(IndexConfig indexConfig) {
+		int updateByResourceId = indexConfigDao.updateByResourceId(indexConfig);
+		return updateByResourceId;
 	}
 
 	

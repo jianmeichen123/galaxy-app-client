@@ -77,8 +77,7 @@ function configChange_2(){
 function model_result(){
 	var valu=$('#resourceIdS input[name="resource"]:checked ').val();
 	var data={
-			"resourceId":valu,
-			"shapeType":1
+			"resourceId":valu
 	}
 	return data;
 }
@@ -116,5 +115,20 @@ function deleteIndexConfig(resourceId){
 	return true;
 }
 
-
+function addBlock(shapeType){
+	var datas={
+		"shapeType":shapeType		
+	};
+	sendPostRequestByJsonObj(platformUrl.saveModel,datas,function(data){
+		var result = data.result.status;
+		if(result == "ERROR"){ //OK, ERROR
+			layer.msg(data.result.message);
+			return;
+		}
+		layer.msg("删除配置成功");	
+		
+	});
+	
+	
+}
 
