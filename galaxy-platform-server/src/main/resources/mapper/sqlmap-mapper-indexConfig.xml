@@ -18,6 +18,7 @@
     
     <result column="resource_mark" property="resourceMark" jdbcType="VARCHAR" />
     <result column="resource_name" property="resourceName" jdbcType="VARCHAR" />
+    <result column="resource_url" property="resourceUrl" jdbcType="VARCHAR" />
   </resultMap>
   
   <sql id="Base_Column_List" >
@@ -179,7 +180,7 @@
 	<!-- 查询 用户 可用 配置-->
 	<select id="selectUserIndexModel" resultMap="BaseResultMap" parameterType="java.util.Map">
 		select
-			ta.*,tb.resource_mark,tb.resource_name
+			ta.*,tb.resource_mark,tb.resource_name,tb.resource_url
 		from 
 			platform_index_config ta
 			left join
