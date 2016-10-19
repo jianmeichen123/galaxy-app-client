@@ -27,7 +27,6 @@
  	<div class="ritmin">
     	<div class="new_tit_b">
         	<span class="new_color size18">桌面配置</span>
-          <button class="pubbtn bluebtn fr save">保存</button>
       </div>
       <!-- 添加内容区域 -->
       <div class="equipmentBox"></div>
@@ -42,29 +41,44 @@
 <!-- 模块配置区js部分 -->
 <script>
 $(function(){
-  var i=0;
   function addEblockRow(i){
-     var eblockRow='<div class="eblockRow clearfix">'
-          +'<div class="eblock fl">'
-            +'<div class="addEblockCon addEblockCon_'+i+'">'
-              +'<button class="addCircleBtn" href="<%=path%>/galaxy/indexConfig/toAddCon" data-btn="addEblockCon_'+i+'" data-name="选择菜单">+</button>'
-            +'</div>' 
-            +'<div class="deleteEblockCon deleteEblockCon_'+i+'">'
-              +'<span></span>'
-              +'<button class="deleteCircleBtn" data-btn="delete_'+i+'">-</button>'
-            +'</div>'
-          +'</div>'
-          +'<div class="eblock fl">'
-            +'<div class="addEblockCon addEblockCon_'+(i+1)+'">'
-              +'<button class="addCircleBtn" href="<%=path%>/galaxy/indexConfig/toAddCon" data-btn="addEblockCon_'+(i+1)+'" data-name="选择菜单">+</button>'
-            +'</div>'
-            +'<div class="deleteEblockCon deleteEblockCon_'+(i+1)+'">'
-              +'<span></span>'
-              +'<button class="deleteCircleBtn" data-btn="delete_'+i+'">-</button>'
-            +'</div>'
-          +'</div>'
-        +'</div>';
-  $(".equipmentBox").append(eblockRow);
+	  sendPostRequestByJsonObj(Constants.platformContentURL + "/galaxy/indexConfig/queryIndexModelConfig",{},function(data){
+		  var current = 0;
+		  var innerHtml = '<div class="eblockRow clearfix">';
+		  $.each(data.entityList,function(i, o){
+			  if(o.shapeType == '1'){
+				  //双方格
+				  innerHtml += '<div class="eblock fl">';
+				  if(typeof(o.resourceId) == "undefined"){
+					  //未配置
+					  innerHtml += '<div class="addEblockCon addEblockCon_'+i+'">';
+					  innerHtml += '<button class="addCircleBtn" href="<%=path%>/galaxy/indexConfig/toAddCon" data-btn="addEblockCon_'+i+'" data-name="选择菜单">+</button>';
+					  innerHtml += '</div>';
+					  innerHtml += '<div class="deleteEblockCon deleteEblockCon_'+i+'"><span></span>';
+					  innerHtml += '<button class="deleteCircleBtn" data-btn="delete_'+i+'">-</button>';
+					  innerHtml += '</div></div>';
+				  }else{
+					  //已配置
+					  innerHtml += '<div class="deleteEblockCon deleteEblockCon_'+i+'" style="display:block;"><span>'+o.resourceName+'</span>';
+					  innerHtml += '<button class="deleteCircleBtn" data-btn="delete_'+i+'">-</button>';
+					  innerHtml += '</div></div>';
+				  }
+				  current ++;
+			  }else{
+				  //长条
+				  innerHtml += '<div class="eblock fl">';
+				  innerHtml += '</div>';
+			  }
+			  
+			  if(current%2 ==0){
+				  innerHtml += '</div>';
+				  if(current < data.entityList.length){
+					  innerHtml += '<div class="eblockRow clearfix">';
+				  }
+			  }
+		  });
+		  $(".equipmentBox").append(innerHtml);
+	  });
   };
   addEblockRow(0);  //默认显示一行
 
@@ -117,10 +131,13 @@ $(function(){
   }
 
   $("button[data-btn='addBlock']").click(function(){   
-    i+=2;
-    addEblockRow(i);  //点击一次添加一行
-    addEblockCon();  //点击弹出层
-    disposedWidth();
+	 var result= addBlock(1);
+	 if(result){
+		 i+=2;
+		    addEblockRow(i);  //点击一次添加一行
+		    addEblockCon();  //点击弹出层
+		    disposedWidth();
+	 }
   });
   //首页获取ritmin的宽度
     disposedWidth();
