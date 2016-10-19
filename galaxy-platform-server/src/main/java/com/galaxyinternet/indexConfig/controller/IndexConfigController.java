@@ -1,5 +1,6 @@
 package com.galaxyinternet.indexConfig.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,11 +25,9 @@ import com.galaxyinternet.framework.core.model.Result;
 import com.galaxyinternet.framework.core.model.Result.Status;
 import com.galaxyinternet.framework.core.service.BaseService;
 import com.galaxyinternet.model.resource.PlatformResource;
-import com.galaxyinternet.model.resource.RoleResource;
 import com.galaxyinternet.model.sopIndex.IndexConfig;
 import com.galaxyinternet.service.IndexConfigService;
 import com.galaxyinternet.service.ResourceService;
-import com.galaxyinternet.service.RoleResourceService;
 
 @Controller
 @RequestMapping("/galaxy/indexConfig")
@@ -91,6 +90,7 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 				}
 			}
 			params.put("indexDivConfig", 1);	
+			params.put("resourceIdNullFilter", true);	
 			List<IndexConfigBo> configList = indexConfigService.queryAvailableConfig(params);
 			
 			responseBody.setEntityList(configList);
@@ -148,7 +148,16 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 		ResponseData<IndexConfig> responseBody = new ResponseData<IndexConfig>();
 		try {
 			//根据资源id查询资源的详细信
-			 indexConfigService.saveIndexConfig(indexConfig);
+			List<Long> list=new ArrayList<Long>();
+			Long insert1 = indexConfigService.insert(indexConfig);
+			IndexConfig de=new IndexConfig();
+			de.setShapeType(indexConfig.getShapeType());
+			Long insert2 = indexConfigService.insert(de);
+			list.add(insert1);
+			list.add(insert2);
+			 Map<String,Object> map=new HashMap<String,Object>();
+			 map.put("arr", list);
+			 responseBody.setUserData(map);
 			 responseBody.setResult(new Result(Status.OK, "保存成功"));
 		} catch (Exception e) {
 			responseBody.setResult(new Result(Status.ERROR, null,"保存失败"));
@@ -176,7 +185,7 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 			//根据资源id查询资源的详细信息
 			 PlatformResource resource = resourceService.queryById(indexConfig.getResourceId());
 			 indexConfig.setContentUrl(resource.getResourceUrl());
-			 int insert = indexConfigService.updateByResourceId(indexConfig);
+			 int insert = indexConfigService.updateById(indexConfig);
 			 if(insert>0){
 				 responseBody.setResult(new Result(Status.OK, "保存成功"));
 			 }else{
