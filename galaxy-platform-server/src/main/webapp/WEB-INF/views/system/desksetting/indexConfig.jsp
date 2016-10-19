@@ -43,7 +43,7 @@
 $(function(){
   var i=0;
   
-  function addEblockRow(i,reslut){
+ 
 	  sendPostRequestByJsonObj(Constants.platformContentURL + "/galaxy/indexConfig/queryIndexModelConfig",{},function(data){
 		  var current = 0;
 		  var innerHtml = '<div class="eblockRow clearfix">';
@@ -81,9 +81,31 @@ $(function(){
 		  });
 		  $(".equipmentBox").append(innerHtml);
 	  });
-  };
+ 
   //addEblockRow(0);  //默认显示一行
-
+function addEblockRow(i,reslut){
+     var eblockRow='<div class="eblockRow clearfix">'
+          +'<div class="eblock fl">'
+            +'<div class="addEblockCon addEblockCon_'+i+'">'
+              +'<button class="addCircleBtn" href="<%=path%>/galaxy/indexConfig/toAddCon" value="'+reslut[0]+'" data-btn="addEblockCon_'+i+'" data-name="选择菜单">+</button>'
+            +'</div>' 
+            +'<div class="deleteEblockCon deleteEblockCon_'+i+'">'
+              +'<span></span>'
+              +'<button class="deleteCircleBtn" data-btn="delete_'+i+'">-</button>'
+            +'</div>'
+          +'</div>'
+          +'<div class="eblock fl">'
+            +'<div class="addEblockCon addEblockCon_'+(i+1)+'">'
+              +'<button class="addCircleBtn" href="<%=path%>/galaxy/indexConfig/toAddCon" value="'+reslut[1]+'" data-btn="addEblockCon_'+(i+1)+'" data-name="选择菜单">+</button>'
+            +'</div>'
+            +'<div class="deleteEblockCon deleteEblockCon_'+(i+1)+'">'
+              +'<span></span>'
+              +'<button class="deleteCircleBtn" data-btn="delete_'+i+'">-</button>'
+            +'</div>'
+          +'</div>'
+        +'</div>';
+  $(".equipmentBox").append(eblockRow);
+  }
   addEblockCon();
   function addEblockCon(){  //点击弹出层
     $(".addEblockCon button").on("click",function(){ 
