@@ -24,11 +24,9 @@ import com.galaxyinternet.framework.core.model.Result;
 import com.galaxyinternet.framework.core.model.Result.Status;
 import com.galaxyinternet.framework.core.service.BaseService;
 import com.galaxyinternet.model.resource.PlatformResource;
-import com.galaxyinternet.model.resource.RoleResource;
 import com.galaxyinternet.model.sopIndex.IndexConfig;
 import com.galaxyinternet.service.IndexConfigService;
 import com.galaxyinternet.service.ResourceService;
-import com.galaxyinternet.service.RoleResourceService;
 
 @Controller
 @RequestMapping("/galaxy/indexConfig")
@@ -111,22 +109,12 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 	 * @param id 标识属性的id
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/queryIndexModelConfig/{roleOrUser}/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseData<IndexConfigBo> queryIndexModelConfig(HttpServletRequest request,
-			@PathVariable("roleOrUser") String roleOrUser, @PathVariable("id") Long id) {
+	@RequestMapping(value = "/queryIndexModelConfig", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseData<IndexConfigBo> queryIndexModelConfig(HttpServletRequest request) {
 		ResponseData<IndexConfigBo> responseBody = new ResponseData<IndexConfigBo>();
 		try {
 			Map<String,Object> params = new HashMap<String,Object>();
-			if(roleOrUser != null && !roleOrUser.equals("null")){
-				if(roleOrUser.equals("user")){
-					params.put("userId", id);
-				}else if(roleOrUser.equals("role")){
-					params.put("roleId", id);
-				}
-			}
-			
 			List<IndexConfigBo> configList = indexConfigService.queryConfigResource(params);
-			
 			responseBody.setEntityList(configList);
 			responseBody.setResult(new Result(Status.OK, ""));
 		} catch (Exception e) {
