@@ -43,11 +43,11 @@
 <script>
 $(function(){
   var i=0;
-  function addEblockRow(i){
+  function addEblockRow(i,reslut){
      var eblockRow='<div class="eblockRow clearfix">'
           +'<div class="eblock fl">'
             +'<div class="addEblockCon addEblockCon_'+i+'">'
-              +'<button class="addCircleBtn" href="<%=path%>/galaxy/indexConfig/toAddCon" data-btn="addEblockCon_'+i+'" data-name="选择菜单">+</button>'
+              +'<button class="addCircleBtn" href="<%=path%>/galaxy/indexConfig/toAddCon" value="'+reslut[0]+'" data-btn="addEblockCon_'+i+'" data-name="选择菜单">+</button>'
             +'</div>' 
             +'<div class="deleteEblockCon deleteEblockCon_'+i+'">'
               +'<span></span>'
@@ -56,7 +56,7 @@ $(function(){
           +'</div>'
           +'<div class="eblock fl">'
             +'<div class="addEblockCon addEblockCon_'+(i+1)+'">'
-              +'<button class="addCircleBtn" href="<%=path%>/galaxy/indexConfig/toAddCon" data-btn="addEblockCon_'+(i+1)+'" data-name="选择菜单">+</button>'
+              +'<button class="addCircleBtn" href="<%=path%>/galaxy/indexConfig/toAddCon" value="'+reslut[1]+'" data-btn="addEblockCon_'+(i+1)+'" data-name="选择菜单">+</button>'
             +'</div>'
             +'<div class="deleteEblockCon deleteEblockCon_'+(i+1)+'">'
               +'<span></span>'
@@ -66,7 +66,7 @@ $(function(){
         +'</div>';
   $(".equipmentBox").append(eblockRow);
   };
-  addEblockRow(0);  //默认显示一行
+  //addEblockRow(0);  //默认显示一行
 
   addEblockCon();
   function addEblockCon(){  //点击弹出层
@@ -78,6 +78,7 @@ $(function(){
       var $self = $(this);
       var _url = $self.attr("href");
       var _name= $self.attr("data-name");
+      var id= $self.attr("value");
       $.getHtml({
         url:_url,//模版请求地址
         data:"",//传递参数
@@ -90,7 +91,7 @@ $(function(){
                if(inputVal==""){
             	   layer.msg( "请选择菜单！");
                }else{
-            	var result=save_result();
+            	var result=save_result(id);
 	            	if(result){
 	            		 $(".pop, #popbg").remove();
 	                     $(".addEblockCon_"+last+"").hide();
@@ -117,13 +118,11 @@ $(function(){
   }
 
   $("button[data-btn='addBlock']").click(function(){   
-	 var result= addBlock(1);
-	 if(result){
-		 i+=2;
-		    addEblockRow(i);  //点击一次添加一行
+	 var reslut= addBlock(1);
+		    i+=2;
+		    addEblockRow(i,reslut);  //点击一次添加一行
 		    addEblockCon();  //点击弹出层
 		    disposedWidth();
-	 }
   });
   //首页获取ritmin的宽度
     disposedWidth();
