@@ -23,27 +23,20 @@
             <a href="javascript:forwardWithHeader(platformUrl.soptaskshouye)" class="work">待办任务<em class="totalUrgent"></em></a>
             <a href="javascript:forwardWithHeader(platformUrl.message)" class="work">消息提醒<em action="remind">4</em></a> -->
         </div>    	<!--当日信息-->
-    	<div class="todaymsg clearfix">
-        	<span class="weather"><iframe allowtransparency="true" frameborder="0" width="220" height="36" scrolling="no" src="http://tianqi.2345.com/plugin/widget/index.htm?s=3&z=2&t=1&v=0&d=3&bd=0&k=000000&f=004080&q=1&e=1&a=1&c=54511&w=180&h=36&align=center"></iframe></span>
-            <span>
-                <em id="sday" style="display:none">
-                2014-01-08
-                </em>
-                <div id="xianhao" class="xianhao">
-                <em class="today" id="todayweek"></em>限行尾号为&nbsp;<em class="todaynum" id="todaynum"></em><em>，</em><em class="tomorrow" id="tomorrowweek"></em>限行尾号为&nbsp;<em class="tomorrownum" id="tomorrownum"></em><em>！</em>　
-                </div>            
-            </span>         
-        </div>
+    	
     </div>
     <!-- 头部右边 -->
-    <div class="usermsg rit clearfix">
-    	 <span class="ico name"  href="<%=path%>/html/register.html?&realName=<%=realName%>&deptName=<%=deptName%>&roleName=<%=roleName%>" data-btn="login_infor">您好，<%=realName%></span>
-        <b class="line null">分割线</b>
-        <a href="javascript:logout()" class="loginout">退出</a>
+      <div class="usermsg rit clearfix">
+      <div class="man_info fl">
+        <span class="ico name"><span class="avator"></span><%=realName%></span>
+        <ul>
+          <li><a href="/sop/html/change_password.html" id="hid" data-btn="change_password">修改密码</a></li>
+           <a href="javascript:;" onclick="logout()" class="loginout">退出</a>
+        </ul>
+      </div>
     </div>
      </div>
 <script src="<%=path %>/js/login.js"></script>
-<script src="<%=path %>/js/car_limit.js"></script>
  <script type = "text/javascript">
 
 	/*需要时二维码放大*/
@@ -55,5 +48,9 @@
 			 $(".erwms").show();
 		     $(this).hide();
 		 })
+		 $(".man_info .name").hover(function(){
+	      $(".man_info ul").show();
+	    });
+	    $(".man_info ul").closeDom();
 </script>
 
