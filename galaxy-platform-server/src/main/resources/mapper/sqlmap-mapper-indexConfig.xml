@@ -170,7 +170,7 @@
 	<!-- 查询 用户 可用 配置-->
 	<select id="selectUserIndexModel" resultMap="BaseResultMap" parameterType="java.util.Map">
 		select
-			ta.*,tb.resource_mark,tb.resource_name,tb.resource_url
+			ta.*,tb.resource_mark,tb.resource_name,ta.content_url resource_url
 		from 
 			platform_index_config ta
 			left join

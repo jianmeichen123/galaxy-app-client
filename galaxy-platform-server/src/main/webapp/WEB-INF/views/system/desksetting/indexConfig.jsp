@@ -125,6 +125,7 @@ function addEblockRow(i,reslut){
           $("#popup_name").html(_name);
           queryAvailableConfig();
           $("#ok").click(function(){
+        	  $.locksCreenOpen();
                var inputVal=$(".addEblockContc label input:checked").parent("label").text();
                var inputId=$(".addEblockContc label input:checked").val();
                if(inputVal==""){
