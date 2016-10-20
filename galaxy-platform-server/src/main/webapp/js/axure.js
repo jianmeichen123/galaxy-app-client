@@ -157,10 +157,7 @@
 				$(_this.id).on("click","[data-close='close']",function(){
 						$(_this.id).remove();
 						//启用滚动条
-						 $(document.body).css({
-						   "overflow-x":"auto",
-						   "overflow-y":"auto"
-						 });
+						$.locksCreenOpen();
 						//关闭对外接口
 						_this.hideback.apply(_this);
 						//判断是否关闭背景
@@ -175,6 +172,13 @@
 		var obj = new popEve();
 		obj.init();
 	};
+	//屏幕开屏
+	$.locksCreenOpen =function(){
+		$(document.body).css({
+		   "overflow-x":"auto",
+		   "overflow-y":"auto"
+		 });
+	}
 	//切换样式控制
 	$.fn.changeClass = function(options){
 		if($(this).length==0){ return false};
