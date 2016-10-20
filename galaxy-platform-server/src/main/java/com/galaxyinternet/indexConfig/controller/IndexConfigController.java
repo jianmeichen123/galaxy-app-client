@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -174,7 +175,8 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 		try {
 			//根据资源id查询资源的详细信息
 			 PlatformResource resource = resourceService.queryById(indexConfig.getResourceId());
-			 indexConfig.setContentUrl(resource.getResourceUrl());
+			 String product = StringUtils.isNotEmpty(resource.getProductMark()) ? resource.getProductMark()+"/" : "" ;
+			 indexConfig.setContentUrl(product+resource.getResourceUrl());
 			 int insert = indexConfigService.updateById(indexConfig);
 			 if(insert>0){
 				 responseBody.setResult(new Result(Status.OK, "保存成功"));
