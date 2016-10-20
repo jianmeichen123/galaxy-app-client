@@ -1,6 +1,7 @@
 // JavaScript Document
 (function($){
 	//定位
+	var win_h=$(window).height()
 	$.fn.Fixed = function(options) {
 		var opts = $.extend({
 			x: 0,
@@ -53,7 +54,7 @@
 		},options);
 		function popEve(){
 			this.strbg = "<div id=\"popbg\"><iframe frameborder=\"0\" src=\"about:blank\"></iframe></div>";
-			this.strpop = "<div class=\"pop\"  data-id=\"popid"+$(".pop").length+"\"><a href=\"javascript:;\" data-close=\"close\" class=\"close null\">关闭</a><div class=\"poptxt\"><p class='popwait'>数据加载中，请稍候...</p></div></div>";
+			this.strpop = "<div id=\"powindow\" class=\"pop\"  data-id=\"popid"+$(".pop").length+"\"><a href=\"javascript:;\" data-close=\"close\" class=\"close null\">关闭</a><div class=\"poptxt\"><p class='popwait'>数据加载中，请稍候...</p></div></div>";
 			this.txt = opts.txt;//弹层添加数据
 			this.statusmove = true;//移动状态标识
 			this.mousexy = {};//存放鼠标xy容器
@@ -90,12 +91,13 @@
 				return _this;	
 			},
 			//弹层居中定位显示
+			
 			postionEve:function(){
 				var _this = this;
 				var wh = parseInt($(_this.id).outerWidth(true)),
 					ht = parseInt($(_this.id).outerHeight(true));
 				var win_w = $(window).width(),
-					win_h = $(window).height(),
+					/*win_h = $(window).height(),*/
 					win_x = (win_w-wh)/2,
 					win_y = (win_h-ht)/2;
 				//背景设置高度+显示
