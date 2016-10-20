@@ -156,6 +156,11 @@
 				var _this = this;
 				$(_this.id).on("click","[data-close='close']",function(){
 						$(_this.id).remove();
+						//启用滚动条
+						 $(document.body).css({
+						   "overflow-x":"auto",
+						   "overflow-y":"auto"
+						 });
 						//关闭对外接口
 						_this.hideback.apply(_this);
 						//判断是否关闭背景
@@ -466,6 +471,7 @@
 						opts.okback();
 						//重新定位
 						_this.postionEve();
+						$("body").css("overflow-y","hidden");
 					},
 					error:function(){
 						alert("网络错误")
