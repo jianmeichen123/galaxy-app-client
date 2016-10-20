@@ -74,12 +74,12 @@ function configChange_2(){
 /**
  * 获取页面配置模版 的值
  */
-function model_result(id){
+function model_result(id,configOrder){
 	var valu=$('#resourceIdS input[name="resource"]:checked ').val();
 	var data={
 			"id":id,
-			"resourceId":valu
-			
+			"resourceId":valu,
+            "configOrder":configOrder
 	}
 	return data;
 }
@@ -88,8 +88,8 @@ function model_result(id){
 /**
  * 保存配置模版的 数组 值
  */
-function save_result(id){
-	var params = model_result(id);
+function save_result(id,configOrder){
+	var params = model_result(id,configOrder);
 	sendPostRequestByJsonObj(platformUrl.saveIndexModel,params,function(data){
 		var result = data.result.status;
 		if(result == "ERROR"){ //OK, ERROR

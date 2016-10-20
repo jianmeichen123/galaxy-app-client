@@ -130,7 +130,7 @@ function addEblockRow(i,reslut){
                if(inputVal==""){
             	   layer.msg( "请选择菜单！");
                }else{
-            	var result=save_result(id);
+            	var result=save_result(id,last);
 	            	if(result){
 	            		 $(".pop, #popbg").remove();
 	                     $(".addEblockCon_"+last+"").hide();
