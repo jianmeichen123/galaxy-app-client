@@ -24,7 +24,7 @@
 	<!--左侧导航-->
 	<jsp:include page="/WEB-INF/views/common/leftmenu.jsp" flush="true"></jsp:include>	
     <!--模块配置区域-->
- 	<div class="ritmin">
+ 	<div class="ritmin ritmin-index">
     	<div class="new_tit_b">
         	<span class="new_color size18">桌面配置</span>
       </div>
@@ -182,10 +182,36 @@ function addEblockRow(i,reslut){
       var w_win=$(window).width();
         w_lft=$(".lft").width();
         w_ritmin=w_win-w_lft;
-        $(".pagebox .ritmin").css("width",w_ritmin);
-        $(".eblock").css("width",w_ritmin/2-20);
-        $(".pagebox .ritmin").css("margin","70px 0 0 9.375%");
+        $(".pagebox .ritmin").css("width",w_ritmin-20);
+        $(".eblock").css("width",w_ritmin/2-30);
+        $(".pagebox .ritmin").css("margin","60px 0 0 9.375%");
+        $(".pagebox .ritmin").css("margin-left",w_lft);
+        $(".pagebox .ritmin-index").css("width",w_ritmin-10);
     }
+  //浏览器小于1280的时候左侧导航
+    var w_win=$(window).width();
+    if(w_win<=1280){   //浏览器屏幕等于1280，默认加载样式
+         $("#mainCss").attr("href","<%=path%>/css/less1280.css");
+         $(".pagebox .lft").css("width","60px");
+         disposedWidth();
+          w_lft=$(".lft").width();        
+      }else{
+        $(".pagebox .lft").css("width","9.375%");
+         disposedWidth();
+      }
+  //浏览器窗口该变，自适应
+  $(window).resize(function(){
+  	var w_win=$(window).width();
+      disposedWidth();
+      if(w_win<=1280){
+          $("#mainCss").attr("href","<%=path%>/css/less1280.css");
+          $(".pagebox .lft").css("width","60px");
+       }else{
+         $("#mainCss").attr("href","<%=path%>/css/more1280.css");
+          $(".pagebox .lft").css("width","9.375%");
+
+       }
+    })
 })
   
 </script>
