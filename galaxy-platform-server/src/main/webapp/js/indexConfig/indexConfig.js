@@ -78,8 +78,7 @@ function model_result(id,configOrder){
 	var valu=$('#resourceIdS input[name="resource"]:checked ').val();
 	var data={
 			"id":id,
-			"resourceId":valu,
-            "configOrder":configOrder
+			"resourceId":valu
 	}
 	return data;
 }
@@ -117,9 +116,10 @@ function deleteIndexConfig(resourceId){
 	return true;
 }
 
-function addBlock(shapeType){
+function addBlock(shapeType,configOrder){
 	var datas={
-		"shapeType":shapeType		
+		"shapeType":shapeType,
+		"configOrder":configOrder
 	};
 	var reslut2;
 	sendPostRequestByJsonObj(platformUrl.saveModel,datas,function(data){

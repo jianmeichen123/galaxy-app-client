@@ -170,7 +170,7 @@ function addEblockRow(i,reslut){
   })
  
   $("button[data-btn='addBlock']").click(function(){   
-	 var reslut= addBlock(1);
+	 var reslut= addBlock(1,i);
 		    i+=2;
 		    addEblockRow(i,reslut);  //点击一次添加一行
 		    addEblockCon();  //点击弹出层
