@@ -25,5 +25,7 @@ public interface IndexConfigService extends BaseService<IndexConfig> {
 	
 	
 	 int updateByResourceId(IndexConfig indexConfig);
+	 
+	 public List<IndexConfig> selectIndexConfigDesc();
 
 }

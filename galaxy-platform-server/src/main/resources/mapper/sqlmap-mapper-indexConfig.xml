@@ -163,7 +163,7 @@
 			<if test="roleId != null" >and ta.role_id = #{roleId,jdbcType=BIGINT} </if>
 		</trim>
 		</where>
-		order by ta.id
+		order by ta.config_order
 	</select>
 
 
@@ -191,7 +191,7 @@
 			)
 			<if test="indexDivConfig != null" >and tb.index_div_config = #{indexDivConfig,jdbcType=TINYINT} </if>
 		</where>
-		order by ta.id
+		order by ta.config_order
 	</select>
 	
 	
@@ -231,4 +231,12 @@
 		</where>
 	</select>
 
+	<select id="selectIndexConfigDesc" resultMap="BaseResultMap"  parameterType="java.util.Map">
+		select
+			*
+		from 
+			platform_index_config order by config_order desc
+		
+	</select>
+	
 </mapper>

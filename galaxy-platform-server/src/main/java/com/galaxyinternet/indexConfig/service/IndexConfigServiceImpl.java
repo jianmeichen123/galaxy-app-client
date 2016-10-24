@@ -63,6 +63,12 @@ public class IndexConfigServiceImpl extends BaseServiceImpl<IndexConfig> impleme
 		return updateByResourceId;
 	}
 
+	@Override
+	public List<IndexConfig> selectIndexConfigDesc() {
+		// TODO Auto-generated method stub
+		return indexConfigDao.selectIndexConfigDesc();
+	}
+
 	
 
 

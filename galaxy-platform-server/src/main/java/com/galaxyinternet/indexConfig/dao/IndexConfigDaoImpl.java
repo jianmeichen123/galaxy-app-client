@@ -11,6 +11,7 @@ import org.springframework.util.Assert;
 
 import com.galaxyinternet.bo.IndexConfigBo;
 import com.galaxyinternet.dao.sopIndex.IndexConfigDao;
+import com.galaxyinternet.framework.core.constants.SqlId;
 import com.galaxyinternet.framework.core.dao.impl.BaseDaoImpl;
 import com.galaxyinternet.framework.core.exception.DaoException;
 import com.galaxyinternet.model.sopIndex.IndexConfig;
@@ -71,6 +72,15 @@ public class IndexConfigDaoImpl extends BaseDaoImpl<IndexConfig, Long> implement
 			return ids == null || ids.isEmpty()?null:ids;
 		} catch (Exception e) {
 			throw new DaoException(String.format("语句：%s", getSqlName("selectUsedResourseIds")), e);
+		}
+	}
+	
+	@Override
+	public List<IndexConfig> selectIndexConfigDesc() {
+		try {
+			return sqlSessionTemplate.selectList(getSqlName("selectIndexConfigDesc"));
+		} catch (Exception e) {
+			throw new DaoException(String.format("查询所有对象列表出错！语句：%s", getSqlName(SqlId.SQL_SELECT)), e);
 		}
 	}
 }

@@ -140,12 +140,23 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 		try {
 			//根据资源id查询资源的详细信
 			List<Long> list=new ArrayList<Long>();
-			Byte index1=new Byte("1");
-			byte index2=2;
-			indexConfig.setConfigOrder((byte)(indexConfig.getConfigOrder()+1));
+			IndexConfig param=new IndexConfig();
+			param.setDirection("config_order");
+			List<IndexConfig> queryList = indexConfigService.selectIndexConfigDesc();
+			byte order1=0;
+			byte order2=0;
+			if(null!=queryList&&queryList.size()>0){
+				IndexConfig indexConfig2 = queryList.get(0);
+				order1=(byte)(indexConfig2.getConfigOrder()+1);
+				order2=(byte)(indexConfig2.getConfigOrder()+2);
+			}else{
+				order1=(byte)1;
+				order2=(byte)2;
+			}
+			indexConfig.setConfigOrder(order1);
 			Long insert1 = indexConfigService.insert(indexConfig);
 			IndexConfig de=new IndexConfig();
-			de.setConfigOrder((byte)(indexConfig.getConfigOrder()+1));
+			de.setConfigOrder(order2);
 			de.setShapeType(indexConfig.getShapeType());
 			Long insert2 = indexConfigService.insert(de);
 			list.add(insert1);
