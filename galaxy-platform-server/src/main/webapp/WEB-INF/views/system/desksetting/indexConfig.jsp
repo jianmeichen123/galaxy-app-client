@@ -158,7 +158,7 @@ function addEblockRow(i,reslut){
   }
   $(".deleteCircleBtn").click(function(){
 	  var len=$(this).attr("data-btn").length;
-      var last=$(this).attr("data-btn").substring(len-1,len);
+      var last=$(this).attr("data-btn").split("_")[1];
     	  var resourceId=$(".deleteEblockCon_"+last+" button").val();
     	  var result=deleteIndexConfig(resourceId);
     	  if(result){
