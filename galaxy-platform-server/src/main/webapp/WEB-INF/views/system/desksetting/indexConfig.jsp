@@ -112,7 +112,7 @@ function addEblockRow(i,reslut){
     $(".addEblockCon button").on("click",function(){ 
     	$(".pop").remove();
       var len=$(this).attr("data-btn").length;
-      var last=$(this).attr("data-btn").substring(len-1,len);
+      var last=$(this).attr("data-btn").split("_")[1];
       console.log(last);
       var $self = $(this);
       var _url = $self.attr("href");
