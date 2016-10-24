@@ -163,7 +163,7 @@
 			<if test="roleId != null" >and ta.role_id = #{roleId,jdbcType=BIGINT} </if>
 		</trim>
 		</where>
-		order by ta.config_order
+		order by ta.id
 	</select>
 
 
