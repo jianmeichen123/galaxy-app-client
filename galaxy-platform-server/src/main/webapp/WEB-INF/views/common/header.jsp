@@ -53,6 +53,8 @@
 	      $(".man_info ul").show();
 	    });
 	    $(".man_info ul").closeDom();
+	    var man_info_width=$(".man_info").width();
+	    $(".man_info ul").css("left",(man_info_width-140)/2);
 	    $(function(){
 	      //首页获取ritmin的宽度
 	      disposedWidth();
