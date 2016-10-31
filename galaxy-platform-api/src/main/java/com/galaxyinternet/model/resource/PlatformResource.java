@@ -30,6 +30,7 @@ public class PlatformResource extends PagableEntity {
     private List<Long> resourceIdList;
     private Map<String,Object> mapList;
     
+    private Byte indexDivConfig;
     
     public Map<String, Object> getMapList() {
 		return mapList;
@@ -123,7 +124,15 @@ public class PlatformResource extends PagableEntity {
         this.resourceDesc = resourceDesc;
     }
     
-    @Override
+    
+    
+    public Byte getIndexDivConfig() {
+		return indexDivConfig;
+	}
+	public void setIndexDivConfig(Byte indexDivConfig) {
+		this.indexDivConfig = indexDivConfig;
+	}
+	@Override
     public String toString() {
     	return JSON.toJSONString(this);
     }

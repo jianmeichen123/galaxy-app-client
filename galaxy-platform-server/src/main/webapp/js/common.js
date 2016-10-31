@@ -28,7 +28,6 @@ function sendPostRequestByJsonObj(reqUrl, jsonObj, callbackFun) {
 		},
 		async : false,
 		error : function(request) {
-			//alert("connetion error");
 		},
 		success : function(data) {
 			if(data){
@@ -95,7 +94,6 @@ function sendGetRequest(reqUrl, jsonObj, callbackFun) {
 		},
 		async : false,
 		error : function(request) {
-			//alert("connetion error");
 		},
 		success : function(data) {
 			if(data){
@@ -141,7 +139,6 @@ function sendPostRequest(reqUrl, callbackFun) {
 		},
 		async : false,
 		error : function(request) {
-			//alert("connetion error");
 		},
 		success : function(data) {
 			if(data){
@@ -196,10 +193,8 @@ DataStrore = {
 	storage : window.localStorage,
 	checkBrowerSupport : function() {
 		if (window.localStorage) {
-			alert('This browser supports localStorage');
 			return true;
 		} else {
-			alert('This browser does not support localStorage');
 			return false;
 		}
 	},

@@ -18,11 +18,12 @@
     <result column="updated_uid" property="updatedUid" jdbcType="BIGINT" />
     <result column="updated_time" property="updatedTime" jdbcType="BIGINT" />
     <result column="resource_desc" property="resourceDesc" jdbcType="VARCHAR" />
+    <result column="index_div_config" property="indexDivConfig" jdbcType="TINYINT" />
   </resultMap>
 
   <sql id="Base_Column_List" >
     id, parent_id, resource_mark, resource_name, resource_url, resource_type, resource_order, 
-    resource_status, product_mark, application_platform, style, created_uid, created_time, updated_uid, updated_time,resource_desc
+    resource_status, product_mark, application_platform, style, created_uid, created_time, updated_uid, updated_time,resource_desc,index_div_config
   </sql>
   <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -39,12 +40,12 @@
       resource_name, resource_url, resource_type, 
       resource_order, resource_status, product_mark, application_platform, style
       created_uid, created_time, updated_uid, 
-      updated_time, resource_desc)
+      updated_time, resource_desc,index_div_config)
     values (#{id,jdbcType=BIGINT}, #{parentId,jdbcType=BIGINT}, #{resourceMark,jdbcType=VARCHAR}, 
       #{resourceName,jdbcType=VARCHAR}, #{resourceUrl,jdbcType=VARCHAR}, #{resourceType,jdbcType=VARCHAR}, 
       #{resourceOrder,jdbcType=BIGINT}, #{resourceStatus,jdbcType=VARCHAR}, #{productMark,jdbcType=VARCHAR}, #{applicationPlatform}, #{style}
       #{createdUid,jdbcType=BIGINT}, #{createdTime,jdbcType=BIGINT}, #{updatedUid,jdbcType=BIGINT}, 
-      #{updatedTime,jdbcType=BIGINT}, #{resourceDesc,jdbcType=VARCHAR})
+      #{updatedTime,jdbcType=BIGINT}, #{resourceDesc,jdbcType=VARCHAR}, #{indexDivConfig})
   </insert>
   
   <insert id="insertSelective" parameterType="com.galaxyinternet.model.resource.PlatformResource" >
@@ -267,6 +268,7 @@
 		      <if test="updatedUid != null" > and updated_uid = #{updatedUid,jdbcType=BIGINT}</if>
 		      <if test="updatedTime != null" > and updated_time = #{updatedTime,jdbcType=BIGINT}</if>
 		      <if test="resourceDesc != null" > and resource_desc = #{resourceDesc,jdbcType=VARCHAR}</if>
+		      <if test="indexDivConfig != null" > and index_div_config = #{indexDivConfig,jdbcType=TINYINT}</if>
 		      <if test="userId != null" > and ur.user_id = #{userId,jdbcType=BIGINT}</if>
 			  
 			  <if test="resourceIdList != null">

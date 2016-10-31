@@ -12,6 +12,9 @@
         </li>
          <li >
         	<a href="javascript:void(-1);" target-url="pushMsgIndex" target="msg"><span class="navbar nav7"></span>消息推送</a>
+        </li>
+         <li >
+        	<a href="javascript:void(-1);" target-url="indexConfig" target="index"><span class="navbar nav7"></span>桌面配置</a>
         </li>	
 		</ul>
  <script type = "text/javascript">
