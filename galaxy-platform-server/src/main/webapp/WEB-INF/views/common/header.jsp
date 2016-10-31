@@ -39,16 +39,6 @@
      </div>
 <script src="<%=path %>/js/login.js"></script>
  <script type = "text/javascript">
-
-	/*需要时二维码放大*/
-		$(".erwms").on("mouseover",function(){
-			 $(this).hide();
-		     $(".erwmb").show();
-		 })
-		  $(".erwmb").on("mouseout",function(){
-			 $(".erwms").show();
-		     $(this).hide();
-		 })
 		 $(".man_info .name").hover(function(){
 	      $(".man_info ul").show();
 	    });
@@ -92,6 +82,18 @@
 
 	       }
 	    })
+	        /*二维码*/
+		 var ewm_w=$(".erwms").width();
+		     w_lft=$(".lft").width();
+		     $(".erwms").css("margin-left",(w_lft-ewm_w)/2);
+		 $(".erwms").on("mouseover",function(){
+			 $(this).hide();
+		     $(".erwmb").show();
+		 })
+		  $(".erwmb").on("mouseout",function(){
+			 $(".erwms").show();
+		     $(this).hide();
+		 })
 	    
 	    })
 </script>
