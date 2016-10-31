@@ -478,7 +478,6 @@
 						$("body").css("overflow-y","hidden");
 					},
 					error:function(){
-						alert("网络错误")
 					}	
 				})
 			}	

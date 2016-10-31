@@ -248,7 +248,6 @@
 				  if(data.result.status == "OK"){
 					  forwardWithHeader("<%= path%>/galaxy/role/index");
 				  }else{
-					  alert(data.result.message);
 				  }
 			}
 	    });
