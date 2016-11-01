@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.alibaba.fastjson.JSON;
 import com.galaxyinternet.framework.core.model.BaseUser;
 import com.galaxyinternet.framework.core.utils.DateUtil;
 import com.galaxyinternet.model.resource.PlatformResource;
@@ -266,5 +267,8 @@ public class User extends BaseUser {
 		this.allResourceToUser = allResourceToUser;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return JSON.toJSONString(this);
+	}
 }
