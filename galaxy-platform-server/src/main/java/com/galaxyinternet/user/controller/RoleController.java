@@ -1,54 +1,35 @@
 package com.galaxyinternet.user.controller;
-import static com.galaxyinternet.framework.core.form.Token.TOKEN;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.galaxyinternet.bo.UserBo;
+import com.galaxyinternet.bo.RoleBo;
 import com.galaxyinternet.common.controller.BaseControllerImpl;
 import com.galaxyinternet.exception.PlatformException;
-import com.galaxyinternet.framework.cache.Cache;
-import com.galaxyinternet.framework.core.config.PlaceholderConfigurer;
-import com.galaxyinternet.framework.core.constants.Constants;
-import com.galaxyinternet.framework.core.constants.UserConstant;
 import com.galaxyinternet.framework.core.form.Token;
-import com.galaxyinternet.framework.core.form.TokenGenerator;
 import com.galaxyinternet.framework.core.model.Page;
 import com.galaxyinternet.framework.core.model.PageRequest;
 import com.galaxyinternet.framework.core.model.ResponseData;
 import com.galaxyinternet.framework.core.model.Result;
 import com.galaxyinternet.framework.core.model.Result.Status;
 import com.galaxyinternet.framework.core.service.BaseService;
-import com.galaxyinternet.framework.core.utils.GSONUtil;
-import com.galaxyinternet.framework.core.utils.JSONUtils;
-import com.galaxyinternet.framework.core.utils.PWDUtils;
-import com.galaxyinternet.framework.core.utils.mail.MailTemplateUtils;
-import com.galaxyinternet.framework.core.utils.mail.SimpleMailSender;
-import com.galaxyinternet.framework.core.validator.ValidatorResultHandler;
-import com.galaxyinternet.model.department.Department;
-import com.galaxyinternet.model.privilege.bo.RoleBo;
 import com.galaxyinternet.model.role.Role;
 import com.galaxyinternet.model.user.User;
-import com.galaxyinternet.service.DepartmentService;
 import com.galaxyinternet.service.RoleService;
 import com.galaxyinternet.service.UserService;
 
@@ -64,9 +45,6 @@ public class RoleController extends BaseControllerImpl<Role, RoleBo> {
 	final Logger logger = LoggerFactory.getLogger(RoleController.class);
 	@Autowired
 	private RoleService roleService;
-	
-	@Autowired
-	private Cache cache;
 	
 	@Autowired
 	private UserService userService;
@@ -136,11 +114,7 @@ public class RoleController extends BaseControllerImpl<Role, RoleBo> {
 		ResponseData<Role> responseBody = new ResponseData<Role>();
 		Page<Role> pageRole=new Page<>(null, null, null);
 		try {
-			// 部门列表
-			List<Role> roleList = null;
-	
-				pageRole=roleService.queryRoleList(role,new PageRequest(role.getPageNum(), role.getPageSize()));
-		
+			pageRole=roleService.queryRoleList(role,new PageRequest(role.getPageNum(), role.getPageSize()));
 			responseBody.setPageList(pageRole);
 			responseBody.setResult(new Result(Status.OK, ""));
 			return responseBody;
@@ -215,13 +189,9 @@ public ResponseData<Role> getRoleDetail(@PathVariable("id") String id) {
 	@ResponseBody
 	@RequestMapping(value = "/deleteRole", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseData<User> deleteRole(@RequestBody Role role) {
-
-			ResponseData<User> responseBody = new ResponseData<User>();
+		ResponseData<User> responseBody = new ResponseData<User>();
 		try {
-
-			int result = roleService.delete(role);
 			responseBody.setResult(new Result(Status.OK, role));
-
 		} catch (PlatformException e) {
 			responseBody
 					.setResult(new Result(Status.ERROR, "deleteRole faild"));
@@ -230,7 +200,6 @@ public ResponseData<Role> getRoleDetail(@PathVariable("id") String id) {
 				logger.error("deleteRole ", e);
 			}
 		}
-		
 		return responseBody;
 	}
 	/**
