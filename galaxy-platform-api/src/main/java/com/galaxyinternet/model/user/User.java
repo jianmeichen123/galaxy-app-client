@@ -9,9 +9,9 @@ import javax.validation.constraints.NotNull;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.validator.constraints.NotBlank;
 
-import com.alibaba.fastjson.JSON;
 import com.galaxyinternet.framework.core.model.BaseUser;
 import com.galaxyinternet.framework.core.utils.DateUtil;
+import com.galaxyinternet.framework.core.utils.GSONUtil;
 import com.galaxyinternet.model.resource.PlatformResource;
 
 public class User extends BaseUser {
@@ -51,7 +51,7 @@ public class User extends BaseUser {
 	
 	private List<PlatformResource> allResourceToUser;
 	
-	
+	private long idstr;
 	public boolean isCurrentUser() {
 		return isCurrentUser;
 	}
@@ -268,7 +268,30 @@ public class User extends BaseUser {
 	}
 	
 	@Override
+	public Long getId() {
+		return this.id;
+	}
+
+	@Override
+	public void setId(Long id) {
+		if(id!=null){
+			this.idstr = id.longValue();
+		}
+		this.id = id;
+	}
+	
+	public long getIdstr() {
+		return idstr;
+	}
+
+	public void setIdstr(long idstr) {
+		if(this.id!=null){
+			this.idstr = this.id.longValue();
+		}else this.idstr = idstr;
+	}
+
+	@Override
 	public String toString() {
-		return JSON.toJSONString(this);
+		return GSONUtil.toJson(this);
 	}
 }
