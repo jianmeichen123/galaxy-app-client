@@ -52,7 +52,7 @@ public enum OperationType {
 	_5_12_			("/galaxy/project/stageChange/"+UrlNumber.ten,		PlatformConst.PROJECT_TYPE, "上传"),
 	_5_13_			("/galaxy/project/stageChange/"+UrlNumber.eleven,	PlatformConst.PROJECT_TYPE, "上传"),
 	
-	_6_1_			("/galaxy/project/ap",				PlatformConst.PROJECT_TYPE, 		"进入接触访谈阶段"),
+	_6_1_			("/galaxy/project/createProject",				PlatformConst.PROJECT_TYPE, 		"进入接触访谈阶段"),
 	_6_2_			("/galaxy/project/startReview",		PlatformConst.PROJECT_TYPE, 		"进入内部评审阶段"),
 	_6_3_			("/galaxy/project/stageChange/"+UrlNumber.two,		PlatformConst.PROJECT_TYPE, 	"进入CEO评审阶段"),
 	_6_4_			("/galaxy/project/ges",				PlatformConst.PROJECT_TYPE, 		"进入立项会阶段"),
