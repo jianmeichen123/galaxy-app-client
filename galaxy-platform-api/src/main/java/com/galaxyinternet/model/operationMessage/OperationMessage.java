@@ -44,7 +44,7 @@ public class OperationMessage extends BaseEntity{
 	
 	private Serializable userData;
 	private List<String> messageList;
-	
+	private Object listObj;
 	
 	public String getDepartment() {
 		return department;
@@ -171,6 +171,14 @@ public class OperationMessage extends BaseEntity{
 	public void setSingleMark(byte singleMark) {
 		this.singleMark = singleMark;
 	}
+	public Object getListObj() {
+		return listObj;
+	}
+	public void setListObj(Object listObj) {
+		this.listObj = listObj;
+	}
+
+	
 	
 	
 }
