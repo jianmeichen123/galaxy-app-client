@@ -757,7 +757,7 @@ background-size: cover;margin:0 5px 0  0;position: relative;top: 3px;}
 .ritmin .top .btnbox_f .c1{background-position: 15px 0;padding: 0 0 0 22px;}
 .ritmin .top .btnbox_f .c2{background-position: 15px -30px;padding: 0 0 0 22px;}
 .ritmin .top .btnbox_f .c3{background-position: 15px -60px;padding: 0 2px 0 32px;}
-.ritmin .min_document{ width:100%; background-color: #d6d8e1; border-radius: 5px; padding: 10px 0 0;}
+.ritmin .min_document{ width:100%; background-color: #d6d8e1; border-radius: 5px; padding: 10px 0 0;margin:10px 0;}
 .ritmin .min_document .top,.ritmin .min_document .bottom{ margin:0 15px 8px;}
 .ritmin .min_document .top{_height:50px;}
 .ritmin .min_document .top .searchall{ float:right; margin:0}
