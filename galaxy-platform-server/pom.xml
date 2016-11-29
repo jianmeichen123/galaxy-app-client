@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.galaxyinternet</groupId>
 		<artifactId>galaxy-platform</artifactId>
-		<version>1.0.2-SNAPSHOT</version>
+		<version>1.0.2.Q-SNAPSHOT</version>
 	</parent>
 	<artifactId>galaxy-platform-server</artifactId>
 	<packaging>war</packaging>
