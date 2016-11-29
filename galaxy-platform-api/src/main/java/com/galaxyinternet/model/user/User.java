@@ -50,7 +50,29 @@ public class User extends BaseUser {
 	
 	
 	private List<PlatformResource> allResourceToUser;
-	private String idstr;
+	private long idstr;
+	@Override
+	public Long getId() {
+		return this.id;
+	}
+
+	@Override
+	public void setId(Long id) {
+		if(id!=null){
+			this.idstr = id.longValue();
+		}
+		this.id = id;
+	}
+	
+	public long getIdstr() {
+		return idstr;
+	}
+
+	public void setIdstr(long idstr) {
+		if(this.id!=null){
+			this.idstr = this.id.longValue();
+		}else this.idstr = idstr;
+	}
 	@Override
 	public void setId(Long id) {
 		if(id!=null){
