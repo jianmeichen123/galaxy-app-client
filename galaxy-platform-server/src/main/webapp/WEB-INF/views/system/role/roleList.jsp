@@ -37,7 +37,7 @@
 			<!--页眉-->
 			<div class="top clearfix">
 				<!--按钮-->
-				<div class="btnbox_f btnbox_f1 clearfix">
+				<div class="btnbox_f btnbox_f1 clearfix" style="margin-bottom:15px;">
 					<a href="html/role_add.html" data-btn="role_add"
 						class="pubbtn bluebtn ico c4">添加角色</a>
 				</div>
