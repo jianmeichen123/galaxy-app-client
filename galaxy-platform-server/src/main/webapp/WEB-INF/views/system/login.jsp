@@ -18,6 +18,7 @@
 <!--[if lt IE 9]><link href="css/lfie8.css" type="text/css" rel="stylesheet"/><![endif]-->
 </head>
 <body class="login">
+
 	<div class="loginpage_new">
 		<div class="top">
         <a href="javascript:;" class="logo null">星河互联</a>
@@ -30,6 +31,7 @@
 	                <!--  <p class="rit ico">如遇问题请联系010-59065511</p> -->
             </div>
 				<form id="defaultForm" method="post" class="form-horizontal" onkeydown="keylogin();">
+				<input type="hidden" value="login" id="flagLogin">
 					<input id="email" name="email" type="text"
 						class="txt ico uname" placeholder="用户名" /> <input id="password"
 						name="password" type="password" class="txt ico uword"
