@@ -26,6 +26,7 @@ public class PlatformConst {
 	public static final String REQUEST_SCOPE_MESSAGE_REASON = "galaxy_message_reason";
 	public static final String REQUEST_SCOPE_MESSAGE_STAGE= "galaxy_message_stage";
 	public static final String REQUEST_SCOPE_MESSAGE_BATCH = "galaxy_message_batch";
+	public static final String REQUEST_SCOPE_MESSAGE_ASSISRCOLUMN = "galaxy_message_assistColumn";
 	
 	
 	// ios 消息推送
