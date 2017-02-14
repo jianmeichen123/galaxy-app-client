@@ -90,7 +90,16 @@ public enum OperationType {
 	//实际拨款信息
 	_14_3_1	    ("/galaxy/grant/actual/saveApprActual/"+UrlNumber.one,		PlatformConst.PROJECT_TYPE, "添加"),
 	_14_3_2	    ("/galaxy/grant/actual/saveApprActual/"+UrlNumber.two,		PlatformConst.PROJECT_TYPE, "编辑"),
-	_14_3_3     ("/galaxy/grant/actual/deleteApprActual/"+UrlNumber.three,	PlatformConst.PROJECT_TYPE, "删除");
+	_14_3_3     ("/galaxy/grant/actual/deleteApprActual/"+UrlNumber.three,	PlatformConst.PROJECT_TYPE, "删除"),
+	
+	
+	//创意资讯消息
+	_18_1	    ("/galaxy/zixun/addzixun",		PlatformConst.IDEA_ZIXUN_TYPE, "添加创意资讯"),
+	_18_2	    ("/galaxy/zixun/editzixun",		PlatformConst.IDEA_ZIXUN_TYPE, "编辑创意资讯"),
+	_18_3       ("/galaxy/zixun/delzixun",		PlatformConst.IDEA_ZIXUN_TYPE, "删除创意资讯");
+	
+	
+	
 	
 	
 	private OperationType(String uniqueKey, String type, String content, Integer module) {
