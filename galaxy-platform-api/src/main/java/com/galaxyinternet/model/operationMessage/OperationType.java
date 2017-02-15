@@ -96,8 +96,13 @@ public enum OperationType {
 	//创意资讯消息
 	_18_1	    ("/galaxy/zixun/addzixun",		PlatformConst.IDEA_ZIXUN_TYPE, "添加创意资讯"),
 	_18_2	    ("/galaxy/zixun/editzixun",		PlatformConst.IDEA_ZIXUN_TYPE, "编辑创意资讯"),
-	_18_3       ("/galaxy/zixun/delzixun",		PlatformConst.IDEA_ZIXUN_TYPE, "删除创意资讯");
+	_18_3       ("/galaxy/zixun/delzixun",		PlatformConst.IDEA_ZIXUN_TYPE, "删除创意资讯"),
 	
+	
+	//运营记录消息
+	_19_1	    ("/galaxy/operationalData/formAddOperationalData",		PlatformConst.OPERATION_DATA, "添加运营记录"),
+	_19_2	    ("/galaxy/operationalData/formAddOperationalData",		PlatformConst.OPERATION_DATA, "编辑运营记录"),
+	_19_3       ("/galaxy/operationalData/delOperationalData",		PlatformConst.OPERATION_DATA, "删除运营记录");
 	
 	
 	
