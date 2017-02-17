@@ -11,6 +11,8 @@ public class PlatformConst {
 	public static final String PROJECT_TYPE = "项目";
 	public static final String TASK_TYPE = "任务";
 	public static final String SCHEDULING_TYPE = "排期";
+	public static final String IDEA_ZIXUN_TYPE = "创意资讯";
+	public static final String OPERATION_DATA = "运营记录";
 	public static final Integer MODULE_BROADCAST_MESSAGE = 1;//消息广播
 	
 	public static final String OPERATIO_NMESSAGE_TIME = "om:lasttime:";//上一次刷新时间
@@ -26,6 +28,7 @@ public class PlatformConst {
 	public static final String REQUEST_SCOPE_MESSAGE_REASON = "galaxy_message_reason";
 	public static final String REQUEST_SCOPE_MESSAGE_STAGE= "galaxy_message_stage";
 	public static final String REQUEST_SCOPE_MESSAGE_BATCH = "galaxy_message_batch";
+	public static final String REQUEST_SCOPE_MESSAGE_ASSISRCOLUMN = "galaxy_message_assistColumn";
 	
 	
 	// ios 消息推送

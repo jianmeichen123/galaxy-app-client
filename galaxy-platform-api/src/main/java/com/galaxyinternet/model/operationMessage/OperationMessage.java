@@ -40,7 +40,9 @@ public class OperationMessage extends BaseEntity{
 	private String messageType;
 	private byte singleMark;
 	
-	private boolean flag;
+	private boolean flag; 
+	
+	private String assistColumn;//辅助字段，特殊消息处理  1：添加第一条实际金额发消息通知每月1号添加运营数据
 	
 	private Serializable userData;
 	private List<String> messageList;
@@ -141,6 +143,12 @@ public class OperationMessage extends BaseEntity{
 	
 
 	
+	public String getAssistColumn() {
+		return assistColumn;
+	}
+	public void setAssistColumn(String assistColumn) {
+		this.assistColumn = assistColumn;
+	}
 	public Serializable getUserData() {
 		return userData;
 	}
@@ -157,7 +165,7 @@ public class OperationMessage extends BaseEntity{
 	public String toString() {
 		return "OperationMessage [department=" + department + ", role=" + role + ", type=" + type + ", projectName="
 				+ projectName + ", operator=" + operator + ", content=" + content + ", module=" + module
-				+ ", projectId=" + projectId + ", operatorId=" + operatorId + ", flag=" + flag+ ", singleMark=" + singleMark+  "]";
+				+ ", projectId=" + projectId + ", operatorId=" + operatorId + ", flag=" + flag+ ", assistColumn=" + assistColumn+ ",singleMark=" + singleMark+  "]";
 	}
 	public boolean getFlag() {
 		return flag;
