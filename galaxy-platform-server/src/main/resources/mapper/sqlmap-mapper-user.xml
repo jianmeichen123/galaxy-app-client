@@ -183,6 +183,7 @@
 		where	pu.id = pur.user_id
 		and		pr.id = pur.role_id
 		and 	pu.department_id = depart.id
+		and     pu.status!=1
 		<if test="userId != null"> and pu.id = #{userId}</if>
 		<if test="email != null"> and pu.email = #{email}</if>
 		<if test="roleId != null"> and pur.role_id = #{roleId}</if>
