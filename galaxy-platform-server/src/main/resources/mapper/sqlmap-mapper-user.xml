@@ -183,6 +183,7 @@
 		where	pu.id = pur.user_id
 		and		pr.id = pur.role_id
 		and 	pu.department_id = depart.id
+		and     pu.status!=1
 		<if test="userId != null"> and pu.id = #{userId}</if>
 		<if test="email != null"> and pu.email = #{email}</if>
 		<if test="roleId != null"> and pur.role_id = #{roleId}</if>
@@ -359,7 +360,7 @@
 	<select id="selectUserByParams" resultMap="BaseResultMap" parameterType="java.util.Map">
 		SELECT  u.id,  u.department_id, u.real_name
 		FROM platform_user u,platform_user_role ur 
-		WHERE u.id = ur.user_id 
+		WHERE u.id = ur.user_id and  u.status!=1
 			<if test="roleId != null"> and ur.role_id =#{roleId}</if>  <!-- AND ur.role_id = 4 -->
 			<if test="departmentId != null"> and u.department_id =#{departmentId}</if>
 			<if test="departmentIds != null">
