@@ -10,7 +10,7 @@
 <base href="<%=basePath%>"/>
 <head>
 <meta charset="utf-8">
-<title>繁星</title>
+<title>星河投</title>
 
 <link href="css/axure.css" type="text/css" rel="stylesheet"/>
 <script src="js/indexConfig/indexConfig.js" type="text/javascript"></script>

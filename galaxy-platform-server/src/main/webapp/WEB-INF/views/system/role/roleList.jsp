@@ -11,7 +11,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="renderer" content="webkit">
-<title>繁星</title>
+<title>星河投</title>
 <base href="<%=basePath%>">
 <!-- jsp文件头和头部 -->
 

@@ -11,7 +11,7 @@
 <base href="<%=basePath%>">
 <head>
 <meta charset="utf-8">
-<title>繁星</title>
+<title>星河投</title>
 <!-- jsp文件头和头部 -->
 <%@ include file="/WEB-INF/views/common/taglib.jsp"%>
 <link href="css/axure.css" type="text/css" rel="stylesheet"/>
