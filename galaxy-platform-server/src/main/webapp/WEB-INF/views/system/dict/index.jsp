@@ -30,7 +30,7 @@
 		<div class="top clearfix">
 			<!--按钮-->
 			<div class="btnbox_f btnbox_f1 clearfix">
-				<a href="javascript:;" onclick="tvalueRefresh()" class="bluebtn">题相关缓存刷新</a>
+				<a href="javascript:;" onclick="tvalueRefresh()" class="pubbtn bluebtn" style="width:120px;">题相关缓存刷新</a>
 			</div>
 		</div>
 			
