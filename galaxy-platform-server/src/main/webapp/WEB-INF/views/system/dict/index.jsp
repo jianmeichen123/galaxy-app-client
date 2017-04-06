@@ -11,7 +11,7 @@
 <base href="<%=basePath%>">
 <head>
 <meta charset="utf-8">
-<title>繁星</title>
+<title>星河投</title>
 <!-- jsp文件头和头部 -->
 <%@ include file="/WEB-INF/views/common/taglib.jsp"%>
 <link href="css/axure.css" type="text/css" rel="stylesheet"/>
@@ -26,6 +26,14 @@
 	<!-- -左侧导航 -->
  	<div class="ritmin" source="dict">
     	<h2>数据字典</h2>
+    	
+		<div class="top clearfix">
+			<!--按钮-->
+			<div class="btnbox_f btnbox_f1 clearfix">
+				<a href="javascript:;" onclick="tvalueRefresh()" class="pubbtn bluebtn" style="width:120px;">题相关缓存刷新</a>
+			</div>
+		</div>
+			
         <div class="dictionary clearfix">
         	<ul class="clearfix" id="dict_parent">
             </ul>
@@ -72,4 +80,20 @@
 <script src="js/dict.js" type="text/javascript"></script>
 
 </body>
+
+<script>
+
+function tvalueRefresh(){
+	sendGetRequest(Constants.sopEndpointURL + "/galaxy/tvalue/refersh", null, function(data){
+		var result = data.result.status;
+		if (result == 'OK') {
+			layer.msg("刷新成功");
+		}else{
+			layer.msg("刷新失败，请重启项目");
+		}
+	});
+}
+</script>
+
+
 </html>
