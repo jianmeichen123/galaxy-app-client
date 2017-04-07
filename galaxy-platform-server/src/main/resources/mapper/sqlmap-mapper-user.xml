@@ -371,6 +371,7 @@
 				</foreach>
 		    </if>
 			<if test="status != null"> and u.status =#{status}</if>
+			GROUP BY u.created_time
 	</select>
 	
 	
