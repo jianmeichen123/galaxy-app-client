@@ -371,6 +371,7 @@
 				</foreach>
 		    </if>
 			<if test="status != null"> and u.status =#{status}</if>
+			order BY u.created_time desc
 	</select>
 	
 	
