@@ -18,20 +18,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.galaxyinternet.bo.UserBo;
 import com.galaxyinternet.common.controller.BaseControllerImpl;
 import com.galaxyinternet.framework.core.constants.Constants;
-import com.galaxyinternet.framework.core.constants.UserConstant;
 import com.galaxyinternet.framework.core.model.Header;
 import com.galaxyinternet.framework.core.model.ResponseData;
 import com.galaxyinternet.framework.core.model.Result;
 import com.galaxyinternet.framework.core.model.Result.Status;
 import com.galaxyinternet.framework.core.service.BaseService;
-import com.galaxyinternet.framework.core.utils.PWDUtils;
 import com.galaxyinternet.framework.core.utils.SessionUtils;
-import com.galaxyinternet.model.department.Department;
+import com.galaxyinternet.model.auth.LoginResult;
 import com.galaxyinternet.model.resource.PlatformResource;
 import com.galaxyinternet.model.role.Role;
 import com.galaxyinternet.model.user.User;
 import com.galaxyinternet.service.ResourceService;
 import com.galaxyinternet.service.UserService;
+import com.galaxyinternet.utils.AuthRequest;
 
 @Controller
 @RequestMapping("/galaxy/userlogin")
@@ -44,6 +43,8 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 
 	@Autowired
 	com.galaxyinternet.framework.cache.Cache cache;
+	@Autowired
+	private AuthRequest authReq;
 
 	@Override
 	protected BaseService<User> getBaseService() {
@@ -74,40 +75,38 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 			responsebody.setResult(new Result(Status.ERROR, Constants.IS_UP_EMPTY, "用户名或密码不能为空！"));
 			return responsebody;
 		}
-		user = userService.queryUserByUP(user);
-		if (user == null) {
-			responsebody.setResult(new Result(Status.ERROR, Constants.IS_UP_WRONG, "用户名或密码错误！"));
-		} else {
-
-			// 判断是否用户禁用
-			if (!userService.isUserNormal(user)) {
-				responsebody.setResult(new Result(Status.ERROR, Constants.USER_DISABLE, "用户已被禁用！"));
-				return responsebody;
+		LoginResult rtn = authReq.login(email, password);
+		if(rtn == null || rtn.isSuccess() == false)
+		{
+			String msg = "";
+			if(rtn.getMessage() != null)
+			{
+				msg = rtn.getMessage();
 			}
-			/**
-			 * @time 2016-07-29
-			 */
-			List<PlatformResource> allResourceToUser = resourceService.queryResourceListToUser(user.getId());
-			user.setAllResourceToUser(allResourceToUser);
-			
-			
-			String sessionId = SessionUtils.createWebSessionId(); // 生成sessionId
-			setCacheSessionId(request, user, sessionId);
-			Header header = getHeader(user, sessionId);
-			responsebody.setHeader(header);
-			user.setPassword(null);
-			user.setCreatedTime(null);
-			user.setUpdatedTime(null);
-			user.setBirth(null);
-			user.setBirthStr(null);
-			user.setOriginPassword(null);
-			user.setTelephone(null);
-			user.setStatus(null);
-			user.setGender(null);
-			responsebody.setEntity(user);
-			responsebody.setResult(new Result(Status.OK, Constants.OPTION_SUCCESS, "登录成功！"));
-			logger.info("Login success{userId:" + user.getId() + ", userNickName:" + user.getNickName() + ", userRealName:" + user.getRealName() + "}");
+			else
+			{
+				msg = "用户名或密码错误！";
+			}
+			responsebody.setResult(new Result(Status.ERROR, Constants.IS_UP_WRONG, msg));
+			return responsebody;
 		}
+		user = rtn.getValue();
+		String sessionId = SessionUtils.createWebSessionId(); // 生成sessionId
+		setCacheSessionId(request, user, sessionId);
+		Header header = getHeader(user, sessionId);
+		responsebody.setHeader(header);
+		user.setPassword(null);
+		user.setCreatedTime(null);
+		user.setUpdatedTime(null);
+		user.setBirth(null);
+		user.setBirthStr(null);
+		user.setOriginPassword(null);
+		user.setTelephone(null);
+		user.setStatus(null);
+		user.setGender(null);
+		responsebody.setEntity(user);
+		responsebody.setResult(new Result(Status.OK, Constants.OPTION_SUCCESS, "登录成功！"));
+		logger.info("Login success{userId:" + user.getId() + ", email:" + user.getEmail() + ", userRealName:" + user.getRealName() + "}");
 		return responsebody;
 	}
 

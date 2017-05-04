@@ -13,11 +13,14 @@ import com.galaxyinternet.framework.core.dao.BaseDao;
 import com.galaxyinternet.framework.core.service.impl.BaseServiceImpl;
 import com.galaxyinternet.model.resource.PlatformResource;
 import com.galaxyinternet.service.ResourceService;
+import com.galaxyinternet.utils.AuthRequest;
 @Service("com.galaxyinternet.service.ResourceService")
 public class ResourceServiceImpl extends BaseServiceImpl<PlatformResource> implements ResourceService
 {
 	@Autowired
 	private ResourceDao resourceDao;
+	@Autowired
+	private AuthRequest authReq;
 	@Override
 	protected BaseDao<PlatformResource, Long> getBaseDao()
 	{
@@ -30,14 +33,14 @@ public class ResourceServiceImpl extends BaseServiceImpl<PlatformResource> imple
 		return resourceDao.selectResourceListToUser(uid);
 	}
 	
-	public List<PlatformResource> queryUserMenus(Long userId, Long parentId)
+	public List<PlatformResource> queryUserMenus(Long userId, Long parentId, String companyId)
 	{
 		PlatformResourceBo query = new PlatformResourceBo();
 		query.setUserId(userId);
 		query.setParentId(parentId);
 		query.setResourceType("1");
-		query.setResourceStatus("1");
-		List<PlatformResource> list = resourceDao.selectWithJoin(query);
+		query.setCompanyId(companyId);
+		List<PlatformResource> list = authReq.getResource(query);
 		if(list != null && list.size()>0)
 		{
 			Collections.sort(list, new Comparator<PlatformResource>(){

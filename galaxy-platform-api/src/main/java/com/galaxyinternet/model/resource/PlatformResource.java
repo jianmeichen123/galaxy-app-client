@@ -21,6 +21,7 @@ public class PlatformResource extends PagableEntity {
     private String resourceStatus;
     private String productMark;
     private Integer applicationPlatform;
+    private String companyId;
     //样式
     private String style;
     private Long createdUid;
@@ -131,6 +132,13 @@ public class PlatformResource extends PagableEntity {
 	}
 	public void setIndexDivConfig(Byte indexDivConfig) {
 		this.indexDivConfig = indexDivConfig;
+	}
+	
+	public String getCompanyId() {
+		return companyId;
+	}
+	public void setCompanyId(String companyId) {
+		this.companyId = companyId;
 	}
 	@Override
     public String toString() {
