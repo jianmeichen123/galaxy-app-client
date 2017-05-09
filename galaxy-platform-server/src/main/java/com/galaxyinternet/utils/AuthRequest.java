@@ -45,6 +45,13 @@ public class AuthRequest {
 		ResponseEntity<ArrayList<PlatformResource>> rtn = template.exchange(uri, HttpMethod.POST, new HttpEntity<>(entity), ref);
 		return rtn.getBody();
 	}
+	public List<PlatformResource> getScope(PlatformResource entity)
+	{
+		String uri = authURI + "/user/getUserScope";
+		ParameterizedTypeReference<ArrayList<PlatformResource>> ref = new ParameterizedTypeReference<ArrayList<PlatformResource>>() {};  
+		ResponseEntity<ArrayList<PlatformResource>> rtn = template.exchange(uri, HttpMethod.POST, new HttpEntity<>(entity), ref);
+		return rtn.getBody();
+	}
 	
 	public List<Long> selectRoleIdByUserId(Long userId,String companyId)
 	{

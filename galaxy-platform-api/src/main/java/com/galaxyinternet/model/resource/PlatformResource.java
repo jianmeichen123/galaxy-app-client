@@ -22,6 +22,7 @@ public class PlatformResource extends PagableEntity {
     private String productMark;
     private Integer applicationPlatform;
     private String companyId;
+    private List<Integer> userIds;
     //样式
     private String style;
     private Long createdUid;
@@ -139,6 +140,13 @@ public class PlatformResource extends PagableEntity {
 	}
 	public void setCompanyId(String companyId) {
 		this.companyId = companyId;
+	}
+	
+	public List<Integer> getUserIds() {
+		return userIds;
+	}
+	public void setUserIds(List<Integer> userIds) {
+		this.userIds = userIds;
 	}
 	@Override
     public String toString() {

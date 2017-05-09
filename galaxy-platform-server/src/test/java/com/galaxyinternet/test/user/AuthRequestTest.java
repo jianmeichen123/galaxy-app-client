@@ -9,6 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.galaxyinternet.bo.PlatformResourceBo;
+import com.galaxyinternet.framework.core.utils.EncodeUtils;
 import com.galaxyinternet.model.auth.LoginResult;
 import com.galaxyinternet.model.resource.PlatformResource;
 import com.galaxyinternet.utils.AuthRequest;
@@ -22,7 +23,11 @@ public class AuthRequestTest {
 	@Test
 	public void testLogin()
 	{
-		LoginResult rtn = request.login("miaofu", "rh4vw1");
+		String userNanme = EncodeUtils.encodeBase64("test_ceo".getBytes());
+		String password = EncodeUtils.encodeBase64("iycqw3".getBytes());
+		long start = System.currentTimeMillis();
+		LoginResult rtn = request.login(userNanme, password);
+		System.err.println("Time = "+(System.currentTimeMillis() - start));
 		System.err.println(rtn);
 	}
 	@Test
@@ -41,6 +46,17 @@ public class AuthRequestTest {
 		query.setCompanyId("1");
 		
 		List<PlatformResource> list = request.getResource(query);
+		System.err.println(list);
+	}
+	
+	@Test
+	public void getScope()
+	{
+		PlatformResourceBo query = new PlatformResourceBo();
+		query.setUserId(85L);
+		query.setCompanyId("1");
+		
+		List<PlatformResource> list = request.getScope(query);
 		System.err.println(list);
 	}
 	
