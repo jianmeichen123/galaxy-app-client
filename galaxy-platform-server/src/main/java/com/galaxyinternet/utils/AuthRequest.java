@@ -30,6 +30,7 @@ public class AuthRequest {
 		password = PWDUtils.decodePasswordByBase64(password);
 		urlVariables.put("userName", userName);
 		urlVariables.put("passWord", password);
+		urlVariables.put("productType", "0");
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
