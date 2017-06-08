@@ -6,7 +6,6 @@
 		<artifactId>galaxy-platform</artifactId>
 		<version>1.0.1</version>
 	</parent>
-	
 	<artifactId>galaxy-platform-api</artifactId>
 	<packaging>jar</packaging>
 	<name />
