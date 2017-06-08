@@ -6,6 +6,7 @@
 		<artifactId>galaxy-platform</artifactId>
 		<version>1.0.1</version>
 	</parent>
+	
 	<artifactId>galaxy-platform-server</artifactId>
 	<packaging>war</packaging>
 	<name />
