@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.galaxyinternet.bo.PlatformResourceBo;
 import com.galaxyinternet.framework.core.utils.EncodeUtils;
-import com.galaxyinternet.model.auth.LoginResult;
+import com.galaxyinternet.model.auth.UserResult;
 import com.galaxyinternet.model.resource.PlatformResource;
 import com.galaxyinternet.utils.AuthRequest;
 
@@ -26,7 +26,7 @@ public class AuthRequestTest {
 		String userNanme = EncodeUtils.encodeBase64("test_ceo".getBytes());
 		String password = EncodeUtils.encodeBase64("iycqw3".getBytes());
 		long start = System.currentTimeMillis();
-		LoginResult rtn = request.login(userNanme, password);
+		UserResult rtn = request.login(userNanme, password);
 		System.err.println("Time = "+(System.currentTimeMillis() - start));
 		System.err.println(rtn);
 	}

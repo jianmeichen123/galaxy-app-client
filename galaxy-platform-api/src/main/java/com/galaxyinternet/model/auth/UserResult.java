@@ -2,7 +2,7 @@ package com.galaxyinternet.model.auth;
 
 import com.galaxyinternet.model.user.User;
 
-public class LoginResult {
+public class UserResult {
 	private boolean success;
 	private String errorCode;
 	private String message;

@@ -24,7 +24,7 @@ import com.galaxyinternet.framework.core.model.Result;
 import com.galaxyinternet.framework.core.model.Result.Status;
 import com.galaxyinternet.framework.core.service.BaseService;
 import com.galaxyinternet.framework.core.utils.SessionUtils;
-import com.galaxyinternet.model.auth.LoginResult;
+import com.galaxyinternet.model.auth.UserResult;
 import com.galaxyinternet.model.resource.PlatformResource;
 import com.galaxyinternet.model.role.Role;
 import com.galaxyinternet.model.user.User;
@@ -75,7 +75,7 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 			responsebody.setResult(new Result(Status.ERROR, Constants.IS_UP_EMPTY, "用户名或密码不能为空！"));
 			return responsebody;
 		}
-		LoginResult rtn = authReq.login(email, password);
+		UserResult rtn = authReq.login(email, password);
 		if(rtn == null || rtn.isSuccess() == false)
 		{
 			String msg = "";

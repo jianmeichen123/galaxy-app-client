@@ -18,6 +18,7 @@ import com.galaxyinternet.framework.core.dao.BaseDao;
 import com.galaxyinternet.framework.core.model.Page;
 import com.galaxyinternet.framework.core.service.impl.BaseServiceImpl;
 import com.galaxyinternet.framework.core.utils.PWDUtils;
+import com.galaxyinternet.model.auth.AuthResult;
 import com.galaxyinternet.model.department.Department;
 import com.galaxyinternet.model.role.Role;
 import com.galaxyinternet.model.user.User;
@@ -26,6 +27,7 @@ import com.galaxyinternet.service.DepartmentService;
 import com.galaxyinternet.service.RoleService;
 import com.galaxyinternet.service.UserRoleService;
 import com.galaxyinternet.service.UserService;
+import com.galaxyinternet.utils.AuthRequest;
 import com.galaxyinternet.utils.MessageStatus;
 
 @Service("com.galaxyinternet.service.UserService")
@@ -41,6 +43,8 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	private UserRoleService userRoleService;
 	@Autowired
 	private DepartmentService departmentService;
+	@Autowired
+	private AuthRequest authReq;
 
 
 	@Override
@@ -310,12 +314,10 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	}
 
 	@Override
-	@Transactional
 	public int updatePwd(User query) {
         if (query!=null && query.getId()!= null && query.getPassword()!=null) {
-        	// 加密
-    		query.setPassword(PWDUtils.genernateNewPassword(query.getPassword()));
-    		return super.updateById(query);
+        	AuthResult rtn = authReq.updatePwd(query.getId(), query.getPassword());
+    		return rtn.isSuccess() ? 1 : 0;
         } else {
         	return 0;
         }
@@ -361,4 +363,13 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		
 		return userDao.selectUserDetail(params);
 	}
+	public User queryById(Long id, boolean useAuth)
+	{
+		if(!useAuth)
+		{
+			return this.queryById(id);
+		}
+		return authReq.getUserById(id);
+	}
+	
 }

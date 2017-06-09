@@ -125,4 +125,7 @@ public interface UserService extends BaseService<User> {
 	 * @return
 	 */
 	public List<Map<String,Object>> queryUserDetail(Map<String,Object> params);
+	
+	
+	public User queryById(Long id, boolean useAuth);
 }

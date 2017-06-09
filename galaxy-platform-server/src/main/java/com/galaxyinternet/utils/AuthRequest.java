@@ -14,15 +14,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import com.galaxyinternet.framework.core.utils.PWDUtils;
-import com.galaxyinternet.model.auth.LoginResult;
+import com.galaxyinternet.model.auth.AuthResult;
+import com.galaxyinternet.model.auth.UserResult;
 import com.galaxyinternet.model.resource.PlatformResource;
+import com.galaxyinternet.model.user.User;
 
 public class AuthRequest {
 	
 	private String authURI;
 	private RestTemplate template = new RestTemplate();
 	
-	public LoginResult login(String userName, String password)
+	public UserResult login(String userName, String password)
 	{
 		String uri = authURI + "/login/userLogin";
 		Map<String, String> urlVariables = new HashMap<>();
@@ -35,8 +37,33 @@ public class AuthRequest {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity<Map<String, String>> request = new HttpEntity<>(urlVariables, headers);
-		ResponseEntity<LoginResult> rtn = template.postForEntity(uri, request, LoginResult.class);
+		ResponseEntity<UserResult> rtn = template.postForEntity(uri, request, UserResult.class);
 		return rtn.getBody();
+	}
+	public AuthResult updatePwd(Long uid, String password)
+	{
+		String uri = authURI + "/user/updatePwd";
+		Map<String, String> urlVariables = new HashMap<>();
+		urlVariables.put("userId", uid+"");
+		urlVariables.put("password", password);
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity<Map<String, String>> request = new HttpEntity<>(urlVariables, headers);
+		ResponseEntity<AuthResult> rtn = template.postForEntity(uri, request, AuthResult.class);
+		return rtn.getBody();
+	}
+	public User getUserById(Long id)
+	{
+		String uri = authURI + "/user/getUserById";
+		Map<String, String> urlVariables = new HashMap<>();
+		urlVariables.put("userId", id+"");
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity<Map<String, String>> request = new HttpEntity<>(urlVariables, headers);
+		ResponseEntity<UserResult> rtn = template.postForEntity(uri, request, UserResult.class);
+		return rtn.getBody().getValue();
 	}
 	
 	public List<PlatformResource> getResource(PlatformResource entity)

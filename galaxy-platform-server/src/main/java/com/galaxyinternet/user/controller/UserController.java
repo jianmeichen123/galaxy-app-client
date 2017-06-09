@@ -91,6 +91,14 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		
 		return"system/user/user_list";
 	}
+	@RequestMapping(value = "checkPwd")
+	@ResponseBody
+	public Map<String, Object> checkPwd(String password,HttpServletRequest request) 
+	{
+		Map<String, Object> rtn = new HashMap<>();
+		
+		return rtn;
+	}
 
 	/**
 	 * 重置密码 邮件通知
