@@ -80,7 +80,7 @@
 			
 				<!-- 数据库连接地址和数据库名 -->
 				<jdbc.url>
-					jdbc:mysql://10.9.11.232:3306/fx_db?createDatabaseIfNotExist=true&amp;amp;useUnicode=true&amp;amp;characterEncoding=utf8
+					jdbc:mysql://10.9.11.234:3306/fx_db?createDatabaseIfNotExist=true&amp;amp;useUnicode=true&amp;amp;characterEncoding=utf8
 				</jdbc.url>
 				<jdbc.username>fxuser</jdbc.username>
 				<jdbc.password>fxdb_Fp9EPkG2</jdbc.password>
@@ -180,7 +180,7 @@
 
 				<!-- <redis.url>101.200.78.14</redis.url> <redis.port>6379</redis.port> -->
 				<xinge.enviroment>2</xinge.enviroment>
-				<auth.uri>http://fx.galaxyinternet.com/authority_service</auth.uri>
+				<auth.uri>http://fx.dev.galaxyinternet.com/authority_service</auth.uri>
 			</properties>
 		</profile>
 		<profile>

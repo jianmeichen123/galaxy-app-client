@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -20,7 +22,7 @@ import com.galaxyinternet.model.resource.PlatformResource;
 import com.galaxyinternet.model.user.User;
 
 public class AuthRequest {
-	
+	private static final Logger logger = LoggerFactory.getLogger(AuthRequest.class);
 	private String authURI;
 	private RestTemplate template = new RestTemplate();
 	
@@ -33,7 +35,10 @@ public class AuthRequest {
 		urlVariables.put("userName", userName);
 		urlVariables.put("passWord", password);
 		urlVariables.put("productType", "0");
-
+		if(logger.isDebugEnabled())
+		{
+			logger.debug(String.format("Request URI:%s, Params:%s", uri, urlVariables));
+		}
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity<Map<String, String>> request = new HttpEntity<>(urlVariables, headers);
@@ -46,7 +51,10 @@ public class AuthRequest {
 		Map<String, String> urlVariables = new HashMap<>();
 		urlVariables.put("userId", uid+"");
 		urlVariables.put("password", password);
-
+		if(logger.isDebugEnabled())
+		{
+			logger.debug(String.format("Request URI:%s, Params:%s", uri, urlVariables));
+		}
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity<Map<String, String>> request = new HttpEntity<>(urlVariables, headers);
@@ -58,7 +66,10 @@ public class AuthRequest {
 		String uri = authURI + "/user/getUserById";
 		Map<String, String> urlVariables = new HashMap<>();
 		urlVariables.put("userId", id+"");
-
+		if(logger.isDebugEnabled())
+		{
+			logger.debug(String.format("Request URI:%s, Params:%s", uri, urlVariables));
+		}
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity<Map<String, String>> request = new HttpEntity<>(urlVariables, headers);
