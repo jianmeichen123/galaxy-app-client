@@ -36,7 +36,7 @@ public class UserRoleServiceImpl extends BaseServiceImpl<UserRole>implements Use
 
 	@Override
 	public List<Long> selectRoleIdByUserId(Long userId,String companyId) {
-		return authReq.selectRoleIdByUserId(userId, companyId);
+		return authReq.selectRoleCodeByUserId(userId);
 	}
 
 	@Override

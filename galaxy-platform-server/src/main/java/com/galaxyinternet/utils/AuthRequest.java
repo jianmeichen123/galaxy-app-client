@@ -100,6 +100,14 @@ public class AuthRequest {
 		return rtn.getBody();
 	}
 	
+	public List<Long> selectRoleCodeByUserId(Long userId)
+	{
+		String uri = authURI + "/role/selectRoleCodeByUserId?userId="+userId;
+		ParameterizedTypeReference<ArrayList<Long>> ref = new ParameterizedTypeReference<ArrayList<Long>>() {};  
+		ResponseEntity<ArrayList<Long>> rtn = template.exchange(uri, HttpMethod.GET, new HttpEntity<>(null), ref);
+		return rtn.getBody();
+	}
+	
 
 	public String getAuthURI() {
 		return authURI;
