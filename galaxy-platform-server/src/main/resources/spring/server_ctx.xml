@@ -36,5 +36,7 @@
 		</constructor-arg>
 		<constructor-arg index="2" ref="cache" />
 	</bean>
+	
+	<bean class="com.galaxyinternet.utils.AuthRequest" p:authURI="${auth.uri}"/>
 
 </beans>

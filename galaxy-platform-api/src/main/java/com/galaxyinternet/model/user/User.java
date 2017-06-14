@@ -48,6 +48,8 @@ public class User extends BaseUser {
 	
 	private boolean isCurrentUser;
 	
+	private String companyId;
+	
 	
 	private List<PlatformResource> allResourceToUser;
 	
@@ -288,6 +290,14 @@ public class User extends BaseUser {
 		if(this.id!=null){
 			this.idstr = this.id.longValue();
 		}else this.idstr = idstr;
+	}
+	
+	public String getCompanyId() {
+		return companyId;
+	}
+
+	public void setCompanyId(String companyId) {
+		this.companyId = companyId;
 	}
 
 	@Override
