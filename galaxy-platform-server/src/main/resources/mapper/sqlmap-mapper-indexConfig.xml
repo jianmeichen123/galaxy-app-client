@@ -144,7 +144,8 @@
 	<update id="updateByResourceId" parameterType="com.galaxyinternet.model.sopIndex.IndexConfig">
 		update platform_index_config set
 		   resource_id=null,
-		   content_url=null
+		   content_url=null,
+		   resource_code=null
 		   where resource_id = #{resourceId}
 	</update>
    
