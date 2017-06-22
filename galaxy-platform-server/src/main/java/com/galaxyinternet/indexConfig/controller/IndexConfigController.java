@@ -141,6 +141,27 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 		try {
 			Map<String,Object> params = new HashMap<String,Object>();
 			List<IndexConfigBo> configList = indexConfigService.queryConfigResource(params);
+			if(configList != null && configList.size() > 0)
+			{
+				
+				PlatformResource resQuery = new PlatformResource();
+				resQuery.setResourceType("5");//桌面组件
+				List<PlatformResource> resList = authReq.getResources(resQuery);
+				Map<String,String> codeNameMap = new HashMap<>();
+				if(resList != null && resList.size() > 0)
+				{
+					for(PlatformResource item : resList)
+					{
+						codeNameMap.put(item.getResourceMark(), item.getResourceName());
+					}
+				}
+				
+				for(IndexConfigBo bo : configList)
+				{
+					bo.setResourceName(codeNameMap.get(bo.getResourceCode()));
+				}
+			}
+			
 			responseBody.setEntityList(configList);
 			responseBody.setResult(new Result(Status.OK, ""));
 		} catch (Exception e) {
