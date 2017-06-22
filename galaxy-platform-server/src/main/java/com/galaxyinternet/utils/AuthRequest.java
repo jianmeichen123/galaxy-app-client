@@ -77,9 +77,16 @@ public class AuthRequest {
 		return rtn.getBody().getValue();
 	}
 	
-	public List<PlatformResource> getResource(PlatformResource entity)
+	public List<PlatformResource> getUserResource(PlatformResource entity)
 	{
 		String uri = authURI + "/user/getUserResource";
+		ParameterizedTypeReference<ArrayList<PlatformResource>> ref = new ParameterizedTypeReference<ArrayList<PlatformResource>>() {};  
+		ResponseEntity<ArrayList<PlatformResource>> rtn = template.exchange(uri, HttpMethod.POST, new HttpEntity<>(entity), ref);
+		return rtn.getBody();
+	}
+	public List<PlatformResource> getResources(PlatformResource entity)
+	{
+		String uri = authURI + "/user/getResources";
 		ParameterizedTypeReference<ArrayList<PlatformResource>> ref = new ParameterizedTypeReference<ArrayList<PlatformResource>>() {};  
 		ResponseEntity<ArrayList<PlatformResource>> rtn = template.exchange(uri, HttpMethod.POST, new HttpEntity<>(entity), ref);
 		return rtn.getBody();

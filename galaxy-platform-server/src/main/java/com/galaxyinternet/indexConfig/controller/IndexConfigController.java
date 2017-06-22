@@ -2,6 +2,7 @@ package com.galaxyinternet.indexConfig.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +30,7 @@ import com.galaxyinternet.model.resource.PlatformResource;
 import com.galaxyinternet.model.sopIndex.IndexConfig;
 import com.galaxyinternet.service.IndexConfigService;
 import com.galaxyinternet.service.ResourceService;
+import com.galaxyinternet.utils.AuthRequest;
 
 @Controller
 @RequestMapping("/galaxy/indexConfig")
@@ -44,6 +46,9 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 	
 	@Autowired
 	com.galaxyinternet.framework.cache.Cache cache;
+	
+	@Autowired
+	AuthRequest authReq;
 	
 	@Override
 	protected BaseService<IndexConfig> getBaseService() {
@@ -82,18 +87,36 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 			@PathVariable("roleOrUser") String roleOrUser, @PathVariable("id") Long id) {
 		ResponseData<IndexConfigBo> responseBody = new ResponseData<IndexConfigBo>();
 		try {
-			Map<String,Object> params = new HashMap<String,Object>();
-			if(roleOrUser != null && !roleOrUser.equals("null")){
-				if(roleOrUser.equals("user")){
-					params.put("userId", id);
-				}else if(roleOrUser.equals("role")){
-					params.put("roleId", id);
+			List<IndexConfigBo> configList = new ArrayList<>();
+			//已选择模块
+			List<IndexConfig> list = indexConfigService.queryAll();
+			Map<String,String> resCodes = new HashMap<>();
+			for(IndexConfig item : list)
+			{
+				if(item.getResourceCode() != null)
+				{
+					resCodes.put(item.getResourceCode(), item.getResourceCode());
 				}
 			}
-			params.put("indexDivConfig", 1);	
-			params.put("resourceIdNullFilter", true);	
-			List<IndexConfigBo> configList = indexConfigService.queryAvailableConfig(params);
-			
+			PlatformResource resQuery = new PlatformResource();
+			resQuery.setResourceType("5");//桌面组件
+			List<PlatformResource> resList = authReq.getResources(resQuery);
+			if(resList != null && resList.size() > 0)
+			{
+				for(PlatformResource item : resList)
+				{
+					if(resCodes.containsKey(item.getResourceMark()))
+					{
+						continue;
+					}
+					IndexConfigBo bo = new IndexConfigBo();
+					bo.setResourceId(item.getId());
+					bo.setResourceMark(item.getResourceMark());
+					bo.setResourceName(item.getResourceName());
+					bo.setContentUrl(item.getResourceUrl());
+					configList.add(bo);
+				}
+			}
 			responseBody.setEntityList(configList);
 			responseBody.setResult(new Result(Status.OK, ""));
 		} catch (Exception e) {
@@ -189,9 +212,6 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 		ResponseData<IndexConfig> responseBody = new ResponseData<IndexConfig>();
 		try {
 			//根据资源id查询资源的详细信息
-			 PlatformResource resource = resourceService.queryById(indexConfig.getResourceId());
-			 String product = StringUtils.isNotEmpty(resource.getProductMark()) ? resource.getProductMark()+"/" : "" ;
-			 indexConfig.setContentUrl(product+resource.getResourceUrl());
 			 int insert = indexConfigService.updateById(indexConfig);
 			 if(insert>0){
 				 responseBody.setResult(new Result(Status.OK, "保存成功"));

@@ -41,7 +41,7 @@ public class ResourceServiceImpl extends BaseServiceImpl<PlatformResource> imple
 		query.setResourceType("1");
 		query.setProductType("0");
 		query.setCompanyId(companyId);
-		List<PlatformResource> list = authReq.getResource(query);
+		List<PlatformResource> list = authReq.getUserResource(query);
 		if(list != null && list.size()>0)
 		{
 			Collections.sort(list, new Comparator<PlatformResource>(){

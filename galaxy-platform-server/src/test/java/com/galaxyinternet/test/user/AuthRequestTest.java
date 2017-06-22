@@ -45,7 +45,7 @@ public class AuthRequestTest {
 		query.setResourceType("1");
 		query.setCompanyId("1");
 		
-		List<PlatformResource> list = request.getResource(query);
+		List<PlatformResource> list = request.getUserResource(query);
 		System.err.println(list);
 	}
 	

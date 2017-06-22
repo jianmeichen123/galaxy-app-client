@@ -24,6 +24,8 @@ public class IndexConfig extends PagableEntity{
     private Long updatedUid;
 
     private Long createdUid;
+    
+    private String resourceCode;
 
 
 
@@ -104,6 +106,16 @@ public class IndexConfig extends PagableEntity{
     @Override
 	public String toString() {
 		return GSONUtil.toJson(this);
+	}
+
+	public String getResourceCode()
+	{
+		return resourceCode;
+	}
+
+	public void setResourceCode(String resourceCode)
+	{
+		this.resourceCode = resourceCode;
 	}
     
     
