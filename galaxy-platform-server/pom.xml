@@ -211,6 +211,7 @@
 				<galaxy.project.report.endpoint>http://fx.qa.galaxyinternet.com/report/</galaxy.project.report.endpoint>
 				<galaxy.project.platform.endpoint>http://fx.qa.galaxyinternet.com/platform/</galaxy.project.platform.endpoint>
 				<xinge.enviroment>2</xinge.enviroment>
+				<auth.uri>http://fx.qa.galaxyinternet.com/authority_service</auth.uri>
 			</properties>
 		</profile>
 		<profile>
