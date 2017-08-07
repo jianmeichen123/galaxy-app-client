@@ -11,6 +11,7 @@ import com.galaxyinternet.framework.core.dao.BaseDao;
 import com.galaxyinternet.framework.core.service.impl.BaseServiceImpl;
 import com.galaxyinternet.model.user.UserRole;
 import com.galaxyinternet.service.UserRoleService;
+import com.galaxyinternet.utils.AuthRequest;
 
 @Service("com.galaxyinternet.service.UserRoleService")
 public class UserRoleServiceImpl extends BaseServiceImpl<UserRole>implements UserRoleService {
@@ -18,15 +19,24 @@ public class UserRoleServiceImpl extends BaseServiceImpl<UserRole>implements Use
 
 	@Autowired
 	private UserRoleDao userRoleDao;
+	@Autowired
+	private AuthRequest authReq;
 
 	@Override
 	protected BaseDao<UserRole, Long> getBaseDao() {
 		return this.userRoleDao;
 	}
 
+	
 	@Override
 	public List<Long> selectRoleIdByUserId(Long userID) {
-		return userRoleDao.selectRoleIdByUserId(userID);
+		return selectRoleIdByUserId(userID,"1");
+	}
+
+
+	@Override
+	public List<Long> selectRoleIdByUserId(Long userId,String companyId) {
+		return authReq.selectRoleCodeByUserId(userId);
 	}
 
 	@Override

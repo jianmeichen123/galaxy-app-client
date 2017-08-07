@@ -15,6 +15,7 @@
     <result column="updated_uid" property="updatedUid" jdbcType="BIGINT" />
     <result column="created_uid" property="createdUid" jdbcType="BIGINT" />
     <result column="created_time" property="createdTime" jdbcType="BIGINT" />
+    <result column="resource_code" property="resourceCode" jdbcType="VARCHAR" />
     
     <result column="resource_mark" property="resourceMark" jdbcType="VARCHAR" />
     <result column="resource_name" property="resourceName" jdbcType="VARCHAR" />
@@ -23,7 +24,7 @@
   
   <sql id="Base_Column_List" >
     id, user_id, role_id, resource_id, content_url, config_order, style_css, shape_type, 
-    updated_time, updated_uid, created_uid, created_time
+    updated_time, updated_uid, created_uid, created_time,resource_code
   </sql>
   
   
@@ -89,12 +90,12 @@
 	<insert id="insert" useGeneratedKeys="true" keyProperty="id"  parameterType="com.galaxyinternet.model.sopIndex.IndexConfig" >
 	 <![CDATA[
 	  insert into platform_index_config (
-	  	id, user_id, role_id,resource_id, content_url, config_order,style_css, shape_type, updated_time,updated_uid, created_uid, created_time
+	  	id, user_id, role_id,resource_id, content_url, config_order,style_css, shape_type, updated_time,updated_uid, created_uid, created_time,resource_code
 	    )
 	  values (
 	  	#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT},#{resourceId,jdbcType=BIGINT}, 
 	  	#{contentUrl,jdbcType=VARCHAR}, #{configOrder,jdbcType=TINYINT},#{styleCss,jdbcType=VARCHAR}, #{shapeType,jdbcType=TINYINT},
-	  	#{updatedTime,jdbcType=BIGINT},#{updatedUid,jdbcType=BIGINT}, #{createdUid,jdbcType=BIGINT}, #{createdTime,jdbcType=BIGINT}
+	  	#{updatedTime,jdbcType=BIGINT},#{updatedUid,jdbcType=BIGINT}, #{createdUid,jdbcType=BIGINT}, #{createdTime,jdbcType=BIGINT},#{resourceCode,jdbcType=VARCHAR}
 	    )
 	]]>
 	</insert>
@@ -114,7 +115,8 @@
 			<if test="updatedTime != null" > updated_time = #{updatedTime,jdbcType=BIGINT}, </if>
 			<if test="updatedUid != null" > updated_uid = #{updatedUid,jdbcType=BIGINT}, </if>
 			<if test="createdUid != null" > created_uid = #{createdUid,jdbcType=BIGINT}, </if>
-			<if test="createdTime != null" > created_time = #{createdTime,jdbcType=BIGINT} </if>
+			<if test="createdTime != null" > created_time = #{createdTime,jdbcType=BIGINT}, </if>
+			<if test="resourceCode != null" > resource_code = #{resourceCode,jdbcType=VARCHAR} </if>
 		</set>
 		where id = #{id}
 	</update>
@@ -134,6 +136,7 @@
 			<if test="updatedUid != null" > updated_uid = #{updatedUid,jdbcType=BIGINT}, </if>
 			<if test="createdUid != null" > created_uid = #{createdUid,jdbcType=BIGINT}, </if>
 			<if test="createdTime != null" > created_time = #{createdTime,jdbcType=BIGINT} </if>
+			<if test="resourceCode != null" > resource_code = #{resourceCode,jdbcType=VARCHAR} </if>
 		</set>
 		where id = #{id}
 	</update>
@@ -141,7 +144,8 @@
 	<update id="updateByResourceId" parameterType="com.galaxyinternet.model.sopIndex.IndexConfig">
 		update platform_index_config set
 		   resource_id=null,
-		   content_url=null
+		   content_url=null,
+		   resource_code=null
 		   where resource_id = #{resourceId}
 	</update>
    

@@ -21,7 +21,7 @@ function setRadioResource(data){
 	var entityList = data.entityList;
 	if(entityList.length != 0 ){
 		for(var i=0;i<data.entityList.length;i++){
-	    	$("#resourceIdS").append("<label><input type='radio' name='resource' value='"+data.entityList[i].resourceId+"' />"+data.entityList[i].resourceName)+"</label>";
+	    	$("#resourceIdS").append("<label><input type='radio' name='resource' value='"+data.entityList[i].resourceId+"' data-code='"+data.entityList[i].resourceMark+"' data-url='"+data.entityList[i].contentUrl+"'/>"+data.entityList[i].resourceName)+"</label>";
 	    } 
 	}
 }
@@ -75,10 +75,15 @@ function configChange_2(){
  * 获取页面配置模版 的值
  */
 function model_result(id,configOrder){
-	var valu=$('#resourceIdS input[name="resource"]:checked ').val();
+	var item = $('#resourceIdS input[name="resource"]:checked ');
+	var valu=item.val();
+	var code = item.data('code')
+	var url = item.data('url');
 	var data={
 			"id":id,
-			"resourceId":valu
+			"resourceId":valu,
+			"resourceCode": code,
+			"contentUrl":url
 	}
 	return data;
 }

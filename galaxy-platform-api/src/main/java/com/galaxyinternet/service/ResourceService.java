@@ -13,5 +13,5 @@ public interface ResourceService extends BaseService<PlatformResource> {
 	 */
 	List<PlatformResource> queryResourceListToUser(Long uid);
 	
-	public List<PlatformResource> queryUserMenus(Long userId, Long parentId);
+	public List<PlatformResource> queryUserMenus(Long userId, Long parentId, String companyId);
 }

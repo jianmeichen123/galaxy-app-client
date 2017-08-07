@@ -18,6 +18,7 @@ public interface UserRoleService extends BaseService<UserRole> {
 	 * @return
 	 */
 	List<Long> selectRoleIdByUserId(Long userID);
+	List<Long> selectRoleIdByUserId(Long userID, String companyId);
 
 	long insertUserRole(UserRole userRole);
 	
