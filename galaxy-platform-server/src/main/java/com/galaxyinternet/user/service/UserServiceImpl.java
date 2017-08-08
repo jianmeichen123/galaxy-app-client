@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.galaxyinternet.bo.UserBo;
 import com.galaxyinternet.dao.user.UserDao;
+import com.galaxyinternet.framework.cache.Cache;
 import com.galaxyinternet.framework.core.constants.UserConstant;
 import com.galaxyinternet.framework.core.dao.BaseDao;
 import com.galaxyinternet.framework.core.model.Page;
@@ -23,6 +26,7 @@ import com.galaxyinternet.model.department.Department;
 import com.galaxyinternet.model.role.Role;
 import com.galaxyinternet.model.user.User;
 import com.galaxyinternet.model.user.UserRole;
+import com.galaxyinternet.platform.constant.PlatformConst;
 import com.galaxyinternet.service.DepartmentService;
 import com.galaxyinternet.service.RoleService;
 import com.galaxyinternet.service.UserRoleService;
@@ -45,6 +49,8 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	private DepartmentService departmentService;
 	@Autowired
 	private AuthRequest authReq;
+	@Autowired
+	private Cache cache;
 
 
 	@Override
@@ -371,5 +377,16 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		}
 		return authReq.getUserById(id);
 	}
-	
+	@PostConstruct
+	public void initCache()
+	{
+		List<User> list = queryAll();
+		if(list != null && list.size() >0)
+		{
+			for(User user : list)
+			{
+				cache.hset(PlatformConst.CACHE_PREFIX_USER+user.getId(), "realName", user.getRealName());
+			}
+		}
+	}
 }
