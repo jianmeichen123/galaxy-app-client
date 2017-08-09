@@ -211,6 +211,7 @@
 				<galaxy.project.report.endpoint>http://fx.qa.galaxyinternet.com/report/</galaxy.project.report.endpoint>
 				<galaxy.project.platform.endpoint>http://fx.qa.galaxyinternet.com/platform/</galaxy.project.platform.endpoint>
 				<xinge.enviroment>2</xinge.enviroment>
+				<auth.uri>http://fx.qa.galaxyinternet.com/authority_service</auth.uri>
 			</properties>
 		</profile>
 		<profile>
@@ -455,11 +456,6 @@
 			<groupId>org.javassist</groupId>
 			<artifactId>javassist</artifactId>
 			<version>3.16.1-GA</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.zookeeper</groupId>
-			<artifactId>zookeeper</artifactId>
-			<version>3.3.3</version>
 		</dependency>
 		<dependency>
 			<groupId>com.github.sgroschupf</groupId>
