@@ -227,11 +227,7 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		}
 		Result jsonResult = new Result();
 		try {
-			if (user.getId() != null) {
-				retValue = userService.updateUser(user);
-				jsonResult.setStatus(Status.OK);
-				
-			} else {
+	
 				String oriPwd = PWDUtils.genRandomNum(6);
 				user.setOriginPassword(oriPwd);
 				// 加密
@@ -243,9 +239,9 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 				String str = MailTemplateUtils.getContentByTemplate(Constants.MAIL_INITIALPWD_CONTENT);
 				String content = PlaceholderConfigurer.formatText(str, user.getRealName(),user.getEmail(),oriPwd,this.getLoginUrl(),this.getLoginUrl());
 			
-				String subject = "新用户注册通知";// 邮件主题
-				bl = SimpleMailSender.sendHtmlMail(toMail, subject, content);
-			}
+			/*	String subject = "新用户注册通知";// 邮件主题
+				bl = SimpleMailSender.sendHtmlMail(toMail, subject, content);*/
+			
 			
 		} catch (PlatformException e) {
 
@@ -256,9 +252,6 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 		
 		 if (retValue < 1) {
 			 jsonResult.addError("新增用户失败");
-				responseBody.setResult(jsonResult);
-			} else if (retValue > 0 && bl== false ) {
-				jsonResult.addError("邮件发送失败");
 				responseBody.setResult(jsonResult);
 			} else {
 				jsonResult.addOK(user);
