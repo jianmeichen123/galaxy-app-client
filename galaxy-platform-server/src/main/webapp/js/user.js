@@ -286,9 +286,9 @@ function doSumbit() {
 							json['birthStr'] = $("#birth").val();
 						}
 						delete json['birth'];
-						if (json['id'] == "") {
+						/*if (json['id'] == "") {
 							delete json['id'];
-						}
+						}*/
 						$.ajax({
 							url : platformUrl.addUser,
 							data : JSON.stringify(json),
