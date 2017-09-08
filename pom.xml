@@ -5,8 +5,7 @@
 	<artifactId>galaxy-platform</artifactId>
 	<packaging>pom</packaging>
 	<name />
-	<version>1.0.0-fz</version>
-	
+	<version>1.0.1</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<eclipse.useProjectReferences>false</eclipse.useProjectReferences>
