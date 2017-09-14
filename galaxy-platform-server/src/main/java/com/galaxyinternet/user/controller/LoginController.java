@@ -1,7 +1,5 @@
 package com.galaxyinternet.user.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
@@ -25,10 +23,8 @@ import com.galaxyinternet.framework.core.model.Result.Status;
 import com.galaxyinternet.framework.core.service.BaseService;
 import com.galaxyinternet.framework.core.utils.SessionUtils;
 import com.galaxyinternet.model.auth.UserResult;
-import com.galaxyinternet.model.resource.PlatformResource;
 import com.galaxyinternet.model.role.Role;
 import com.galaxyinternet.model.user.User;
-import com.galaxyinternet.service.ResourceService;
 import com.galaxyinternet.service.UserService;
 import com.galaxyinternet.utils.AuthRequest;
 
@@ -38,8 +34,6 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 	final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private ResourceService resourceService;
 
 	@Autowired
 	com.galaxyinternet.framework.cache.Cache cache;
