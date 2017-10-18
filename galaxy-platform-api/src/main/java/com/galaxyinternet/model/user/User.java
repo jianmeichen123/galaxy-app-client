@@ -72,6 +72,7 @@ public class User extends BaseUser {
 
 	@NotNull(message="角色不能为空")
 	private Long roleId;// 角色Id
+	private List<Long> roleIds;
 
 	private List<Long> ids;
 	private String nameMbLike;
@@ -298,6 +299,16 @@ public class User extends BaseUser {
 
 	public void setCompanyId(String companyId) {
 		this.companyId = companyId;
+	}
+
+	public List<Long> getRoleIds()
+	{
+		return roleIds;
+	}
+
+	public void setRoleIds(List<Long> roleIds)
+	{
+		this.roleIds = roleIds;
 	}
 
 	@Override
