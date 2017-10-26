@@ -1,5 +1,9 @@
 package com.galaxyinternet.user.controller;
 
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
@@ -25,6 +29,8 @@ import com.galaxyinternet.framework.core.utils.SessionUtils;
 import com.galaxyinternet.model.auth.UserResult;
 import com.galaxyinternet.model.role.Role;
 import com.galaxyinternet.model.user.User;
+import com.galaxyinternet.model.user.UserLoginHis;
+import com.galaxyinternet.service.UserLoginHisService;
 import com.galaxyinternet.service.UserService;
 import com.galaxyinternet.utils.AuthRequest;
 
@@ -34,7 +40,8 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 	final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	@Autowired
 	private UserService userService;
-
+	@Autowired
+	private UserLoginHisService userLoginHisService;
 	@Autowired
 	com.galaxyinternet.framework.cache.Cache cache;
 	@Autowired
@@ -64,7 +71,7 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 		ResponseData<User> responsebody = new ResponseData<User>();
 		String email = user.getEmail();
 		String password = user.getPassword();
-
+		String aclient=user.getAclient();
 		if (StringUtils.isBlank(email) || StringUtils.isBlank(password)) {
 			responsebody.setResult(new Result(Status.ERROR, Constants.IS_UP_EMPTY, "用户名或密码不能为空！"));
 			return responsebody;
@@ -100,6 +107,29 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 		user.setGender(null);
 		responsebody.setEntity(user);
 		responsebody.setResult(new Result(Status.OK, Constants.OPTION_SUCCESS, "登录成功！"));
+		UserLoginHis userLogonHis = new UserLoginHis();	
+		User query=new User();
+		query.setId(user.getId());
+		User userOne = userService.queryOne(query);
+		Date date = new Date();       
+	    Timestamp initdate = new Timestamp(date.getTime()); 
+		userLogonHis.setUserId(user.getId());
+		userLogonHis.setLoginDate(date);
+		userLogonHis.setAccessClient("PC");
+		userLogonHis.setAndroidClient(aclient);
+		 List<UserLoginHis> selectUserLogonHis = userLoginHisService.selectUserLogonHis(userLogonHis);
+		if(null!=selectUserLogonHis&&selectUserLogonHis.size()>0){
+			UserLoginHis queryOne=selectUserLogonHis.get(0);
+			Integer logonTimes = queryOne.getLogonTimes();
+			queryOne.setLogonTimes(logonTimes+1);
+			queryOne.setInitLogonTime(initdate);
+			userLoginHisService.updateUserLogonHis(queryOne);
+		}else{
+			userLogonHis.setLogonTimes(1);
+			userLogonHis.setInitLogonTime(initdate);
+			userLogonHis.setNickName(userOne.getNickName());
+			userLoginHisService.insertUserLogonHis(userLogonHis);
+		}
 		logger.info("Login success{userId:" + user.getId() + ", email:" + user.getEmail() + ", userRealName:" + user.getRealName() + "}");
 		return responsebody;
 	}

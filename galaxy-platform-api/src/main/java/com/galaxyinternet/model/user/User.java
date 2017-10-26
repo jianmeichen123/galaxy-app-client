@@ -50,7 +50,7 @@ public class User extends BaseUser {
 	
 	private String companyId;
 	
-	
+	private String aclient;
 	private List<PlatformResource> allResourceToUser;
 	
 	private long idstr;
@@ -309,6 +309,16 @@ public class User extends BaseUser {
 	public void setRoleIds(List<Long> roleIds)
 	{
 		this.roleIds = roleIds;
+	}
+	
+	
+
+	public String getAclient() {
+		return aclient;
+	}
+
+	public void setAclient(String aclient) {
+		this.aclient = aclient;
 	}
 
 	@Override

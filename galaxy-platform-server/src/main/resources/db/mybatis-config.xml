@@ -5,6 +5,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="UserPO" type="com.galaxyinternet.model.user.User" />
+		<typeAlias alias="userLogonHis" type="com.galaxyinternet.model.user.UserLoginHis" />
 		<typeAlias alias="DictPO" type="com.galaxyinternet.model.dict.Dict" />
 		<typeAlias alias="Role" type="com.galaxyinternet.model.role.Role" />
 		<typeAlias alias="Department" type="com.galaxyinternet.model.department.Department" />
