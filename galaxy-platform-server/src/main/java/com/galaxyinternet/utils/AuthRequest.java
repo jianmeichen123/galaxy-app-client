@@ -124,6 +124,5 @@ public class AuthRequest {
 		this.authURI = authURI;
 	}
 	
-	
 
 }

@@ -26,14 +26,15 @@ import com.galaxyinternet.framework.core.model.Result;
 import com.galaxyinternet.framework.core.model.Result.Status;
 import com.galaxyinternet.framework.core.service.BaseService;
 import com.galaxyinternet.framework.core.utils.DateUtil;
+import com.galaxyinternet.framework.core.utils.HttpUtils;
 import com.galaxyinternet.framework.core.utils.SessionUtils;
 import com.galaxyinternet.model.auth.UserResult;
 import com.galaxyinternet.model.role.Role;
 import com.galaxyinternet.model.user.User;
-import com.galaxyinternet.service.BuryPointService;
 import com.galaxyinternet.service.UserLoginHisService;
 import com.galaxyinternet.service.UserService;
 import com.galaxyinternet.utils.AuthRequest;
+import com.galaxyinternet.utils.BuryRequest;
 
 @Controller
 @RequestMapping("/galaxy/userlogin")
@@ -48,7 +49,7 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 	@Autowired
 	private AuthRequest authReq;
 	@Autowired
-	private BuryPointService buryPointService;
+	private BuryRequest buryRequest;
 
 	@Override
 	protected BaseService<User> getBaseService() {
@@ -111,6 +112,7 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 		responsebody.setEntity(user);
 		responsebody.setResult(new Result(Status.OK, Constants.OPTION_SUCCESS, "登录成功！"));
 		Date date=new Date();
+		String burySaveUrl = buryRequest.burySave("/bury/save");
 		long dateTime=DateUtil.dateToLong(date);
 		Map<String,String> params=new HashMap<String,String>();
 		params.put("pCode", "93");
@@ -118,9 +120,13 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 		params.put("recordDate", dateTime+"");
 		params.put("os", "1");
 		params.put("osVersion",aclient);
-		params.put("osType", "0");
+		params.put("osType", "");
 		params.put("hardware", "");
-		buryPointService.HttpClientburyPoint(params,request);
+		params.put("sessionId", user.getSessionId());
+		params.put("userId", user.getId().toString());
+		String urlEncode="application/json; charset=utf-8";
+		String httpPost = HttpUtils.httpPost(burySaveUrl, params, urlEncode);
+	
 		
 		/**
 		 * zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
