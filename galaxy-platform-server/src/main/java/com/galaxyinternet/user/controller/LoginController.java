@@ -1,8 +1,8 @@
 package com.galaxyinternet.user.controller;
 
-import java.sql.Timestamp;
 import java.util.Date;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,11 +25,12 @@ import com.galaxyinternet.framework.core.model.ResponseData;
 import com.galaxyinternet.framework.core.model.Result;
 import com.galaxyinternet.framework.core.model.Result.Status;
 import com.galaxyinternet.framework.core.service.BaseService;
+import com.galaxyinternet.framework.core.utils.DateUtil;
 import com.galaxyinternet.framework.core.utils.SessionUtils;
 import com.galaxyinternet.model.auth.UserResult;
 import com.galaxyinternet.model.role.Role;
 import com.galaxyinternet.model.user.User;
-import com.galaxyinternet.model.user.UserLoginHis;
+import com.galaxyinternet.service.BuryPointService;
 import com.galaxyinternet.service.UserLoginHisService;
 import com.galaxyinternet.service.UserService;
 import com.galaxyinternet.utils.AuthRequest;
@@ -46,6 +47,8 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 	com.galaxyinternet.framework.cache.Cache cache;
 	@Autowired
 	private AuthRequest authReq;
+	@Autowired
+	private BuryPointService buryPointService;
 
 	@Override
 	protected BaseService<User> getBaseService() {
@@ -107,7 +110,22 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 		user.setGender(null);
 		responsebody.setEntity(user);
 		responsebody.setResult(new Result(Status.OK, Constants.OPTION_SUCCESS, "登录成功！"));
-		UserLoginHis userLogonHis = new UserLoginHis();	
+		Date date=new Date();
+		long dateTime=DateUtil.dateToLong(date);
+		Map<String,String> params=new HashMap<String,String>();
+		params.put("pCode", "93");
+		params.put("userId", user.getId().toString());
+		params.put("recordDate", dateTime+"");
+		params.put("os", "1");
+		params.put("osVersion",aclient);
+		params.put("osType", "0");
+		params.put("hardware", "");
+		buryPointService.HttpClientburyPoint(params,request);
+		
+		/**
+		 * zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+		 */
+		/**UserLoginHis userLogonHis = new UserLoginHis();	
 		User query=new User();
 		query.setId(user.getId());
 		User userOne = userService.queryOne(query);
@@ -129,7 +147,11 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 			userLogonHis.setInitLogonTime(initdate);
 			userLogonHis.setNickName(userOne.getNickName());
 			userLoginHisService.insertUserLogonHis(userLogonHis);
-		}
+		}*/
+		
+		/**
+		 * zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+		 */
 		logger.info("Login success{userId:" + user.getId() + ", email:" + user.getEmail() + ", userRealName:" + user.getRealName() + "}");
 		return responsebody;
 	}
