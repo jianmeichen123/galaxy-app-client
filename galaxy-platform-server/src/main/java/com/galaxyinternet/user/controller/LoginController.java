@@ -112,7 +112,6 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 		responsebody.setEntity(user);
 		responsebody.setResult(new Result(Status.OK, Constants.OPTION_SUCCESS, "登录成功！"));
 		Date date=new Date();
-		String burySaveUrl = buryRequest.burySave("/bury/save");
 		long dateTime=DateUtil.dateToLong(date);
 		Map<String,String> params=new HashMap<String,String>();
 		params.put("pCode", "93");
@@ -125,8 +124,8 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 		params.put("sessionId", user.getSessionId());
 		params.put("userId", user.getId().toString());
 		String urlEncode="application/json; charset=utf-8";
-		buryRequest.burySave(params,urlEncode);
-		String httpPost = HttpUtils.httpPost(burySaveUrl, params, urlEncode);
+		buryRequest.burySave(params);
+	//	String httpPost = HttpUtils.httpPost(burySaveUrl, params, urlEncode);
 	
 		
 		/**
