@@ -39,6 +39,6 @@
 	</bean>
 	
 	<bean class="com.galaxyinternet.utils.AuthRequest" p:authURI="${auth.uri}"/>
-	<bean class="com.galaxyinternet.utils.BuryRequest" p:burySaveUrl="${buryPoint.softWare.vesion}"/>
+	<bean class="com.galaxyinternet.framework.core.utils.BuryRequest" p:burySaveUrl="${galaxy.project.bury.endpoint}"/>
 
 </beans>

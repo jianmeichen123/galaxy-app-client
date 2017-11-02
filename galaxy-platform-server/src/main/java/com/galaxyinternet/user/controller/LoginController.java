@@ -25,6 +25,7 @@ import com.galaxyinternet.framework.core.model.ResponseData;
 import com.galaxyinternet.framework.core.model.Result;
 import com.galaxyinternet.framework.core.model.Result.Status;
 import com.galaxyinternet.framework.core.service.BaseService;
+import com.galaxyinternet.framework.core.utils.BuryRequest;
 import com.galaxyinternet.framework.core.utils.DateUtil;
 import com.galaxyinternet.framework.core.utils.HttpUtils;
 import com.galaxyinternet.framework.core.utils.SessionUtils;
@@ -34,7 +35,6 @@ import com.galaxyinternet.model.user.User;
 import com.galaxyinternet.service.UserLoginHisService;
 import com.galaxyinternet.service.UserService;
 import com.galaxyinternet.utils.AuthRequest;
-import com.galaxyinternet.utils.BuryRequest;
 
 @Controller
 @RequestMapping("/galaxy/userlogin")
@@ -125,6 +125,7 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 		params.put("sessionId", user.getSessionId());
 		params.put("userId", user.getId().toString());
 		String urlEncode="application/json; charset=utf-8";
+		buryRequest.burySave(params,urlEncode);
 		String httpPost = HttpUtils.httpPost(burySaveUrl, params, urlEncode);
 	
 		

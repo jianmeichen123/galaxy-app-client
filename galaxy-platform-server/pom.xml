@@ -99,7 +99,7 @@
 				<galaxy.project.platform.endpoint>http://fx.local.galaxyinternet.com/platform/</galaxy.project.platform.endpoint>
 				<xinge.enviroment>2</xinge.enviroment>
 				<auth.uri>http://fx.dev.galaxyinternet.com/authority_service</auth.uri>
-				<buryPoint.softWare.vesion>http://fx.dev.galaxyinternet.com/bury</buryPoint.softWare.vesion>
+				<galaxy.project.bury.endpoint>http://fx.dev.galaxyinternet.com/bury</galaxy.project.bury.endpoint>
 				
 			</properties>
 		</profile>
@@ -143,7 +143,7 @@
 				<!-- <redis.url>101.200.78.14</redis.url> <redis.port>6379</redis.port> -->
 				<xinge.enviroment>2</xinge.enviroment>
 				<auth.uri>http://fx.dev.galaxyinternet.com/authority_service</auth.uri>
-				<buryPoint.softWare.vesion>http://fx.dev.galaxyinternet.com/bury</buryPoint.softWare.vesion>
+				<galaxy.project.bury.endpoint>http://fx.dev.galaxyinternet.com/bury</galaxy.project.bury.endpoint>
 			</properties>
 		</profile>
 		<profile>
@@ -185,7 +185,7 @@
 				<!-- <redis.url>101.200.78.14</redis.url> <redis.port>6379</redis.port> -->
 				<xinge.enviroment>2</xinge.enviroment>
 				<auth.uri>http://fx.dev.galaxyinternet.com/authority_service</auth.uri>
-				<buryPoint.softWare.vesion>http://fx.dev.galaxyinternet.com/bury</buryPoint.softWare.vesion>
+				<galaxy.project.bury.endpoint>http://fx.dev.galaxyinternet.com/bury</galaxy.project.bury.endpoint>
 			</properties>
 		</profile>
 		<profile>
