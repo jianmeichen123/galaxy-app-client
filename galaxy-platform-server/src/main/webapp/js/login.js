@@ -34,7 +34,7 @@ function checkform(){
 		 var b = new Base64();  
 	     var email = b.encode($("#email").val());  
 	     var password = b.encode($("#password").val());  
-	     var aclient=myBrowser();
+	     var aclient=judgeBrower();
 	     var jsonData={"email":email,"password":password,"aclient":myBrowser(aclient)};
 	     
 		 /*if(autologin){

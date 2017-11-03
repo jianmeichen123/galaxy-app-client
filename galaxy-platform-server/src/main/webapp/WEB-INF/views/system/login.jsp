@@ -52,6 +52,7 @@
 	<script type="text/javascript" src="js/layer/layer.js"></script>
 	<script type="text/javascript" src="js/jquery.cookie.js"></script>
 	<script type="text/javascript" src="js/login.js"></script>
+	<script type="text/javascript" src="js/buryPoint.js"></script>
 <!-- 	<script type="text/javascript">
 		getBrowserVersion();
 		function getBrowserVersion(){      

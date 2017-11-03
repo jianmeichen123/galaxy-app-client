@@ -1,7 +1,9 @@
 package com.galaxyinternet.user.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +22,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.galaxyinternet.bo.UserBo;
 import com.galaxyinternet.common.controller.BaseControllerImpl;
 import com.galaxyinternet.framework.core.constants.Constants;
+import com.galaxyinternet.framework.core.model.BuryPoint;
+import com.galaxyinternet.framework.core.model.BuryPointEntity;
 import com.galaxyinternet.framework.core.model.Header;
 import com.galaxyinternet.framework.core.model.ResponseData;
 import com.galaxyinternet.framework.core.model.Result;
@@ -113,7 +117,21 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 		responsebody.setResult(new Result(Status.OK, Constants.OPTION_SUCCESS, "登录成功！"));
 		Date date=new Date();
 		long dateTime=DateUtil.dateToLong(date);
-		Map<String,String> params=new HashMap<String,String>();
+		BuryPoint buryPoint=new BuryPoint();
+		buryPoint.setpCode("93");
+		buryPoint.setUserId(user.getId().toString());
+		buryPoint.setRecordDate(dateTime+"");
+		buryPoint.setOs("1");
+		buryPoint.setOsVersion(aclient);
+		buryPoint.setOsType("");
+		buryPoint.setHardware("");
+		BuryPointEntity entity=new BuryPointEntity();
+		List<BuryPoint>  list=new ArrayList<BuryPoint>();
+		list.add(buryPoint);
+		entity.setList(list);
+		entity.setSessionId(sessionId);
+		entity.setUserId(user.getId().toString());
+		/*Map<String,String> params=new HashMap<String,String>();
 		params.put("pCode", "93");
 		params.put("userId", user.getId().toString());
 		params.put("recordDate", dateTime+"");
@@ -123,8 +141,8 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 		params.put("hardware", "");
 		params.put("sessionId", user.getSessionId());
 		params.put("userId", user.getId().toString());
-		String urlEncode="application/json; charset=utf-8";
-		buryRequest.burySave(params);
+		String urlEncode="application/json; charset=utf-8";*/
+		buryRequest.burySave(entity);
 	//	String httpPost = HttpUtils.httpPost(burySaveUrl, params, urlEncode);
 	
 		
