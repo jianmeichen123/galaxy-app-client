@@ -100,7 +100,7 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 			return responsebody;
 		}
 		user = rtn.getValue();
-		String sessionId = SessionUtils.createWebSessionId(); // 生成sessionId
+		String sessionId = request.getSession().getId(); // 生成sessionId
 		setCacheSessionId(request, user, sessionId);
 		Header header = getHeader(user, sessionId);
 		responsebody.setHeader(header);
