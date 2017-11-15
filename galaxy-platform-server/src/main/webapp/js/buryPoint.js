@@ -52,9 +52,9 @@ function myBrowser(){
 	}else if(isQQBrowser && isChrome && isSafari){
 		return 'QQBrowser';
 	}else if(isSafari && !isQQBrowser && !isChrome){
-		return "isSafari";
+		return "Safari";
 	}else if(isEdge){
-	    return "isEdge";
+	    return "Edge";
 	}else{
 		return "other";
 	}
