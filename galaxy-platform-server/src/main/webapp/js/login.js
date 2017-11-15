@@ -36,7 +36,6 @@ function checkform(){
 	     var password = b.encode($("#password").val());  
 	     var aclient=judgeBrower();
 	     var jsonData={"email":email,"password":password,"aclient":myBrowser(aclient)};
-	     
 		 /*if(autologin){
 			 saveCookie(email,password);
 		 }*/
