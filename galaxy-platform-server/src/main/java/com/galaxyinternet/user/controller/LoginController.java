@@ -2,9 +2,7 @@ package com.galaxyinternet.user.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -31,12 +29,9 @@ import com.galaxyinternet.framework.core.model.Result.Status;
 import com.galaxyinternet.framework.core.service.BaseService;
 import com.galaxyinternet.framework.core.utils.BuryRequest;
 import com.galaxyinternet.framework.core.utils.DateUtil;
-import com.galaxyinternet.framework.core.utils.HttpUtils;
-import com.galaxyinternet.framework.core.utils.SessionUtils;
 import com.galaxyinternet.model.auth.UserResult;
 import com.galaxyinternet.model.role.Role;
 import com.galaxyinternet.model.user.User;
-import com.galaxyinternet.service.UserLoginHisService;
 import com.galaxyinternet.service.UserService;
 import com.galaxyinternet.utils.AuthRequest;
 
@@ -46,8 +41,6 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 	final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private UserLoginHisService userLoginHisService;
 	@Autowired
 	com.galaxyinternet.framework.cache.Cache cache;
 	@Autowired
@@ -77,6 +70,8 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseData<User> login(@RequestBody User user, HttpServletRequest request) {
 		ResponseData<User> responsebody = new ResponseData<User>();
+		//登出 - 防止用户关闭前未登出
+		request.getSession().invalidate();
 		String email = user.getEmail();
 		String password = user.getPassword();
 		String aclient=user.getAclient();
@@ -231,6 +226,7 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 			responsebody.setResult(new Result(Status.ERROR, Constants.INVALID_SESSIONID, "sessionId错误！"));
 			return responsebody;
 		}
+		request.getSession().invalidate();
 		responsebody.setResult(new Result(Status.OK, Constants.OPTION_SUCCESS, "退出登录"));
 		return responsebody;
 	}
