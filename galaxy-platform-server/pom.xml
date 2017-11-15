@@ -99,6 +99,7 @@
 				<galaxy.project.platform.endpoint>http://fx.local.galaxyinternet.com/platform/</galaxy.project.platform.endpoint>
 				<xinge.enviroment>2</xinge.enviroment>
 				<auth.uri>http://fx.dev.galaxyinternet.com/authority_service</auth.uri>
+				<buryPoint.softWare.vesion>v1.9</buryPoint.softWare.vesion>
 				<galaxy.project.bury.endpoint>http://fx.dev.galaxyinternet.com/bury</galaxy.project.bury.endpoint>
 				
 			</properties>
@@ -399,6 +400,11 @@
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>1.1.2</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.logback-extensions</groupId>
+		    <artifactId>logback-ext-spring</artifactId>
+		    <version>0.1.4</version>
 		</dependency>
 		<dependency>
             <groupId>org.slf4j</groupId>
