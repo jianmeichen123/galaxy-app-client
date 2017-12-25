@@ -4,8 +4,9 @@
 	<parent>
 		<groupId>com.galaxyinternet</groupId>
 		<artifactId>galaxy-platform</artifactId>
-		<version>1.0.2.Q-SNAPSHOT</version>
+		<version>1.0.0-fz</version>
 	</parent>
+	
 	<artifactId>galaxy-platform-api</artifactId>
 	<packaging>jar</packaging>
 	<name />
