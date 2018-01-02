@@ -380,12 +380,13 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	@PostConstruct
 	public void initCache()
 	{
-		List<User> list = queryAll();
+		List<User> list = userDao.selectView(new User());
 		if(list != null && list.size() >0)
 		{
 			for(User user : list)
 			{
 				cache.hset(PlatformConst.CACHE_PREFIX_USER+user.getId(), "realName", user.getRealName());
+				cache.lpush(PlatformConst.CACHE_PREFIX_DEP_USERS+user.getDepartmentId()+"", user.getId()+"");
 			}
 		}
 	}

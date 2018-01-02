@@ -1,8 +1,6 @@
 package com.galaxyinternet.user.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,16 +44,12 @@ public class DepartmentServiceImpl extends BaseServiceImpl<Department>implements
 	public void afterPropertiesSet() throws Exception
 	{
 		List<Department> list = queryAll();
-		Map<Long,Department> map=new HashMap<Long,Department>();
-		if(null!=list){
-			for(Department d: list){
-				map.put(d.getId(),d);
+		if(list != null && list.size()>0)
+		{
+			for(Department dep : list)
+			{
+				cache.hset(PlatformConst.CACHE_PREFIX_DEP+dep.getId(), "name", dep.getName());
 			}
 		}
-		cache.set(PlatformConst.REQUEST_DEPARTMENT, map);
-	
 	}
-	
-	
-	
 }

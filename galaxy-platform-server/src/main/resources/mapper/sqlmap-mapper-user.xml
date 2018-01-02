@@ -403,4 +403,15 @@
 			<if test="status != null"> and u.status =#{status}</if>
 	</select>
 	 -->
+	 <select id="selectView" resultMap="BaseResultMap" parameterType="java.util.Map">
+		SELECT u.*,d.id AS department_id,u.user_name AS real_name
+		FROM v_user u
+		INNER JOIN v_rel_dep_user  du ON du.user_id = u.id
+		INNER JOIN v_department d ON d.id = du.dep_id
+		<where>
+			<trim prefixOverrides="and">
+			<if test="departmentId != null"> and d.id =#{departmentId}</if>
+			</trim>
+		</where>
+	</select>
 </mapper>
