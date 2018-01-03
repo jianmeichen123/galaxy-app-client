@@ -24,4 +24,6 @@ public interface UserDao extends BaseDao<User, Long> {
 	public List<Map<String,Object>> selectUserDetail(Map<String,Object> params);
 	
 	public List<Map<String,Object>> getResources(Map<String,Object> params);
+	
+	List<User> selectView(User user);
 }

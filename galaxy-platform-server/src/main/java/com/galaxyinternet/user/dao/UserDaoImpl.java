@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.galaxyinternet.dao.user.UserDao;
 import com.galaxyinternet.framework.core.dao.impl.BaseDaoImpl;
-import com.galaxyinternet.model.department.Department;
+import com.galaxyinternet.framework.core.utils.BeanUtils;
 import com.galaxyinternet.model.user.User;
 
 @Repository("userDao")
@@ -61,6 +61,13 @@ public class UserDaoImpl extends BaseDaoImpl<User, Long>implements UserDao {
 	public List<Map<String, Object>> getResources(Map<String, Object> params)
 	{
 		return sqlSessionTemplate.selectList(getSqlName("getResources"),params);
+	}
+
+	@Override
+	public List<User> selectView(User user)
+	{
+		Map<String,Object> params = BeanUtils.toMap(user);
+		return sqlSessionTemplate.selectList(getSqlName("selectView"),params);
 	}
 	
 	
