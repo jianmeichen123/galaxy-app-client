@@ -3,7 +3,8 @@
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
-%>
+	System.out.print(path+"33333"+basePath);
+s%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
