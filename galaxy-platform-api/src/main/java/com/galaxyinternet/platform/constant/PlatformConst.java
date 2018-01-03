@@ -8,6 +8,10 @@ public class PlatformConst {
 	public static final String REQUEST_SCOPE_PROJECT_PROGRESS = "galaxy_project_progress";
 	public static final String REQUEST_SCOPE_USER = "galaxy_user";
 	public static final String REQUEST_SCOPE_URL_NUMBER = "galaxy_url_number";
+	
+	public static final String REQUEST_SCOPE_TASK_IDS = "galaxy_task_ids";
+	
+	
 	public static final String PROJECT_TYPE = "项目";
 	public static final String TASK_TYPE = "任务";
 	public static final String SCHEDULING_TYPE = "排期";
