@@ -13,6 +13,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 import com.galaxyinternet.framework.core.utils.PWDUtils;
@@ -24,7 +25,15 @@ import com.galaxyinternet.model.user.User;
 public class AuthRequest {
 	private static final Logger logger = LoggerFactory.getLogger(AuthRequest.class);
 	private String authURI;
-	private RestTemplate template = new RestTemplate();
+	private RestTemplate template;
+	
+	public AuthRequest()
+	{
+		SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
+		factory.setConnectTimeout(2000);
+		factory.setReadTimeout(5000);
+		template = new RestTemplate(factory);
+	}
 	
 	public UserResult login(String userName, String password)
 	{
@@ -43,6 +52,10 @@ public class AuthRequest {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity<Map<String, String>> request = new HttpEntity<>(urlVariables, headers);
 		ResponseEntity<UserResult> rtn = template.postForEntity(uri, request, UserResult.class);
+		if(logger.isDebugEnabled())
+		{
+			logger.debug(String.format("Response:%s", rtn.getBody()));
+		}
 		return rtn.getBody();
 	}
 	public AuthResult updatePwd(Long uid, String password)
