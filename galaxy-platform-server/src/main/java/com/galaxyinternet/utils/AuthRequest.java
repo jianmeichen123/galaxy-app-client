@@ -13,6 +13,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 import com.galaxyinternet.framework.core.utils.PWDUtils;
@@ -21,11 +22,19 @@ import com.galaxyinternet.model.auth.UserResult;
 import com.galaxyinternet.model.resource.PlatformResource;
 import com.galaxyinternet.model.user.User;
 
-public class AuthRequest {
+public class AuthRequest 
+{
 	private static final Logger logger = LoggerFactory.getLogger(AuthRequest.class);
 	private String authURI;
-	private RestTemplate template = new RestTemplate();
+	private RestTemplate template;
 	
+	public AuthRequest()
+	{
+		SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
+		factory.setConnectTimeout(2000);
+		factory.setReadTimeout(30000);
+		template  = new RestTemplate(factory);
+	}
 	public UserResult login(String userName, String password)
 	{
 		String uri = authURI + "/login/userLogin";
