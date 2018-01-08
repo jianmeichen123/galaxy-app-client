@@ -2,27 +2,21 @@ package com.galaxyinternet.user.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.galaxyinternet.dao.department.DepartmentDao;
-import com.galaxyinternet.framework.cache.Cache;
 import com.galaxyinternet.framework.core.dao.BaseDao;
 import com.galaxyinternet.framework.core.service.impl.BaseServiceImpl;
 import com.galaxyinternet.model.department.Department;
-import com.galaxyinternet.platform.constant.PlatformConst;
 import com.galaxyinternet.service.DepartmentService;
 
 @Service("com.galaxyinternet.service.DepartmentService")
-public class DepartmentServiceImpl extends BaseServiceImpl<Department>implements DepartmentService,InitializingBean{
+public class DepartmentServiceImpl extends BaseServiceImpl<Department>implements DepartmentService{
 	//private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Autowired
 	private DepartmentDao departmentDao;
-	
-	@Autowired
-	private Cache cache;
 
 	@Override
 	protected BaseDao<Department, Long> getBaseDao() {
@@ -38,18 +32,5 @@ public class DepartmentServiceImpl extends BaseServiceImpl<Department>implements
 	public List<Department> queryListById(List<String> idList) {
 		// TODO Auto-generated method stub
 		return departmentDao.selectListById(idList);
-	}
-	
-	@Override
-	public void afterPropertiesSet() throws Exception
-	{
-		List<Department> list = queryAll();
-		if(list != null && list.size()>0)
-		{
-			for(Department dep : list)
-			{
-				cache.hset(PlatformConst.CACHE_PREFIX_DEP+dep.getId(), "name", dep.getName());
-			}
-		}
 	}
 }

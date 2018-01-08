@@ -41,6 +41,10 @@ public class PlatformConst {
 	public static final String IOS_TITLE_TASK = "任务状态变更";
 	public static final String IOS_TITLE_MEET = "会议通知";
 	
+	public static final String CACHE_USER_IDS = "galaxy_user_ids";
+	
+	public static final String CACHE_DEP_IDS = "galaxy_dep_ids";
+	
 	public static final String CACHE_PREFIX_USER = "galaxy_user:";
 	
 	public static final String CACHE_PREFIX_DEP= "galaxy_deparement:";

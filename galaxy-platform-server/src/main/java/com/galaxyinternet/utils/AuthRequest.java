@@ -43,6 +43,10 @@ public class AuthRequest {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity<Map<String, String>> request = new HttpEntity<>(urlVariables, headers);
 		ResponseEntity<UserResult> rtn = template.postForEntity(uri, request, UserResult.class);
+		if(logger.isDebugEnabled())
+		{
+			logger.debug(String.format("Response Status:%s, Content:%s", rtn.getStatusCode(), rtn.getBody()));
+		}
 		return rtn.getBody();
 	}
 	public AuthResult updatePwd(Long uid, String password)
