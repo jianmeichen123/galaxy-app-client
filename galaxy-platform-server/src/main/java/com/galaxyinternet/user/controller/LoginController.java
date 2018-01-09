@@ -30,7 +30,6 @@ import com.galaxyinternet.framework.core.service.BaseService;
 import com.galaxyinternet.framework.core.utils.BuryRequest;
 import com.galaxyinternet.framework.core.utils.DateUtil;
 import com.galaxyinternet.model.auth.UserResult;
-import com.galaxyinternet.model.role.Role;
 import com.galaxyinternet.model.user.User;
 import com.galaxyinternet.service.UserService;
 import com.galaxyinternet.utils.AuthRequest;
@@ -110,6 +109,7 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 		user.setGender(null);
 		responsebody.setEntity(user);
 		responsebody.setResult(new Result(Status.OK, Constants.OPTION_SUCCESS, "登录成功！"));
+		
 		Date date=new Date();
 		long dateTime=DateUtil.dateToLong(date);
 		BuryPoint buryPoint=new BuryPoint();
@@ -126,21 +126,7 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 		entity.setList(list);
 		entity.setSessionId(sessionId);
 		entity.setUserId(user.getId().toString());
-		/*Map<String,String> params=new HashMap<String,String>();
-		params.put("pCode", "93");
-		params.put("userId", user.getId().toString());
-		params.put("recordDate", dateTime+"");
-		params.put("os", "1");
-		params.put("osVersion",aclient);
-		params.put("osType", "");
-		params.put("hardware", "");
-		params.put("sessionId", user.getSessionId());
-		params.put("userId", user.getId().toString());
-		String urlEncode="application/json; charset=utf-8";*/
 		buryRequest.burySave(entity);
-	//	String httpPost = HttpUtils.httpPost(burySaveUrl, params, urlEncode);
-	
-		
 		/**
 		 * zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 		 */
@@ -186,12 +172,6 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 		header.setLoginName(user.getEmail());
 		header.setSessionId(sessionId);
 		header.setUserId(user.getId());
-		Role role = userService.getRoleByUserId(user.getId());
-		if (null != role && StringUtils.isNotBlank(role.getRoleCode())) {
-			header.setAttachment(role.getRoleCode());
-		} else {
-			header.setAttachment("");
-		}
 		return header;
 	}
 

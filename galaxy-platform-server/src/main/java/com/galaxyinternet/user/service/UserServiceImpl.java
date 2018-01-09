@@ -224,20 +224,6 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	}
 
 	@Override
-	public Role getRoleByUserId(Long userId) {
-		UserRole userRole = new UserRole();
-		userRole.setUserId(userId);
-		userRole = userRoleService.queryOne(userRole);
-		if (userRole != null && userRole.getRoleId() != null) {
-			Role role = roleService.queryById(userRole.getRoleId());
-			return role;
-		} else {
-			return null;
-		}
-
-	}
-	
-	@Override
 	public List<User> getUserByRoleId(Long roleId) {
 		UserRole userRole = new UserRole();
 		userRole.setRoleId(roleId);
@@ -263,33 +249,6 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	@Override
 	public User queryByNickName(User user) {
 		return userDao.selectByNickName(user);
-	}
-
-	@Override
-	public User queryUserByUP(User user) {
-		String email = PWDUtils.decodePasswordByBase64(user.getEmail());
-		String password = PWDUtils.decodePasswordByBase64(user.getPassword());
-		password = PWDUtils.genernateNewPassword(password); // 重新加密password
-		user.setEmail(email);
-		user.setPassword(password);
-		user = userDao.selectOne(user);
-		if (user == null) {
-			return null;
-		}
-		if (isUserNormal(user)) {
-
-			Department dept = getDepartmentByUserId(user.getId()); // 查询user的角色和部门
-			Role role = getRoleByUserId(user.getId());
-			if (role != null) {
-				user.setRole(role.getName());
-				user.setRoleId(role.getId());
-			}
-			if (dept != null) {
-				user.setDepartmentName(dept.getName());
-				user.setDepartmentId(dept.getId());
-			}
-		}
-		return user;
 	}
 
 	@Override

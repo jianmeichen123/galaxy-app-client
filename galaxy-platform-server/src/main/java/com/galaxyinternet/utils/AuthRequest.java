@@ -13,7 +13,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.client.SimpleClientHttpRequestFactory;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 import com.galaxyinternet.framework.core.utils.PWDUtils;
@@ -30,9 +30,9 @@ public class AuthRequest
 	
 	public AuthRequest()
 	{
-		SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
+		HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
 		factory.setConnectTimeout(2000);
-		factory.setReadTimeout(30000);
+		factory.setReadTimeout(5000);
 		template  = new RestTemplate(factory);
 	}
 	public UserResult login(String userName, String password)

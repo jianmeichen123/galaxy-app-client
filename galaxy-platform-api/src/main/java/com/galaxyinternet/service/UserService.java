@@ -9,7 +9,6 @@ import com.galaxyinternet.bo.UserBo;
 import com.galaxyinternet.framework.core.model.Page;
 import com.galaxyinternet.framework.core.service.BaseService;
 import com.galaxyinternet.model.department.Department;
-import com.galaxyinternet.model.role.Role;
 import com.galaxyinternet.model.user.User;
 
 /**
@@ -65,13 +64,6 @@ public interface UserService extends BaseService<User> {
 	Department getDepartmentByUserId(Long userId);
 	
 	/**
-	 * 根据用户id获取角色
-	 * @param userId
-	 * @return
-	 */
-	Role getRoleByUserId(Long userId);
-	
-	/**
 	 * 查询用户昵称 重复校验用
 	 * @author zhaoying
 	 * @param user
@@ -86,14 +78,6 @@ public interface UserService extends BaseService<User> {
 	 * @return
 	 */
 	User queryByEmail(User user);
-	
-	/**
-	 * 查询登录用户
-	 * @author zcy
-	 * @param user
-	 * @return
-	 */
-	User queryUserByUP(User user);
 
 	/**
 	 * @author zcy
