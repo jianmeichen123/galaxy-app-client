@@ -34,6 +34,9 @@ public class PlatformConst {
 	public static final String REQUEST_SCOPE_MESSAGE_BATCH = "galaxy_message_batch";
 	public static final String REQUEST_SCOPE_MESSAGE_ASSISRCOLUMN = "galaxy_message_assistColumn";
 	
+	public static final String REQUEST_SCOPE_MESSAGE_RECORD_TYPE = "galaxy_message_record_type";
+	public static final String REQUEST_SCOPE_MESSAGE_RECORD_IDS = "galaxy_message_record_ids";
+	
 	public static final String REQUEST_SCOPE_RECORD_ID = "galaxy_record_id";
 	
 	
