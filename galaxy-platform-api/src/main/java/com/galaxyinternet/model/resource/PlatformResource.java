@@ -25,6 +25,7 @@ public class PlatformResource extends PagableEntity {
     private List<Long> userIds;
     private List<Long> depIds;
     private String productType;
+    private Long spId; //数据权限选项
     //样式
     private String style;
     private Long createdUid;
@@ -165,6 +166,15 @@ public class PlatformResource extends PagableEntity {
 	public void setDepIds(List<Long> depIds)
 	{
 		this.depIds = depIds;
+	}
+	
+	public Long getSpId()
+	{
+		return spId;
+	}
+	public void setSpId(Long spId)
+	{
+		this.spId = spId;
 	}
 	@Override
     public String toString() {
