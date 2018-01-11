@@ -38,7 +38,7 @@ public class PlatformConst {
 	public static final String REQUEST_SCOPE_MESSAGE_RECORD_IDS = "galaxy_message_record_ids";
 	
 	public static final String REQUEST_SCOPE_RECORD_ID = "galaxy_record_id";
-	
+	public static final String REQUEST_SCOPE_RECORD_IDS = "galaxy_record_ids";
 	
 	// ios 消息推送
 	public static final String IOS_TITLE_TASK = "任务状态变更";
