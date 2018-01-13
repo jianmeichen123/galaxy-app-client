@@ -46,7 +46,7 @@ public class AuthRequest
 		urlVariables.put("productType", "0");
 		if(logger.isDebugEnabled())
 		{
-			logger.debug(String.format("Request URI:%s, Params:%s", uri, urlVariables));
+			logger.debug(String.format("Request URI:%s, UserName:%s", uri, userName));
 		}
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
