@@ -3,8 +3,6 @@ package com.galaxyinternet.dao.sopIndex;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.transaction.annotation.Transactional;
-
 import com.galaxyinternet.bo.IndexConfigBo;
 import com.galaxyinternet.framework.core.dao.BaseDao;
 import com.galaxyinternet.model.sopIndex.IndexConfig;

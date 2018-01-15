@@ -2,13 +2,11 @@ package com.galaxyinternet.indexConfig.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +27,6 @@ import com.galaxyinternet.framework.core.service.BaseService;
 import com.galaxyinternet.model.resource.PlatformResource;
 import com.galaxyinternet.model.sopIndex.IndexConfig;
 import com.galaxyinternet.service.IndexConfigService;
-import com.galaxyinternet.service.ResourceService;
 import com.galaxyinternet.utils.AuthRequest;
 
 @Controller
@@ -40,9 +37,6 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 	
 	@Autowired
 	private IndexConfigService indexConfigService;
-	
-	@Autowired
-	private ResourceService resourceService;
 	
 	@Autowired
 	com.galaxyinternet.framework.cache.Cache cache;

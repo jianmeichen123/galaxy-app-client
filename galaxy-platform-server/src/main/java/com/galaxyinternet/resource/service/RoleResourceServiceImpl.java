@@ -1,22 +1,14 @@
 package com.galaxyinternet.resource.service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.dubbo.common.utils.StringUtils;
-import com.galaxyinternet.dao.resource.ResourceDao;
 import com.galaxyinternet.dao.resource.RoleResourceDao;
 import com.galaxyinternet.dao.role.RoleDao;
 import com.galaxyinternet.framework.core.dao.BaseDao;
 import com.galaxyinternet.framework.core.service.impl.BaseServiceImpl;
-import com.galaxyinternet.model.resource.PlatformResource;
 import com.galaxyinternet.model.resource.RoleResource;
 import com.galaxyinternet.model.role.Role;
 import com.galaxyinternet.service.RoleResourceService;
@@ -26,9 +18,6 @@ public class RoleResourceServiceImpl extends BaseServiceImpl<RoleResource> imple
 
 	@Autowired
 	private RoleResourceDao roleResourceDao;
-	
-	@Autowired
-	private ResourceDao resourceDao;
 	
 	@Autowired
 	private RoleDao roleDao;

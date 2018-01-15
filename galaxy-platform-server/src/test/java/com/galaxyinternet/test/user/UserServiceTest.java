@@ -10,7 +10,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.galaxyinternet.model.user.User;
 import com.galaxyinternet.service.DepartmentService;
-import com.galaxyinternet.service.RoleService;
 import com.galaxyinternet.service.UserRoleService;
 import com.galaxyinternet.service.UserService;
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -18,9 +17,6 @@ import com.galaxyinternet.service.UserService;
 public class UserServiceTest   {
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private RoleService roleService;
-
 	@Autowired
 	private UserRoleService userRoleService;
 	@Autowired
@@ -36,14 +32,14 @@ public class UserServiceTest   {
 	public void testAddUser() throws Exception {
 		User user = new User();
 		user.setNickName("test");
-		long  value = userService.insert(user);
+		userService.insert(user);
 	}
 	
 	@Test
 	public void testUpdateUser() throws Exception {
 		User user = new User();
 		user.setNickName("test");
-		long  value = userService.updateById(user);
+		userService.updateById(user);
 	}
 	
 	/**

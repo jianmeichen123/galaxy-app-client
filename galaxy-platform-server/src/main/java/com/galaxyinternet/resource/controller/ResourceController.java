@@ -11,14 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.galaxyinternet.common.controller.BaseControllerImpl;
@@ -34,7 +32,6 @@ import com.galaxyinternet.model.resource.RoleResource;
 import com.galaxyinternet.model.user.User;
 import com.galaxyinternet.service.ResourceService;
 import com.galaxyinternet.service.RoleResourceService;
-import com.galaxyinternet.service.UserRoleService;
 
 /**
  * Ȩ����Դ����
@@ -47,9 +44,6 @@ public class ResourceController extends BaseControllerImpl<PlatformResource, Pla
 	final Logger logger = LoggerFactory.getLogger(ResourceController.class);
 	@Autowired
 	private ResourceService resourceService;
-	
-	@Autowired
-	private UserRoleService userRoleService;
 	
 	@Autowired
 	private RoleResourceService roleResourceService;
@@ -153,7 +147,6 @@ public class ResourceController extends BaseControllerImpl<PlatformResource, Pla
 	public ResponseData<PlatformResource> queryResource(HttpServletRequest request,@RequestBody PlatformResource query ) {
 		
 		ResponseData<PlatformResource> responseBody = new ResponseData<PlatformResource>();
-		User user = (User) request.getSession().getAttribute(Constants.SESSION_USER_KEY);
 		try {
 			PageRequest pageable = new PageRequest();
 			Integer pageNum = query.getPageNum() != null ? query.getPageNum() : 0;
@@ -183,7 +176,6 @@ public class ResourceController extends BaseControllerImpl<PlatformResource, Pla
 	@RequestMapping(value = "/resourceinfo/{resourceId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseData<PlatformResource> resourceInfo(HttpServletRequest request,@PathVariable("resourceId") Long resourceId ) {
 		ResponseData<PlatformResource> responseBody = new ResponseData<PlatformResource>();
-		User user = (User) request.getSession().getAttribute(Constants.SESSION_USER_KEY);
 		try {
 			PlatformResource resourceinfo = resourceService.queryById(resourceId);
 			responseBody.setEntity(resourceinfo);
@@ -209,7 +201,6 @@ public class ResourceController extends BaseControllerImpl<PlatformResource, Pla
 	public ResponseData<PlatformResource> queryResourceTree(HttpServletRequest request,@RequestBody Long resourceId ) {
 		
 		ResponseData<PlatformResource> responseBody = new ResponseData<PlatformResource>();
-		User user = (User) request.getSession().getAttribute(Constants.SESSION_USER_KEY);
 		try {
 			List<PlatformResource> resourceList = null;
 			

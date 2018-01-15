@@ -10,6 +10,10 @@ import com.galaxyinternet.model.user.User;
  *
  */
 public class UserDB extends User{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Long departmentCode ;
 
 	/**
