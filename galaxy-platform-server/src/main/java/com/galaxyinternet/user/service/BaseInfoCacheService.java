@@ -66,6 +66,7 @@ public class BaseInfoCacheService implements InitializingBean
 			{
 				pip.del(PlatformConst.CACHE_PREFIX_USER+userId);
 			}
+			pip.del(PlatformConst.CACHE_USER_IDS);
 			pip.sync();
 			List<User> userList = userDao.selectView(new User());
 			if(userList != null && userList.size() > 0)

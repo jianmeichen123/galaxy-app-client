@@ -1,6 +1,7 @@
 package com.galaxyinternet.user.controller;
 import static com.galaxyinternet.framework.core.form.Token.TOKEN;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,6 +49,7 @@ import com.galaxyinternet.model.department.Department;
 import com.galaxyinternet.model.user.User;
 import com.galaxyinternet.service.DepartmentService;
 import com.galaxyinternet.service.UserService;
+import com.galaxyinternet.user.service.BaseInfoCacheService;
 
 /**
  * 用户相关
@@ -64,6 +66,8 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	
 	@Autowired
 	private Cache cache;
+	@Autowired
+	private BaseInfoCacheService baseInfoCache;
 
 	@Autowired
 	private DepartmentService departmentService;
@@ -218,7 +222,6 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 	@RequestMapping(value = "/updateUser", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseData<UserBo> updateUser( @RequestBody @Valid UserBo user,BindingResult result) {
 		ResponseData<UserBo> responseBody = new ResponseData<UserBo>();
-		boolean bl = true;
 		long retValue = 0;
 		Result validationResult = ValidatorResultHandler.handle(result);
 		if (validationResult.getStatus() == Status.ERROR) {
@@ -234,14 +237,6 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 				user.setPassword(PWDUtils.genernateNewPassword(oriPwd));
 				user.setStatus(UserConstant.NORMAL);
 				retValue = userService.insertUser(user);
-				String toMail = user.getEmail() + Constants.MAIL_SUFFIX; // "sue_vip@126.com"; 收件人邮件地址
-				//使用模板发送邮件
-				String str = MailTemplateUtils.getContentByTemplate(Constants.MAIL_INITIALPWD_CONTENT);
-				String content = PlaceholderConfigurer.formatText(str, user.getRealName(),user.getEmail(),oriPwd,this.getLoginUrl(),this.getLoginUrl());
-			
-			/*	String subject = "新用户注册通知";// 邮件主题
-				bl = SimpleMailSender.sendHtmlMail(toMail, subject, content);*/
-			
 			
 		} catch (PlatformException e) {
 
@@ -420,5 +415,19 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 			}
 		}
 		return responseBody;
+	}
+	@RequestMapping(value = "/refreshCache", method = RequestMethod.GET)
+	public void refreshCache(HttpServletResponse response)
+	{
+		try
+		{
+			baseInfoCache.setCache();
+			response.addHeader("Content-Type","application/json");
+			response.getWriter().write("{\"status\":\"OK\"}");
+		} catch (IOException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
