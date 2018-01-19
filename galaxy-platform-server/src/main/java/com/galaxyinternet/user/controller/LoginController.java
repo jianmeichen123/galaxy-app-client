@@ -70,7 +70,11 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 	public ResponseData<User> login(@RequestBody User user, HttpServletRequest request) {
 		ResponseData<User> responsebody = new ResponseData<User>();
 		//登出 - 防止用户关闭前未登出
-		request.getSession().invalidate();
+		Object attr = request.getSession().getAttribute(Constants.SESSION_USER_KEY);
+		if(attr != null)
+		{
+			request.getSession().invalidate();
+		}
 		String email = user.getEmail();
 		String password = user.getPassword();
 		String aclient=user.getAclient();
@@ -175,15 +179,16 @@ public class LoginController extends BaseControllerImpl<User, UserBo> {
 		return header;
 	}
 
-	/**
-	 * @author zcy
-	 * @param request
-	 * @param user
-	 */
 	private void setCacheSessionId(HttpServletRequest request, User user, String sessionId) {
 		user.setSessionId(sessionId);
-		cache.set(sessionId, user); // 将sessionId存入cache
 		request.getSession().setAttribute(Constants.SESSION_USER_KEY, user);
+		User cacheUser = new User();
+		cacheUser.setId(user.getId());
+		cacheUser.setEmail(user.getEmail());
+		cacheUser.setDepartmentId(user.getDepartmentId());
+		cacheUser.setSessionId(sessionId);
+		int secs = request.getSession().getMaxInactiveInterval();
+		cache.setByRedis(sessionId, cacheUser, secs);
 	}
 	
 
