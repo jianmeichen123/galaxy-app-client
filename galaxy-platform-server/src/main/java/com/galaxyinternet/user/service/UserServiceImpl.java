@@ -1,16 +1,5 @@
 package com.galaxyinternet.user.service;
 
-import static com.galaxyinternet.utils.ValidationUtil.throwPlatformException;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.galaxyinternet.bo.UserBo;
 import com.galaxyinternet.dao.user.UserDao;
 import com.galaxyinternet.framework.core.constants.UserConstant;
@@ -29,6 +18,16 @@ import com.galaxyinternet.service.UserRoleService;
 import com.galaxyinternet.service.UserService;
 import com.galaxyinternet.utils.AuthRequest;
 import com.galaxyinternet.utils.MessageStatus;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import static com.galaxyinternet.utils.ValidationUtil.throwPlatformException;
 
 @Service("com.galaxyinternet.service.UserService")
 public class UserServiceImpl extends BaseServiceImpl<User> implements UserService {
@@ -50,6 +49,14 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	protected BaseDao<User, Long> getBaseDao() {
 		return this.userDao;
 	}
+
+
+
+	public List<User> selectViewByGBK(User user) {
+		return userDao.selectViewByGBK(user);
+	}
+
+
 
 	@Override
 	public Long insertUser(User user) {

@@ -1,21 +1,28 @@
 package com.galaxyinternet.service;
 
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.data.domain.Pageable;
-
 import com.galaxyinternet.bo.UserBo;
 import com.galaxyinternet.framework.core.model.Page;
 import com.galaxyinternet.framework.core.service.BaseService;
 import com.galaxyinternet.model.department.Department;
 import com.galaxyinternet.model.user.User;
+import org.springframework.data.domain.Pageable;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author keifer
  */
 
 public interface UserService extends BaseService<User> {
+
+	/**
+	 * careerline = 1 的用户按name首字母排序
+	 *
+	 * @param user
+	 * @return
+	 */
+	List<User> selectViewByGBK(User user);
 
 	/**
 	 * 添加用户

@@ -1,10 +1,10 @@
 package com.galaxyinternet.dao.user;
 
-import java.util.List;
-import java.util.Map;
-
 import com.galaxyinternet.framework.core.dao.BaseDao;
 import com.galaxyinternet.model.user.User;
+
+import java.util.List;
+import java.util.Map;
 
 public interface UserDao extends BaseDao<User, Long> {
 	
@@ -26,4 +26,5 @@ public interface UserDao extends BaseDao<User, Long> {
 	public List<Map<String,Object>> getResources(Map<String,Object> params);
 	
 	List<User> selectView(User user);
+	List<User> selectViewByGBK(User user);
 }

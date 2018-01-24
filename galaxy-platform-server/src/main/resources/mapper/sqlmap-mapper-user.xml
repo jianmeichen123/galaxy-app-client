@@ -414,4 +414,25 @@
 			</trim>
 		</where>
 	</select>
+
+
+	<select id="selectViewByGBK" resultMap="BaseResultMap" parameterType="java.util.Map">
+	SELECT a.id, a.user_name real_name, b.id department_id, b.name department_name
+	FROM v_user a, v_department b, v_rel_dep_user c
+	WHERE a.id = c.user_id
+		AND b.id = c.dep_id
+		AND a.is_show = 0
+		AND  a.is_del = 0
+		AND a.is_outtage = 0
+		AND b.is_careerline = 1
+		<if test="keyword != null">
+			and
+			a.user_name  LIKE '%${keyword}%'
+			<if test="escapeChar ">
+				escape '/'
+			</if>
+		</if>
+	ORDER BY CONVERT(a.user_name USING gbk) COLLATE gbk_chinese_ci ,a.id  ASC
+	</select>
+
 </mapper>
