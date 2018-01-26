@@ -1,12 +1,15 @@
 package com.galaxyinternet.indexConfig.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
+import com.galaxyinternet.bo.IndexConfigBo;
+import com.galaxyinternet.common.controller.BaseControllerImpl;
+import com.galaxyinternet.framework.core.model.ResponseData;
+import com.galaxyinternet.framework.core.model.Result;
+import com.galaxyinternet.framework.core.model.Result.Status;
+import com.galaxyinternet.framework.core.service.BaseService;
+import com.galaxyinternet.model.resource.PlatformResource;
+import com.galaxyinternet.model.sopIndex.IndexConfig;
+import com.galaxyinternet.service.IndexConfigService;
+import com.galaxyinternet.utils.AuthRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +21,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.galaxyinternet.bo.IndexConfigBo;
-import com.galaxyinternet.common.controller.BaseControllerImpl;
-import com.galaxyinternet.framework.core.model.ResponseData;
-import com.galaxyinternet.framework.core.model.Result;
-import com.galaxyinternet.framework.core.model.Result.Status;
-import com.galaxyinternet.framework.core.service.BaseService;
-import com.galaxyinternet.model.resource.PlatformResource;
-import com.galaxyinternet.model.sopIndex.IndexConfig;
-import com.galaxyinternet.service.IndexConfigService;
-import com.galaxyinternet.utils.AuthRequest;
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/galaxy/indexConfig")
@@ -259,13 +257,14 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 		try {
 			//根据资源id查询资源的详细信息
 			//indexConfig.setResourceId(null);
-			int updateByResourceId = indexConfigService.updateByResourceId(indexConfig);
+			indexConfigService.deleteById(indexConfig.getId());
+			//int updateByResourceId = indexConfigService.updateByResourceId(indexConfig);
 		//	 int delete = indexConfigService.delete(indexConfig);
-			 if(updateByResourceId>0){
+			/* if(updateByResourceId>0){
 				 responseBody.setResult(new Result(Status.OK, "删除配置项成功"));
 			 }else{
 				 responseBody.setResult(new Result(Status.ERROR, "删除配置项失败"));
-			 }
+			 }*/
 			 
 		} catch (Exception e) {
 			responseBody.setResult(new Result(Status.ERROR, null,"保存失败"));

@@ -146,9 +146,9 @@
 		   resource_id=null,
 		   content_url=null,
 		   resource_code=null
-		   where id = #{resourceId}
+		   where resource_id = #{resourceId}
 	</update>
-   
+
   	
   	<!-- 查询配置信息 -->
 	<select id="selectConfigByResource" resultMap="BaseResultMap" parameterType="java.util.Map">
