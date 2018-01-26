@@ -40,6 +40,10 @@
 
 <!-- 模块配置区js部分 -->
 <script>
+
+
+
+
     $(function(){
         var i=0;
         sendPostRequestByJsonObj(Constants.platformContentURL + "/galaxy/indexConfig/queryIndexModelConfig",{},function(data){
@@ -49,12 +53,12 @@
                 if(o.shapeType == '1'){
                     //双方格
                     innerHtml += '<div class="eblock fl">';
-                    if(typeof(o.resourceId) == "undefined"){
+                    if(typeof(o.resourceId) == "undefined" || o.resourceId == null){
                         //未配置
                         innerHtml += '<div class="addEblockCon addEblockCon_'+i+'">';
                         innerHtml += '<button class="addCircleBtn" value="'+o.id+'" href="<%=path%>/galaxy/indexConfig/toAddCon" data-btn="addEblockCon_'+i+'" data-name="选择菜单">+</button>';
                         innerHtml += '</div>';
-                        innerHtml += '<div class="deleteEblockCon deleteEblockCon_'+i+'"><span></span>';
+                        innerHtml += '<div class="deleteEblockCon deleteEblockCon_'+i+'" style="display:none;"><span></span>';
                         innerHtml += '<button class="deleteCircleBtn" data-btn="delete_'+i+'">-</button>';
                         innerHtml += '</div></div>';
                     }else{
