@@ -224,13 +224,14 @@ public class IndexConfigController extends BaseControllerImpl<IndexConfig, Index
 			@RequestBody IndexConfig  indexConfig ) {
 		ResponseData<IndexConfig> responseBody = new ResponseData<IndexConfig>();
 		try {
+			indexConfigService.insert(indexConfig);
 			//根据资源id查询资源的详细信息
-			 int insert = indexConfigService.updateById(indexConfig);
+			 /*int insert = indexConfigService.updateById(indexConfig);
 			 if(insert>0){
 				 responseBody.setResult(new Result(Status.OK, "保存成功"));
 			 }else{
 				 responseBody.setResult(new Result(Status.ERROR, "保存失败")); 
-			 }
+			 }*/
 			 
 		} catch (Exception e) {
 			responseBody.setResult(new Result(Status.ERROR, null,"保存失败"));

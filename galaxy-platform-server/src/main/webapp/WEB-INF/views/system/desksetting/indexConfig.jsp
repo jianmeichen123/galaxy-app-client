@@ -107,6 +107,29 @@ function addEblockRow(i,reslut){
         +'</div>';
       $(".equipmentBox").append(eblockRow);
   }
+    function addEblockRow(i){
+        var eblockRow='<div class="eblockRow clearfix">'
+            +'<div class="eblock fl">'
+            +'<div class="addEblockCon addEblockCon_'+i+'">'
+            +'<button class="addCircleBtn" href="<%=path%>/galaxy/indexConfig/toAddCon" value data-btn="addEblockCon_'+i+'" data-name="选择菜单">+</button>'
+            +'</div>'
+            +'<div class="deleteEblockCon deleteEblockCon_'+i+'">'
+            +'<span></span>'
+            +'<button class="deleteCircleBtn" data-btn="delete_'+i+'">-</button>'
+            +'</div>'
+            +'</div>'
+            +'<div class="eblock fl">'
+            +'<div class="addEblockCon addEblockCon_'+(i+1)+'">'
+            +'<button class="addCircleBtn" href="<%=path%>/galaxy/indexConfig/toAddCon" value= data-btn="addEblockCon_'+(i+1)+'" data-name="选择菜单">+</button>'
+            +'</div>'
+            +'<div class="deleteEblockCon deleteEblockCon_'+(i+1)+'">'
+            +'<span></span>'
+            +'<button class="deleteCircleBtn" data-btn="delete_'+i+'">-</button>'
+            +'</div>'
+            +'</div>'
+            +'</div>';
+        $(".equipmentBox").append(eblockRow);
+    }
   addEblockCon();
   function addEblockCon(){  //点击弹出层
     $(".addEblockCon button").on("click",function(){ 
@@ -170,9 +193,9 @@ function addEblockRow(i,reslut){
   })
  
   $("button[data-btn='addBlock']").click(function(){   
-	 var reslut= addBlock(1,i);
+	 //var reslut= addBlock(1,i);
 		    i+=2;
-		    addEblockRow(i,reslut);  //点击一次添加一行
+		    addEblockRow(i);  //点击一次添加一行
 		    addEblockCon();  //点击弹出层
 		    disposedWidth();
   });
