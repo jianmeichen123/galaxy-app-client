@@ -49,7 +49,7 @@ $(function(){
 			  if(o.shapeType == '1'){
 				  //双方格
 				  innerHtml += '<div class="eblock fl">';
-				  if(typeof(o.resourceId) == "undefined"){
+				  if(typeof(o.id) == "undefined"){
 					  //未配置
 					  innerHtml += '<div class="addEblockCon addEblockCon_'+i+'">';
 					  innerHtml += '<button class="addCircleBtn" value="'+o.id+'" href="<%=path%>/galaxy/indexConfig/toAddCon" data-btn="addEblockCon_'+i+'" data-name="选择菜单">+</button>';
@@ -63,7 +63,7 @@ $(function(){
 					  innerHtml += '<button class="addCircleBtn" value="'+o.id+'" href="<%=path%>/galaxy/indexConfig/toAddCon" data-btn="addEblockCon_'+i+'" data-name="选择菜单">+</button>';
 					  innerHtml += '</div>';
 					  innerHtml += '<div class="deleteEblockCon deleteEblockCon_'+i+'" style="display:block;"><span>'+o.resourceName+'</span>';
-					  innerHtml += '<button class="deleteCircleBtn" value="'+o.resourceId+'" data-btn="delete_'+i+'">-</button>';
+					  innerHtml += '<button class="deleteCircleBtn" value="'+o.id+'" data-btn="delete_'+i+'">-</button>';
 					  innerHtml += '</div></div>';
 				  }
 				  current ++;

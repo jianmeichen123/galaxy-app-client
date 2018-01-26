@@ -107,7 +107,7 @@ function save_result(id,configOrder){
 
 function deleteIndexConfig(resourceId){
 	var datas={
-		"resourceId":resourceId
+		"id":resourceId
 	};
 	sendPostRequestByJsonObj(platformUrl.deleteIndexModel,datas,function(data){
 		var result = data.result.status;
