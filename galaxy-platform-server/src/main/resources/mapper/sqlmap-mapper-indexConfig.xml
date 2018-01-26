@@ -2,34 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.galaxyinternet.model.sopIndex.IndexConfig" >
 
-  <resultMap id="BaseResultMap" type="com.galaxyinternet.bo.IndexConfigBo" >
-    <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="user_id" property="userId" jdbcType="BIGINT" />
-    <result column="role_id" property="roleId" jdbcType="BIGINT" />
-    <result column="resource_id" property="resourceId" jdbcType="BIGINT" />
-    <result column="content_url" property="contentUrl" jdbcType="VARCHAR" />
-    <result column="config_order" property="configOrder" jdbcType="TINYINT" />
-    <result column="style_css" property="styleCss" jdbcType="VARCHAR" />
-    <result column="shape_type" property="shapeType" jdbcType="TINYINT" />
-    <result column="updated_time" property="updatedTime" jdbcType="BIGINT" />
-    <result column="updated_uid" property="updatedUid" jdbcType="BIGINT" />
-    <result column="created_uid" property="createdUid" jdbcType="BIGINT" />
-    <result column="created_time" property="createdTime" jdbcType="BIGINT" />
-    <result column="resource_code" property="resourceCode" jdbcType="VARCHAR" />
-    
-    <result column="resource_mark" property="resourceMark" jdbcType="VARCHAR" />
-    <result column="resource_name" property="resourceName" jdbcType="VARCHAR" />
-    <result column="resource_url" property="resourceUrl" jdbcType="VARCHAR" />
-  </resultMap>
-  
-  <sql id="Base_Column_List" >
+	<resultMap id="BaseResultMap" type="com.galaxyinternet.bo.IndexConfigBo" >
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="user_id" property="userId" jdbcType="BIGINT" />
+		<result column="role_id" property="roleId" jdbcType="BIGINT" />
+		<result column="resource_id" property="resourceId" jdbcType="BIGINT" />
+		<result column="content_url" property="contentUrl" jdbcType="VARCHAR" />
+		<result column="config_order" property="configOrder" jdbcType="TINYINT" />
+		<result column="style_css" property="styleCss" jdbcType="VARCHAR" />
+		<result column="shape_type" property="shapeType" jdbcType="TINYINT" />
+		<result column="updated_time" property="updatedTime" jdbcType="BIGINT" />
+		<result column="updated_uid" property="updatedUid" jdbcType="BIGINT" />
+		<result column="created_uid" property="createdUid" jdbcType="BIGINT" />
+		<result column="created_time" property="createdTime" jdbcType="BIGINT" />
+		<result column="resource_code" property="resourceCode" jdbcType="VARCHAR" />
+
+		<result column="resource_mark" property="resourceMark" jdbcType="VARCHAR" />
+		<result column="resource_name" property="resourceName" jdbcType="VARCHAR" />
+		<result column="resource_url" property="resourceUrl" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List" >
     id, user_id, role_id, resource_id, content_url, config_order, style_css, shape_type, 
     updated_time, updated_uid, created_uid, created_time,resource_code
   </sql>
-  
-  
-  
-  <sql id="Base_Where_Clause">
+
+
+
+	<sql id="Base_Where_Clause">
 		<where>
 			<trim prefixOverrides="and">
 				<if test="id != null"> and id = #{id,jdbcType=BIGINT}</if>
@@ -52,7 +52,7 @@
 			limit #{offset}, #{limit}
 		</if>
 	</sql>
-	
+
 	<!-- 查询总数 -->
 	<select id="selectCount" resultType="java.lang.Long" parameterType="java.util.Map">
 		select count(id) from platform_index_config
@@ -71,22 +71,22 @@
 	<select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
 		select
 		<include refid="Base_Column_List" />
-		from platform_index_config 
+		from platform_index_config
 		where id = #{id}
 	</select>
-	
-  
-  	<!-- 删除 -->
+
+
+	<!-- 删除 -->
 	<delete id="delete" parameterType="java.util.Map">
 		delete from platform_index_config
 		<include refid="Base_Where_Clause" />
 	</delete>
-     <!-- 根据ID删除 -->
+	<!-- 根据ID删除 -->
 	<delete id="deleteById" parameterType="com.galaxyinternet.model.sopIndex.IndexConfig">
 		delete from platform_index_config where id = #{id}
 	</delete>
-  
-  
+
+
 	<insert id="insert" useGeneratedKeys="true" keyProperty="id"  parameterType="com.galaxyinternet.model.sopIndex.IndexConfig" >
 	 <![CDATA[
 	  insert into platform_index_config (
@@ -99,8 +99,8 @@
 	    )
 	]]>
 	</insert>
-  
-  
+
+
 	<!-- 更新 -->
 	<update id="updateByIdSelective" parameterType="com.galaxyinternet.model.sopIndex.IndexConfig">
 		update platform_index_config
@@ -120,7 +120,7 @@
 		</set>
 		where id = #{id}
 	</update>
-	
+
 	<!-- 更新 -->
 	<update id="updateById" parameterType="com.galaxyinternet.model.sopIndex.IndexConfig">
 		update platform_index_config
@@ -140,7 +140,7 @@
 		</set>
 		where id = #{id}
 	</update>
-  <!-- 更新 -->
+	<!-- 更新 -->
 	<update id="updateByResourceId" parameterType="com.galaxyinternet.model.sopIndex.IndexConfig">
 		update platform_index_config set
 		   resource_id=null,
@@ -149,23 +149,23 @@
 		   where resource_id = #{resourceId}
 	</update>
 
-  	
-  	<!-- 查询配置信息 -->
+
+	<!-- 查询配置信息 -->
 	<select id="selectConfigByResource" resultMap="BaseResultMap" parameterType="java.util.Map">
 		select
-			ta.*,tb.resource_mark,tb.resource_name
-		from 
-			platform_index_config ta
-			left join
-			platform_resource tb
-			on ta.resource_id = tb.id
+		ta.*,tb.resource_mark,tb.resource_name
+		from
+		platform_index_config ta
+		left join
+		platform_resource tb
+		on ta.resource_id = tb.id
 		<where>
-		<trim prefixOverrides="and">
-			<if test="resourceIdNullFilter == true" >and ta.resource_id is not null </if>
-			<!-- <if test="indexDivConfig != null" >and tb.index_div_config = #{indexDivConfig,jdbcType=TINYINT} </if> -->
-			<if test="userId != null" >and ta.user_id = #{userId,jdbcType=BIGINT} </if>
-			<if test="roleId != null" >and ta.role_id = #{roleId,jdbcType=BIGINT} </if>
-		</trim>
+			<trim prefixOverrides="and">
+				<if test="resourceIdNullFilter == true" >and ta.resource_id is not null </if>
+				<!-- <if test="indexDivConfig != null" >and tb.index_div_config = #{indexDivConfig,jdbcType=TINYINT} </if> -->
+				<if test="userId != null" >and ta.user_id = #{userId,jdbcType=BIGINT} </if>
+				<if test="roleId != null" >and ta.role_id = #{roleId,jdbcType=BIGINT} </if>
+			</trim>
 		</where>
 		order by ta.config_order
 	</select>
@@ -174,38 +174,38 @@
 	<!-- 查询 用户 可用 配置-->
 	<select id="selectUserIndexModel" resultMap="BaseResultMap" parameterType="java.util.Map">
 		select
-			ta.*,tb.resource_mark,tb.resource_name,ta.content_url resource_url
-		from 
-			platform_index_config ta
-			left join
-			platform_resource tb
-			on ta.resource_id = tb.id
+		ta.*,tb.resource_mark,tb.resource_name,ta.content_url resource_url
+		from
+		platform_index_config ta
+		left join
+		platform_resource tb
+		on ta.resource_id = tb.id
 		<where>
 			ta.resource_id IS NOT NULL
 			AND ta.resource_id IN (
-				SELECT 
-					resource_id
-				FROM
-					platform_role_resource
-				WHERE
-					role_id in
-					<foreach collection="roleIds" item="id_item" index="index" open="(" close=")" separator=",">
-			            #{id_item}
-			        </foreach>
+			SELECT
+			resource_id
+			FROM
+			platform_role_resource
+			WHERE
+			role_id in
+			<foreach collection="roleIds" item="id_item" index="index" open="(" close=")" separator=",">
+				#{id_item}
+			</foreach>
 			)
 			<if test="indexDivConfig != null" >and tb.index_div_config = #{indexDivConfig,jdbcType=TINYINT} </if>
 		</where>
 		order by ta.config_order
 	</select>
-	
-	
+
+
 
 	<!-- 查询管理员 已用资源id -->
 	<select id="selectUsedResourseIds" resultType="java.lang.Long"  parameterType="java.util.Map">
 		select
-			resource_id
-		from 
-			platform_index_config
+		resource_id
+		from
+		platform_index_config
 		<where>
 			<trim prefixOverrides="and">
 				<if test="resourceIdNullFilter == true" >and resource_id is not null </if>
@@ -214,24 +214,24 @@
 			</trim>
 		</where>
 	</select>
-	
-	
+
+
 	<!-- 查询管理员可用配置信息 -->
 	<select id="selectAvailableConfig" resultMap="BaseResultMap" parameterType="java.util.Map">
 		select
-			id resource_id,resource_mark,resource_name
-		from 
-			platform_resource
+		id resource_id,resource_mark,resource_name
+		from
+		platform_resource
 		<where>
-		<trim prefixOverrides="and">
-			<if test="usedResourseIds != null">
-				id not in
-				<foreach collection="usedResourseIds" item="id_item" index="index" open="(" close=")" separator=",">
-		            #{id_item}
-		        </foreach>	
-		    </if>
-			<if test="indexDivConfig != null" >and index_div_config = #{indexDivConfig,jdbcType=TINYINT} </if>
-		</trim>
+			<trim prefixOverrides="and">
+				<if test="usedResourseIds != null">
+					id not in
+					<foreach collection="usedResourseIds" item="id_item" index="index" open="(" close=")" separator=",">
+						#{id_item}
+					</foreach>
+				</if>
+				<if test="indexDivConfig != null" >and index_div_config = #{indexDivConfig,jdbcType=TINYINT} </if>
+			</trim>
 		</where>
 	</select>
 
@@ -242,5 +242,5 @@
 			platform_index_config order by config_order desc
 		
 	</select>
-	
+
 </mapper>
