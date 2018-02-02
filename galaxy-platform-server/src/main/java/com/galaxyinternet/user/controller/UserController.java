@@ -44,6 +44,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -439,6 +440,11 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 			User user = new User();
 			if(StringUtils.isNotBlank(keyword)) user.setKeyword(keyword);
 			List<User> userList = userService.selectViewByGBK(user);
+			if(userList == null) userList = new ArrayList<>();
+			if(StringUtils.isBlank(keyword)) {
+				user.setRealName("非投资线员工");
+				userList.add(user);
+			}
 			responseBody.setEntityList(userList);
 			responseBody.setResult(new Result(Status.OK, ""));
 		} catch (PlatformException e) {
