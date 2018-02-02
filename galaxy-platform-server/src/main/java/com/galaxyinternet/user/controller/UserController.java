@@ -1,28 +1,4 @@
 package com.galaxyinternet.user.controller;
-import static com.galaxyinternet.framework.core.form.Token.TOKEN;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
-
-import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.galaxyinternet.bo.UserBo;
 import com.galaxyinternet.common.controller.BaseControllerImpl;
@@ -50,6 +26,29 @@ import com.galaxyinternet.model.user.User;
 import com.galaxyinternet.service.DepartmentService;
 import com.galaxyinternet.service.UserService;
 import com.galaxyinternet.user.service.BaseInfoCacheService;
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static com.galaxyinternet.framework.core.form.Token.TOKEN;
 
 /**
  * 用户相关
@@ -430,4 +429,24 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 			e.printStackTrace();
 		}
 	}
+
+	/** 项目承揽人查询 */
+	@RequestMapping(value = "/searchCLR", method = RequestMethod.GET)
+	public ResponseData<User> searchCLR(HttpServletResponse response,String keyword)
+	{
+		ResponseData<User> responseBody = new ResponseData<User>();
+		try {
+			User user = new User();
+			if(StringUtils.isNotBlank(keyword)) user.setKeyword(keyword);
+			List<User> userList = userService.selectViewByGBK(user);
+			responseBody.setEntityList(userList);
+			responseBody.setResult(new Result(Status.OK, ""));
+		} catch (PlatformException e) {
+			responseBody.setResult(new Result(Status.ERROR, "查询失败"));
+			logger.error("queryUserByDept ", e);
+		}
+		return responseBody;
+	}
+
+
 }
