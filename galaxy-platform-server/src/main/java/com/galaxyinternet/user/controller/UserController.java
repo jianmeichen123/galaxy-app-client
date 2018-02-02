@@ -432,7 +432,7 @@ public class UserController extends BaseControllerImpl<User, UserBo> {
 
 	/** 项目承揽人查询 */
 	@RequestMapping(value = "/searchCLR", method = RequestMethod.GET)
-	public ResponseData<User> searchCLR(HttpServletResponse response,String keyword)
+	public@ResponseBody ResponseData<User> searchCLR(HttpServletResponse response,String keyword)
 	{
 		ResponseData<User> responseBody = new ResponseData<User>();
 		try {
