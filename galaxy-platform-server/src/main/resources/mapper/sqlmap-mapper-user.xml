@@ -411,6 +411,8 @@
 		<where>
 			<trim prefixOverrides="and">
 			<if test="departmentId != null"> and d.id =#{departmentId}</if>
+			and u.is_del = 0
+			and u.is_outtage = 0
 			</trim>
 		</where>
 	</select>
