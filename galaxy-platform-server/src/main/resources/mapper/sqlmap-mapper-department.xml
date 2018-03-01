@@ -166,4 +166,13 @@
 	<delete id="deleteById" parameterType="Department">
 		delete from t_department where id = #{id}
 	</delete>
+	
+	<select id="selectView" resultMap="BaseResultMap" parameterType="java.util.Map">
+		SELECT 
+		id,
+		NAME,
+		dep_manager AS manager_id,
+		parent_id
+		FROM v_department
+	</select>
 </mapper>
