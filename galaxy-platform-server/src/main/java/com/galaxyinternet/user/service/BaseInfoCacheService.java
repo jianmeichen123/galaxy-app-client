@@ -54,7 +54,9 @@ public class BaseInfoCacheService implements InitializingBean
 				for(Department dep : depList)
 				{
 					pip.sadd(PlatformConst.CACHE_DEP_IDS, dep.getId()+"");
+					pip.hset(SafeEncoder.encode(PlatformConst.CACHE_PREFIX_DEP+dep.getId()), SafeEncoder.encode("id"), helper.objectToBytes(dep.getId()));
 					pip.hset(SafeEncoder.encode(PlatformConst.CACHE_PREFIX_DEP+dep.getId()), SafeEncoder.encode("name"), helper.objectToBytes(dep.getName()));
+					pip.hset(SafeEncoder.encode(PlatformConst.CACHE_PREFIX_DEP+dep.getId()), SafeEncoder.encode("type"), helper.objectToBytes(dep.getType()));
 					if(dep.getManagerId() != null)
 					{
 						pip.hset(SafeEncoder.encode(PlatformConst.CACHE_PREFIX_DEP+dep.getId()), SafeEncoder.encode("manager"), helper.objectToBytes(dep.getManagerId()));

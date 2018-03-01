@@ -172,7 +172,8 @@
 		id,
 		NAME,
 		dep_manager AS manager_id,
-		parent_id
+		parent_id,
+		CASE WHEN is_careerline = 1 THEN 1 ELSE 2 END AS type
 		FROM v_department
 	</select>
 </mapper>
