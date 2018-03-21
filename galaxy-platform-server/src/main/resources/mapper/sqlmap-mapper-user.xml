@@ -404,13 +404,16 @@
 	</select>
 	 -->
 	 <select id="selectView" resultMap="BaseResultMap" parameterType="java.util.Map">
-		SELECT u.*,d.id AS department_id,u.user_name AS real_name
+		SELECT DISTINCT u.*,d.id AS department_id,u.user_name AS real_name
 		FROM v_user u
 		INNER JOIN v_rel_dep_user  du ON du.user_id = u.id
 		INNER JOIN v_department d ON d.id = du.dep_id
+		LEFT JOIN power.rel_role_user ru ON ru.user_id = u.id
+		LEFT JOIN power.role r ON r.id = ru.role_id
 		<where>
 			<trim prefixOverrides="and">
 			<if test="departmentId != null"> and d.id =#{departmentId}</if>
+			<if test="role != null"> and r.role_code =#{role}</if>
 			and u.is_del = 0
 			and u.is_outtage = 0
 			</trim>

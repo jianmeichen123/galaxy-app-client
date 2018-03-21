@@ -119,4 +119,6 @@ public interface UserService extends BaseService<User> {
 	
 	
 	public User queryById(Long id, boolean useAuth);
+	
+	public List<User> selectView(User user);
 }
