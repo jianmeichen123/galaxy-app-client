@@ -47,14 +47,20 @@ public class BaseInfoCacheService implements InitializingBean
 			pip.del(PlatformConst.CACHE_DEP_IDS);
 			pip.sync();
 			//重新添加缓存 - 部门
-			List<Department> depList = depDao.selectAll();
+			List<Department> depList = depDao.selectView();
 			if(depList != null && depList.size()>0)
 			{
 				pip = jedis.pipelined();
 				for(Department dep : depList)
 				{
 					pip.sadd(PlatformConst.CACHE_DEP_IDS, dep.getId()+"");
+					pip.hset(SafeEncoder.encode(PlatformConst.CACHE_PREFIX_DEP+dep.getId()), SafeEncoder.encode("id"), helper.objectToBytes(dep.getId()));
 					pip.hset(SafeEncoder.encode(PlatformConst.CACHE_PREFIX_DEP+dep.getId()), SafeEncoder.encode("name"), helper.objectToBytes(dep.getName()));
+					pip.hset(SafeEncoder.encode(PlatformConst.CACHE_PREFIX_DEP+dep.getId()), SafeEncoder.encode("type"), helper.objectToBytes(dep.getType()));
+					if(dep.getManagerId() != null)
+					{
+						pip.hset(SafeEncoder.encode(PlatformConst.CACHE_PREFIX_DEP+dep.getId()), SafeEncoder.encode("manager"), helper.objectToBytes(dep.getManagerId()));
+					}
 				}
 				pip.sync();
 			}

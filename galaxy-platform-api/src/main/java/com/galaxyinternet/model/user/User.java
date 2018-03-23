@@ -35,6 +35,8 @@ public class User extends BaseUser {
 	private Long departmentId;// 部门Id
 	
 	private String departmentName;// 部门名称
+	
+	private String managerName;//部门主管名称、事业部总经理
 
 	private String role;// 角色
 	private String password;// 密码
@@ -319,6 +321,16 @@ public class User extends BaseUser {
 
 	public void setAclient(String aclient) {
 		this.aclient = aclient;
+	}
+
+	public String getManagerName()
+	{
+		return managerName;
+	}
+
+	public void setManagerName(String managerName)
+	{
+		this.managerName = managerName;
 	}
 
 	@Override
