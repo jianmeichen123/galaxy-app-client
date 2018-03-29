@@ -336,4 +336,14 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		}
 		return authReq.getUserById(id);
 	}
+
+
+
+	@Override
+	public List<User> selectView(User user)
+	{
+		return userDao.selectView(user);
+	}
+	
+	
 }
