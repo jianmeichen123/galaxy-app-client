@@ -73,7 +73,7 @@
 		<profile>
 			<id>local</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
+				<activeByDefault>false</activeByDefault>
 			</activation>
 			<properties>
 			
@@ -107,7 +107,7 @@
 		<profile>
 			<id>nginx</id>
 			<activation>
-				<activeByDefault>false</activeByDefault>
+				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
 				<!-- 数据库连接地址和数据库名 -->
@@ -189,7 +189,7 @@
 		<profile>
 			<id>qa</id>
 			<activation>
-				<activeByDefault>false</activeByDefault>
+				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
 				<!-- 数据库连接地址和数据库名
@@ -219,6 +219,40 @@
 				<galaxy.project.platform.endpoint>http://fx.qa.galaxyinternet.com/platform/</galaxy.project.platform.endpoint>
 				<xinge.enviroment>2</xinge.enviroment>
 				<auth.uri>http://fx.qa.galaxyinternet.com/authority_service</auth.uri>
+			    <buryPoint.softWare.vesion>v1.9</buryPoint.softWare.vesion>
+			    <galaxy.project.bury.endpoint>http://fx.dev.galaxyinternet.com/bury</galaxy.project.bury.endpoint>
+		
+			</properties>
+		</profile>
+		<profile>
+			<id>fxnew</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<!-- 数据库连接地址和数据库名 -->
+				<jdbc.url>
+					jdbc:mysql://10.9.11.234:3306/fx_db?createDatabaseIfNotExist=true&amp;amp;useUnicode=true&amp;amp;characterEncoding=utf8
+				</jdbc.url>
+				<jdbc.username>fxuser</jdbc.username>
+				<jdbc.password>fxdb_Fp9EPkG2</jdbc.password>
+				<!-- 本地项目地址 -->
+				<log4j.path>${catalina.base}/logs/</log4j.path>
+
+				<!-- dubbo -->
+				<dubbo.application.name>galaxyPlatformDubboProvider</dubbo.application.name>
+				<dubbo.protocol.name>dubbo</dubbo.protocol.name>
+				<dubbo.registry.address>zookeeper://10.9.210.22:12182?client=zkclient</dubbo.registry.address>
+				<dubbo.protocol.port>8084</dubbo.protocol.port>
+
+				<project.home.page.url>http://fxnew.galaxyinternet.com</project.home.page.url>
+				<galaxy.project.sop.endpoint>http://fxnew.galaxyinternet.com/sop/</galaxy.project.sop.endpoint>
+				<galaxy.project.report.endpoint>http://fxnew.galaxyinternet.com/report/</galaxy.project.report.endpoint>
+				<galaxy.project.platform.endpoint>http://fxnew.galaxyinternet.com/platform/</galaxy.project.platform.endpoint>
+				<xinge.enviroment>2</xinge.enviroment>
+				<auth.uri>http://fx.qa.galaxyinternet.com/authority_service</auth.uri>
+			    <buryPoint.softWare.vesion>v1.9</buryPoint.softWare.vesion>
+			    <galaxy.project.bury.endpoint>http://fx.dev.galaxyinternet.com/bury</galaxy.project.bury.endpoint>
 			</properties>
 		</profile>
 		<profile>
