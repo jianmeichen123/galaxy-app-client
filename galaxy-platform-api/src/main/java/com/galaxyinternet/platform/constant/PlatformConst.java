@@ -45,6 +45,7 @@ public class PlatformConst {
 	public static final String IOS_TITLE_MEET = "会议通知";
 	
 	public static final String CACHE_USER_IDS = "galaxy_user_ids";
+	public static final String CACHE_USER_ROLEIDS = "galaxy_user_roleids";
 	
 	public static final String CACHE_DEP_IDS = "galaxy_dep_ids";
 	

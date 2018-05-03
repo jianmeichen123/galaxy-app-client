@@ -14,6 +14,7 @@ import com.galaxyinternet.framework.cache.CacheHelper;
 import com.galaxyinternet.model.department.Department;
 import com.galaxyinternet.model.user.User;
 import com.galaxyinternet.platform.constant.PlatformConst;
+import com.galaxyinternet.utils.AuthRequest;
 
 import redis.clients.jedis.ShardedJedis;
 import redis.clients.jedis.ShardedJedisPipeline;
@@ -28,6 +29,9 @@ public class BaseInfoCacheService implements InitializingBean
 	private DepartmentDao depDao;
 	@Autowired
 	private UserDao userDao;
+	
+	@Autowired
+	private AuthRequest authReq;
 	
 	public void setCache()
 	{
@@ -71,6 +75,7 @@ public class BaseInfoCacheService implements InitializingBean
 			for(String userId : userIds)
 			{
 				pip.del(PlatformConst.CACHE_PREFIX_USER+userId);
+				pip.del(PlatformConst.CACHE_USER_ROLEIDS+userId);
 			}
 			pip.del(PlatformConst.CACHE_USER_IDS);
 			pip.sync();
@@ -83,6 +88,8 @@ public class BaseInfoCacheService implements InitializingBean
 					pip.sadd(PlatformConst.CACHE_USER_IDS, user.getId()+"");
 					pip.hset(SafeEncoder.encode(PlatformConst.CACHE_PREFIX_USER+user.getId()), SafeEncoder.encode("realName"), helper.objectToBytes(user.getRealName()));
 					pip.sadd(PlatformConst.CACHE_PREFIX_DEP_USERS+user.getDepartmentId(), user.getId()+"");
+					List<Long> selectRoleCodeByUserId = authReq.selectRoleCodeByUserId(user.getId());
+					pip.sadd(PlatformConst.CACHE_USER_ROLEIDS+user.getId(), selectRoleCodeByUserId.toArray().toString());
 				}
 				pip.sync();
 			}
