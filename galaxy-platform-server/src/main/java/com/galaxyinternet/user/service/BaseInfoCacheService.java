@@ -89,7 +89,7 @@ public class BaseInfoCacheService implements InitializingBean
 					pip.hset(SafeEncoder.encode(PlatformConst.CACHE_PREFIX_USER+user.getId()), SafeEncoder.encode("realName"), helper.objectToBytes(user.getRealName()));
 					pip.sadd(PlatformConst.CACHE_PREFIX_DEP_USERS+user.getDepartmentId(), user.getId()+"");
 					List<Long> selectRoleCodeByUserId = authReq.selectRoleCodeByUserId(user.getId());
-					pip.sadd(PlatformConst.CACHE_USER_ROLEIDS+user.getId(), selectRoleCodeByUserId.toArray().toString());
+					pip.sadd(PlatformConst.CACHE_USER_ROLEIDS+user.getId(),selectRoleCodeByUserId.toString() );
 				}
 				pip.sync();
 			}
